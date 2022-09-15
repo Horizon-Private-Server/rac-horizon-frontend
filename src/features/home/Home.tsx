@@ -13,28 +13,15 @@ import { useAppDispatch } from "../../app/hooks";
 
 import githubIcon from "../../assets/img/GitHub-Icon.png";
 import HomeCardContent from "./HomeCardContent";
-import useWindowDimensions from "../../components/utils/WindowDimensions";
+import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 
 
 const Home = () => {
 
     const dispatch = useAppDispatch();
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { height, width } = useWindowDimensions();
-
-    // Desktop view
-    let size = 2;
-
-    // Tablet or Non-Fullscreen view
-    if (width <= 855) {
-        size = 0;
-    }
-    // Mobile View
-    else if (width <= 1500) {
-        size = 1;
-    }
-
+    const {width, height} = useWindowDimensions();
+    const screenSize = computeDeviceScale(width);
 
     useEffect(() => {
 
@@ -54,15 +41,15 @@ const Home = () => {
         ]));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
     const latestVideos: string[] = useAppSelector(selectLatestVideos);
 
     let header: JSX.Element = <Box />;
     
-    if (size > 0) {
+    if (screenSize !== ScreenSize.Mobile) {
         header = <CenterObject>
-            <Typography variant={(size === 2) ? "h3" : "h4"}>
+            <Typography variant={(screenSize === ScreenSize.Desktop) ? "h3" : "h4"}>
                 Welcome to the Horizon Private Server
             </Typography>
         </CenterObject>;

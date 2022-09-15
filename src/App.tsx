@@ -19,6 +19,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import horizonLogo from "./assets/img/logo2b-cropped.png";
 import Home from './features/home/Home';
+import Setup from './features/setup/Setup';
 
 
 export const ThemeContext = React.createContext({
@@ -38,7 +39,7 @@ const navMenu = [
     label: "How To Play",
     tooltip: "How To Play",
     icon: <HelpIcon />,
-    path: "/help",
+    path: "/setup",
     hidden: false
   },
   {
@@ -74,6 +75,9 @@ function App() {
                   >
                     <Routes>
                       <Route path="/" element={<Home />} />
+                    </Routes>
+                    <Routes>
+                      <Route path="/setup" element={<Setup />} />
                     </Routes>
                   </Nav>
               </ThemeProvider>
