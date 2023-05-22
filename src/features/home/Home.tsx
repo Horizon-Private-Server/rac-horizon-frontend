@@ -14,6 +14,7 @@ import { useAppDispatch } from "../../app/hooks";
 import githubIcon from "../../assets/img/GitHub-Icon.png";
 import ps2Logo from "../../assets/img/ps2-logo.png";
 import pcsx2Logo from "../../assets/img/pcsx2-logo.png";
+import dzoLogo from "../../assets/img/dzo-logo.png";
 
 import DownloadIcon from '@mui/icons-material/Download';
 
@@ -147,7 +148,7 @@ const Home = () => {
                 }}
             >
                 {/* TODO Make this height not statically defined. */}
-                <Box sx={{width: "33.6%", height: "148px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                {/* <Box sx={{width: "33.6%", height: "148px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
 
                     <CenterObject orientation="horizontal">
                         <Typography 
@@ -159,7 +160,21 @@ const Home = () => {
                         </Typography>
                     </CenterObject>
                 
-                </Box>
+                </Box> */}
+                
+                <PageCard>
+                    <HomeCardContent
+                        link={"http://dzo.rac-horizon.com/downloads/DreadZone%20Online%20Installer.exe"}
+                        icon={dzoLogo}
+                        iconAltText="DZO Logo"
+                        title={"DreadZone Online PC Client"}
+                        description={"Download the DreadZone Online PC Client Installer."}
+                        actionIcon={<DownloadIcon />}
+                        tooltip={"Download the DreadZone Online PC Client Installer"}
+                    />
+                </PageCard>
+
+                <Box sx={{marginRight: "0.8%"}} />
 
                 <PageCard>
                     <HomeCardContent
