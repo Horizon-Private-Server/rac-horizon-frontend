@@ -178,7 +178,7 @@ const Home = () => {
 
                 <PageCard>
                     <HomeCardContent
-                        link={"https://drive.google.com/file/d/145WPUabWJgDUlujdsA6ia9jMUJhSyd5g/view?usp=sharing"}
+                        link={"http://dzo.rac-horizon.com/downloads/cmaps/dl_custom_maps_ps2.zip"}
                         icon={ps2Logo}
                         iconAltText="PS2 Logo"
                         title={"PS2 Custom Maps"}
@@ -192,7 +192,7 @@ const Home = () => {
 
                 <PageCard>
                     <HomeCardContent
-                        link={"https://drive.google.com/file/d/145WPUabWJgDUlujdsA6ia9jMUJhSyd5g/view?usp=sharing"}
+                        link={"http://dzo.rac-horizon.com/downloads/cmaps/dl_custom_maps_pcsx2.zip"}
                         icon={pcsx2Logo}
                         iconAltText="PCSX2 Logo"
                         title={"PCSX2 Custom Maps"}
