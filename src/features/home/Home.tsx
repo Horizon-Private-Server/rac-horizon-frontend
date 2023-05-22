@@ -12,11 +12,27 @@ import { selectLatestVideos, setHomeLatestVideos } from "./homeSlice";
 import { useAppDispatch } from "../../app/hooks";
 
 import githubIcon from "../../assets/img/GitHub-Icon.png";
+import ps2Logo from "../../assets/img/ps2-logo.png";
+import pcsx2Logo from "../../assets/img/pcsx2-logo.png";
+
+import DownloadIcon from '@mui/icons-material/Download';
+
 import HomeCardContent from "./HomeCardContent";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 
+import { makeStyles, createStyles } from "@mui/styles";
+
+const useStyles = makeStyles(() =>
+    createStyles({
+        pagePadding: {
+            padding: "24px"
+        }
+    })
+);
 
 const Home = () => {
+
+    const classes = useStyles();
 
     const dispatch = useAppDispatch();
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -63,95 +79,153 @@ const Home = () => {
 
     return <Page>
 
-        {header}
+        <Box sx={{p: 3}}>
 
-        <LineBreak amount={20} />
+            {header}
 
-        <Typography>
-            Welcome to the Horizon Private Server! Horizon is a community-revival project for Ratchet and Clank: Up Your Arsenal, 
-            Ratchet: Deadlocked (Gladiator) and Secret Agent Clank. We are a small community of R&amp;C fans dedicated to ensuring 
-            the survival of these beloved childhood titles. The goal of the Horizon is to fully revive the multiplayer experience 
-            for each title and to provide support for community mods which breathe new life into these games.
-        </Typography>
+            <LineBreak amount={20} />
 
-        <LineBreak amount={20} />
+            <Typography>
+                Welcome to the Horizon Private Server! Horizon is a community-revival project for Ratchet and Clank: Up Your Arsenal, 
+                Ratchet: Deadlocked (Gladiator) and Secret Agent Clank. We are a small community of R&amp;C fans dedicated to ensuring 
+                the survival of these beloved childhood titles. The goal of the Horizon is to fully revive the multiplayer experience 
+                for each title and to provide support for community mods which breathe new life into these games.
+            </Typography>
 
-        <Box
-            sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                flexWrap: "wrap",
-                width: "100%",
-            }}
-        >
+            <LineBreak amount={20} />
 
-            <PageCard>
-                <HomeCardContent
-                    link={"https://discord.gg/5rTWNKHy"}
-                    icon={"https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg"}
-                    iconAltText="Discord Logo"
-                    title={"Horizon Discord"}
-                    description={"Get involved with the Horizon community by joining our Discord Server!"}
-                />
-            </PageCard>
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    flexWrap: "wrap",
+                    width: "100%",
+                }}
+            >
 
-            <PageCard>
-                <HomeCardContent
-                    link={"https://www.youtube.com/channel/UCqtDa52wBLmQs8fyAkeb8wg"}
-                    icon={"https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg"}
-                    iconAltText="YouTube Logo Logo"
-                    title={"Horizon YouTube Channel"}
-                    description={"Check out the Horizon YouTube for tutorials and gameplay."}
-                />
-            </PageCard>
-            <PageCard>
-                <HomeCardContent
-                    link={"https://github.com/Horizon-Private-Server"}
-                    icon={githubIcon}
-                    iconAltText="GitHub Logo"
-                    title={"Horizon Development"}
-                    description={"The Horizon project Medius emulator is open-source."}
-                />
-            </PageCard>
-            
+                <PageCard>
+                    <HomeCardContent
+                        link={"https://discord.gg/5rTWNKHy"}
+                        icon={"https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg"}
+                        iconAltText="Discord Logo"
+                        title={"Horizon Discord"}
+                        description={"Get involved with the Horizon community by joining our Discord Server!"}
+                    />
+                </PageCard>
+
+                <PageCard>
+                    <HomeCardContent
+                        link={"https://www.youtube.com/channel/UCqtDa52wBLmQs8fyAkeb8wg"}
+                        icon={"https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg"}
+                        iconAltText="YouTube Logo Logo"
+                        title={"Horizon YouTube Channel"}
+                        description={"Check out the Horizon YouTube for tutorials and gameplay."}
+                    />
+                </PageCard>
+                <PageCard>
+                    <HomeCardContent
+                        link={"https://github.com/Horizon-Private-Server"}
+                        icon={githubIcon}
+                        iconAltText="GitHub Logo"
+                        title={"Horizon Development"}
+                        description={"The Horizon project Medius emulator is open-source."}
+                    />
+                </PageCard>
+                
+            </Box>
+
+            <LineBreak amount={40} />
+
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    flexWrap: "wrap",
+                    width: "100%",
+                }}
+            >
+                {/* TODO Make this height not statically defined. */}
+                <Box sx={{width: "33.6%", height: "148px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
+
+                    <CenterObject orientation="horizontal">
+                        <Typography 
+                            variant={
+                                screenSize === ScreenSize.Mobile ? "h6" : screenSize === ScreenSize.Tablet ? "h5" : "h4"
+                            }
+                        >
+                            DL Custom Maps
+                        </Typography>
+                    </CenterObject>
+                
+                </Box>
+
+                <PageCard>
+                    <HomeCardContent
+                        link={"https://drive.google.com/file/d/145WPUabWJgDUlujdsA6ia9jMUJhSyd5g/view?usp=sharing"}
+                        icon={ps2Logo}
+                        iconAltText="PS2 Logo"
+                        title={"PS2 Custom Maps"}
+                        description={"Download the latest Deadlocked custom maps for PS2."}
+                        actionIcon={<DownloadIcon />}
+                        tooltip={"Download the latest custom maps for PS2"}
+                    />
+                </PageCard>
+
+                <Box sx={{marginRight: "0.8%"}} />
+
+                <PageCard>
+                    <HomeCardContent
+                        link={"https://drive.google.com/file/d/145WPUabWJgDUlujdsA6ia9jMUJhSyd5g/view?usp=sharing"}
+                        icon={pcsx2Logo}
+                        iconAltText="PCSX2 Logo"
+                        title={"PCSX2 Custom Maps"}
+                        description={"Download the latest Deadlocked custom maps for PCSX2."}
+                        actionIcon={<DownloadIcon />}
+                        tooltip={"Download the latest custom maps for PCSX2"}
+                    />
+                </PageCard>
+                
+            </Box>
+
+
+            <LineBreak amount={40} />
+
+            <CenterObject>
+                <Typography variant="h4">Community Highlights</Typography>
+            </CenterObject>
+
+            <LineBreak amount={20} />
+
+            <CenterObject wrap={true}>
+                {
+                    latestVideos.map((videoId, index) => {
+                        
+                        return <Box
+                            sx={{
+                                marginRight: "10px",
+                                marginBottom: "10px",
+                                minWidth: "30%"
+                            }}
+                        >
+                            <iframe
+                                key={index}
+                                src={`https://www.youtube.com/embed/${videoId}`}
+                                frameBorder="0"
+                                allow="autoplay; encrypted-media"
+                                allowFullScreen
+                                title="video"
+                                width={"100%"}
+                                height={"300px"}
+                            />
+                        </Box>;
+                    })
+                }
+
+            </CenterObject>
+
         </Box>
-
-        <LineBreak amount={40} />
-
-        <CenterObject>
-            <Typography variant="h4">Community Highlights</Typography>
-        </CenterObject>
-
-        <LineBreak amount={20} />
-
-        <CenterObject wrap={true}>
-            {
-                latestVideos.map((videoId, index) => {
-                    
-                    return <Box
-                        sx={{
-                            marginRight: "10px",
-                            marginBottom: "10px",
-                            minWidth: "30%"
-                        }}
-                    >
-                        <iframe
-                            key={index}
-                            src={`https://www.youtube.com/embed/${videoId}`}
-                            frameBorder="0"
-                            allow="autoplay; encrypted-media"
-                            allowFullScreen
-                            title="video"
-                            width={"100%"}
-                            height={"300px"}
-                        />
-                    </Box>;
-                })
-            }
-
-        </CenterObject>
-        
         
     </Page>;
 }

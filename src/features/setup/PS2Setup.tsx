@@ -13,12 +13,12 @@ import { makeStyles, createStyles } from "@mui/styles";
 
 
 const useStyles = makeStyles(() =>
-createStyles({
-    noTBMargin: {
-        marginTop: "2px",
-        marginBottom: "2px"
-    }
-})
+    createStyles({
+        noTBMargin: {
+            marginTop: "2px",
+            marginBottom: "2px"
+        }
+    })
 );
 
 

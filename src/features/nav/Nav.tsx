@@ -125,7 +125,7 @@ const Nav = (props: NavState) => {
                     {drawer}
                 </Drawer>
             </Box>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Box component="main" sx={{ flexGrow: 1, p: 0 }}>
                 <Toolbar />
                 {children}
             </Box>

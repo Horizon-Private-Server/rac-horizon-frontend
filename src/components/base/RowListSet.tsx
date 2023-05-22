@@ -38,11 +38,22 @@ const RowListSet = (props: RowListSetState) => {
         cols[i] = [];
     }
 
-    console.log(cols);
+    let colsIndex : number = 0;
+    let counter : number = 0;
 
-    console.log(colCount);
+    compChildren.map((elem, index) => { 
+        cols[colsIndex].push(elem);
 
-    compChildren.map((elem, index) => cols[Math.floor(index % colCount)].push(elem));
+        counter++;
+
+        if (counter > Math.floor(compChildren.length / colCount)) {
+            counter = 0;
+            colsIndex++;
+        }
+
+        return null;
+
+    });
 
     return <Box
         sx={{
