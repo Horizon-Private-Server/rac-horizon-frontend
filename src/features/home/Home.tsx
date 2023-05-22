@@ -83,7 +83,6 @@ const Home = () => {
         <Box sx={{p: 3}}>
 
             {header}
-            {process.env.NODE_ENV}
 
             <LineBreak amount={20} />
 

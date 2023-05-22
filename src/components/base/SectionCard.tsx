@@ -22,7 +22,7 @@ export const SectionCard = (props: SectionCardProps) => {
 
     return <Card sx={{margin: 2, width: screenSize === ScreenSize.Desktop ? "20vw" : screenSize === ScreenSize.Tablet ? "50vw" : "70vw", minHeight: "20vh"}}>
         <CardActionArea
-            sx={{width}}
+            sx={{width, display: "flex", alignItems: "baseline", justifyContent: "normal", height: "100%"}}
             onClick={() => {
 
                 console.log(url);
