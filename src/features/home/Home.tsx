@@ -54,9 +54,9 @@ const Home = () => {
         dispatch(setHomeLatestVideos([
             {id: {videoId: "OUns2ZzXsao"}},
             {id: {videoId: "Bx0VeJu7O_U"}},
-            {id: {videoId: "uhE_JVstlUA"}},
+            {id: {videoId: "k2RAvQtLo1A"}},
         ]));
-
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
