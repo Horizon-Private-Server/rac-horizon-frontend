@@ -63,14 +63,14 @@ const navMenu = [
     tooltip: "Up Your Arsenal",
     icon: <SportsEsportsIcon />,
     path: "/uya",
-    hidden: false
+    hidden: process.env.NODE_ENV === 'production'
   },
   {
     label: "Deadlocked",
     tooltip: "Deadlocked",
     icon: <SportsEsportsIcon />,
     path: "/dl",
-    hidden: false
+    hidden: process.env.NODE_ENV === 'production'
   }
 ];
 
