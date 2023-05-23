@@ -148,7 +148,7 @@ const Home = () => {
                 }}
             >
                 {/* TODO Make this height not statically defined. */}
-                {/* <Box sx={{width: "33.6%", height: "148px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                <Box sx={{width: "33.6%", height: "148px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
 
                     <CenterObject orientation="horizontal">
                         <Typography 
@@ -160,11 +160,11 @@ const Home = () => {
                         </Typography>
                     </CenterObject>
                 
-                </Box> */}
+                </Box>
                 
-                <PageCard>
+                {/* <PageCard>
                     <HomeCardContent
-                        link={"http://dzo.rac-horizon.com/downloads/DreadZone%20Online%20Installer.exe"}
+                        link={"https://box.rac-horizon.com/downloads/DreadZone%20Online%20Installer.exe"}
                         icon={dzoLogo}
                         iconAltText="DZO Logo"
                         title={"DreadZone Online PC Client"}
@@ -172,13 +172,13 @@ const Home = () => {
                         actionIcon={<DownloadIcon />}
                         tooltip={"Download the DreadZone Online PC Client Installer"}
                     />
-                </PageCard>
-
-                <Box sx={{marginRight: "0.8%"}} />
+                </PageCard> 
+                
+                <Box sx={{marginRight: "0.8%"}} /> */}
 
                 <PageCard>
                     <HomeCardContent
-                        link={"http://dzo.rac-horizon.com/downloads/cmaps/dl_custom_maps_ps2.zip"}
+                        link={"https://box.rac-horizon.com/downloads/cmaps/dl_custom_maps_ps2.zip"}
                         icon={ps2Logo}
                         iconAltText="PS2 Logo"
                         title={"PS2 Custom Maps"}
@@ -192,7 +192,7 @@ const Home = () => {
 
                 <PageCard>
                     <HomeCardContent
-                        link={"http://dzo.rac-horizon.com/downloads/cmaps/dl_custom_maps_pcsx2.zip"}
+                        link={"https://box.rac-horizon.com/downloads/cmaps/dl_custom_maps_pcsx2.zip"}
                         icon={pcsx2Logo}
                         iconAltText="PCSX2 Logo"
                         title={"PCSX2 Custom Maps"}
