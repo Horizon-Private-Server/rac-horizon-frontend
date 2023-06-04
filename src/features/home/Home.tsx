@@ -147,22 +147,7 @@ const Home = () => {
                     width: "100%",
                 }}
             >
-                {/* TODO Make this height not statically defined. */}
-                <Box sx={{width: "33.6%", height: "148px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
-
-                    <CenterObject orientation="horizontal">
-                        <Typography 
-                            variant={
-                                screenSize === ScreenSize.Mobile ? "h6" : screenSize === ScreenSize.Tablet ? "h5" : "h4"
-                            }
-                        >
-                            DL Custom Maps
-                        </Typography>
-                    </CenterObject>
-                
-                </Box>
-                
-                {/* <PageCard>
+                <PageCard>
                     <HomeCardContent
                         link={"https://box.rac-horizon.com/downloads/DreadZone%20Online%20Installer.exe"}
                         icon={dzoLogo}
@@ -174,7 +159,7 @@ const Home = () => {
                     />
                 </PageCard> 
                 
-                <Box sx={{marginRight: "0.8%"}} /> */}
+                <Box sx={{marginRight: "0.8%"}} />
 
                 <PageCard>
                     <HomeCardContent
