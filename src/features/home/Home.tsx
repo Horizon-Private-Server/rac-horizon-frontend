@@ -107,7 +107,7 @@ const Home = () => {
 
                 <PageCard>
                     <HomeCardContent
-                        link={"https://discord.gg/5rTWNKHy"}
+                        link={"https://discord.com/invite/horizonps"}
                         icon={"https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg"}
                         iconAltText="Discord Logo"
                         title={"Horizon Discord"}
@@ -147,24 +147,9 @@ const Home = () => {
                     width: "100%",
                 }}
             >
-                {/* TODO Make this height not statically defined. */}
-                {/* <Box sx={{width: "33.6%", height: "148px", display: "flex", flexDirection: "column", justifyContent: "center"}}>
-
-                    <CenterObject orientation="horizontal">
-                        <Typography 
-                            variant={
-                                screenSize === ScreenSize.Mobile ? "h6" : screenSize === ScreenSize.Tablet ? "h5" : "h4"
-                            }
-                        >
-                            DL Custom Maps
-                        </Typography>
-                    </CenterObject>
-                
-                </Box> */}
-                
                 <PageCard>
                     <HomeCardContent
-                        link={"http://dzo.rac-horizon.com/downloads/DreadZone%20Online%20Installer.exe"}
+                        link={"https://box.rac-horizon.com/downloads/DreadZone%20Online%20Installer.exe"}
                         icon={dzoLogo}
                         iconAltText="DZO Logo"
                         title={"DreadZone Online PC Client"}
@@ -172,13 +157,13 @@ const Home = () => {
                         actionIcon={<DownloadIcon />}
                         tooltip={"Download the DreadZone Online PC Client Installer"}
                     />
-                </PageCard>
-
+                </PageCard> 
+                
                 <Box sx={{marginRight: "0.8%"}} />
 
                 <PageCard>
                     <HomeCardContent
-                        link={"http://dzo.rac-horizon.com/downloads/cmaps/dl_custom_maps_ps2.zip"}
+                        link={"https://box.rac-horizon.com/downloads/cmaps/dl_custom_maps_ps2.zip"}
                         icon={ps2Logo}
                         iconAltText="PS2 Logo"
                         title={"PS2 Custom Maps"}
@@ -192,7 +177,7 @@ const Home = () => {
 
                 <PageCard>
                     <HomeCardContent
-                        link={"http://dzo.rac-horizon.com/downloads/cmaps/dl_custom_maps_pcsx2.zip"}
+                        link={"https://box.rac-horizon.com/downloads/cmaps/dl_custom_maps_pcsx2.zip"}
                         icon={pcsx2Logo}
                         iconAltText="PCSX2 Logo"
                         title={"PCSX2 Custom Maps"}

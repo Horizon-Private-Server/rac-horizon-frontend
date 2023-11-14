@@ -35,7 +35,7 @@ export const Rules = () => {
                 <TextHeading heading="Horizon Rules" variant="h5" />
 
                 <Typography>
-                    As listed in the <code>#rules</code> channel of the <Link href="https://discord.gg/horizonps">Horizon Discord Server</Link>, all players are expected to follow these rules.
+                    As listed in the <code>#rules</code> channel of the <Link href="https://discord.com/invite/horizonps">Horizon Discord Server</Link>, all players are expected to follow these rules.
                 </Typography>
 
                 <TextList
