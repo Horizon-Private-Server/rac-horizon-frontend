@@ -162,6 +162,7 @@ const Home = () => {
                         icon={dzoLogo}
                         iconAltText="DZO Logo"
                         title={"DreadZone Online PC Client"}
+                        mobileTitle={"DZO"}
                         description={"Download the DreadZone Online PC Client Installer."}
                         actionIcon={<DownloadIcon />}
                         tooltip={"Download the DreadZone Online PC Client Installer"}
@@ -176,6 +177,7 @@ const Home = () => {
                         icon={dlBoxArt}
                         iconAltText="Deadlocked Box Art"
                         title={"Ratchet: Deadlocked Custom Maps [NTSC]"}
+                        mobileTitle={"Custom Maps"}
                         description={"Download the latest Deadlocked custom maps."}
                         actionIcon={<DownloadIcon />}
                         tooltip={"Download the latest custom maps for Deadlocked"}
@@ -200,6 +202,7 @@ const Home = () => {
                         icon={uyaBoxArt}
                         iconAltText="UYA Box Art"
                         title={"Up Your Arsenal Custom Maps [NTSC]"}
+                        mobileTitle={"Custom Maps"}
                         description={"Download the latest UYA custom maps."}
                         actionIcon={<DownloadIcon />}
                         tooltip={"Download the latest custom maps for UYA"}
@@ -214,14 +217,12 @@ const Home = () => {
                         icon={rc3BoxArt}
                         iconAltText="R&C 3 Box Art"
                         title={"R&C 3 Custom Maps [PAL]"}
+                        mobileTitle={"Custom Maps"}
                         description={"Download the latest R&C 3 custom maps."}
                         actionIcon={<DownloadIcon />}
                         tooltip={"Download the latest custom maps for R&C 3"}
                     />
                 </PageCard>
-
-                <Box sx={{marginRight: "0.8%"}} />
-
             </Box>
 
             <LineBreak amount={40} />

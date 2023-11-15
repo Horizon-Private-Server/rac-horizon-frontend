@@ -24,7 +24,7 @@ const PageCard = (props: PageState) => {
                 height: "100%"
             }}
         >
-            <CardContent>
+            <CardContent style={{height: "100%"}}>
                 {children}
             </CardContent>
         </CardActionArea>

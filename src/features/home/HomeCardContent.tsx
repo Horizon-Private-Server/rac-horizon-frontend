@@ -13,6 +13,7 @@ export interface HomeCardContentState {
     icon: string;
     iconAltText: string;
     title: string | JSX.Element;
+    mobileTitle?: string | JSX.Element;
     description: string;
     actionIcon?: JSX.Element;
     tooltip?: string;
@@ -20,7 +21,7 @@ export interface HomeCardContentState {
 
 const HomeCardContent = (props: HomeCardContentState) => {
 
-    const {link, icon, iconAltText, title, description, actionIcon, tooltip} = props;
+    const {link, icon, iconAltText, title, mobileTitle, description, actionIcon, tooltip} = props;
 
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -47,6 +48,7 @@ const HomeCardContent = (props: HomeCardContentState) => {
                 target="_blank"
                 style={{textDecoration: "none", color: "white"}}
             >
+                <div style={{textAlign: "center"}}>{mobileTitle ?? ""}</div>
                 <CenterObject>
                     <CenterObject orientation="vertical">
                         <img 
@@ -55,7 +57,6 @@ const HomeCardContent = (props: HomeCardContentState) => {
                             width={"60px"}
                             height={"60px"}
                             style={{objectFit: "contain"}}
-
                         />
                     </CenterObject>
                 </CenterObject>
@@ -108,7 +109,7 @@ const HomeCardContent = (props: HomeCardContentState) => {
         <Link
             href={link}
             target="_blank"
-            style={{textDecoration: "none", color: "white"}}
+            style={{textDecoration: "none", color: "white", height: "100%", display: "flex"}}
         >
             <SpaceBetweenObject>
                 <CenterObject orientation="vertical">
@@ -116,7 +117,7 @@ const HomeCardContent = (props: HomeCardContentState) => {
                         src={icon}
                         alt={iconAltText}
                         width={"100px"}
-                        height={"auto"}
+                        height={"100%"}
                         style={{objectFit: "contain"}}
 
                     />

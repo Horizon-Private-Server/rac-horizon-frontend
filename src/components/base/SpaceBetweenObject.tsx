@@ -20,6 +20,7 @@ const SpaceBetweenObject = (props: PageState) => {
             display: "flex",
             flexDirection: flexDirection,
             justifyContent: "space-between",
+            width: "100%",
             flexWrap: flexWrap
         }}
     >
