@@ -9,6 +9,7 @@ import { SectionCard, SectionCardProps } from "../../components/base/SectionCard
 import SettingsInputHdmiIcon from "@mui/icons-material/SettingsInputHdmi";
 import GavelIcon from "@mui/icons-material/Gavel";
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 
 
 const Setup = () => {
@@ -50,24 +51,30 @@ const Setup = () => {
     //     },
     // ]
     const sections: SectionCardProps[] = [
-      {
-          label: "Horizon Rules & Policies", 
-          description: "View all of the Horizon rules and policies governing the Horizon Discord Server as well as all servers run and managed by Horizon.", 
+        {
+          label: "Horizon Rules & Policies",
+          description: "View all of the Horizon rules and policies governing the Horizon Discord Server as well as all servers run and managed by Horizon.",
           url: "https://github.com/Horizon-Private-Server/horizon-wiki/blob/main/horizon-policies/README.md",
           icon: <GavelIcon />
-      },
-      {
-          label: "Connecting to Horizon (PS2)", 
-          description: "Setup guide for connecting to Horizon using your PlayStation 2 hardware.", 
+        },
+        {
+          label: "Connecting to Horizon (PS2)",
+          description: "Setup guide for connecting to Horizon using your PlayStation 2 hardware.",
           url: "https://github.com/Horizon-Private-Server/horizon-wiki/blob/main/getting-online/ps2/README.md",
           icon: <SettingsInputHdmiIcon />
-      },
-      {
-          label: "Connecting to Horizon (PCSX2)", 
-          description: "Setup guide for connecting to Horizon using the PCSX2 emulator.", 
+        },
+        {
+          label: "Connecting to Horizon (PCSX2)",
+          description: "Setup guide for connecting to Horizon using the PCSX2 emulator.",
           url: "https://github.com/Horizon-Private-Server/horizon-wiki/blob/main/getting-online/pcsx2/README.md",
           icon: <SettingsInputHdmiIcon />
-      }
+        },
+        {
+            label: "Survival Guide",
+            description: "A guide to help new players dig into Survival.",
+            url: "/survival/overview",
+            icon: <LocalFireDepartmentIcon />
+        }
   ]
     
 

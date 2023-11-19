@@ -126,15 +126,15 @@ export const DeadlockedSurvivalOverview = () => {
         marginBottom={4}
     >
 
-        <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingBottom: 2}}>
-            <Link underline="hover" color="inherit" href="/dl">
-                Deadlocked
-            </Link>
-            <Link underline="hover" color="inherit" href="/dl/survival">
-                Survival
-            </Link>
-            <Typography color="text.primary">Overview</Typography>
-        </Breadcrumbs>
+        {/*<Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingBottom: 2}}>*/}
+        {/*    <Link underline="hover" color="inherit" href="/dl">*/}
+        {/*        Deadlocked*/}
+        {/*    </Link>*/}
+        {/*    <Link underline="hover" color="inherit" href="/dl/survival">*/}
+        {/*        Survival*/}
+        {/*    </Link>*/}
+        {/*    <Typography color="text.primary">Overview</Typography>*/}
+        {/*</Breadcrumbs>*/}
 
         <Card>
             <CardContent>

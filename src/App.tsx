@@ -124,11 +124,11 @@ function App() {
                     <Routes>
                       <Route path="/dl/custom/modes/infected" element={<DeadlockedInfected />} />
                     </Routes>
+                    {/*<Routes>*/}
+                    {/*  <Route path="/survival" element={<DeadlockedSurvival />} />*/}
+                    {/*</Routes>*/}
                     <Routes>
-                      <Route path="/dl/survival" element={<DeadlockedSurvival />} />
-                    </Routes>
-                    <Routes>
-                      <Route path="/dl/survival/overview" element={<DeadlockedSurvivalOverview />} />
+                      <Route path="/survival/overview" element={<DeadlockedSurvivalOverview />} />
                     </Routes>
 
                     <Routes>
