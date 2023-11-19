@@ -3,6 +3,7 @@ import React from "react";
 import { Typography, Box, Link, Tooltip } from "@mui/material";
 
 import CenterObject from "../../components/base/CenterObject";
+import SpaceBetweenObject from "../../components/base/SpaceBetweenObject";
 import LineBreak from "../../components/base/LineBreak";
 
 import useWindowDimensions from "../../components/utils/WindowDimensions";
@@ -12,6 +13,7 @@ export interface HomeCardContentState {
     icon: string;
     iconAltText: string;
     title: string | JSX.Element;
+    mobileTitle?: string | JSX.Element;
     description: string;
     actionIcon?: JSX.Element;
     tooltip?: string;
@@ -19,7 +21,7 @@ export interface HomeCardContentState {
 
 const HomeCardContent = (props: HomeCardContentState) => {
 
-    const {link, icon, iconAltText, title, description, actionIcon, tooltip} = props;
+    const {link, icon, iconAltText, title, mobileTitle, description, actionIcon, tooltip} = props;
 
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -46,6 +48,7 @@ const HomeCardContent = (props: HomeCardContentState) => {
                 target="_blank"
                 style={{textDecoration: "none", color: "white"}}
             >
+                <div style={{textAlign: "center"}}>{mobileTitle ?? ""}</div>
                 <CenterObject>
                     <CenterObject orientation="vertical">
                         <img 
@@ -53,7 +56,7 @@ const HomeCardContent = (props: HomeCardContentState) => {
                             alt={iconAltText}
                             width={"60px"}
                             height={"60px"}
-
+                            style={{objectFit: "contain"}}
                         />
                     </CenterObject>
                 </CenterObject>
@@ -83,6 +86,7 @@ const HomeCardContent = (props: HomeCardContentState) => {
                         alt={iconAltText}
                         width={"60px"}
                         height={"60px"}
+                        style={{objectFit: "contain"}}
 
                     />
                     <Box sx={{marginRight: "12px"}} />
@@ -105,15 +109,16 @@ const HomeCardContent = (props: HomeCardContentState) => {
         <Link
             href={link}
             target="_blank"
-            style={{textDecoration: "none", color: "white"}}
+            style={{textDecoration: "none", color: "white", height: "100%", display: "flex"}}
         >
-            <CenterObject>
+            <SpaceBetweenObject>
                 <CenterObject orientation="vertical">
                     <img 
                         src={icon}
                         alt={iconAltText}
                         width={"100px"}
-                        height={"100px"}
+                        height={"100%"}
+                        style={{objectFit: "contain"}}
 
                     />
                 </CenterObject>
@@ -123,7 +128,8 @@ const HomeCardContent = (props: HomeCardContentState) => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "flex-start",
-                        minHeight: "116px"
+                        minHeight: "116px",
+                        width: "100%"
                     }}
                 >
                     <Typography variant="h5">{title}</Typography>
@@ -145,7 +151,7 @@ const HomeCardContent = (props: HomeCardContentState) => {
                     {actionIcon ?? <Box />}
                 </Box>
 
-            </CenterObject>
+            </SpaceBetweenObject>
         </Link>
     </Tooltip>;
 }

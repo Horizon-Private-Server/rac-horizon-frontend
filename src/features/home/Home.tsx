@@ -15,6 +15,9 @@ import githubIcon from "../../assets/img/GitHub-Icon.png";
 import ps2Logo from "../../assets/img/ps2-logo.png";
 import pcsx2Logo from "../../assets/img/pcsx2-logo.png";
 import dzoLogo from "../../assets/img/dzo-logo.png";
+import dlBoxArt from "../../assets/img/dl-boxart.jpg"
+import uyaBoxArt from "../../assets/img/uya-boxart.jpg"
+import rc3BoxArt from "../../assets/img/rc3-boxart.jpg"
 
 import DownloadIcon from '@mui/icons-material/Download';
 
@@ -138,11 +141,17 @@ const Home = () => {
 
             <LineBreak amount={40} />
 
+            <CenterObject>
+                <Typography variant="h4">Downloads</Typography>
+            </CenterObject>
+
+            <LineBreak amount={20} />
+
             <Box
                 sx={{
                     display: "flex",
                     flexDirection: "row",
-                    justifyContent: "flex-start",
+                    justifyContent: "center",
                     flexWrap: "wrap",
                     width: "100%",
                 }}
@@ -153,6 +162,7 @@ const Home = () => {
                         icon={dzoLogo}
                         iconAltText="DZO Logo"
                         title={"DreadZone Online PC Client"}
+                        mobileTitle={"DZO"}
                         description={"Download the DreadZone Online PC Client Installer."}
                         actionIcon={<DownloadIcon />}
                         tooltip={"Download the DreadZone Online PC Client Installer"}
@@ -163,13 +173,39 @@ const Home = () => {
 
                 <PageCard>
                     <HomeCardContent
-                        link={"https://box.rac-horizon.com/downloads/cmaps/dl_custom_maps_ps2.zip"}
-                        icon={ps2Logo}
-                        iconAltText="PS2 Logo"
-                        title={"PS2 Custom Maps"}
-                        description={"Download the latest Deadlocked custom maps for PS2."}
+                        link={"https://box.rac-horizon.com/downloads/maps/dl_custom_maps.zip"}
+                        icon={dlBoxArt}
+                        iconAltText="Deadlocked Box Art"
+                        title={"Ratchet: Deadlocked Custom Maps [NTSC]"}
+                        mobileTitle={"Custom Maps"}
+                        description={"Download the latest Deadlocked custom maps."}
                         actionIcon={<DownloadIcon />}
-                        tooltip={"Download the latest custom maps for PS2"}
+                        tooltip={"Download the latest custom maps for Deadlocked"}
+                    />
+                </PageCard>
+            </Box>
+
+            <LineBreak amount={20} />
+
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                    width: "100%",
+                }}
+            >
+                <PageCard>
+                    <HomeCardContent
+                        link={"https://box.rac-horizon.com/downloads/maps/uya_custom_maps_ntsc.zip"}
+                        icon={uyaBoxArt}
+                        iconAltText="UYA Box Art"
+                        title={"Up Your Arsenal Custom Maps [NTSC]"}
+                        mobileTitle={"Custom Maps"}
+                        description={"Download the latest UYA custom maps."}
+                        actionIcon={<DownloadIcon />}
+                        tooltip={"Download the latest custom maps for UYA"}
                     />
                 </PageCard>
 
@@ -177,18 +213,17 @@ const Home = () => {
 
                 <PageCard>
                     <HomeCardContent
-                        link={"https://box.rac-horizon.com/downloads/cmaps/dl_custom_maps_pcsx2.zip"}
-                        icon={pcsx2Logo}
-                        iconAltText="PCSX2 Logo"
-                        title={"PCSX2 Custom Maps"}
-                        description={"Download the latest Deadlocked custom maps for PCSX2."}
+                        link={"https://box.rac-horizon.com/downloads/maps/uya_custom_maps_pal.zip"}
+                        icon={rc3BoxArt}
+                        iconAltText="R&C 3 Box Art"
+                        title={"R&C 3 Custom Maps [PAL]"}
+                        mobileTitle={"Custom Maps"}
+                        description={"Download the latest R&C 3 custom maps."}
                         actionIcon={<DownloadIcon />}
-                        tooltip={"Download the latest custom maps for PCSX2"}
+                        tooltip={"Download the latest custom maps for R&C 3"}
                     />
                 </PageCard>
-                
             </Box>
-
 
             <LineBreak amount={40} />
 
