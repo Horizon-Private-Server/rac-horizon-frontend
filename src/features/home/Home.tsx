@@ -228,6 +228,65 @@ const Home = () => {
             <LineBreak amount={40} />
 
             <CenterObject>
+                <Typography variant="h4">Tutorials</Typography>
+            </CenterObject>
+
+            <LineBreak amount={20} />
+
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                    width: "100%",
+                }}
+            >
+                <Box
+                    sx={{
+                        marginRight: "10px",
+                        marginBottom: "10px",
+                        minWidth: "30%"
+                    }}
+                >
+                    <iframe
+                        key={0}
+                        src={`https://www.youtube.com/embed/KKeOXb0R4mM`}
+                        frameBorder="0"
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                        title="video"
+                        width={"100%"}
+                        height={"300px"}
+                    />
+                </Box>
+                  
+                <Box sx={{marginRight: "0.8%"}} />
+
+                <Box
+                    sx={{
+                        marginRight: "10px",
+                        marginBottom: "10px",
+                        minWidth: "30%"
+                    }}
+                >
+                    <iframe
+                        key={0}
+                        src={`https://www.youtube.com/embed/ND61nvDr0bM`}
+                        frameBorder="0"
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                        title="video"
+                        width={"100%"}
+                        height={"300px"}
+                    />
+                </Box>
+                  
+            </Box>
+
+            <LineBreak amount={40} />
+
+            <CenterObject>
                 <Typography variant="h4">Community Highlights</Typography>
             </CenterObject>
 
