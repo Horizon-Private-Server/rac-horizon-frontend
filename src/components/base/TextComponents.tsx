@@ -26,7 +26,7 @@ export const TextList = (props: TextListProps) => {
 }
 
 export interface TextHeadingProps {
-    heading: string;
+    heading: string | JSX.Element;
     variant: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
 

@@ -1,12 +1,25 @@
 import React from "react";
 
-import { Box, Card, CardContent, Typography, TableCell, TableRow, TableHead, TableContainer, TableBody, Link, Breadcrumbs } from "@mui/material";
+import {
+    Box,
+    Card,
+    CardContent,
+    Typography,
+    TableCell,
+    TableRow,
+    TableHead,
+    TableContainer,
+    TableBody,
+    Link,
+    Breadcrumbs,
+    Alert
+} from "@mui/material";
 import { TextHeading, TextList } from "../../components/base/TextComponents";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 import { ChangingImage } from "../../components/base/ChangingImage";
 import { MobileFriendlyIconRow, MobileFriendlyTextRow } from "../../components/base/MobileFriendlyRow";
 
-export const DeadlockedSurvivalOverview = () => {
+export const SurvivalOrxon = () => {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {width, height} = useWindowDimensions();
@@ -126,20 +139,29 @@ export const DeadlockedSurvivalOverview = () => {
         marginBottom={4}
     >
 
-        {/*<Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingBottom: 2}}>*/}
-        {/*    <Link underline="hover" color="inherit" href="/dl">*/}
-        {/*        Deadlocked*/}
-        {/*    </Link>*/}
-        {/*    <Link underline="hover" color="inherit" href="/dl/survival">*/}
-        {/*        Survival*/}
-        {/*    </Link>*/}
-        {/*    <Typography color="text.primary">Overview</Typography>*/}
-        {/*</Breadcrumbs>*/}
+        <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingBottom: 2}}>
+            <Link underline="hover" color="inherit" href="/getting-started">
+                Horizon
+            </Link>
+            <Link underline="hover" color="inherit" href="/survival">
+                Survival
+            </Link>
+            <Typography color="text.primary">Orxon</Typography>
+        </Breadcrumbs>
+
+        <Alert
+            severity="warning"
+            sx={{mb: 2}}
+        >
+            The following page was written for Survival 2.0 and does not include features backported to Orxon as part of the Survival 3.0 update.
+            We're working on updating this guide.
+            For a more up-to-date reference please refer to the Survival Guide for Mountain Pass.
+        </Alert>
 
         <Card>
             <CardContent>
 
-                <TextHeading heading="Survival" variant="h4" />
+                <TextHeading heading="Survival (Orxon)" variant="h4" />
 
                 <Typography marginBottom={3}>
                     Survival is the most ambitious custom game mode developed for Deadlocked on Horizon.

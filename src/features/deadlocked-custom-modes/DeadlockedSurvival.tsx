@@ -160,7 +160,7 @@ const GameModeCard = (props: GameModeCardProps) => {
                             height: 200
                         }}
                     >
-                        <Typography variant="overline" fontSize={20} fontWeight="bold">{modeName}</Typography>
+                        <Typography variant="overline" fontSize={20} fontWeight="bold" sx={{filter: "drop-shadow(0rem 0rem 1rem black)"}}>{modeName}</Typography>
                         <Typography sx={{filter: "drop-shadow(0rem 0rem 1rem black)"}}>{modeDescription}</Typography>
                     </Box>
                 </CardContent>
@@ -187,36 +187,36 @@ const DeadlockedSurvival = () => {
                 This toxic mining facility might be abandoned, but you aren't alone.
                 Fight wave after wave of lethal enemies and delve into deep into the toxic gas to uncover the secrets within.`,
             modeImage: "https://www.giantbomb.com/a/uploads/original/0/1717/1080843-orxon_surface.jpg",
-            modeDetailsRoute: "/dl/survial/orxon"
+            modeDetailsRoute: "/survival/orxon"
+        },
+        {
+            modeName: "Mountain Pass",
+            modeDescription:
+                `The second fully featured Survival map.
+                These majestic peaks and scattered monoliths hide many secrets.
+                Fight through unending waves of enemies to earn the blessings of the gods.`,
+            modeImage: "https://rac-horizon-resources.s3.amazonaws.com/level-frames/survival_mpass.png",
+            modeDetailsRoute: "/survival/mountain-pass"
+        },
+        {
+            modeName: "Veldin",
+            modeDescription:
+                `A stripped-down, pure iteration of Survival.
+                Ratchet's homeworld now plays host to the most intense iteration of survival.
+                No easter eggs or drawn-out mechanics, this is pure survival on a tiny map with a 50% harder difficulty.`,
+            modeImage: "https://rac-horizon-resources.s3.amazonaws.com/level-frames/veldin.png",
+            modeDetailsRoute: "/survival/veldin"
         }
     ]
 
-
-
-    return <Page className={classes.dlBackground}>
+    return <Page>
 
         <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingLeft: 6}}>
-            <Link underline="hover" color="inherit" href="/dl">
-                Deadlocked
+            <Link underline="hover" color="inherit" href="/getting-started">
+                Horizon
             </Link>
             <Typography color="text.primary">Survival</Typography>
         </Breadcrumbs>
-
-        <Box sx={{p: 6}}>
-            <GameModeCard2
-                modeName="General Guide"
-                modeDescription={
-                    `Survival is the most ambitious game mode developed by Horzion for Deadlocked.
-                    There are a lot of mechanics and map-specific features, but there are several core-mechanics that all maps share.
-                    This guide is designed to help you get familiar the core gameplay.`
-                }
-                modeDetailsRoute="/dl/survival/overview"
-                modeImage="https://static.wikia.nocookie.net/ratchet/images/0/08/Robot_zombie_promo_render.png"
-            />
-        </Box>
-
-        <Typography variant="h4" marginBottom={2} marginLeft={6}>Survival Maps</Typography>
-        <Divider sx={{ml: 6, mr: 6}} />
 
         <Box sx={{p: 6}}>
             { survivalMaps.map((gameMode: GameModeCardProps) => {

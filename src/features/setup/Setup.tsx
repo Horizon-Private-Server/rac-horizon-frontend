@@ -8,8 +8,7 @@ import { SectionCard, SectionCardProps } from "../../components/base/SectionCard
 
 import SettingsInputHdmiIcon from "@mui/icons-material/SettingsInputHdmi";
 import GavelIcon from "@mui/icons-material/Gavel";
-import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
-import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
+import GamepadIcon from "@mui/icons-material/Gamepad";
 
 
 const Setup = () => {
@@ -70,10 +69,10 @@ const Setup = () => {
           icon: <SettingsInputHdmiIcon />
         },
         {
-            label: "Survival Guide",
+            label: "Survival Guides",
             description: "A guide to help new players dig into Survival.",
-            url: "/survival/overview",
-            icon: <LocalFireDepartmentIcon />
+            url: "/survival",
+            icon: <GamepadIcon />
         }
   ]
     

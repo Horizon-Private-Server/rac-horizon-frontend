@@ -33,9 +33,11 @@ import { ConfigurePCSX2 } from './features/setup/ConfigurePCSX2';
 import { FAQ } from './features/setup/FAQ';
 import UYAHome from './features/uya/UYAHome';
 import DeadlockedCustomModes from './features/deadlocked-custom-modes/DeadlockedCustomModes';
-import { DeadlockedSurvivalOverview } from './features/deadlocked-custom-modes/DeadlockedSurvivalOverview';
+import { SurvivalOrxon } from './features/deadlocked-custom-modes/SurvivalOrxon';
 import DeadlockedSurvival from './features/deadlocked-custom-modes/DeadlockedSurvival';
 import { DeadlockedInfected } from './features/deadlocked-custom-modes/DeadlockedInfected';
+import {SurvivalMountainPass} from "./features/deadlocked-custom-modes/SurvivalMountainPass";
+import {SurvivalVeldin} from "./features/deadlocked-custom-modes/SurvivalVeldin";
 
 
 export const ThemeContext = React.createContext({
@@ -91,59 +93,24 @@ function App() {
                   >
                     <Routes>
                       <Route path="/" element={<Home />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/getting-started" element={<Setup />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/dl" element={<DeadlockedHome />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/uya" element={<UYAHome />} />
-                    </Routes>
-
-                    <Routes>
                       <Route path="/dl/stats" element={<DeadlockedStats />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/dl/leaderboard/:offering" element={<DeadlockedLeaderboard />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/dl/details/:userId" element={<DeadlockedDetails />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/dl/games" element={<DeadlockedGames />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/dl/game/:gameId" element={<DeadlockedGameDetails />} />
-                    </Routes>
-
-                    <Routes>
                       <Route path="/dl/custom/modes" element={<DeadlockedCustomModes />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/dl/custom/modes/infected" element={<DeadlockedInfected />} />
-                    </Routes>
-                    {/*<Routes>*/}
-                    {/*  <Route path="/survival" element={<DeadlockedSurvival />} />*/}
-                    {/*</Routes>*/}
-                    <Routes>
-                      <Route path="/survival/overview" element={<DeadlockedSurvivalOverview />} />
-                    </Routes>
-
-                    <Routes>
+                      <Route path="/survival" element={<DeadlockedSurvival />} />
+                      <Route path="/survival/orxon" element={<SurvivalOrxon />} />
+                      <Route path="/survival/mountain-pass" element={<SurvivalMountainPass />} />
+                      <Route path="/survival/veldin" element={<SurvivalVeldin />} />
                       <Route path="/rules" element={<Rules />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/setup/ps2" element={<SetupPS2 />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/setup/pcsx2" element={<SetupPCSX2 />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/configure/pcsx2" element={<ConfigurePCSX2 />} />
-                    </Routes>
-                    <Routes>
                       <Route path="/faq" element={<FAQ />} />
                     </Routes>
 
