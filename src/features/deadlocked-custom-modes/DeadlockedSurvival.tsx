@@ -27,6 +27,7 @@ import { Pagination } from "../../components/base/Pagination";
 import { FilterProps, GameRemoteListProps, GameRulesProps } from "../../components/base/Interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { SectionCard, SectionCardProps } from "../../components/base/SectionCard";
+import SurvivalPrestigeCalculator from "../survival-prestige-calculator/SurvivalPrestigeCalculator";
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -230,6 +231,8 @@ const DeadlockedSurvival = () => {
                     <Box sx={{mb: 2 }}/>
                 </>
             })}
+            <Box sx={{mb: 5}}/>
+            <SurvivalPrestigeCalculator />
         </Box>
 
 
