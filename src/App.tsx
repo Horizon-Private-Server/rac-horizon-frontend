@@ -38,6 +38,7 @@ import DeadlockedSurvival from './features/deadlocked-custom-modes/DeadlockedSur
 import { DeadlockedInfected } from './features/deadlocked-custom-modes/DeadlockedInfected';
 import {SurvivalMountainPass} from "./features/deadlocked-custom-modes/SurvivalMountainPass";
 import {SurvivalVeldin} from "./features/deadlocked-custom-modes/SurvivalVeldin";
+import {DZOLinux} from "./features/deadlocked/DZOLinux";
 
 
 export const ThemeContext = React.createContext({
@@ -107,6 +108,7 @@ function App() {
                       <Route path="/survival/orxon" element={<SurvivalOrxon />} />
                       <Route path="/survival/mountain-pass" element={<SurvivalMountainPass />} />
                       <Route path="/survival/veldin" element={<SurvivalVeldin />} />
+                      <Route path="/dzo/linux" element={<DZOLinux />} />
                       <Route path="/rules" element={<Rules />} />
                       <Route path="/setup/ps2" element={<SetupPS2 />} />
                       <Route path="/setup/pcsx2" element={<SetupPCSX2 />} />

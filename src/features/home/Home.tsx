@@ -15,6 +15,8 @@ import githubIcon from "../../assets/img/GitHub-Icon.png";
 import ps2Logo from "../../assets/img/ps2-logo.png";
 import pcsx2Logo from "../../assets/img/pcsx2-logo.png";
 import dzoLogo from "../../assets/img/dzo-logo.png";
+import dzoLogoWindows from "../../assets/img/dzo-logo-windows.png";
+import dzoLogoLinux from "../../assets/img/dzo-logo-linux.png";
 import dlBoxArt from "../../assets/img/dl-boxart.jpg"
 import uyaBoxArt from "../../assets/img/uya-boxart.jpg"
 import rc3BoxArt from "../../assets/img/rc3-boxart.jpg"
@@ -159,30 +161,29 @@ const Home = () => {
                 <PageCard>
                     <HomeCardContent
                         link={"https://box.rac-horizon.com/downloads/DreadZone%20Online%20Installer.exe"}
-                        icon={dzoLogo}
+                        icon={dzoLogoWindows}
                         iconAltText="DZO Logo"
-                        title={"DreadZone Online PC Client"}
+                        title={"DreadZone Online Windows Client"}
                         mobileTitle={"DZO"}
-                        description={"Download the DreadZone Online PC Client Installer."}
+                        description={"Download the DreadZone Online Windows Client Installer."}
                         actionIcon={<DownloadIcon />}
-                        tooltip={"Download the DreadZone Online PC Client Installer"}
+                        tooltip={"Download the DreadZone Online Windows Client Installer"}
                     />
                 </PageCard> 
                 
                 <Box sx={{marginRight: "0.8%"}} />
-
+                
                 <PageCard>
                     <HomeCardContent
-                        link={"https://box.rac-horizon.com/downloads/maps/dl_custom_maps.zip"}
-                        icon={dlBoxArt}
-                        iconAltText="Deadlocked Box Art"
-                        title={"Ratchet: Deadlocked Custom Maps [NTSC]"}
-                        mobileTitle={"Custom Maps"}
-                        description={"Download the latest Deadlocked custom maps."}
-                        actionIcon={<DownloadIcon />}
-                        tooltip={"Download the latest custom maps for Deadlocked"}
+                        link={"/dzo/linux"}
+                        icon={dzoLogoLinux}
+                        iconAltText="DZO Logo"
+                        title={"DreadZone Online Linux Client"}
+                        mobileTitle={"DZO"}
+                        description={"Check out our tutorial on how to install DreadZone Online for Linux."}
+                        tooltip={"Download the DreadZone Online for Linux"}
                     />
-                </PageCard>
+                </PageCard> 
             </Box>
 
             <LineBreak amount={20} />
@@ -196,6 +197,21 @@ const Home = () => {
                     width: "100%",
                 }}
             >
+                <PageCard>
+                    <HomeCardContent
+                        link={"https://box.rac-horizon.com/downloads/maps/dl_custom_maps.zip"}
+                        icon={dlBoxArt}
+                        iconAltText="Deadlocked Box Art"
+                        title={"Ratchet: Deadlocked Custom Maps [NTSC]"}
+                        mobileTitle={"Custom Maps"}
+                        description={"Download the latest Deadlocked custom maps."}
+                        actionIcon={<DownloadIcon />}
+                        tooltip={"Download the latest custom maps for Deadlocked"}
+                    />
+                </PageCard>
+                
+                <Box sx={{marginRight: "0.8%"}} />
+
                 <PageCard>
                     <HomeCardContent
                         link={"https://box.rac-horizon.com/downloads/maps/uya_custom_maps_ntsc.zip"}

@@ -48,3 +48,16 @@ export const TextHeading = (props: TextHeadingProps) => {
         { variant !== "h6" && <Divider sx={{mb: bottomMargin, mt: 1}} variant="middle" /> }
     </Box>
 }
+
+export interface CodeBoxProps {
+  children: string | string[] | JSX.Element | JSX.Element[];
+}
+
+export const CodeBox = (props: CodeBoxProps) => {
+
+    const {children} = props;
+
+    return <Box bgcolor="#404040">
+        <Typography fontWeight="bold" fontFamily="monospace" marginLeft={1}>{children}</Typography>
+    </Box>
+}
