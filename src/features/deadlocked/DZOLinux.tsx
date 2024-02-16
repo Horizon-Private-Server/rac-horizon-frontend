@@ -68,9 +68,7 @@ export const DZOLinux = () => {
                 <TextHeading heading="Setup" variant="h5" />
 
                 <Typography marginBottom={3}>
-                    DZO is installed into one folder. Please make a new directory and open a terminal window inside of it.
-
-                    For example, you can run this command to create a <pre>dzo</pre> folder on your Desktop.
+                    DZO is installed into one folder. Please open a terminal window and navigate to an empty directory.
                 </Typography>
                 
                 <CodeBox>
