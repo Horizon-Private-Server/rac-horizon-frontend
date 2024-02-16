@@ -19,11 +19,14 @@ import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../compo
 import { ChangingImage } from "../../components/base/ChangingImage";
 import { MobileFriendlyIconRow, MobileFriendlyTextRow } from "../../components/base/MobileFriendlyRow";
 import SpoilerGuard from "../../components/base/SpoilerGuard";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 
 export const SurvivalMountainPass = () => {
 
     const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
+
+    const navigate: NavigateFunction = useNavigate();
 
     const MYSTERY_BOX_COST = "10,000";
 
@@ -148,11 +151,14 @@ export const SurvivalMountainPass = () => {
         marginBottom={4}
     >
 
-        <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingBottom: 2}}>
-            <Link underline="hover" color="inherit" href="/getting-started">
+        <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2}}>
+            <Link underline="hover" color="inherit" onClick={() => navigate("/")} sx={{cursor: "pointer"}}>
                 Horizon
             </Link>
-            <Link underline="hover" color="inherit" href="/survival">
+            <Link underline="hover" color="inherit" onClick={() => navigate("/getting-started")} sx={{cursor: "pointer"}}>
+                Getting Started
+            </Link>
+            <Link underline="hover" color="inherit" onClick={() => navigate("/survival")} sx={{cursor: "pointer"}}>
                 Survival
             </Link>
             <Typography color="text.primary">Mountain Pass</Typography>
@@ -160,7 +166,7 @@ export const SurvivalMountainPass = () => {
 
         <Alert
             severity="info"
-            sx={{mb: 2}}
+            sx={{mb: 2, mt: 2}}
         >
             SPOILER WARNING: The following guide contains spoilers to Survival and Mountain Pass.
         </Alert>

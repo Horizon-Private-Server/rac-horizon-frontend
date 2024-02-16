@@ -18,12 +18,15 @@ import { TextHeading, TextList } from "../../components/base/TextComponents";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 import { ChangingImage } from "../../components/base/ChangingImage";
 import { MobileFriendlyIconRow, MobileFriendlyTextRow } from "../../components/base/MobileFriendlyRow";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 
 export const SurvivalOrxon = () => {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {width, height} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
+
+    const navigate: NavigateFunction = useNavigate();
 
     const PLAYER_REVIVE_DELTA = "8,000";
     const MYSTERY_BOX_COST = "10,000";
@@ -139,11 +142,14 @@ export const SurvivalOrxon = () => {
         marginBottom={4}
     >
 
-        <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingBottom: 2}}>
-            <Link underline="hover" color="inherit" href="/getting-started">
+        <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2}}>
+            <Link underline="hover" color="inherit" onClick={() => navigate("/")} sx={{cursor: "pointer"}}>
                 Horizon
             </Link>
-            <Link underline="hover" color="inherit" href="/survival">
+            <Link underline="hover" color="inherit" onClick={() => navigate("/getting-started")} sx={{cursor: "pointer"}}>
+                Getting Started
+            </Link>
+            <Link underline="hover" color="inherit" onClick={() => navigate("/survival")} sx={{cursor: "pointer"}}>
                 Survival
             </Link>
             <Typography color="text.primary">Orxon</Typography>
@@ -151,7 +157,7 @@ export const SurvivalOrxon = () => {
 
         <Alert
             severity="warning"
-            sx={{mb: 2}}
+            sx={{mb: 2, mt: 2}}
         >
             The following page was written for Survival 2.0 and does not include features backported to Orxon as part of the Survival 3.0 update.
             We're working on updating this guide.

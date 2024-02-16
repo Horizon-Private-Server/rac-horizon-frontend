@@ -1,32 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Page from "../../components/base/Page";
-import { Typography, Box, Tab, Tabs, CardContent, Card, CardActionArea, Divider, Button, TableContainer, Paper, TableHead, TableRow, TableCell, TableBody, Link, Breadcrumbs, Autocomplete, TextField } from "@mui/material";
+import { Typography, Box, Tab, Tabs, CardContent, Card, CardActionArea, Link, Breadcrumbs} from "@mui/material";
 
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { a11yProps, TabPanel } from "../../components/base/TabPanel";
-
-import { styled } from "@mui/material/styles";
 import { makeStyles, createStyles } from "@mui/styles"
 
 import dlBackground from "../../assets/img/dl-background.jpg";
 
-import { Stack } from "@mui/system";
-
-import { tableCellClasses } from '@mui/material/TableCell';
-
-import ArticleIcon from '@mui/icons-material/Article';
-import HelpIcon from "@mui/icons-material/Help";
-import StartIcon from '@mui/icons-material/Start';
-import axios from "axios";
-import { Backbar } from "../../components/base/Backbar";
-import { computeSkillLevel, formatTime } from "../../components/base/Functions";
-import { Pagination } from "../../components/base/Pagination";
-import { FilterProps, GameRemoteListProps, GameRulesProps } from "../../components/base/Interfaces";
-import { useDispatch, useSelector } from "react-redux";
-import { SectionCard, SectionCardProps } from "../../components/base/SectionCard";
 import SurvivalPrestigeCalculator from "../survival-prestige-calculator/SurvivalPrestigeCalculator";
 
 const useStyles = makeStyles(() =>
@@ -213,8 +196,11 @@ const DeadlockedSurvival = () => {
     return <Page>
 
         <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingLeft: 6}}>
-            <Link underline="hover" color="inherit" href="/getting-started">
+            <Link underline="hover" color="inherit" onClick={() => navigate("/")} sx={{cursor: "pointer"}}>
                 Horizon
+            </Link>
+            <Link underline="hover" color="inherit" onClick={() => navigate("/getting-started")} sx={{cursor: "pointer"}}>
+                Getting Started
             </Link>
             <Typography color="text.primary">Survival</Typography>
         </Breadcrumbs>

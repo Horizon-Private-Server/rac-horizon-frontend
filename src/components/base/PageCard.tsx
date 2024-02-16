@@ -4,27 +4,24 @@ import { Card, CardActionArea, CardContent } from "@mui/material";
 
 export interface PageState {
     children?: JSX.Element | JSX.Element[];
+    animated?: boolean;
 }
 
 const PageCard = (props: PageState) => {
 
-    const {children} = props;
+    const {children, animated} = props;
 
-    const cardStyles = {
-        minWidth: "32.8%",
-        maxWidth: "32.8%",
-        width: "32.8%",
+    if (!animated) {
+        return <Card sx={{width: "100$", height: "100%"}}>
+            <CardContent>
+                {children}
+            </CardContent>
+        </Card>
     }
 
-    return <Card
-        sx={cardStyles}
-    >
-        <CardActionArea
-            style={{
-                height: "100%"
-            }}
-        >
-            <CardContent style={{height: "100%"}}>
+    return <Card sx={{width: "100$", height: "100%"}}>
+        <CardActionArea >
+            <CardContent>
                 {children}
             </CardContent>
         </CardActionArea>

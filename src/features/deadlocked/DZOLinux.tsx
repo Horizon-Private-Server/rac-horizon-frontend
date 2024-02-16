@@ -11,7 +11,7 @@ import {
     TableBody,
     Link,
     Breadcrumbs,
-    Stack
+    Stack, Alert
 } from "@mui/material";
 import { TextHeading, TextList, CodeBox } from "../../components/base/TextComponents";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
@@ -19,11 +19,13 @@ import { ChangingImage } from "../../components/base/ChangingImage";
 import { MobileFriendlyIconRow, MobileFriendlyTextRow } from "../../components/base/MobileFriendlyRow";
 import {Construction} from "@mui/icons-material";
 import LineBreak from "../../components/base/LineBreak";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 
 export const DZOLinux = () => {
 
     const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
+    const navigate: NavigateFunction = useNavigate();
 
     const cs = () => {
 
@@ -45,7 +47,7 @@ export const DZOLinux = () => {
     >
 
         <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingBottom: 2}}>
-            <Link underline="hover" color="inherit" href="/">
+            <Link underline="hover" color="inherit" onClick={() => navigate("/")} sx={{cursor: "pointer"}}>
                 Horizon
             </Link>
             <Typography color="text.primary">DreadZone Online Linux Install Guide</Typography>
@@ -57,7 +59,7 @@ export const DZOLinux = () => {
                 <TextHeading heading="DreadZone Online Linux Install Guide" variant="h4" />
 
                 <Typography marginBottom={3}>
-                    DreadZone Online (DZO) is a rerenderer for Ratchet: Deadlocked emulated on PCSX2.
+                    DreadZone Online (DZO) is a re-renderer for Ratchet: Deadlocked emulated on PCSX2.
                     DZO has basic support for Linux through Unity's linux builder and PCSX2's AppImage.
                     Installation on Linux must be done through a command line script.
                     The following guide will walk you through the installation process.
@@ -85,9 +87,9 @@ export const DZOLinux = () => {
                     <Box>wget https://box.rac-horizon.com/downloads/dzo/update.sh && bash ./update.sh</Box>
                 </CodeBox>
 
-                <Typography marginTop={3} marginBottom={1} color="yellow">
+                <Alert severity="info" sx={{mt: 1, mb: 2}}>
                     NOTE: If that fails you may need to run the command with sudo.
-                </Typography>
+                </Alert>
                 
                 <CodeBox>
                     <Box>sudo wget https://box.rac-horizon.com/downloads/dzo/update.sh && sudo bash ./update.sh</Box>
