@@ -69,6 +69,8 @@ export const DZOLinux = () => {
 
                 <Typography marginBottom={3}>
                     DZO is installed into one folder. Please make a new directory and open a terminal window inside of it.
+
+                    For example, you can run this command to create a <pre>dzo</pre> folder on your Desktop.
                 </Typography>
                 
                 <CodeBox>
@@ -80,7 +82,7 @@ export const DZOLinux = () => {
                 <TextHeading heading="Install" variant="h5" />
 
                 <Typography marginBottom={1}>
-                    Download the install script into your new DZO directory and run it.
+                    Download the install script into your new DZO directory and run it using the following command inside your terminal window.
                 </Typography>
                 
                 <CodeBox>
@@ -92,7 +94,7 @@ export const DZOLinux = () => {
                 </Alert>
                 
                 <CodeBox>
-                    <Box>sudo wget https://box.rac-horizon.com/downloads/dzo/update.sh && sudo bash ./update.sh</Box>
+                    <Box>wget https://box.rac-horizon.com/downloads/dzo/update.sh && sudo bash ./update.sh</Box>
                 </CodeBox>
                 
                 <TextHeading heading="Configuration" variant="h5" />
