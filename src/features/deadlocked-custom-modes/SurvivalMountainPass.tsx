@@ -179,7 +179,7 @@ export const SurvivalMountainPass = () => {
                 <Typography marginBottom={3}>
                     Survival on Mountain Pass represents the third iteration of the Survival mode.
                     Survival is the most ambitious custom game mode developed for Deadlocked on Horizon.
-                    Survival takes inspiration from the Deadlocked singleplayer arena combat, survival games such as COD Zombies, as well as elements from more modern rogue-like games, such as Risk of Rain.
+                    Survival takes inspiration from the Deadlocked single-player arena combat, survival games such as COD Zombies, as well as elements from more modern rogue-like games, such as Risk of Rain.
                     Survival pits you against wave after wave of lethal enemies with the goal of surviving as long as possible.
                     The maximum round you've completed is what counts as your high score (e.g., if you die on round 10, you will have a score of 9 rounds).
                 </Typography>
@@ -193,21 +193,49 @@ export const SurvivalMountainPass = () => {
                     Survival rank is earned by the number of bolts that are collected, modifiers like Jackpot Mod and Double Bolts will accelerate your ranking.
                 </Typography>
 
+                <TextHeading heading="Mountain Pass Speedrunning" variant="h5" />
+
+                <Typography marginBottom={3}>
+                    Mountain Pass supports a built-in, ranked speedrun timer.
+                    The speedrun timer starts when you first gain control of your character and automatically stops upon completion of round 50.
+                    The elapsed time (ET) is recorded as your score.
+                    Your best score will be posted on the Horizon leaderboards.
+                    Solo and Co-Op ranked leaderboards are tracked independently.
+                    Co-Op leaderboards award the same ET for every member of the party.
+                </Typography>
+
                 <TextHeading heading="Gameplay" variant="h5" />
 
                 <Typography marginBottom={3}>
                     As you defeat enemies in each wave, you will earn both bolts and XP (visible as a bar above your health).
-                    Bolts are shared between all players, but XP is earned individually.
+                    Bolts and XP is shared between all players.
                     Every time your XP bar fills up, you will receive a Dread Token (visible below your bolt count).
                     Bolts are used to upgrade weapons, roll the mystery box and prestige your weapons.
                     Dread Tokens are used to open doors and purchase wall power-ups.
                     Spend your bolts and Dread Tokens wisely to make yourself more powerful so you can fight off the horde!
                 </Typography>
 
+                <Typography marginBottom={1}>
+                    The more enemies you defeat, the more they evolve.
+                    Enemy evolution is not tied to the round number, it's solely based on how many enemies have been killed!
+                    Additionally, after every 25 waves, all enemies are mutated, greatly furthering their evolution!
+                    Enemy mutations can be categorized into the following stats:
+                </Typography>
+
+                <Typography>
+                    <b>Health</b> - The total amount of damage required to kill the enemy. This stat scales without bound.
+                </Typography>
+
+                <Typography>
+                    <b>Damage Output</b> - The total amount of damage an enemy deals to the player. This stat also scales without bound.
+                </Typography>
+
+                <Typography>
+                    <b>Movement Speed</b> - The speed at which enemies will charge the player. This stat is capped near the player's maximum speed.
+                </Typography>
+
                 <Typography marginBottom={3}>
-                    The more enemies you defeat, the stronger they become (Note: The level of an enemy is not tied to the wave you're on, even as a wave progresses, enemies become stronger).
-                    An enemy's health pool, movement speed and damage output all become greater as the enemy gets stronger.
-                    The only enemy stat that is capped is speed, both the heath and damage of an enemy will continue to scale without bound.
+                    <b>Reaction Time</b> - The amount of time it takes an enemy to swing at the player when it gets in range. This stat decreases to 0.0s (instantaneous attacks) as the enemy evolves.
                 </Typography>
 
                 <Typography marginBottom={3}>
@@ -287,7 +315,7 @@ export const SurvivalMountainPass = () => {
                         />
                         <MobileFriendlyIconRow
                             firstCellText="Area Mod" icon={AREA_MOD_ICON}
-                            remainingCells={[`Increases the explosion radius on weapons that have an Area of Effect (AoE).`, "Dual Vipers, The Arbiter, B6-Obliterator, Hunter Mine Launcher, Scorpion Flail"]}
+                            remainingCells={[`Increases the explosion radius on weapons that have an Area of Effect (AoE).`, "Dual Vipers, Magma Cannon, The Arbiter, B6-Obliterator, Hunter Mine Launcher, Scorpion Flail"]}
                         />
                         <MobileFriendlyIconRow
                             firstCellText="Jackpot Mod" icon={JACKPOT_MOD_ICON}
@@ -313,7 +341,7 @@ export const SurvivalMountainPass = () => {
                 <TextList
                     items={[
                         <Typography>The <b>Dual Vipers</b> become the <b>Dual Raptors</b> and all bullets ricochet off of enemies and walls for extra damage.</Typography>,
-                        <Typography>The <b>Magma Cannon</b> becomes the <b>Vulcan Cannon</b> and has a much larger AoE.</Typography>,
+                        <Typography>The <b>Magma Cannon</b> becomes the <b>Vulcan Cannon</b> and has a much larger AoE. Area Mods now reduce damage falloff for shots.</Typography>,
                         <Typography><b>The Arbiter</b> becomes <b>The Silencer</b> and fires 3 rockets instead of 1.</Typography>,
                         <Typography>The <b>B-6 Obliterator</b> becomes the <b>B-11 Vaporizer</b> and it's explosion radius grows greatly.</Typography>,
                         <Typography>The <b>Hunter Mine Launcher</b> becomes <b>the Stalker Mine Launcher</b> and all mines that explode spawn an extra mine. (Note: The Stalker Mine Launcher only spawns 1 extra mine as opposed to single player, this is for performance reasons and to prevent game crashes).</Typography>,
@@ -445,6 +473,11 @@ export const SurvivalMountainPass = () => {
                     </TableBody>
                 </TableContainer>
 
+                <Typography marginBottom={2} marginTop={3} >
+                    Dread Tokens are more easily earned in early rounds, but become more scarce in later rounds.
+                    The XP curve for earning Dread Tokens grows linearly at first, then becomes flat after 50 total tokens have been earned.
+                </Typography>
+
                 <TextHeading heading="Optimal Damage Strategy" variant="h6" />
 
                 <SpoilerGuard weight={5}>
@@ -453,7 +486,7 @@ export const SurvivalMountainPass = () => {
                         The calculations performed here optimize the maximum amount of damage based on the total aggregate damage done over <i>n</i> shots where <i>n</i> is large enough to prevent statistical anomalies.
                         The opimal strategy is to collect <code>38</code> damage upgrades before collecting the first critical damage upgrade.
                         Once 38 damage upgrades are obtained, alternate between damage and critical hit chance (one-to-one) until critical hit chance is 100%.
-                        Once (really, if) critical hit chance is at 100% keep collecting damage exclusively.
+                        Once critical hit chance is at 100% keep collecting damage exclusively.
                     </Typography>
                 </SpoilerGuard>
 
@@ -461,10 +494,7 @@ export const SurvivalMountainPass = () => {
 
                 <Typography marginBottom={2}>
                     As you progress, new and more dangerous types of enemies will start to appear.
-                    Every 5 waves is also a special wave with a particular enemy theme.
-                    The special waves are predetermined and always the same.
-                    There are 5 different special waves that cycle every 25 rounds.
-                    They are: <b>The Ghost Tremor Round</b>, <b>The Elemental Round</b>, <b>The Freeze Ghost Round</b>, <b>The Freeze Round</b> and <b>The Executioner Round</b>.
+                    Mountain Pass does not feature special rounds, only the Boss Round every 25 rounds.
                 </Typography>
 
 
@@ -595,16 +625,23 @@ export const SurvivalMountainPass = () => {
 
                 <SpoilerGuard weight={5}>
                     <Typography marginBottom={3}>
-                        On higher rounds some of the techniques you could get away with will no longer work due to Reactor's high damage.
-                        Reactor's charge attack does &gt;300 damage above round 100 and &gt;420 damage above round 150.
-                        This attack is the most dangerous since it's nearly impossible to avoid.
-                        The easiest way to beat Reactor on higher waves is to lure him to the cavern and use the pillars to block his attacks.
-                        If no cover is available and Reactor is charging, the best strategy may be to use the Blessing of the Hare to time and jump above his charge.
-                        Reactor also has massive health pools above round 100.
+                        On higher rounds some of the techniques you could get away with will no longer work due to Reactor's high damage output and speed.
+                        For example, you won't be able to jump to avoid Reactor's charge attack or chargeboot away.
+                        You will be forced to hide behind a wall of sufficient size.
                         It is advised to allow him to charge into a wall to take advantage of the double damage.
                         If you have invested in Blessing of the Clover, you should take advantage of the Mystery Box to arm yourself with totems and power-ups to defeat Reactor.
                         When playing in a group, it may be worthwhile to have a person dedicated to rolling the Mystery Box.
                     </Typography>
+
+                    <Typography marginBottom={3}>
+                        It is recommended to use the inside of the cave as your arena due to the support pillars.
+                        It much easier to quickly find cover.
+                        It is strongly recommended to avoid using the Scorpion Flail against Reactor.
+                        Dual Vipers also have greatly reduced efficiency due to their potential DPS.
+                        The best weapons to use are The Arbiter, B6-Obliterator, Hunter Mine Launcher, Fusion Rifle and (V10) Magma Cannon.
+                        Holoshields are also very useful for slowing Reactor's movement, especially if you need to put distance between you and him.
+                    </Typography>
+
                 </SpoilerGuard>
 
                 <TextHeading heading="Enemy Bonus Drops" variant="h5" />
@@ -643,12 +680,12 @@ export const SurvivalMountainPass = () => {
                             Prevents any new enemies from spawning.`
                         ]} />
                         <MobileFriendlyIconRow firstCellText="Double Bolts" icon={DOUBLE_POINTS_ICON} remainingCells={[
-                            `Double Points acts a global Jackpot Mod which doubles all bolts received.
-                            Double Points stacks with Jackpot Mods on weapons and is applied after Jackpot Mods boost the number of bolts.`
+                            `Double Points acts a global Jackpot Mod which doubles all bolts received from enemies (does not apply to round bonuses).
+                            Double Points stacks with Jackpot Mods on weapons and is applied after Jackpot Mods double the total number of bolts from enemies.`
                         ]} />
                         <MobileFriendlyIconRow firstCellText="Double XP" icon={DOUBLE_XP_ICON} remainingCells={[
                             `Double XP acts a global XP Mod which doubles all XP received.
-                            Double XP stacks with XP Mods on weapons and is applied after XP Mods boost the amount of XP earned.`
+                            Double XP stacks with XP Mods on weapons and is applied after XP Mods to double the total amount of XP earned.`
                         ]} />
                     </TableBody>
                 </TableContainer>
@@ -702,21 +739,21 @@ export const SurvivalMountainPass = () => {
                     Multiplayer is a bit different and allows for more variety.
                     If a player falls in multiplayer, they are not "dead", but instead in a "downed" or "bleeding-out" state.
                     Once downed, there will be a 60 second timer that begins to count over their body.
-                    Any other player can revive the downed player if they can reach them in time, and if they have enough bolts to revive that player.
-                    Players are revived using the L3 button.
+                    Any other player can revive the downed player if they can reach them in time.
+                    Players are revived using the Down directional button on the D-Pad.
                 </Typography>
 
-                <Typography marginBottom={1}>The cost to revive a player follows the following formula:</Typography>
-
-                <Typography marginBottom={3}><code>(timesRevivedThisRound + 1) * (10000 + (1000 * activePlayerCount))</code>.</Typography>
-
                 <Typography marginBottom={3}>
-                    This means that the base revive price will be <code>12,000 Bolts-20,000 Bolts</code> depending on the number of players in the session.
-                    Every time a player dies, their revive price will increase by an additional base revive amount.
-                    The revive cost of each player resets to the base amount every time a round is cleared.
-                    If a player is downed and an ally picks up a Instant Health Bonus Pickup, it will instantly revive the downed player.
-                    The same applies if a downed player is hit with a healing orb from a health gun.
-                    In both cases, the revival will be free, but player downed will cost more on their next death in the same round.
+                    Once a downed player is reached, the reviving player will need to press the down button on their D-Pad while staying very close to the downed player's body.
+                    A 5-second revive timer will start to tick down and the reviving player must keep the revive button held down, without interruption, for the full revive timer to revive a player.
+                    Once the revive timer reaches 0, the downed player will be revived and a large, green explosion will apply knockback to all nearby enemies (like if a Self-Revive Totem is used).
+                    While reviving a downed player, it is still possible to shoot weapons at or near the ground and perform a single-jump to evade enemies.
+                    It is strongly recommended to have backup when reviving players and use holoshields to delay enemies.
+                    So long as you start reviving a downed player before their bleed-out timer ends, they can still be revived.
+                    If you see the revive timer, you can still revive them.
+                    Don't give up if you reach a downed player and catch them with 1 or 2 seconds left.
+                    If a player is downed more than once in a single wave, 10 seconds will be shaved off of their bleed-out timer for each additional time they are downed (down to a minimum of 10 seconds).
+                    This bleed-out timer penalty is reset to 60 seconds for all players at the start of each new round.
                 </Typography>
 
                 <Typography marginBottom={3}>
@@ -824,11 +861,11 @@ export const SurvivalMountainPass = () => {
                     The Demon Bells forcibly increase the spawn rate of enemies.
                     There are 3 Demon Bells in total, each proportionally increasing the spawn rate of enemies.
                     After every 10 waves, one of the Demon Bells is forcibly turned on to ramp up the difficulty.
-                    Starting at wave 30, all Demon Bells are active.
-                    The Demon Bells do <b>NOT</b> make enemies more difficult to defeat, they only increase the spawn rate of enemies.
-                    Completing a wave in which a Demon Bell was activate results in a larger round bonus.
+                    Starting at wave 30, all Demon Bells are active without player intervention.
+                    The Demon Bells do <b>NOT</b> make enemies more difficult to defeat, they only increase the spawn rate of enemies and proximity of enemy spawns.
+                    Completing a wave in which a Demon Bell was activate results in a slightly larger round bonus (proportional to the number of Demon Bell activated).
                     This bonus is increased if multiple Demon Bells are activated.
-                    Demon Bells can be activated during the intermission period between waves.
+                    The Demon Bells are a one-time activation and stay on for the duration of the run.
                 </Typography>
 
                 <TextHeading heading="Multiple Teams" variant="h5" />
@@ -893,7 +930,7 @@ export const SurvivalMountainPass = () => {
                                         <Typography sx={{mb: 1}}>Grants multiple, consecutive jumps to a player. This blessing is intended to allow players to jump over all token walls and improve mobility.</Typography>
                                         <Stack direction="row" justifyContent="flex-start">
                                             {WARNING_ICON}
-                                            <Typography sx={{ml: 2}}>WARNING: THIS BLESSING MAKES IT VERY EASY TO GET OUT OF BOUNDS ON THE MAP, IT IS VERY, VERY EASY TO DIE OUTSIDE OF THE MAP!!</Typography>
+                                            <Typography sx={{ml: 2}}>WARNING: THIS BLESSING MAKES IT VERY EASY TO GET OUT OF BOUNDS ON THE MAP, IT IS VERY, VERY EASY TO DIE OUTSIDE OF THE MAP!! YOU HAVE BEEN WARNED!</Typography>
                                         </Stack>
                                     </Box>
                                 ]}
@@ -902,7 +939,7 @@ export const SurvivalMountainPass = () => {
                             <MobileFriendlyIconRow
                                 firstCellText="Blessing of the Hunt"
                                 icon={BLESSING_HUNT_ICON}
-                                remainingCells={["While moving (walking, chargebooting and jumping), the player will slowly regenerate ammo for the weapon they have equipped. Ammo mods increase the amount of ammo regenerated."]}
+                                remainingCells={["While moving (walking, chargebooting and jumping), the player will slowly regenerate ammo for the weapon they have equipped. Equipped ammo mods increase the amount of ammo regenerated."]}
                             />
 
                             <MobileFriendlyIconRow

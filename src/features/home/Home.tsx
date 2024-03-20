@@ -106,37 +106,37 @@ const Home = () => {
             <Grid xs={12} container sx={{p: 0}}>
 
                 <Grid xs={4} item sx={{p: 1}}>
-                    <PageCard animated={true}>
+                    <PageCard animated>
                         <HomeCardContent
-                            link={"https://discord.com/invite/horizonps"}
-                            icon={"https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg"}
+                            link="https://discord.com/invite/horizonps"
+                            icon="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg"
                             iconAltText="Discord Logo"
-                            title={"Horizon Discord"}
-                            description={"Get involved with the Horizon community by joining our Discord Server!"}
+                            title="Horizon Discord"
+                            description="Get involved with the Horizon community by joining our Discord Server!"
                         />
                     </PageCard>
                 </Grid>
 
                 <Grid xs={4} item sx={{p: 1}}>
-                    <PageCard animated={true}>
+                    <PageCard animated>
                         <HomeCardContent
-                            link={"https://www.youtube.com/channel/UCqtDa52wBLmQs8fyAkeb8wg"}
-                            icon={"https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg"}
+                            link="https://www.youtube.com/channel/UCqtDa52wBLmQs8fyAkeb8wg"
+                            icon="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg"
                             iconAltText="YouTube Logo Logo"
-                            title={"Horizon YouTube Channel"}
-                            description={"Check out the Horizon YouTube for tutorials and gameplay."}
+                            title="Horizon YouTube Channel"
+                            description="Check out the Horizon YouTube for tutorials and gameplay."
                         />
                     </PageCard>
                 </Grid>
 
                 <Grid xs={4} item sx={{p: 1}}>
-                    <PageCard animated={true}>
+                    <PageCard animated>
                         <HomeCardContent
-                            link={"https://github.com/Horizon-Private-Server"}
+                            link="https://github.com/Horizon-Private-Server"
                             icon={githubIcon}
                             iconAltText="GitHub Logo"
-                            title={"Horizon Development"}
-                            description={"The Horizon project Medius emulator is open-source."}
+                            title="Horizon Development"
+                            description="The Horizon project Medius emulator is open-source."
                         />
                     </PageCard>
                 </Grid>
@@ -154,70 +154,70 @@ const Home = () => {
             <Grid xs={12} container sx={{p: 0}}>
 
                 <Grid xs={screenSize === ScreenSize.Desktop ? 4 : 6} item sx={{p: 1}}>
-                    <PageCard>
+                    <PageCard noPadding color="#4B5A70">
                         <HomeCardMulticontent
                             icon={dzoLogo}
                             actionIcons={[
                                 {
-                                    icon: <img src={downloadWindows} width={48} height={48} alt="Download DZO Windows Launcher" />,
+                                    icon: downloadWindows,
                                     action: () => {window.open("https://box.rac-horizon.com/downloads/DreadZone%20Online%20Installer.exe", "_download")},
                                     altText: "Download DZO Windows Launcher"
                                 },
                                 {
-                                    icon: <img src={downloadLinux} width={48} height={48} alt="View Linux Setup Guite for DZO" />,
+                                    icon: downloadLinux,
                                     action: () => {navigate("/dzo/linux")},
                                     altText: "View Linux Setup Guite for DZO"
                                 }
                             ]}
                             iconAltText="DZO Logo"
-                            title={"DreadZone Online Windows Client"}
-                            mobileTitle={"DZO"}
-                            description={"Download the DreadZone Online Client for Windows or Linux."}
+                            title="DreadZone Online Client"
+                            mobileTitle="DZO Client"
+                            description="Download the DreadZone Online Client for Windows or Linux."
                         />
                     </PageCard>
                 </Grid>
 
                 <Grid xs={screenSize === ScreenSize.Desktop ? 4 : 6} item sx={{p: 1}}>
-                    <PageCard animated={true}>
+                    <PageCard animated noPadding={screenSize === ScreenSize.Mobile}>
                         <HomeCardContent
-                            link={"https://box.rac-horizon.com/downloads/maps/dl_custom_maps.zip"}
+                            link="https://box.rac-horizon.com/downloads/maps/dl_custom_maps.zip"
                             icon={dlBoxArt}
                             iconAltText="Deadlocked Box Art"
-                            title={"Ratchet: Deadlocked Custom Maps [NTSC]"}
-                            mobileTitle={"Custom Maps"}
-                            description={"Download the latest Deadlocked custom maps."}
+                            title="Ratchet: Deadlocked Custom Maps [NTSC]"
+                            mobileTitle="Custom Maps [DL]"
+                            description="Download the latest Deadlocked custom maps."
                             actionIcon={<DownloadIcon />}
-                            tooltip={"Download the latest custom maps for Deadlocked"}
+                            tooltip="Download the latest custom maps for Deadlocked"
                         />
                     </PageCard>
                 </Grid>
 
                 <Grid xs={screenSize === ScreenSize.Desktop ? 4 : 6} item sx={{p: 1}}>
-                    <PageCard animated={true}>
+                    <PageCard animated noPadding={screenSize === ScreenSize.Mobile}>
                         <HomeCardContent
-                            link={"https://box.rac-horizon.com/downloads/maps/uya_custom_maps_ntsc.zip"}
+                            link="https://box.rac-horizon.com/downloads/maps/uya_custom_maps_ntsc.zip"
                             icon={uyaBoxArt}
                             iconAltText="UYA Box Art"
-                            title={"Up Your Arsenal Custom Maps [NTSC]"}
-                            mobileTitle={"Custom Maps"}
-                            description={"Download the latest UYA custom maps."}
+                            title="Up Your Arsenal Custom Maps [NTSC]"
+                            mobileTitle="Custom Maps [UYA] [NTSC]"
+                            description="Download the latest UYA custom maps."
                             actionIcon={<DownloadIcon />}
-                            tooltip={"Download the latest custom maps for UYA"}
+                            tooltip="Download the latest custom maps for UYA"
                         />
                     </PageCard>
                 </Grid>
 
                 <Grid xs={screenSize === ScreenSize.Desktop ? 4 : 6} item sx={{p: 1}}>
-                    <PageCard animated={true}>
+                    <PageCard animated noPadding={screenSize === ScreenSize.Mobile}>
                         <HomeCardContent
-                            link={"https://box.rac-horizon.com/downloads/maps/uya_custom_maps_pal.zip"}
+                            link="https://box.rac-horizon.com/downloads/maps/uya_custom_maps_pal.zip"
                             icon={rc3BoxArt}
                             iconAltText="R&C 3 Box Art"
-                            title={"R&C 3 Custom Maps [PAL]"}
-                            mobileTitle={"Custom Maps"}
-                            description={"Download the latest R&C 3 custom maps."}
+                            title="R&C 3 Custom Maps [PAL]"
+                            mobileTitle="Custom Maps [UYA] [PAL]"
+                            description="Download the latest R&C 3 custom maps."
                             actionIcon={<DownloadIcon />}
-                            tooltip={"Download the latest custom maps for R&C 3"}
+                            tooltip="Download the latest custom maps for R&C 3"
                         />
                     </PageCard>
                 </Grid>

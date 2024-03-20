@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Typography, Box, Link, Tooltip } from "@mui/material";
+import {Typography, Box, Link, Tooltip, Stack} from "@mui/material";
 
 import CenterObject from "../../components/base/CenterObject";
 import SpaceBetweenObject from "../../components/base/SpaceBetweenObject";
@@ -48,18 +48,24 @@ const HomeCardContent = (props: HomeCardContentState) => {
                 target="_blank"
                 style={{textDecoration: "none", color: "white"}}
             >
-                <div style={{textAlign: "center"}}>{mobileTitle ?? ""}</div>
-                <CenterObject>
-                    <CenterObject orientation="vertical">
-                        <img 
-                            src={icon}
-                            alt={iconAltText}
-                            width={"60px"}
-                            height={"60px"}
-                            style={{objectFit: "contain"}}
-                        />
+                <Stack direction="row" justifyContent="center" sx={{p: 1, height: "100%", minHeight: 120, width: "100%"}}>
+                    <CenterObject>
+                        <CenterObject orientation="vertical">
+                            <img
+                                src={icon}
+                                alt={iconAltText}
+                                width={80}
+                                height={80}
+                                style={{objectFit: "contain"}}
+                            />
+                        </CenterObject>
                     </CenterObject>
-                </CenterObject>
+                    {mobileTitle && (
+                        <Stack direction="column" justifyContent="center">
+                            <Typography>{mobileTitle ?? ""}</Typography>
+                        </Stack>
+                    )}
+                </Stack>
             </Link>
         </Tooltip>;
     }
