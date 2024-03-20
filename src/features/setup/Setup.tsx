@@ -1,8 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
 
-import HelpIcon from "@mui/icons-material/Help";
-
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 import { SectionCard, SectionCardProps } from "../../components/base/SectionCard";
 
@@ -13,8 +11,7 @@ import GamepadIcon from "@mui/icons-material/Gamepad";
 
 const Setup = () => {
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
+    const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
     // const sections: SectionCardProps[] = [
@@ -74,27 +71,30 @@ const Setup = () => {
             url: "/survival",
             icon: <GamepadIcon />
         }
-  ]
+    ]
     
 
-    return <Box
-        display="flex"
-        flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
-        justifyContent={"flex-start"}
-        flexWrap="wrap"
-        p={4}
-    >
-        { sections.map((section) => {
-            return <SectionCard 
-                key={section.label}
-                label={section.label}
-                description={section.description}
-                url={section.url}
-                icon={section.icon}
-            />
-        })}
+    return <>
+        <Box
+            display="flex"
+            flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
+            justifyContent="flex-start"
+            flexWrap="wrap"
+            p={4}
+        >
+            { sections.map((section) => {
+                return <SectionCard
+                    key={section.label}
+                    label={section.label}
+                    description={section.description}
+                    url={section.url}
+                    icon={section.icon}
+                />
+            })}
 
-    </Box>
+        </Box>
+        <Box height="56.5vh" />
+    </>
 }
 
 export default Setup;

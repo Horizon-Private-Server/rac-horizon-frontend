@@ -166,5 +166,7 @@ export const SurvivalVeldin = () => {
             <Construction fontSize="large" />
         </Stack>
 
+        <Box height="77vh" />
+
     </Box>;
 }

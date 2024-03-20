@@ -22,7 +22,7 @@ export const SectionCard = (props: SectionCardProps) => {
 
     return <Card sx={{margin: 2, width: screenSize === ScreenSize.Desktop ? "20vw" : screenSize === ScreenSize.Tablet ? "50vw" : "70vw", minHeight: "20vh"}}>
         <CardActionArea
-            sx={{width, display: "flex", alignItems: "baseline", justifyContent: "normal", height: "100%"}}
+            sx={{width, display: "flex", alignItems: "baseline", justifyContent: "normal"}}
             onClick={() => {
 
                 console.log(url);
@@ -37,8 +37,8 @@ export const SectionCard = (props: SectionCardProps) => {
             }}
         >
             <CardContent>
-                <Stack direction={"row"} justifyContent={"flex-start"} sx={{width: screenSize === ScreenSize.Desktop ? "20vw" : screenSize === ScreenSize.Tablet ? "50vw" : "70vw", minHeight: "3vh", pl: 1}}>
-                    <Stack direction={"column"} justifyContent={"center"}>
+                <Stack direction="row" justifyContent="flex-start" sx={{width: screenSize === ScreenSize.Desktop ? "20vw" : screenSize === ScreenSize.Tablet ? "50vw" : "70vw", minHeight: "3vh", pl: 1}}>
+                    <Stack direction="column" justifyContent="center">
                         {icon}
                     </Stack>
                     <Box sx={{marginRight: 3}} />
