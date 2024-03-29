@@ -20,6 +20,7 @@ import { ChangingImage } from "../../components/base/ChangingImage";
 import { MobileFriendlyIconRow, MobileFriendlyTextRow } from "../../components/base/MobileFriendlyRow";
 import SpoilerGuard from "../../components/base/SpoilerGuard";
 import {NavigateFunction, useNavigate} from "react-router-dom";
+import InteractiveMap from "../../components/InteractiveMap";
 
 export const SurvivalMountainPass = () => {
 
@@ -958,6 +959,29 @@ export const SurvivalMountainPass = () => {
                     </TableContainer>
 
                 </SpoilerGuard>
+
+                <Box sx={{mb: 4}} />
+
+                <TextHeading heading="Interactive Map - Mountain Pass" variant="h5" />
+
+                <Box sx={{mb: 4}} />
+
+                <InteractiveMap
+                    backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/minimap-2k.png"
+                    layers={[
+                        {layerLabel: "Weapons", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/weapons-2k.png"},
+                        {layerLabel: "Nanotech", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/nanotech-2k.png"},
+                        {layerLabel: "Wall Pickups", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/wall-pickups-2k.png"},
+                        {layerLabel: "Mystery Box", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/mystery-box-2k.png"},
+                        {layerLabel: "Vendor", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/vendor-2k.png"},
+                        {layerLabel: "Pack-A-Punch", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/pack-a-punch-2k.png"},
+                        {layerLabel: "Obelisks", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/obelisks-2k.png"},
+                        {layerLabel: "Barriers", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/barriers-2k.png"},
+                        {layerLabel: "Bank", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/bank-2k.png"},
+                        {layerLabel: "Demon Bells", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/demon-bells-2k.png"},
+                    ]}
+                />
+
             </CardContent>
         </Card>
     </Box>;
