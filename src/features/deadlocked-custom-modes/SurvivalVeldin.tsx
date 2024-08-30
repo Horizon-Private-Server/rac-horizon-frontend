@@ -147,12 +147,12 @@ export const SurvivalVeldin = () => {
         marginBottom={4}
     >
 
-        <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2}}>
+        <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, ml: 2}}>
             <Link underline="hover" color="inherit" onClick={() => navigate("/")} sx={{cursor: "pointer"}}>
                 Horizon
             </Link>
-            <Link underline="hover" color="inherit" onClick={() => navigate("/getting-started")} sx={{cursor: "pointer"}}>
-                Getting Started
+            <Link underline="hover" color="inherit" onClick={() => navigate("/deadlocked")} sx={{cursor: "pointer"}}>
+                Deadlocked
             </Link>
             <Link underline="hover" color="inherit" onClick={() => navigate("/survival")} sx={{cursor: "pointer"}}>
                 Survival
@@ -166,7 +166,7 @@ export const SurvivalVeldin = () => {
             <Construction fontSize="large" />
         </Stack>
 
-        <Box height="77vh" />
+        <Box sx={{mb: screenSize === ScreenSize.Mobile ? 120 : screenSize === ScreenSize.Tablet ? 128 : 128}} />
 
     </Box>;
 }

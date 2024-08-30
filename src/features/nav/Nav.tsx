@@ -16,7 +16,7 @@ import NavItem from "./NavItem";
 
 import horizonCircleLogo from "../../assets/img/logo.png";
 
-const drawerWidth = 241;
+const drawerWidth: number = 241;
 
 const Nav = (props: NavState) => {
 
@@ -74,7 +74,7 @@ const Nav = (props: NavState) => {
                         size="large"
                     >
                         {/* <MenuIcon /> */}
-                        <img src={horizonCircleLogo} alt="Horizon Circle Logo" width={"38px"} height={"38px"} style={{padding: "0px", margin: "0px"}} />
+                        <img src={horizonCircleLogo} alt="Horizon Circle Logo" width="38px" height="38px" style={{padding: "0px", margin: "0px"}} />
                     </IconButton>
                     <Typography
                         variant="h6"

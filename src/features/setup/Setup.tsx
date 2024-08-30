@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import {Box, Grid} from "@mui/material";
 
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 import { SectionCard, SectionCardProps } from "../../components/base/SectionCard";
@@ -54,46 +54,48 @@ const Setup = () => {
           icon: <GavelIcon />
         },
         {
-          label: "Connecting to Horizon (PS2)",
+          label: "PS2 Setup",
           description: "Setup guide for connecting to Horizon using your PlayStation 2 hardware.",
           url: "https://github.com/Horizon-Private-Server/horizon-wiki/blob/main/getting-online/ps2/README.md",
           icon: <SettingsInputHdmiIcon />
         },
         {
-          label: "Connecting to Horizon (PCSX2)",
+          label: "PCSX2 Setup",
           description: "Setup guide for connecting to Horizon using the PCSX2 emulator.",
           url: "https://github.com/Horizon-Private-Server/horizon-wiki/blob/main/getting-online/pcsx2/README.md",
           icon: <SettingsInputHdmiIcon />
-        },
-        {
-            label: "Survival Guides",
-            description: "A guide to help new players dig into Survival.",
-            url: "/survival",
-            icon: <GamepadIcon />
         }
     ]
-    
+
+    let numCols: number = 12;
+
+    if (screenSize === ScreenSize.Tablet) {
+        numCols = 6;
+    }
+    if (screenSize === ScreenSize.Desktop) {
+        numCols = 4;
+    }
+    if (width > 1500) {
+        numCols = 3;
+    }
 
     return <>
-        <Box
-            display="flex"
-            flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
-            justifyContent="flex-start"
-            flexWrap="wrap"
-            p={4}
-        >
-            { sections.map((section) => {
-                return <SectionCard
-                    key={section.label}
-                    label={section.label}
-                    description={section.description}
-                    url={section.url}
-                    icon={section.icon}
-                />
-            })}
-
+        <Box sx={{p: 1}}>
+            <Grid sx={{p: 0}} container>
+                { sections.map((section) => {
+                    return <Grid key={section.label} xs={numCols} sx={{p: 1}} item>
+                        <SectionCard
+                            key={section.label}
+                            label={section.label}
+                            description={section.description}
+                            url={section.url}
+                            icon={section.icon}
+                        />
+                    </Grid>
+                })}
+            </Grid>
+            <Box sx={{mb: 109}} />
         </Box>
-        <Box height="56.5vh" />
     </>
 }
 

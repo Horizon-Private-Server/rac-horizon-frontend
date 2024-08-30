@@ -39,8 +39,9 @@ import {DeadlockedInfected} from './features/deadlocked-custom-modes/DeadlockedI
 import {SurvivalMountainPass} from "./features/deadlocked-custom-modes/SurvivalMountainPass";
 import {SurvivalVeldin} from "./features/deadlocked-custom-modes/SurvivalVeldin";
 import {DZOLinux} from "./features/deadlocked/DZOLinux";
-import {Stack, Typography} from "@mui/material";
+import {Box, Stack, Typography} from "@mui/material";
 import useWindowDimensions, {computeDeviceScale, ScreenSize} from "./components/utils/WindowDimensions";
+import ControlledChaosGameGenertator from "./features/game-generators/ControlledChaosGameGenerator";
 
 
 export const ThemeContext = React.createContext({
@@ -74,8 +75,8 @@ const navMenu = [
         label: "Deadlocked",
         tooltip: "Deadlocked",
         icon: <SportsEsportsIcon />,
-        path: "/dl",
-        hidden: process.env.NODE_ENV === 'production'
+        path: "/deadlocked",
+        hidden: false
     }
 ];
 
@@ -108,15 +109,16 @@ function App() {
                             <Routes>
                                 <Route path="/" element={<Home/>}/>
                                 <Route path="/getting-started" element={<Setup/>}/>
-                                <Route path="/dl" element={<DeadlockedHome/>}/>
+                                <Route path="/deadlocked" element={<DeadlockedHome/>}/>
                                 <Route path="/uya" element={<UYAHome/>}/>
-                                <Route path="/dl/stats" element={<DeadlockedStats/>}/>
-                                <Route path="/dl/leaderboard/:offering" element={<DeadlockedLeaderboard/>}/>
-                                <Route path="/dl/details/:userId" element={<DeadlockedDetails/>}/>
-                                <Route path="/dl/games" element={<DeadlockedGames/>}/>
-                                <Route path="/dl/game/:gameId" element={<DeadlockedGameDetails/>}/>
-                                <Route path="/dl/custom/modes" element={<DeadlockedCustomModes/>}/>
-                                <Route path="/dl/custom/modes/infected" element={<DeadlockedInfected/>}/>
+                                {/*<Route path="/dl/stats" element={<DeadlockedStats/>}/>*/}
+                                {/*<Route path="/dl/leaderboard/:offering" element={<DeadlockedLeaderboard/>}/>*/}
+                                {/*<Route path="/dl/details/:userId" element={<DeadlockedDetails/>}/>*/}
+                                {/*<Route path="/dl/games" element={<DeadlockedGames/>}/>*/}
+                                {/*<Route path="/dl/game/:gameId" element={<DeadlockedGameDetails/>}/>*/}
+                                {/*<Route path="/dl/custom/modes" element={<DeadlockedCustomModes/>}/>*/}
+                                {/*<Route path="/dl/custom/modes/infected" element={<DeadlockedInfected/>}/>*/}
+                                <Route path="/deadlocked/ccgg/:gameSeed" element={<ControlledChaosGameGenertator />} />
                                 <Route path="/survival" element={<DeadlockedSurvival/>}/>
                                 <Route path="/survival/orxon" element={<SurvivalOrxon/>}/>
                                 <Route path="/survival/mountain-pass" element={<SurvivalMountainPass/>}/>
@@ -128,7 +130,18 @@ function App() {
                                 <Route path="/configure/pcsx2" element={<ConfigurePCSX2/>}/>
                                 <Route path="/faq" element={<FAQ/>}/>
                             </Routes>
-                            <Stack direction="row" justifyContent="center" sx={{mt: 2, pt: 2, pb: 2, backgroundColor: "#000000"}}>
+                            <Stack
+                                direction="row"
+                                justifyContent="center"
+                                sx={{
+                                    pt: 2,
+                                    pb: 2,
+                                    backgroundColor: "#000000",
+                                    bottom: 0,
+                                    width: "100%",
+                                    maxWidth: "100%"
+                                }}
+                            >
                                 <Typography variant="subtitle2" textAlign="center" sx={{maxWidth: screenSize === ScreenSize.Desktop ? "60%" : "90%"}}>
                                     Horizon Private Server nor any of its staff, developers or members are affiliated
                                     with Sony Interactive Entertainment (SIE), Insomniac Games, Idol Minds or Mass
@@ -142,6 +155,7 @@ function App() {
                 </ThemeContext.Provider>
             </StyledEngineProvider>
         </BrowserRouter>
+
     );
 }
 

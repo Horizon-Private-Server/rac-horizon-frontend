@@ -199,8 +199,8 @@ const DeadlockedSurvival = () => {
             <Link underline="hover" color="inherit" onClick={() => navigate("/")} sx={{cursor: "pointer"}}>
                 Horizon
             </Link>
-            <Link underline="hover" color="inherit" onClick={() => navigate("/getting-started")} sx={{cursor: "pointer"}}>
-                Getting Started
+            <Link underline="hover" color="inherit" onClick={() => navigate("/deadlocked")} sx={{cursor: "pointer"}}>
+                Deadlocked
             </Link>
             <Typography color="text.primary">Survival</Typography>
         </Breadcrumbs>

@@ -1,15 +1,13 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import Page from "../../components/base/Page";
-import {Typography, Box, Grid} from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 
 import PageCard from "../../components/base/PageCard";
 import CenterObject from "../../components/base/CenterObject";
 import LineBreak from "../../components/base/LineBreak";
 
-import { useAppSelector } from "../../app/hooks";
-import { selectLatestVideos, setHomeLatestVideos } from "./homeSlice";
-
-import { useAppDispatch } from "../../app/hooks";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {selectLatestVideos, setHomeLatestVideos} from "./homeSlice";
 
 import githubIcon from "../../assets/img/GitHub-Icon.png";
 import dzoLogo from "../../assets/img/dzo-logo.png";
@@ -22,12 +20,11 @@ import downloadLinux from "../../assets/img/download-linux.png";
 import DownloadIcon from '@mui/icons-material/Download';
 
 import HomeCardContent from "./HomeCardContent";
-import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
+import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
 
-import { makeStyles, createStyles } from "@mui/styles";
+import {createStyles, makeStyles} from "@mui/styles";
 import HomeCardMulticontent from "./HomeCardMulticontent";
 import {NavigateFunction, useNavigate} from "react-router-dom";
-import WindowDimensions from "../../components/utils/WindowDimensions";
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -223,6 +220,8 @@ const Home = () => {
                 </Grid>
             </Grid>
 
+            <LineBreak amount={50} />
+
             <CenterObject>
                 <Typography variant="h4">Tutorials</Typography>
             </CenterObject>
@@ -252,7 +251,7 @@ const Home = () => {
                         allow="autoplay; encrypted-media"
                         allowFullScreen
                         title="video"
-                        width={"100%"}
+                        width={screenSize === ScreenSize.Mobile ? "400vw" : "100%"}
                         height={"300px"}
                     />
                 </Box>
@@ -273,7 +272,7 @@ const Home = () => {
                         allow="autoplay; encrypted-media"
                         allowFullScreen
                         title="video"
-                        width={"100%"}
+                        width={screenSize === ScreenSize.Mobile ? "400vw" : "100%"}
                         height={"300px"}
                     />
                 </Box>
@@ -306,7 +305,7 @@ const Home = () => {
                                 allow="autoplay; encrypted-media"
                                 allowFullScreen
                                 title="video"
-                                width={"100%"}
+                                width={screenSize === ScreenSize.Mobile ? "400vw" : "100%"}
                                 height={"300px"}
                             />
                         </Box>;

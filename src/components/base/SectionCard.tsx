@@ -1,4 +1,4 @@
-import { Typography, Box, Stack, CardContent, Card, CardActionArea, Divider } from "@mui/material";
+import {Typography, Box, Stack, CardContent, Card, CardActionArea, Divider, Paper} from "@mui/material";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../utils/WindowDimensions";
 
 import { useNavigate } from "react-router-dom";
@@ -16,37 +16,37 @@ export const SectionCard = (props: SectionCardProps) => {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {width, height} = useWindowDimensions();
-    const screenSize = computeDeviceScale(width);
 
     const {label, description, url, icon} = props;
 
-    return <Card sx={{margin: 2, width: screenSize === ScreenSize.Desktop ? "20vw" : screenSize === ScreenSize.Tablet ? "50vw" : "70vw", minHeight: "20vh"}}>
+    return <Card component={Paper} sx={{maxWidth: "90vw"}}>
         <CardActionArea
-            sx={{width, display: "flex", alignItems: "baseline", justifyContent: "normal"}}
             onClick={() => {
-
-                console.log(url);
-
                 if (url.includes("http://") || url.includes("https://")) {
                     window.open(url, "_blank", "noreferrer");
                 }
                 else {
                     navigate(url);
                 }
-
             }}
         >
             <CardContent>
-                <Stack direction="row" justifyContent="flex-start" sx={{width: screenSize === ScreenSize.Desktop ? "20vw" : screenSize === ScreenSize.Tablet ? "50vw" : "70vw", minHeight: "3vh", pl: 1}}>
-                    <Stack direction="column" justifyContent="center">
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                >
+                    <Stack direction="column" justifyContent="center" marginRight={4}>
                         {icon}
                     </Stack>
-                    <Box sx={{marginRight: 3}} />
-                    <Typography fontSize={24}>{label}</Typography>
+                    <Typography fontWeight="bold" fontSize={20}>{label}</Typography>
                 </Stack>
-                <Divider sx={{marginTop: 1, marginBottom: 1, width: screenSize === ScreenSize.Desktop ? "18vw" : screenSize === ScreenSize.Tablet ? "47vw" : "62vw" }} />
-                <Typography sx={{width: screenSize === ScreenSize.Desktop ? "20vw" : screenSize === ScreenSize.Tablet ? "50vw" : "70vw", minHeight: "17vh", p: 1, pr: 5}} fontSize={18}>{description}</Typography>
+                <Box sx={{mb: 1}}/>
+                <Divider variant="inset"/>
+                <Box sx={{mb: 2}}/>
+                <Typography height="12vh" flexWrap="wrap">{description}</Typography>
             </CardContent>
         </CardActionArea>
     </Card>;
 }
+
+
