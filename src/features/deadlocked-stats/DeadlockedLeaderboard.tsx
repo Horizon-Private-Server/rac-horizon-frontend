@@ -26,9 +26,9 @@ import dlBackground from "../../assets/img/dl-background.jpg";
 import { tableCellClasses } from '@mui/material/TableCell';
 
 import { computeSkillLevel, formatTime } from "../../components/base/Functions";
-import { Pagination } from "../../components/base/Pagination";
+import Paginator from "../../components/base/Paginator";
 import {getHandler} from "../../utils/Requests";
-import {LeaderboardEntry, Pagination as IPagination, StatOffering} from "../../utils/Interfaces";
+import {LeaderboardEntry, Pagination} from "../../utils/Interfaces";
 import {AnyAction} from "@reduxjs/toolkit";
 import {useAppDispatch} from "../../app/hooks";
 import DeadlockedBacking from "../deadlocked/DeadlockedBacking";
@@ -138,10 +138,10 @@ const DeadlockedLeaderboard = () => {
 
 
     useEffect(() => {
-        getHandler<IPagination<LeaderboardEntry>>(
+        getHandler<Pagination<LeaderboardEntry>>(
             `/api/dl/stats/leaderboard/${domain}/${stat}?page=${page}`,
             dispatch,
-            (response: AxiosResponse<IPagination<LeaderboardEntry>, any>) => {
+            (response: AxiosResponse<Pagination<LeaderboardEntry>, any>) => {
                 setPlayers(response.data.results);
                 setTotalPlayers(response.data.count);
             },
@@ -226,7 +226,7 @@ const DeadlockedLeaderboard = () => {
                 </TableBody>
             </TableContainer>
             <Box sx={{mt: 3}} />
-            <Pagination totalResults={totalPlayers} rowsPerPage={100} page={page} setPage={setPage} />
+            <Paginator totalResults={totalPlayers} rowsPerPage={100} page={page} setPage={setPage} />
         </Box>
 
     </DeadlockedBacking>;

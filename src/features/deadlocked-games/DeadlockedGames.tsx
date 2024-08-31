@@ -23,7 +23,7 @@ import StartIcon from '@mui/icons-material/Start';
 import axios from "axios";
 import { Backbar } from "../../components/base/Backbar";
 import { computeSkillLevel, formatTime } from "../../components/base/Functions";
-import { Pagination } from "../../components/base/Pagination";
+import Paginator from "../../components/base/Paginator";
 import { FilterProps, GameRemoteListProps, GameRulesProps } from "../../components/base/Interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { clearFilters, selectGameFilters, selectPage, setFilters, setPage } from "./deadlockedGamesSlice";
@@ -406,7 +406,7 @@ const DeadlockedGames = () => {
             })}
         </Box>
 
-        <Pagination totalResults={totalGames} rowsPerPage={25} page={page} setPage={(page: number) => dispatch(setPage(page))} />
+        <Paginator totalResults={totalGames} rowsPerPage={25} page={page} setPage={(page: number) => dispatch(setPage(page))} />
 
     </Page>;
 }

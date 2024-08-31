@@ -22,7 +22,7 @@ export interface PaginationProps {
 }
 
 
-export const Pagination = (props: PaginationProps) => {
+const Paginator = (props: PaginationProps) => {
 
     const {page, totalResults, rowsPerPage, setPage} = props;
 
@@ -34,3 +34,5 @@ export const Pagination = (props: PaginationProps) => {
         </Stack>
     </Stack>;
 }
+
+export default Paginator;

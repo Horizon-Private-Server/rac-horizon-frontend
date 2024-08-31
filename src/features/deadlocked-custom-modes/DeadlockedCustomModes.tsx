@@ -1,31 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Page from "../../components/base/Page";
-import { Typography, Box, Tab, Tabs, CardContent, Card, CardActionArea, Divider, Button, TableContainer, Paper, TableHead, TableRow, TableCell, TableBody, Link, Breadcrumbs, Autocomplete, TextField } from "@mui/material";
+import {Typography, Box, CardContent, Card, CardActionArea, Link, Breadcrumbs} from "@mui/material";
 
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
-import { a11yProps, TabPanel } from "../../components/base/TabPanel";
-
-import { styled } from "@mui/material/styles";
 import { makeStyles, createStyles } from "@mui/styles"
 
 import dlBackground from "../../assets/img/dl-background.jpg";
 
-import { Stack } from "@mui/system";
-
-import { tableCellClasses } from '@mui/material/TableCell';
-
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import HelpIcon from "@mui/icons-material/Help";
-import StartIcon from '@mui/icons-material/Start';
-import axios from "axios";
-import { Backbar } from "../../components/base/Backbar";
-import { computeSkillLevel, formatTime } from "../../components/base/Functions";
-import { Pagination } from "../../components/base/Pagination";
-import { FilterProps, GameRemoteListProps, GameRulesProps } from "../../components/base/Interfaces";
-import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -70,8 +54,7 @@ const GameModeCard = (props: GameModeCardProps) => {
 
     const navigate = useNavigate();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
+    const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
 
@@ -120,12 +103,6 @@ const GameModeCard = (props: GameModeCardProps) => {
 const DeadlockedCustomModes = () => {
 
     const classes = useStyles();
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
-    const screenSize = computeDeviceScale(width);
-
-    const navigate = useNavigate();
 
     const gameModes: GameModeCardProps[] = [
         {
