@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Page from "../../components/base/Page";
-import { Typography, Box, Tab, Tabs, CardContent, Card, CardActionArea, Divider, Button, TableContainer, Paper, TableHead, TableRow, TableCell, TableBody, Link } from "@mui/material";
+import { Typography, Box, CardContent, Card, Divider, TableContainer, TableHead, TableRow, TableCell, TableBody, Link } from "@mui/material";
 
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 
-import { useNavigate, useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 
 import { styled } from "@mui/material/styles";
@@ -20,12 +20,12 @@ import { Backbar } from "../../components/base/Backbar";
 import Skeleton from '@mui/material/Skeleton';
 
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import { addCommasToNumber, computeSkillLevel, formatTime } from "../../components/base/Functions";
-import { BaseStats, GameDetailProps, GameRulesProps, PlayerDetailProps, PostGamePlayerDataProps } from "../../components/base/Interfaces";
+import { formatTime } from "../../components/base/Functions";
 import { LoadableRow, LoadableValue } from "../../components/base/LoadableRow";
 
 import { tableCellClasses } from '@mui/material/TableCell';
 import NotFoundCard from "../../components/base/NotFoundCard";
+import {GameDetailProps, GameRulesProps, PostGamePlayerDataProps} from "../../utils/Interfaces";
 
 const useStyles = makeStyles(() =>
     createStyles({

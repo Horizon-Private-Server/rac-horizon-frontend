@@ -10,6 +10,7 @@ import {SectionCard, SectionCardProps} from "../../components/base/SectionCard";
 import {Handyman} from "@mui/icons-material";
 import {generateRandomString} from "../../components/utils/functions";
 import DeadlockedBacking from "./DeadlockedBacking";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 const DeadlockedHome = () => {
 
@@ -29,12 +30,12 @@ const DeadlockedHome = () => {
             url: `/deadlocked/ccgg/${generateRandomString(20)}`,
             icon: <Handyman />
         },
-        // {
-        //     label: "Stats & Leaderboards",
-        //     description: "Track your progress and see how you compare to other players. This leaderboard is more comprehensive than the leaderboard found in-game!",
-        //     url: "/dl/stats",
-        //     icon: <EmojiEventsIcon />
-        // },
+        {
+            label: "Stats & Leaderboards",
+            description: "Track your progress and view Horizon Leaderboards.",
+            url: "/deadlocked/stats",
+            icon: <EmojiEventsIcon />
+        },
         // {
         //     label: "Game History",
         //     description: "View a list of all games played on Horizon!",

@@ -26,16 +26,19 @@ import {Pagination, StatOffering} from "../../utils/Interfaces";
 import {useAppDispatch} from "../../app/hooks";
 import {AnyAction} from "@reduxjs/toolkit";
 import DeadlockedBacking from "../deadlocked/DeadlockedBacking";
+import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
+import {domainFormatting} from "../../components/base/Functions";
 
 
 export interface StatCardProps {
     label: string;
+    domain: string;
     offerings: string[];
 }
 
 const StatCard = (props: StatCardProps) => {
 
-    const {label, offerings} = props;
+    const {label, offerings, domain} = props;
 
     const navigate = useNavigate();
 
@@ -68,7 +71,7 @@ const StatCard = (props: StatCardProps) => {
                 { offerings.map((offering) => {
                     return <Button
                         key={offering}
-                        onClick={() => navigate(`/deadlocked/leaderboard/${label}/${offering}`)}
+                        onClick={() => navigate(`/deadlocked/leaderboard/${domain}/${offering}?page=1`)}
                         sx={{justifyContent: "flex-start"}}
                     >
                         {offering.replaceAll("_", " ")}
@@ -108,17 +111,25 @@ const DeadlockedStats = () => {
 
     function convertOfferingsToCards() {
 
-        let cards: {label: string, offerings: string[]}[] = [];
+        let cards: {label: string, domain: string, offerings: string[]}[] = [];
 
         statOfferings.map((statOffering: StatOffering) => {
-            let filtered = cards.filter((card) => card.label === statOffering.domain);
+
+            const processedDomain = domainFormatting(statOffering.domain?.replaceAll("_", " ") ?? "", false);
+
+            let filtered = cards.filter((card) => card.domain === statOffering.domain);
 
             if (filtered.length > 0) {
                 filtered[0].offerings.push(statOffering.stat)
             }
             else {
-                cards.push({label: statOffering.domain, offerings: [statOffering.stat]})
+                cards.push({
+                    label: processedDomain,
+                    domain: statOffering.domain,
+                    offerings: [statOffering.stat]}
+                )
             }
+            return null;
         })
 
         return cards
@@ -127,12 +138,12 @@ const DeadlockedStats = () => {
     return <DeadlockedBacking>
 
         <Box>
-            <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingLeft: 7.5}}>
-                <Link underline="hover" color="inherit" href="/deadlocked">
-                    Deadlocked
-                </Link>
-                <Typography color="text.primary">Leaderboards</Typography>
-            </Breadcrumbs>
+            <HorizonBreadcrumbs
+                paths={[
+                    {text: "Deadlocked", route: "/deadlocked"},
+                    {text: "Stats", route: "/deadlocked/stats"}
+                ]}
+            />
 
             <Box>
                 {loading && (
@@ -150,7 +161,12 @@ const DeadlockedStats = () => {
                         sx={{pl: 5, pb: 5, pr: 5}}
                     >
                         { convertOfferingsToCards().map((card) => {
-                            return <StatCard label={card.label} offerings={card.offerings} key={card.label} />;
+                            return <StatCard
+                                label={card.label}
+                                offerings={card.offerings}
+                                domain={card.domain}
+                                key={card.label}
+                            />;
                         })}
                     </Box>
                 )}

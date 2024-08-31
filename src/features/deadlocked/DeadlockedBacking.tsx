@@ -19,10 +19,11 @@ const DeadlockedBacking = (props: DeadlockedBackingProps) => {
     return <Box
         sx={{
             "&": {
+                background: "rgba(0, 0, 0, 0.0)",
                 position: "relative",
                 overflowX: "hidden",
-                height: "calc(100vh - 140px)",
-                width: screenSize === ScreenSize.Mobile ? "100vw" : "calc(100vw - 241px)",
+                height: "100%",
+                width: "100%",
                 display: "flex",
                 opacity: 1.0,
                 zIndex: 0
@@ -33,13 +34,10 @@ const DeadlockedBacking = (props: DeadlockedBackingProps) => {
                 backgroundPositionX: screenSize === ScreenSize.Mobile ? 0 : 241,
                 position: "absolute",
                 overflowX: "hidden",
-                top: "0px",
-                left: "0px",
-                right: "0px",
                 zIndex: -1,
                 opacity: 0.35,
                 height: "100%",
-                width: "100%",
+                width: screenSize === ScreenSize.Mobile ? "100vw" : "calc(100vw - 241px)",
                 content: '""',
                 backgroundAttachment: "fixed",
                 backgroundRepeat: "no-repeat"

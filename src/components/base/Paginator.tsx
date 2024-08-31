@@ -1,5 +1,6 @@
-import { Button, Stack, Typography } from "@mui/material";
-import { NumberSetState } from "./Interfaces";
+import {Box, Button, Card, CardContent, Paper, Stack, Typography} from "@mui/material";
+import {NavigateFunction, useNavigate} from "react-router-dom";
+import {ArrowBack, ArrowForward, ArrowLeft, ArrowRight} from "@mui/icons-material";
 
 function computePageNumber(totalPlayers: number, rowsPerPage: number) {
 
@@ -18,21 +19,45 @@ export interface PaginationProps {
     page: number;
     totalResults: number;
     rowsPerPage: number;
-    setPage: NumberSetState;
+    baseUrl: string;
 }
-
 
 const Paginator = (props: PaginationProps) => {
 
-    const {page, totalResults, rowsPerPage, setPage} = props;
+    const {page, totalResults, rowsPerPage, baseUrl} = props;
 
-    return <Stack>
-        <Typography sx={{ml: 2}}>{`Page ${page + 1} of ${computePageNumber(totalResults, rowsPerPage)}`}</Typography>
-        <Stack direction="row" justifyContent="center">
-            <Button onClick={() => setPage(page - 1)} disabled={page === 0}>Prev</Button>
-            <Button onClick={() => setPage(page + 1)} disabled={(page + 1) === computePageNumber(totalResults, rowsPerPage)}>Next</Button>
-        </Stack>
-    </Stack>;
+    const navigate: NavigateFunction = useNavigate();
+
+    console.log(`${baseUrl}?page=${page + 1}`)
+
+    return <Card component={Paper} sx={{backgroundColor: "rgba(20, 20, 20, 0.80)"}}>
+        <CardContent>
+
+            <Stack direction="row" justifyContent="space-between">
+                <Typography sx={{ml: 2, mt: 1}}>{`Page ${page} of ${computePageNumber(totalResults, rowsPerPage)}`}</Typography>
+                <Stack direction="row" justifyContent="space-between">
+                    <Button
+                        onClick={() => navigate(`${baseUrl}?page=${page - 1}`)}
+                        disabled={page <= 1}
+                        sx={{color: "white"}}
+                    >
+                        <ArrowLeft fontSize="small" />&nbsp;Prev
+                    </Button>
+
+                    <Box sx={{ml: 2}} />
+
+                    <Button
+                        onClick={() => navigate(`${baseUrl}?page=${page + 1}`)}
+                        disabled={page >= computePageNumber(totalResults, rowsPerPage)}
+                        sx={{color: "white"}}
+                    >
+                        Next&nbsp;<ArrowRight fontSize="small" />
+                    </Button>
+                </Stack>
+            </Stack>
+
+        </CardContent>
+    </Card>
 }
 
 export default Paginator;

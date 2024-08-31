@@ -21,8 +21,8 @@ import Skeleton from '@mui/material/Skeleton';
 
 import PersonIcon from '@mui/icons-material/Person';
 import { computeSkillLevel } from "../../components/base/Functions";
-import { PlayerDetailProps } from "../../components/base/Interfaces";
 import { LoadableRow } from "../../components/base/LoadableRow";
+import {PlayerDetailProps} from "../../utils/Interfaces";
 
 const useStyles = makeStyles(() =>
     createStyles({

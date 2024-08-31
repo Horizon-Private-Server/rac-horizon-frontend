@@ -1,3 +1,5 @@
+import * as domain from "domain";
+
 export function formatTime(time: number, shorten: boolean = false) {
     let days = Math.floor(time / 86400);
     time -= days * 86400;
@@ -48,7 +50,6 @@ export function computeSkillLevel(rank: number) {
         9500
     ]
 
-    let i = 0
     if (rank >= DEADLOCKED_SKILLS_TABLE[9]) {
         return "10.00"
     }
@@ -56,13 +57,103 @@ export function computeSkillLevel(rank: number) {
         return "1.00"
     }
 
+    let i = 0
     while (rank > DEADLOCKED_SKILLS_TABLE[i]) {
         i += 1
     }
-    
-    return (i + (rank - DEADLOCKED_SKILLS_TABLE[i-1]) / (DEADLOCKED_SKILLS_TABLE[i] - DEADLOCKED_SKILLS_TABLE[i-1])).toFixed(2);
+
+    let rawSkillLevel: number = i + (rank - DEADLOCKED_SKILLS_TABLE[i-1]) / (DEADLOCKED_SKILLS_TABLE[i] - DEADLOCKED_SKILLS_TABLE[i-1]);
+    let processedSkillLevel: number = Math.floor(rawSkillLevel * 100) / 100;
+
+    return processedSkillLevel.toFixed(2);
 }
 
 export function addCommasToNumber(amount: string | number) {
     return amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+export function isNumeric(n: number) {
+    return !isNaN(parseFloat(n.toString())) && isFinite(n);
+}
+
+export function titleCase(str: string): string {
+    return str.replace(
+        /\w\S*/g,
+        text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+    );
+}
+
+export function domainFormatting(domain: string, mobile: boolean): string {
+
+    if (mobile) {
+        switch (domain.replaceAll("_", " ").toLowerCase()) {
+            case "koth":
+                return "KOTH";
+            case "ctf":
+                return "CTF";
+            case "weapon":
+                return "Weapons";
+            case "vehicle":
+                return "Vehicles";
+            default:
+                return titleCase(domain.replaceAll("_", " "));
+        }
+    }
+
+    switch (domain.replaceAll("_", " ").toLowerCase()) {
+        case "koth":
+            return "King of the Hill";
+        case "ctf":
+            return "Capture the Flag";
+        case "weapon":
+            return "Weapons";
+        case "vehicle":
+            return "Vehicles";
+        default:
+            return titleCase(domain.replaceAll("_", " "));
+    }
+}
+
+export function statFormatting(stat: string, mobile: boolean): string {
+
+    if (mobile) {
+        switch (stat.replaceAll("_", " ").toLowerCase()) {
+            case "hunter mine launcher kills":
+                return "Mine Kills";
+            case "hunter mine launcher deaths":
+                return "Mine Deaths";
+            case "b6 obliterator kills":
+                return "B6 Kills";
+            case "b6 obliterator deaths":
+                return "B6 Deaths";
+            case "holoshield launcher kills":
+                return "Holoshield Kills";
+            case "holoshield launcher deaths":
+                return "Holoshield Deaths";
+            case "fusion rifle kills":
+                return "Fusion Kills";
+            case "fusion rifle deaths":
+                return "Fusion Deaths";
+            case "scorpion flail kills":
+                return "Flail Kills";
+            case "scorpion flail deaths":
+                return "Flail Deaths";
+            case "magma cannon kills":
+                return "Magma Kills";
+            case "magma cannon deaths":
+                return "Magma Deaths";
+            case "dual viper kills":
+                return "Viper Kills";
+            case "dual viper deaths":
+                return "Viper Deaths";
+            default:
+                return titleCase(stat.replaceAll("_", " "));
+        }
+    }
+
+    switch (stat.replaceAll("_", " ").toLowerCase()) {
+        default:
+            return titleCase(stat.replaceAll("_", " "));
+    }
+}
+

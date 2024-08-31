@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
-import { FilterProps } from '../../components/base/Interfaces';
-
+import {FilterProps} from "../../utils/Interfaces";
 
 export interface GameFilterState {
     filters: FilterProps[];
