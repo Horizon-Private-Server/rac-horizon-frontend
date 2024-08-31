@@ -1,6 +1,17 @@
-import React, { useState, useEffect } from "react";
-import Page from "../../components/base/Page";
-import { Typography, Button, TableContainer, Paper, TableHead, TableRow, TableCell, TableBody, Link, Breadcrumbs } from "@mui/material";
+import React, {useState, useEffect, Dispatch} from "react";
+
+import {
+    Typography,
+    TableContainer,
+    Paper,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableBody,
+    Link,
+    Breadcrumbs,
+    Box
+} from "@mui/material";
 
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 
@@ -11,13 +22,17 @@ import { makeStyles, createStyles } from "@mui/styles"
 
 import dlBackground from "../../assets/img/dl-background.jpg";
 
-import { Stack } from "@mui/system";
 
 import { tableCellClasses } from '@mui/material/TableCell';
 
-import axios from "axios";
 import { computeSkillLevel, formatTime } from "../../components/base/Functions";
 import { Pagination } from "../../components/base/Pagination";
+import {getHandler} from "../../utils/Requests";
+import {LeaderboardEntry, Pagination as IPagination, StatOffering} from "../../utils/Interfaces";
+import {AnyAction} from "@reduxjs/toolkit";
+import {useAppDispatch} from "../../app/hooks";
+import DeadlockedBacking from "../deadlocked/DeadlockedBacking";
+import {AxiosResponse} from "axios";
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -90,14 +105,16 @@ const DeadlockedLeaderboard = () => {
 
     const classes = useStyles();
 
-    const [page, setPage] = useState(0);
-    const [players, setPlayers] = useState([]);
-    const [totalPlayers, setTotalPlayers] = useState(0);
+    const [page, setPage] = useState<number>(0);
+    const [players, setPlayers] = useState<LeaderboardEntry[]>([]);
+    const [totalPlayers, setTotalPlayers] = useState<number>(1);
 
-    const { offering } = useParams();
+    const dispatch: Dispatch<AnyAction> = useAppDispatch();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
+    const { domain } = useParams();
+    const { stat } = useParams();
+
+    const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
     const navigate = useNavigate();
@@ -107,7 +124,7 @@ const DeadlockedLeaderboard = () => {
     }
 
     function processValue(offering?: string, amount?: number) {
-        if (offering?.endsWith("TIME") || offering?.includes("TIME_PLAYED")) {
+        if (offering?.endsWith("time") || offering?.includes("time_played")) {
             return formatTime(amount ?? 0);
         }
         if (offering?.includes("DISCONNECTS")) {
@@ -121,95 +138,98 @@ const DeadlockedLeaderboard = () => {
 
 
     useEffect(() => {
-        axios.get(`http://dev.codeprojects.net:9000/api/leaderboard/${offering}/${page}`).then((response)=> {
-            setPlayers(response.data.results);
-            setTotalPlayers(response.data.total_players);
-        }).catch()
-    }, [page, offering])
+        getHandler<IPagination<LeaderboardEntry>>(
+            `/api/dl/stats/leaderboard/${domain}/${stat}?page=${page}`,
+            dispatch,
+            (response: AxiosResponse<IPagination<LeaderboardEntry>, any>) => {
+                setPlayers(response.data.results);
+                setTotalPlayers(response.data.count);
+            },
+            () => {},
+        )
+    }, [domain, stat, page])
 
-    return <Page className={classes.dlBackground}>
+    return <DeadlockedBacking>
 
-        <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingBottom: 2}}>
-            <Link underline="hover" color="inherit" href="/dl">
-                Deadlocked
-            </Link>
-            <Link
-                underline="hover"
-                color="inherit"
-                onClick={() => navigate(-1)}
-            >
-                Leaderboards
-            </Link>
-            <Typography color="text.primary">{offering?.replaceAll("ACCOUNT_", "").replaceAll("CUSTOM_", "").replaceAll("STAT_", "").replaceAll("_", " ")}</Typography>
-        </Breadcrumbs>
+        <Box>
+            <Breadcrumbs aria-label="breadcrumb" sx={{mt: 2, mb: 3, ml: 2}}>
+                <Link underline="hover" color="inherit" href="/deadlocked">
+                    Deadlocked
+                </Link>
+                <Link underline="hover" color="inherit" onClick={() => navigate(-1)}>
+                    Leaderboards
+                </Link>
+                <Typography color="text.primary">{domain?.replaceAll("_", " ")}&nbsp;{stat?.replaceAll("_", " ")}</Typography>
+            </Breadcrumbs>
 
-        <TableContainer component={Paper}>
-            <TableHead>
-                <TableRow>
-                    <StyledTableCell>
-                        <Typography fontWeight="bold">Rank</Typography>
-                    </StyledTableCell>
-                    <StyledTableCell>
-                        <Typography fontWeight="bold">Player</Typography>
-                    </StyledTableCell>
-                    <StyledTableCell>
-                        <Typography fontWeight="bold">Amount</Typography>
-                    </StyledTableCell>
-                    { offering?.includes("RANK") && (
+            <TableContainer component={Paper}>
+                <TableHead>
+                    <TableRow>
                         <StyledTableCell>
-                            <Typography fontWeight="bold">Skill Level</Typography>
+                            <Typography fontWeight="bold">Rank</Typography>
                         </StyledTableCell>
-                    )}
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                { players.map((player: LeaderboardRowProps, index) => {
-                    let rowNum: number = (page * 100) + index + 1;
-                    return <StyledTableRow key={player.name}>
-                        <StyledTableCell sx={{width: "10vw"}}>
-                            <Typography>{rowNum}</Typography>
+                        <StyledTableCell>
+                            <Typography fontWeight="bold">Player</Typography>
                         </StyledTableCell>
-
-                        <StyledTableCell sx={{width: offering?.includes("RANK") ? screenSize === ScreenSize.Mobile ? "40vw" : "30vw" : screenSize === ScreenSize.Mobile ? "50vw" : "40vw"}}>
-
-                            <Typography 
-                                overflow="hidden" 
-                                sx={{
-                                    width: offering?.includes("RANK") 
-                                        ? screenSize === ScreenSize.Mobile 
-                                            ? "40vw" 
-                                            : "30vw" 
-                                        : screenSize === ScreenSize.Mobile 
-                                            ? "50vw" 
-                                            : "40vw",
-                                     whiteSpace: "no-wrap"
-                                }} 
-                                textOverflow="ellipsis" 
-                                noWrap
-                            >
-                                {<Link href={`/dl/details/${player.id}`}>{processUserNames(player.name)}</Link>}
-                            </Typography>
-
+                        <StyledTableCell>
+                            <Typography fontWeight="bold">Amount</Typography>
                         </StyledTableCell>
-
-                        <StyledTableCell sx={{width: offering?.includes("RANK") ? "20vw" : "30vw"}}>
-                            <Typography>{processValue(offering, player.amount)}</Typography>
-                        </StyledTableCell>
-
-                        { offering?.includes("RANK") && (
-                            <StyledTableCell sx={{width: offering?.includes("RANK") ? "10vw" : "20vw"}}>
-                                <Typography>{computeSkillLevel(player.amount)}</Typography>
+                        { stat?.includes("rank") && (
+                            <StyledTableCell>
+                                <Typography fontWeight="bold">Skill Level</Typography>
                             </StyledTableCell>
                         )}
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    { players.map((player: LeaderboardEntry, index) => {
+                        let rowNum: number = (page * 100) + index + 1;
+                        return <StyledTableRow key={player.username}>
+                            <StyledTableCell sx={{width: "10vw"}}>
+                                <Typography>{rowNum}</Typography>
+                            </StyledTableCell>
 
-                    </StyledTableRow>
-                })}
-            </TableBody>
-        </TableContainer>
-        <Pagination totalResults={totalPlayers} rowsPerPage={100} page={page} setPage={setPage} />
+                            <StyledTableCell sx={{width: stat?.includes("rank") ? screenSize === ScreenSize.Mobile ? "40vw" : "30vw" : screenSize === ScreenSize.Mobile ? "50vw" : "40vw"}}>
 
+                                <Typography
+                                    overflow="hidden"
+                                    sx={{
+                                        width: stat?.includes("rank")
+                                            ? screenSize === ScreenSize.Mobile
+                                                ? "40vw"
+                                                : "30vw"
+                                            : screenSize === ScreenSize.Mobile
+                                                ? "50vw"
+                                                : "40vw",
+                                         whiteSpace: "no-wrap"
+                                    }}
+                                    textOverflow="ellipsis"
+                                    noWrap
+                                >
+                                    {<Link href={`/dl/details/${player.horizon_id}`}>{processUserNames(player.username)}</Link>}
+                                </Typography>
 
-    </Page>;
+                            </StyledTableCell>
+
+                            <StyledTableCell sx={{width: stat?.includes("rank") ? "20vw" : "30vw"}}>
+                                <Typography>{processValue(stat, player.score)}</Typography>
+                            </StyledTableCell>
+
+                            { stat?.includes("rank") && (
+                                <StyledTableCell sx={{width: stat?.includes("rank") ? "10vw" : "20vw"}}>
+                                    <Typography>{computeSkillLevel(player.score)}</Typography>
+                                </StyledTableCell>
+                            )}
+
+                        </StyledTableRow>
+                    })}
+                </TableBody>
+            </TableContainer>
+            <Box sx={{mt: 3}} />
+            <Pagination totalResults={totalPlayers} rowsPerPage={100} page={page} setPage={setPage} />
+        </Box>
+
+    </DeadlockedBacking>;
 }
 
 export default DeadlockedLeaderboard;

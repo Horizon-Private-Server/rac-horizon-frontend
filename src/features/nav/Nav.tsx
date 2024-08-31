@@ -40,8 +40,9 @@ const Nav = (props: NavState) => {
             <Divider />
             <React.Fragment key={0}>
                 <List>
-                    { navItems.map((elem) => {
-                        return <NavItem 
+                    { navItems.map((elem, index) => {
+                        return <NavItem
+                            key={index}
                             label={elem.label}
                             tooltip={elem.tooltip}
                             icon={elem.icon}

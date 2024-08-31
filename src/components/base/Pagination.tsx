@@ -26,15 +26,9 @@ export const Pagination = (props: PaginationProps) => {
 
     const {page, totalResults, rowsPerPage, setPage} = props;
 
-    console.log(page)
-    console.log(computePageNumber(totalResults, rowsPerPage))
-
     return <Stack>
-        <Typography>{`Page ${page + 1} of ${computePageNumber(totalResults, rowsPerPage)}`}</Typography>
-        <Stack
-            direction={"row"}
-            justifyContent={"center"}
-        >
+        <Typography sx={{ml: 2}}>{`Page ${page + 1} of ${computePageNumber(totalResults, rowsPerPage)}`}</Typography>
+        <Stack direction="row" justifyContent="center">
             <Button onClick={() => setPage(page - 1)} disabled={page === 0}>Prev</Button>
             <Button onClick={() => setPage(page + 1)} disabled={(page + 1) === computePageNumber(totalResults, rowsPerPage)}>Next</Button>
         </Stack>

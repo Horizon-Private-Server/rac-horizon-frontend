@@ -9,6 +9,7 @@ import GamepadIcon from "@mui/icons-material/Gamepad";
 import {SectionCard, SectionCardProps} from "../../components/base/SectionCard";
 import {Handyman} from "@mui/icons-material";
 import {generateRandomString} from "../../components/utils/functions";
+import DeadlockedBacking from "./DeadlockedBacking";
 
 const DeadlockedHome = () => {
 
@@ -84,36 +85,7 @@ const DeadlockedHome = () => {
         numCols = 3;
     }
 
-    return <Box
-        sx={{
-            "&": {
-                position: "relative",
-                overflowX: "hidden",
-                height: "calc(100vh - 140px)",
-                width: screenSize === ScreenSize.Mobile ? "100vw" : "calc(100vw - 241px)",
-                display: "flex",
-                opacity: 1.0,
-                zIndex: 0
-            },
-            "&:after": {
-                backgroundImage: `url(${dlBackground})`,
-                backgroundSize: "cover",
-                backgroundPositionX: screenSize === ScreenSize.Mobile ? 0 : 241,
-                position: "absolute",
-                overflowX: "hidden",
-                top: "0px",
-                left: "0px",
-                right: "0px",
-                zIndex: -1,
-                opacity: 0.35,
-                height: "100%",
-                width: "100%",
-                content: '""',
-                backgroundAttachment: "fixed",
-                backgroundRepeat: "no-repeat"
-            }
-        }}
-    >
+    return <DeadlockedBacking>
         <Box
             display="flex"
             flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
@@ -121,7 +93,6 @@ const DeadlockedHome = () => {
             flexWrap="wrap"
             p={4}
         >
-
             <Grid sx={{p: 0}} container>
                 { sections.map((section) => {
                     return <Grid key={section.label} xs={numCols} sx={{p: 1}} item>
@@ -136,7 +107,7 @@ const DeadlockedHome = () => {
             </Grid>
 
         </Box>
-    </Box>;
+    </DeadlockedBacking>;
 }
 
 export default DeadlockedHome;

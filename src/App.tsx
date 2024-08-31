@@ -107,28 +107,28 @@ function App() {
                             }
                         >
                             <Routes>
-                                <Route path="/" element={<Home/>}/>
-                                <Route path="/getting-started" element={<Setup/>}/>
-                                <Route path="/deadlocked" element={<DeadlockedHome/>}/>
-                                <Route path="/uya" element={<UYAHome/>}/>
-                                {/*<Route path="/dl/stats" element={<DeadlockedStats/>}/>*/}
-                                {/*<Route path="/dl/leaderboard/:offering" element={<DeadlockedLeaderboard/>}/>*/}
-                                {/*<Route path="/dl/details/:userId" element={<DeadlockedDetails/>}/>*/}
-                                {/*<Route path="/dl/games" element={<DeadlockedGames/>}/>*/}
-                                {/*<Route path="/dl/game/:gameId" element={<DeadlockedGameDetails/>}/>*/}
-                                {/*<Route path="/dl/custom/modes" element={<DeadlockedCustomModes/>}/>*/}
-                                {/*<Route path="/dl/custom/modes/infected" element={<DeadlockedInfected/>}/>*/}
+                                <Route path="/" element={<Home />}/>
+                                <Route path="/getting-started" element={<Setup />}/>
+                                <Route path="/deadlocked" element={<DeadlockedHome />}/>
+                                <Route path="/uya" element={<UYAHome />}/>
+                                <Route path="/deadlocked/stats" element={<DeadlockedStats />}/>
+                                <Route path="/deadlocked/leaderboard/:domain/:stat" element={<DeadlockedLeaderboard />}/>
+                                {/*<Route path="/dl/details/:userId" element={<DeadlockedDetails />}/>*/}
+                                {/*<Route path="/dl/games" element={<DeadlockedGames />}/>*/}
+                                {/*<Route path="/dl/game/:gameId" element={<DeadlockedGameDetails />}/>*/}
+                                {/*<Route path="/dl/custom/modes" element={<DeadlockedCustomModes />}/>*/}
+                                {/*<Route path="/dl/custom/modes/infected" element={<DeadlockedInfected />}/>*/}
                                 <Route path="/deadlocked/ccgg/:gameSeed" element={<ControlledChaosGameGenertator />} />
-                                <Route path="/survival" element={<DeadlockedSurvival/>}/>
-                                <Route path="/survival/orxon" element={<SurvivalOrxon/>}/>
-                                <Route path="/survival/mountain-pass" element={<SurvivalMountainPass/>}/>
-                                <Route path="/survival/veldin" element={<SurvivalVeldin/>}/>
-                                <Route path="/dzo/linux" element={<DZOLinux/>}/>
-                                <Route path="/rules" element={<Rules/>}/>
-                                <Route path="/setup/ps2" element={<SetupPS2/>}/>
-                                <Route path="/setup/pcsx2" element={<SetupPCSX2/>}/>
-                                <Route path="/configure/pcsx2" element={<ConfigurePCSX2/>}/>
-                                <Route path="/faq" element={<FAQ/>}/>
+                                <Route path="/survival" element={<DeadlockedSurvival />}/>
+                                <Route path="/survival/orxon" element={<SurvivalOrxon />}/>
+                                <Route path="/survival/mountain-pass" element={<SurvivalMountainPass />}/>
+                                <Route path="/survival/veldin" element={<SurvivalVeldin />}/>
+                                <Route path="/dzo/linux" element={<DZOLinux />}/>
+                                <Route path="/rules" element={<Rules />}/>
+                                <Route path="/setup/ps2" element={<SetupPS2 />}/>
+                                <Route path="/setup/pcsx2" element={<SetupPCSX2 />}/>
+                                <Route path="/configure/pcsx2" element={<ConfigurePCSX2 />}/>
+                                <Route path="/faq" element={<FAQ />}/>
                             </Routes>
                             <Stack
                                 direction="row"
