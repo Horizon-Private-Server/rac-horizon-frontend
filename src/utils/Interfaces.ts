@@ -279,3 +279,71 @@ export interface FilterProps {
     filterType: string;
     isDivider: boolean;
 }
+
+export interface DeadlockedStatsBase {
+    rank: number;
+    wins: number;
+    losses: number;
+    kills: number;
+    deaths: number;
+}
+
+export interface DeadlockedOverallStats extends DeadlockedStatsBase {
+    games_played: number;
+    disconnects: number;
+    squats: number;
+}
+
+export interface DeadlockedDeathmatchStats extends DeadlockedStatsBase {}
+
+export interface DeadlockedConquestStats extends DeadlockedStatsBase {
+    nodes_taken: number;
+}
+
+export interface DeadlockedCTFStats extends DeadlockedStatsBase {
+    flags_captured: number;
+}
+
+export interface DeadlockedGameModeWithTime extends DeadlockedStatsBase {
+    time: number;
+}
+
+export interface DeadlockedVehicleStats {
+    roadkills: number;
+    squats: number;
+}
+
+export interface DeadlockedWeaponStats {
+    wrench_kills: number;
+    wrench_deaths: number;
+    dual_viper_kills: number;
+    dual_viper_deaths: number;
+    magma_cannon_kills: number;
+    magma_cannon_deaths: number;
+    arbiter_kills: number;
+    arbiter_deaths: number;
+    fusion_rifle_kills: number;
+    fusion_rifle_deaths: number;
+    hunter_mine_launcher_kills: number;
+    hunter_mine_launcher_deaths: number;
+    b6_obliterator_kills: number;
+    b6_obliterator_deaths: number;
+    scorpion_flail_kills: number;
+    scorpion_flail_deaths: number;
+    holoshield_launcher_kills: number;
+    holoshield_launcher_deaths: number;
+}
+
+export interface DeadlockedPlayerDetails {
+    horizon_id: number;
+    username: string;
+
+    overall_stats: DeadlockedOverallStats;
+    deathmatch_stats: DeadlockedDeathmatchStats;
+    conquest_stats: DeadlockedConquestStats;
+    ctf_stats: DeadlockedCTFStats;
+    koth_stats: DeadlockedGameModeWithTime;
+    juggernaut_stats: DeadlockedGameModeWithTime;
+    weapon_stats: DeadlockedWeaponStats;
+    vehicle_stats: DeadlockedVehicleStats;
+}

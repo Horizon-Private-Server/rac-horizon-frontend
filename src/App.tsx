@@ -112,8 +112,8 @@ function App() {
                                 <Route path="/deadlocked" element={<DeadlockedHome />}/>
                                 <Route path="/uya" element={<UYAHome />}/>
                                 <Route path="/deadlocked/stats" element={<DeadlockedStats />}/>
-                                <Route path="/deadlocked/leaderboard/:domain/:stat" element={<DeadlockedLeaderboard />}/>
-                                {/*<Route path="/dl/details/:userId" element={<DeadlockedDetails />}/>*/}
+                                <Route path="/deadlocked/stats/leaderboard/:domain/:stat" element={<DeadlockedLeaderboard />}/>
+                                <Route path="/deadlocked/stats/details/:horizonId" element={<DeadlockedDetails />}/>
                                 {/*<Route path="/dl/games" element={<DeadlockedGames />}/>*/}
                                 {/*<Route path="/dl/game/:gameId" element={<DeadlockedGameDetails />}/>*/}
                                 {/*<Route path="/dl/custom/modes" element={<DeadlockedCustomModes />}/>*/}

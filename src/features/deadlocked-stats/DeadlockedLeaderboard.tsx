@@ -4,7 +4,7 @@ import {Box, Link, Paper, TableBody, TableCell, TableContainer, TableHead, Table
 
 import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
 
-import {useParams, useSearchParams} from "react-router-dom";
+import {NavigateFunction, useNavigate, useParams, useSearchParams} from "react-router-dom";
 
 import {styled} from "@mui/material/styles";
 
@@ -84,6 +84,8 @@ const DeadlockedLeaderboard = () => {
 
     const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
+
+    const navigate: NavigateFunction = useNavigate();
 
     function processUserNames(name: string) {
         return name;
@@ -267,7 +269,8 @@ const DeadlockedLeaderboard = () => {
                                                 : screenSize === ScreenSize.Mobile
                                                     ? "50vw"
                                                     : "40vw",
-                                             whiteSpace: "no-wrap"
+                                            whiteSpace: "no-wrap",
+                                            cursor: "pointer"
                                         }}
                                         textOverflow="ellipsis"
                                         noWrap
@@ -279,7 +282,7 @@ const DeadlockedLeaderboard = () => {
                                                     textDecoration: "underline #A0A0A0",
                                                     textDecorationThickness: 2
                                                 }}
-                                                href={`/deadlocked/player/${player.horizon_id}`}
+                                                onClick={() => navigate(`/deadlocked/stats/details/${player.horizon_id}`)}
                                             >
                                                 {processUserNames(player.username)}
                                             </Link>
@@ -310,7 +313,7 @@ const DeadlockedLeaderboard = () => {
                     totalResults={totalPlayers}
                     rowsPerPage={100}
                     page={page}
-                    baseUrl={`/deadlocked/leaderboard/${domain}/${stat}`}
+                    baseUrl={`/deadlocked/stats/leaderboard/${domain}/${stat}`}
                 />
             </Box>
 

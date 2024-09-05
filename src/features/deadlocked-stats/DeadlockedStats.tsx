@@ -71,7 +71,7 @@ const StatCard = (props: StatCardProps) => {
                 { offerings.map((offering) => {
                     return <Button
                         key={offering}
-                        onClick={() => navigate(`/deadlocked/leaderboard/${domain}/${offering}?page=1`)}
+                        onClick={() => navigate(`/deadlocked/stats/leaderboard/${domain}/${offering}?page=1`)}
                         sx={{justifyContent: "flex-start"}}
                     >
                         {offering.replaceAll("_", " ")}
