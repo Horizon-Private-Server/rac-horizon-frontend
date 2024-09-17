@@ -21,13 +21,13 @@ const NotFoundCard = (props: NotFoundCardProps) => {
 
     return <Card sx={{width: "80vw"}}>
         <CardContent>
-            <Stack direction={"row"} justifyContent={"center"}>
+            <Stack direction="row" justifyContent="center">
                 
                 <img src={selected[0]} alt={selected[1]} width={100} height={100} />
                 <Box sx={{marginRight: 2}} />
-                <Stack direction={"column"} justifyContent={"flex-start"}>
-                    <Typography fontWeight={"bold"} fontSize={32}>404</Typography>
-                    <Typography fontWeight={"bold"} fontSize={16}>{message}</Typography>
+                <Stack direction="column" justifyContent="flex-start">
+                    <Typography fontWeight="bold" fontSize={32}>404</Typography>
+                    <Typography fontWeight="bold" fontSize={16}>{message}</Typography>
                 </Stack>
             </Stack>
         </CardContent>

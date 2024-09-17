@@ -51,8 +51,8 @@ const HomeCardMulticontent = (props: HomeCardMulticontentState) => {
                     <img
                         src={icon}
                         alt={iconAltText}
-                        width={"24px"}
-                        height={"24px"}
+                        width="24px"
+                        height="24px"
                         style={{objectFit: "contain"}}
                     />
                     {mobileTitle && (
@@ -124,8 +124,8 @@ const HomeCardMulticontent = (props: HomeCardMulticontentState) => {
                 <img
                     src={icon}
                     alt={iconAltText}
-                    width={"100px"}
-                    height={"100%"}
+                    width="100px"
+                    height="100%"
                     style={{objectFit: "contain"}}
 
                 />

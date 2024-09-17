@@ -1,12 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import homeReducer from '../features/home/homeSlice';
 import dlGameReducer from '../features/deadlocked-games/deadlockedGamesSlice';
 
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     home: homeReducer,
     dlGames: dlGameReducer,
   },

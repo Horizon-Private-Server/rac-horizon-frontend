@@ -28,7 +28,7 @@ const InlineImage = (props: ImageParagraphState) => {
             compImg = <img 
                 src={image as string}
                 alt={imageAltText ?? image as string}
-                width={"33%"}
+                width="33%"
             />;
         }
         else {

@@ -20,14 +20,14 @@ export const LoadableRow = (props: LoadableRowProps) => {
     }
 
     return <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
+        direction="row"
+        justifyContent="space-between"
         width={screenSize === ScreenSize.Mobile ? "100%" : "20vw"}
     >
-        <Typography fontSize={screenSize === ScreenSize.Mobile ? 12 : 14} variant={"overline"}>
+        <Typography fontSize={screenSize === ScreenSize.Mobile ? 12 : 14} variant="overline">
             {label}
         </Typography>
-        <Typography fontSize={screenSize === ScreenSize.Mobile ? 12 : 14} variant={"overline"}>
+        <Typography fontSize={screenSize === ScreenSize.Mobile ? 12 : 14} variant="overline">
             {value}
         </Typography>
     </Stack>;
@@ -46,17 +46,17 @@ export const LoadableValue = (props: LoadableValueProps) => {
     const screenSize = computeDeviceScale(width);
 
     if (loading) {
-        return <Stack direction="column" justifyContent={"center"}>
+        return <Stack direction="column" justifyContent="center">
             <Skeleton variant="rectangular" width={screenSize === ScreenSize.Mobile ? "100vw" : "20vw"} height={30} />
         </Stack>;
     }
 
     return <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
+        direction="row"
+        justifyContent="space-between"
         width={screenSize === ScreenSize.Mobile ? "100vw" : "30vw"}
     >
-        <Typography fontSize={screenSize === ScreenSize.Mobile ? 14 : 18} variant={"overline"}>
+        <Typography fontSize={screenSize === ScreenSize.Mobile ? 14 : 18} variant="overline">
             {label}
         </Typography>
     </Stack>;

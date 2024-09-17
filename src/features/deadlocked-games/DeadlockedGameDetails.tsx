@@ -168,16 +168,16 @@ const TeamCard = (props: TeamCardProps) => {
 
     if (gameMode === undefined || gameMode === null || gameMode === "") {
         return <Box>
-            <Skeleton variant="rectangular" width={"78.5vw"} height={200} sx={{mt: 2}} />
-            <Skeleton variant="rectangular" width={"78.5vw"} height={200} sx={{mt: 2}} />
-            <Skeleton variant="rectangular" width={"78.5vw"} height={200} sx={{mt: 2}} />
+            <Skeleton variant="rectangular" width="78.5vw" height={200} sx={{mt: 2}} />
+            <Skeleton variant="rectangular" width="78.5vw" height={200} sx={{mt: 2}} />
+            <Skeleton variant="rectangular" width="78.5vw" height={200} sx={{mt: 2}} />
         </Box>
     }
 
 
     return <Card sx={{background: `linear-gradient(65deg, transparent ${screenSize === ScreenSize.Mobile ? "80%" : "90%"}, ${bgColorMap[name as keyof typeof bgColorMap]})`, marginBottom: 1}}>
         <CardContent sx={{pl: screenSize === ScreenSize.Mobile ? 1 : 2, pr: screenSize === ScreenSize.Mobile ? 1 : 2}}>
-            <Stack direction={"row"} justifyContent={"space-between"}>
+            <Stack direction="row" justifyContent="space-between">
                 <TableContainer>
                     <TableHead>
                         <TableRow>
@@ -372,7 +372,7 @@ const DeadlockedGameDetails = () => {
         <Card sx={{width: screenSize === ScreenSize.Mobile ? "100vw" : "80vw"}}>
             <CardContent sx={{pl: screenSize === ScreenSize.Mobile ? 2 : 2,  pr: screenSize === ScreenSize.Mobile ? 2 : 2}}>
                 <Stack direction="row">
-                    <Stack direction="column" justifyContent={"center"}>
+                    <Stack direction="column" justifyContent="center">
                         <SportsEsportsIcon />
                     </Stack>
                     <Box sx={{marginRight: 2}} />
@@ -380,7 +380,7 @@ const DeadlockedGameDetails = () => {
                 </Stack>
                 <Divider variant="inset" sx={{ marginTop: 1, marginBottom: 1}} />
 
-                <Stack direction={screenSize === ScreenSize.Mobile ? "column" : "row"} justifyContent={"space-between"}>
+                <Stack direction={screenSize === ScreenSize.Mobile ? "column" : "row"} justifyContent="space-between">
 
                     <Box sx={{align: screenSize === ScreenSize.Mobile ? "center" : "left"}}>
                         <LoadableRow label="Game Mode" value={gameData.game_mode} loading={loading} />
@@ -389,16 +389,16 @@ const DeadlockedGameDetails = () => {
 
                     <Box sx={{marginBottom: 2}} />
 
-                    <Stack direction={"row"} sx={{pl: 0, ml: 0}} justifyContent={screenSize === ScreenSize.Mobile ? "space-between" : "flex-start"}>
-                        <Stack direction={"column"} justifyContent="flex-start" sx={{pt: 1}}>
+                    <Stack direction="row" sx={{pl: 0, ml: 0}} justifyContent={screenSize === ScreenSize.Mobile ? "space-between" : "flex-start"}>
+                        <Stack direction="column" justifyContent="flex-start" sx={{pt: 1}}>
                             <Typography variant="overline" textAlign="left">Weapons</Typography>
-                            <Stack direction={"row"} justifyContent="flex-start">
+                            <Stack direction="row" justifyContent="flex-start">
                                 <img src={weaponIcons.dualVipers} alt="Dual Vipers" style={{opacity: rules.weapons.dual_vipers ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                 <img src={weaponIcons.magmaCannon} alt="Magma Cannon" style={{opacity: rules.weapons.magma_cannon ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                 <img src={weaponIcons.theArbiter} alt="The Arbiter" style={{opacity: rules.weapons.the_arbiter ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                 <img src={weaponIcons.fusionRifle} alt="Fusion Rifle" style={{opacity: rules.weapons.fusion_rifle ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                             </Stack>
-                            <Stack direction={"row"} justifyContent="flex-start">
+                            <Stack direction="row" justifyContent="flex-start">
                                 <img src={weaponIcons.hunterMineLauncher} alt="Hunter Mine Launcher" style={{opacity: rules.weapons.hunter_mine_launcher ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                 <img src={weaponIcons.b6Obliterator} alt="B6 Obliterator" style={{opacity: rules.weapons.b6_obliterator ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                 <img src={weaponIcons.holoshieldLauncher} alt="Holoshield Launcher" style={{opacity: rules.weapons.holoshield_launcher ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
@@ -406,13 +406,13 @@ const DeadlockedGameDetails = () => {
                             </Stack>
                         </Stack>
                         <Box sx={{mr: 5.5}}/>
-                        <Stack direction={"column"} justifyContent="flex-start" sx={{pt: 1}}>
+                        <Stack direction="column" justifyContent="flex-start" sx={{pt: 1}}>
                             <Typography variant="overline" textAlign="left">Vehicles</Typography>
-                            <Stack direction={"row"} justifyContent="flex-start">
+                            <Stack direction="row" justifyContent="flex-start">
                                 <img src={vehicleIcons.hoverbike} alt="Hoverbike" style={{opacity: rules.vehicles.hoverbike ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                 <img src={vehicleIcons.puma} alt="Puma" style={{opacity: rules.vehicles.puma ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                             </Stack>
-                            <Stack direction={"row"} justifyContent="flex-start">
+                            <Stack direction="row" justifyContent="flex-start">
                                 <img src={vehicleIcons.hovership} alt="Hovership" style={{opacity: rules.vehicles.hovership ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                 <img src={vehicleIcons.landstalker} alt="Landstalker" style={{opacity: rules.vehicles.landstalker ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                             </Stack>

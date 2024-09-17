@@ -19,18 +19,12 @@ import {BrowserRouter} from "react-router-dom";
 
 import horizonLogo from "./assets/img/logo2b-cropped.png";
 import Home from './features/home/Home';
-import Setup from './features/setup/Setup';
 import DeadlockedHome from './features/deadlocked/DeadlockedHome';
 import DeadlockedStats from './features/deadlocked-stats/DeadlockedStats';
 import DeadlockedLeaderboard from './features/deadlocked-stats/DeadlockedLeaderboard';
 import DeadlockedDetails from './features/deadlocked-stats/DeadlockedDetails';
 import DeadlockedGames from './features/deadlocked-games/DeadlockedGames';
 import DeadlockedGameDetails from './features/deadlocked-games/DeadlockedGameDetails';
-import {Rules} from './features/setup/Rules';
-import {SetupPS2} from './features/setup/SetupPS2';
-import {SetupPCSX2} from './features/setup/SetupPCSX2';
-import {ConfigurePCSX2} from './features/setup/ConfigurePCSX2';
-import {FAQ} from './features/setup/FAQ';
 import UYAHome from './features/uya/UYAHome';
 import DeadlockedCustomModes from './features/deadlocked-custom-modes/DeadlockedCustomModes';
 import {SurvivalOrxon} from './features/deadlocked-custom-modes/SurvivalOrxon';
@@ -39,9 +33,10 @@ import {DeadlockedInfected} from './features/deadlocked-custom-modes/DeadlockedI
 import {SurvivalMountainPass} from "./features/deadlocked-custom-modes/SurvivalMountainPass";
 import {SurvivalVeldin} from "./features/deadlocked-custom-modes/SurvivalVeldin";
 import {DZOLinux} from "./features/deadlocked/DZOLinux";
-import {Box, Stack, Typography} from "@mui/material";
+import {Stack, Typography} from "@mui/material";
 import useWindowDimensions, {computeDeviceScale, ScreenSize} from "./components/utils/WindowDimensions";
 import ControlledChaosGameGenertator from "./features/game-generators/ControlledChaosGameGenerator";
+import Setup from "./features/setup/Setup";
 
 
 export const ThemeContext = React.createContext({
@@ -97,8 +92,7 @@ function App() {
                             headerAbbreviated="Horizon"
                             navItems={navMenu}
                             logo={
-                                <img
-                                    src={horizonLogo}
+                                <img src={horizonLogo}
                                     alt="Horizon Logo"
                                     width={240}
                                     height={124}
@@ -124,11 +118,6 @@ function App() {
                                 <Route path="/survival/mountain-pass" element={<SurvivalMountainPass />}/>
                                 <Route path="/survival/veldin" element={<SurvivalVeldin />}/>
                                 <Route path="/dzo/linux" element={<DZOLinux />}/>
-                                <Route path="/rules" element={<Rules />}/>
-                                <Route path="/setup/ps2" element={<SetupPS2 />}/>
-                                <Route path="/setup/pcsx2" element={<SetupPCSX2 />}/>
-                                <Route path="/configure/pcsx2" element={<ConfigurePCSX2 />}/>
-                                <Route path="/faq" element={<FAQ />}/>
                             </Routes>
                             <Stack
                                 direction="row"

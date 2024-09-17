@@ -308,13 +308,13 @@ const ControlledChaosGameGenertator = () => {
                             mt: screenSize === ScreenSize.Mobile ? 3 : 0,
                         }}
                     />
-                    <Stack direction={"column"} justifyContent="flex-start" sx={{pt: 1}}>
+                    <Stack direction="column" justifyContent="flex-start" sx={{pt: 1}}>
                         <Typography variant="overline" textAlign="left">Vehicles</Typography>
-                        <Stack direction={"row"} justifyContent="flex-start">
+                        <Stack direction="row" justifyContent="flex-start">
                             <img src={vehicleIcons.hoverbike} alt="Hoverbike" style={{opacity: chance(0.0, prng) ? 1.0 : 0.15, margin: 2}} width={64} height={64} />
                             <img src={vehicleIcons.puma} alt="Puma" style={{opacity: chance(0.0, prng) ? 1.0 : 0.15, margin: 2}} width={64} height={64} />
                         </Stack>
-                        <Stack direction={"row"} justifyContent="flex-start">
+                        <Stack direction="row" justifyContent="flex-start">
                             <img src={vehicleIcons.hovership} alt="Hovership" style={{opacity: chance(0.0, prng) ? 1.0 : 0.15, margin: 2}} width={64} height={64} />
                             <img src={vehicleIcons.landstalker} alt="Landstalker" style={{opacity: chance(0.0, prng) ? 1.0 : 0.15, margin: 2}} width={64} height={64} />
                         </Stack>

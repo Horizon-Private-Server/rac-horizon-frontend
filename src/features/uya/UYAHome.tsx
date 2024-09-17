@@ -60,7 +60,7 @@ const UYAHome = () => {
         <Box
             display="flex"
             flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
-            justifyContent={"flex-start"}
+            justifyContent="flex-start"
             flexWrap="wrap"
             p={4}
         >

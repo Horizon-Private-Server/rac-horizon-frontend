@@ -74,7 +74,6 @@ const DeadlockedDetails = () => {
     const {width, height} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
-
     useEffect(() => {
         getHandler<DeadlockedPlayerDetails>(
             `/api/dl/stats/player/${horizonId}`,
@@ -110,10 +109,10 @@ const DeadlockedDetails = () => {
         <Card sx={{width: "80vw"}}>
             <CardContent>
                 <Stack direction="row">
-                    <Stack direction="column" justifyContent={"center"}>
+                    <Stack direction="column" justifyContent="center">
                         <PersonIcon />
                     </Stack>
-                    <Typography fontSize={28} fontWeight={"bold"} marginLeft={2}>
+                    <Typography fontSize={28} fontWeight="bold" marginLeft={2}>
                         {player?.username}
                     </Typography>
                 </Stack>

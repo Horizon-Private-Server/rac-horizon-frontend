@@ -115,8 +115,8 @@ export const DZOLinux = () => {
                         allow="autoplay; encrypted-media"
                         allowFullScreen
                         title="video"
-                        width={"100%"}
-                        height={"500px"}
+                        width="100%"
+                        height="500px"
                     />
                 </Box>
 

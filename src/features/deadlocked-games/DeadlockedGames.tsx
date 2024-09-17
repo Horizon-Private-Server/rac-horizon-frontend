@@ -195,10 +195,10 @@ const GameCard = (props: GameCardProps) => {
 
                     </Box>
 
-                    <Stack direction="row" justifyContent={"flex-start"} sx={{minWidth: "70vw", minHeight: "10vh"}}>
-                        <Stack direction="column" justifyContent={"space-between"} sx={{pt: 3, pl: 3, pr: 3, pb: 2, minWidth: 260}}>
-                            <Stack direction="column" justifyContent={"space-between"}>
-                                <Typography variant="overline" fontWeight={"bold"} fontSize={16} sx={{filter: "drop-shadow(0rem 0rem 1rem black)"}}>{name}</Typography>
+                    <Stack direction="row" justifyContent="flex-start" sx={{minWidth: "70vw", minHeight: "10vh"}}>
+                        <Stack direction="column" justifyContent="space-between" sx={{pt: 3, pl: 3, pr: 3, pb: 2, minWidth: 260}}>
+                            <Stack direction="column" justifyContent="space-between">
+                                <Typography variant="overline" fontWeight="bold" fontSize={16} sx={{filter: "drop-shadow(0rem 0rem 1rem black)"}}>{name}</Typography>
                                 <Typography variant="overline" textAlign="left" sx={{filter: "drop-shadow(0rem 0rem 1rem black)"}}>{mode}</Typography>
                                 <Typography variant="overline" textAlign="left" sx={{filter: "drop-shadow(0rem 0rem 1rem black)"}}>{map}</Typography>
                             </Stack>
@@ -207,15 +207,15 @@ const GameCard = (props: GameCardProps) => {
                         </Stack>
                         { screenSize === ScreenSize.Desktop && (
                             <>
-                                <Stack direction={"column"} justifyContent="flex-start" sx={{p: 3}}>
+                                <Stack direction="column" justifyContent="flex-start" sx={{p: 3}}>
                                     <Typography variant="overline" textAlign="left">Weapons</Typography>
-                                    <Stack direction={"row"} justifyContent="flex-start">
+                                    <Stack direction="row" justifyContent="flex-start">
                                         <img src={weaponIcons.dualVipers} alt="Dual Vipers" style={{opacity: rules.weapons.dual_vipers ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                         <img src={weaponIcons.magmaCannon} alt="Magma Cannon" style={{opacity: rules.weapons.magma_cannon ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                         <img src={weaponIcons.theArbiter} alt="The Arbiter" style={{opacity: rules.weapons.the_arbiter ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                         <img src={weaponIcons.fusionRifle} alt="Fusion Rifle" style={{opacity: rules.weapons.fusion_rifle ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                     </Stack>
-                                    <Stack direction={"row"} justifyContent="flex-start">
+                                    <Stack direction="row" justifyContent="flex-start">
                                         <img src={weaponIcons.hunterMineLauncher} alt="Hunter Mine Launcher" style={{opacity: rules.weapons.hunter_mine_launcher ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                         <img src={weaponIcons.b6Obliterator} alt="B6 Obliterator" style={{opacity: rules.weapons.b6_obliterator ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                         <img src={weaponIcons.holoshieldLauncher} alt="Holoshield Launcher" style={{opacity: rules.weapons.holoshield_launcher ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
@@ -223,13 +223,13 @@ const GameCard = (props: GameCardProps) => {
                                     </Stack>
                                 </Stack>
 
-                                <Stack direction={"column"} justifyContent="flex-start" sx={{p: 3}}>
+                                <Stack direction="column" justifyContent="flex-start" sx={{p: 3}}>
                                     <Typography variant="overline" textAlign="left">Vehicles</Typography>
-                                    <Stack direction={"row"} justifyContent="flex-start">
+                                    <Stack direction="row" justifyContent="flex-start">
                                         <img src={vehicleIcons.hoverbike} alt="Hoverbike" style={{opacity: rules.vehicles.hoverbike ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                         <img src={vehicleIcons.puma} alt="Puma" style={{opacity: rules.vehicles.puma ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                     </Stack>
-                                    <Stack direction={"row"} justifyContent="flex-start">
+                                    <Stack direction="row" justifyContent="flex-start">
                                         <img src={vehicleIcons.hovership} alt="Hovership" style={{opacity: rules.vehicles.hovership ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                         <img src={vehicleIcons.landstalker} alt="Landstalker" style={{opacity: rules.vehicles.landstalker ? 1.0 : 0.15, margin: 2}} width={32} height={32} />
                                     </Stack>

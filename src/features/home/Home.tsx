@@ -77,7 +77,7 @@ const Home = () => {
         </CenterObject>;
     }
     else {
-        header = <Typography variant={"h5"}>
+        header = <Typography variant="h5">
             Welcome to the Horizon Private Server
         </Typography>;
     }
@@ -252,18 +252,14 @@ const Home = () => {
                         allowFullScreen
                         title="video"
                         width={screenSize === ScreenSize.Mobile ? "400vw" : "100%"}
-                        height={"300px"}
+                        height="300px"
                     />
                 </Box>
                   
                 <Box sx={{marginRight: "0.8%"}} />
 
                 <Box
-                    sx={{
-                        marginRight: "10px",
-                        marginBottom: "10px",
-                        minWidth: "30%"
-                    }}
+                    sx={{mr: 2, mb: 2, minWidth: "30%"}}
                 >
                     <iframe
                         key={0}
@@ -273,7 +269,7 @@ const Home = () => {
                         allowFullScreen
                         title="video"
                         width={screenSize === ScreenSize.Mobile ? "400vw" : "100%"}
-                        height={"300px"}
+                        height="300px"
                     />
                 </Box>
                   
@@ -291,13 +287,7 @@ const Home = () => {
                 {
                     latestVideos.map((videoId, index) => {
                         
-                        return <Box
-                            sx={{
-                                marginRight: "10px",
-                                marginBottom: "10px",
-                                minWidth: "30%"
-                            }}
-                        >
+                        return <Box sx={{mr: 2, mb: 2, minWidth: "30%"}}>
                             <iframe
                                 key={index}
                                 src={`https://www.youtube.com/embed/${videoId}`}
@@ -306,7 +296,7 @@ const Home = () => {
                                 allowFullScreen
                                 title="video"
                                 width={screenSize === ScreenSize.Mobile ? "400vw" : "100%"}
-                                height={"300px"}
+                                height="300px"
                             />
                         </Box>;
                     })

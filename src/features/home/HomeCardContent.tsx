@@ -90,8 +90,8 @@ const HomeCardContent = (props: HomeCardContentState) => {
                     <img 
                         src={icon}
                         alt={iconAltText}
-                        width={"60px"}
-                        height={"60px"}
+                        width="60px"
+                        height="60px"
                         style={{objectFit: "contain"}}
 
                     />
@@ -122,8 +122,8 @@ const HomeCardContent = (props: HomeCardContentState) => {
                     <img 
                         src={icon}
                         alt={iconAltText}
-                        width={"100px"}
-                        height={"100%"}
+                        width="100px"
+                        height="100%"
                         style={{objectFit: "contain"}}
 
                     />
