@@ -26,6 +26,9 @@ import DeadlockedDetails from './features/deadlocked-stats/DeadlockedDetails';
 import DeadlockedGames from './features/deadlocked-games/DeadlockedGames';
 import DeadlockedGameDetails from './features/deadlocked-games/DeadlockedGameDetails';
 import UYAHome from './features/uya/UYAHome';
+import UYAStats from './features/uya-stats/UYAStats';
+import UYALeaderboard from './features/uya-stats/UYALeaderboard';
+import UYADetails from './features/uya-stats/UYADetails';
 import DeadlockedCustomModes from './features/deadlocked-custom-modes/DeadlockedCustomModes';
 import {SurvivalOrxon} from './features/deadlocked-custom-modes/SurvivalOrxon';
 import DeadlockedSurvival from './features/deadlocked-custom-modes/DeadlockedSurvival';
@@ -105,9 +108,15 @@ function App() {
                                 <Route path="/getting-started" element={<Setup />}/>
                                 <Route path="/deadlocked" element={<DeadlockedHome />}/>
                                 <Route path="/uya" element={<UYAHome />}/>
+
+                                <Route path="/uya/stats" element={<UYAStats />}/>
+                                <Route path="/uya/stats/details/:horizonId" element={<UYADetails />}/>
+                                <Route path="/uya/stats/leaderboard/:domain/:stat" element={<UYALeaderboard />}/>
+
+
+                                <Route path="/deadlocked/stats/details/:horizonId" element={<DeadlockedDetails />}/>
                                 <Route path="/deadlocked/stats" element={<DeadlockedStats />}/>
                                 <Route path="/deadlocked/stats/leaderboard/:domain/:stat" element={<DeadlockedLeaderboard />}/>
-                                <Route path="/deadlocked/stats/details/:horizonId" element={<DeadlockedDetails />}/>
                                 {/*<Route path="/dl/games" element={<DeadlockedGames />}/>*/}
                                 {/*<Route path="/dl/game/:gameId" element={<DeadlockedGameDetails />}/>*/}
                                 {/*<Route path="/dl/custom/modes" element={<DeadlockedCustomModes />}/>*/}

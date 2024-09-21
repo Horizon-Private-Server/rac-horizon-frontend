@@ -347,3 +347,65 @@ export interface DeadlockedPlayerDetails {
     weapon_stats: DeadlockedWeaponStats;
     vehicle_stats: DeadlockedVehicleStats;
 }
+
+
+
+export interface UyaStatsBase {
+    rank: number;
+    wins: number;
+    losses: number;
+    wl_ratio: number;
+    kills: number;
+    deaths: number;
+    suicides: number;
+    kd_ratio: number;
+    avg_kills: number;
+    avg_deaths: number;
+    avg_suicides: number;
+    games_played: number;
+}
+
+export interface UyaSiegeStatsSchema extends UyaStatsBase {
+    base_dmg: number;
+    nodes: number;
+    avg_nodes: number;
+    avg_base_dmg: number;
+}
+
+export interface UyaDeathmatchStatsSchema extends UyaStatsBase {}
+
+export interface UyaOverallStatsSchema extends UyaStatsBase {
+    base_dmg: number;
+    nodes: number;
+    avg_nodes: number;
+    avg_base_dmg: number;
+    squats: number;
+    avg_squats: number;
+    sq_ratio: number;
+    total_times_squatted: number;
+    avg_squatted_on: number;
+    sd_ratio: number;
+    total_team_squats: number;
+    avg_team_squats: number;
+}
+
+export interface UyaCTFStatsSchema extends UyaStatsBase {
+    base_dmg: number;
+    nodes: number;
+    flag_captures: number;
+    flag_saves: number;
+    avg_nodes: number;
+    avg_base_dmg: number;
+    avg_flag_captures: number;
+    avg_flag_saves: number;
+}
+
+export interface UYAPlayerDetails {
+    horizon_id: number;
+    username: string;
+
+    overall_stats: UyaOverallStatsSchema;
+    deathmatch_stats: UyaDeathmatchStatsSchema;
+    siege_stats: UyaSiegeStatsSchema;
+    ctf_stats: UyaCTFStatsSchema;
+}
