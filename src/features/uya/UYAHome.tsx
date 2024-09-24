@@ -47,11 +47,11 @@ const UYAHome = () => {
 
     const sections: SectionCardProps[] = [
         {
-            label: "UYA Tracker", 
-            description: "The UYA Tracker is a site dedicated to tracking stats and tracking who is online.", 
-            url: "https://www.uyatracker.net",
+            label: "Stats & Leaderboards",
+            description: "Track your progress and view Horizon Leaderboards.",
+            url: "/uya/stats",
             icon: <EmojiEventsIcon />
-        }
+        },
     ]
 
     return <Page className={classes.dlBackground}>
