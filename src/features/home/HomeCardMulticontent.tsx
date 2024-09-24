@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Typography, Box, Link, Tooltip, Stack, Grid} from "@mui/material";
+import {Typography, Box, Link, Tooltip, Stack} from "@mui/material";
 
 import CenterObject from "../../components/base/CenterObject";
 import SpaceBetweenObject from "../../components/base/SpaceBetweenObject";

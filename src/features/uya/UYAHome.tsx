@@ -42,8 +42,7 @@ const UYAHome = () => {
 
     const classes = useStyles();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
+    const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
     const sections: SectionCardProps[] = [

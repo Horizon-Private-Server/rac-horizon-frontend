@@ -46,22 +46,11 @@ const Home = () => {
     const navigate: NavigateFunction = useNavigate();
 
     useEffect(() => {
-
-        // axios.get(
-        //     "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCqtDa52wBLmQs8fyAkeb8wg&maxResults=6&order=date&type=video&key=AIzaSyCl1h_dAXR037rDUma82dqwgPAdISMHUPw"
-        // ).then((response) => {
-        //     dispatch(setHomeLatestVideos(response.data.items));
-        // }).catch((error) => {
-        //     console.log(error);
-        // })
-
-
         dispatch(setHomeLatestVideos([
             {id: {videoId: "OUns2ZzXsao"}},
             {id: {videoId: "Bx0VeJu7O_U"}},
             {id: {videoId: "k2RAvQtLo1A"}},
         ]));
-        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

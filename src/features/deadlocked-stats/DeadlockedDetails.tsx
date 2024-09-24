@@ -2,8 +2,6 @@ import React, {useState, useEffect, Dispatch} from "react";
 import Page from "../../components/base/Page";
 import { Typography, CardContent, Card, Divider} from "@mui/material";
 
-import useWindowDimensions, { computeDeviceScale } from "../../components/utils/WindowDimensions";
-
 import { useParams } from "react-router-dom";
 
 import { makeStyles, createStyles } from "@mui/styles"
@@ -18,9 +16,7 @@ import {computeSkillLevel} from "../../components/base/Functions";
 import { LoadableRow } from "../../components/base/LoadableRow";
 import {
     DeadlockedPlayerDetails,
-    Optional,
-    Pagination,
-    StatOffering
+    Optional
 } from "../../utils/Interfaces";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import StatsChart from "./StatsChart";
@@ -69,10 +65,6 @@ const DeadlockedDetails = () => {
     const { horizonId } = useParams();
 
     const dispatch: Dispatch<AnyAction> = useAppDispatch();
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
-    const screenSize = computeDeviceScale(width);
 
     useEffect(() => {
         getHandler<DeadlockedPlayerDetails>(

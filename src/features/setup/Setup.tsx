@@ -6,8 +6,6 @@ import { SectionCard, SectionCardProps } from "../../components/base/SectionCard
 
 import SettingsInputHdmiIcon from "@mui/icons-material/SettingsInputHdmi";
 import GavelIcon from "@mui/icons-material/Gavel";
-import GamepadIcon from "@mui/icons-material/Gamepad";
-
 
 const Setup = () => {
 

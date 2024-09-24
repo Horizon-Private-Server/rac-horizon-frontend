@@ -1,5 +1,5 @@
-import { Stack, TableCell, TableRow, Typography, Box } from "@mui/material";
 import React from "react";
+import { Stack, TableCell, TableRow, Typography, Box } from "@mui/material";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../utils/WindowDimensions";
 
 
@@ -47,8 +47,7 @@ export const MobileFriendlyTextRow = (props: MobileFriendlyTextRowProps) => {
 
     const {firstCellText, descriptionText, remainingCells} = props;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
+    const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
     return <TableRow>

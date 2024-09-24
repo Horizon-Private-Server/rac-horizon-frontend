@@ -1,16 +1,12 @@
 import React from "react";
 
 import { Box, Card, CardContent, Typography, TableCell, TableRow, TableHead, TableContainer, TableBody, Link, Breadcrumbs } from "@mui/material";
-import { Backbar } from "../../components/base/Backbar";
-import { TextHeading, TextList } from "../../components/base/TextComponents";
+import { TextHeading } from "../../components/base/TextComponents";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
-import { ChangingImage } from "../../components/base/ChangingImage";
-import { MobileFriendlyIconRow, MobileFriendlyTextRow } from "../../components/base/MobileFriendlyRow";
 
 export const DeadlockedInfected = () => {
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
+    const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
     return <Box

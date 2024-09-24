@@ -15,12 +15,9 @@ import { Stack } from "@mui/system";
 
 import axios from "axios";
 
-import Paginator from "../../components/base/Paginator";
-
 import { useDispatch, useSelector } from "react-redux";
 import { selectGameFilters, selectPage, setFilters, setPage } from "./deadlockedGamesSlice";
 import {FilterProps, GameRemoteListProps, GameRulesProps} from "../../utils/Interfaces";
-import * as domain from "domain";
 
 const useStyles = makeStyles(() =>
     createStyles({

@@ -4,21 +4,12 @@ import {
     Card,
     CardContent,
     Typography,
-    TableCell,
-    TableRow,
-    TableHead,
-    TableContainer,
-    TableBody,
     Link,
     Breadcrumbs,
-    Stack, Alert
+    Alert
 } from "@mui/material";
-import { TextHeading, TextList, CodeBox } from "../../components/base/TextComponents";
+import { TextHeading, CodeBox } from "../../components/base/TextComponents";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
-import { ChangingImage } from "../../components/base/ChangingImage";
-import { MobileFriendlyIconRow, MobileFriendlyTextRow } from "../../components/base/MobileFriendlyRow";
-import {Construction} from "@mui/icons-material";
-import LineBreak from "../../components/base/LineBreak";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 
 export const DZOLinux = () => {
@@ -26,19 +17,6 @@ export const DZOLinux = () => {
     const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
     const navigate: NavigateFunction = useNavigate();
-
-    const cs = () => {
-
-        if (screenSize === ScreenSize.Desktop) {
-            return 64;
-        }
-        else if (screenSize === ScreenSize.Tablet) {
-            return 56;
-        }
-        else {
-            return 48;
-        }
-    };
 
     return <Box
         marginLeft={screenSize === ScreenSize.Desktop ? 10 : 0}

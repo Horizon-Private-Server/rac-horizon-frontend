@@ -1,5 +1,7 @@
+import React from "react";
+
 import {Typography, Box, Stack, CardContent, Card, CardActionArea, Divider, Paper} from "@mui/material";
-import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../utils/WindowDimensions";
+import useWindowDimensions from "../utils/WindowDimensions";
 
 import { useNavigate } from "react-router-dom";
 

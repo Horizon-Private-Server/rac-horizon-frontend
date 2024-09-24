@@ -7,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-// import MenuIcon from "@mui/icons-material/Menu";
+
 import Drawer from "@mui/material/Drawer";
 import useWindowDimensions from "../../components/utils/WindowDimensions";
 
@@ -22,8 +22,7 @@ const Nav = (props: NavState) => {
 
     const {header, headerAbbreviated, navItems, logo, children} = props;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { height, width } = useWindowDimensions();
+    const {width} = useWindowDimensions();
     const isMobile = width <= 1500;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 

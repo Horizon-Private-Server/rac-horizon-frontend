@@ -11,8 +11,7 @@ export interface LoadableRowProps {
 export const LoadableRow = (props: LoadableRowProps) => {
     const {label, value, loading} = props;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
+    const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
     if (loading) {
@@ -41,8 +40,7 @@ export interface LoadableValueProps {
 export const LoadableValue = (props: LoadableValueProps) => {
     const {label, loading} = props;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
+    const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
     if (loading) {

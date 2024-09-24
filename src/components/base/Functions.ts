@@ -1,5 +1,3 @@
-import * as domain from "domain";
-
 export function formatTime(time: number, shorten: boolean = false) {
     let days = Math.floor(time / 86400);
     time -= days * 86400;

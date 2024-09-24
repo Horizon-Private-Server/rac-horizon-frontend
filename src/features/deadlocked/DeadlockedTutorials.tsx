@@ -2,7 +2,7 @@ import React from "react";
 import Page from "../../components/base/Page";
 import { Typography } from "@mui/material";
 
-import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
+import useWindowDimensions from "../../components/utils/WindowDimensions";
 import InlineImage from "../../components/base/InlineImage";
 import LineBreak from "../../components/base/LineBreak";
 
@@ -13,9 +13,7 @@ import AutoList from "../../components/base/AutoList";
 
 const DeadlockedTutorials = () => {
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
-    const screenSize = computeDeviceScale(width);
+    const {width} = useWindowDimensions();
 
     return <Page>
         <Typography paragraph>

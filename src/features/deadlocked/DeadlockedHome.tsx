@@ -3,7 +3,6 @@ import {Box, Grid} from "@mui/material";
 
 import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
 
-import dlBackground from "../../assets/img/dl-background.jpg";
 import GamepadIcon from "@mui/icons-material/Gamepad";
 
 import {SectionCard, SectionCardProps} from "../../components/base/SectionCard";

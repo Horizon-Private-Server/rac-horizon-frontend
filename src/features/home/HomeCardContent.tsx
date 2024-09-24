@@ -23,9 +23,7 @@ const HomeCardContent = (props: HomeCardContentState) => {
 
     const {link, icon, iconAltText, title, mobileTitle, description, actionIcon, tooltip} = props;
 
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { height, width } = useWindowDimensions();
+    const {width} = useWindowDimensions();
 
     // Desktop view
     let size = 2;

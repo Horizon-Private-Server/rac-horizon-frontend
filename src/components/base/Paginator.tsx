@@ -1,6 +1,6 @@
 import {Box, Button, Card, CardContent, Paper, Stack, Typography} from "@mui/material";
 import {NavigateFunction, useNavigate} from "react-router-dom";
-import {ArrowBack, ArrowForward, ArrowLeft, ArrowRight} from "@mui/icons-material";
+import {ArrowLeft, ArrowRight} from "@mui/icons-material";
 
 function computePageNumber(totalPlayers: number, rowsPerPage: number) {
 

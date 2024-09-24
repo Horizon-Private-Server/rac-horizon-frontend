@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography, Box, CardContent, Card, Stack } from "@mui/material";
 
 export interface NotFoundCardProps {

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Page from "../../components/base/Page";
-import { Typography, Box, Tab, Tabs, CardContent, Card, CardActionArea, Link, Breadcrumbs} from "@mui/material";
+import { Typography, Box, CardContent, Card, CardActionArea, Link, Breadcrumbs} from "@mui/material";
 
-import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
+import useWindowDimensions from "../../components/utils/WindowDimensions";
 
 import { useNavigate } from "react-router-dom";
 
@@ -49,68 +49,13 @@ interface GameModeCardProps {
     modeImage: string;
 }
 
-const GameModeCard2 = (props: GameModeCardProps) => {
-
-    const { modeName, modeDetailsRoute, modeImage, modeDescription } = props;
-
-    const navigate = useNavigate();
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
-    const screenSize = computeDeviceScale(width);
-
-
-    return <Card  sx={{p: 0, zIndex: 1}}>
-        
-            <CardActionArea
-                onClick={() => navigate(modeDetailsRoute)}
-            >
-                <CardContent sx={{ p: 0}}>
-                    <Box
-                        sx={{
-                            WebkitMaskImage: "linear-gradient(65deg, transparent 20%, white)",
-                            width: 500,
-                            height: "100%",
-                            position: "absolute",
-                            top: 0,
-                            right: 0
-                        }}
-                    >
-                        <Box sx={{
-                            backgroundImage: `url(${modeImage})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "60px -40px",
-                            backgroundRepeat: "no-repeat",
-                            width: "100%",
-                            height: "100%",
-                        }} />
-                    </Box>
-                    <Box
-                        sx={{
-                            p: 3,
-                            width: "70vw",
-                            height: 200
-                        }}
-                    >
-                        <Typography variant="overline" fontSize={20} fontWeight="bold">{modeName}</Typography>
-                        <Typography sx={{filter: "drop-shadow(0rem 0rem 1rem black)"}}>{modeDescription}</Typography>
-                    </Box>
-                </CardContent>
-            </CardActionArea>
-
-    </Card>
-}
-
 const GameModeCard = (props: GameModeCardProps) => {
 
     const { modeName, modeDetailsRoute, modeImage, modeDescription } = props;
 
     const navigate = useNavigate();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
-    const screenSize = computeDeviceScale(width);
-
+    const {width} = useWindowDimensions();
 
     return <Card  sx={{p: 0, zIndex: 1}}>
         
@@ -155,11 +100,7 @@ const GameModeCard = (props: GameModeCardProps) => {
 
 const DeadlockedSurvival = () => {
 
-    const classes = useStyles();
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
-    const screenSize = computeDeviceScale(width);
+    const {width} = useWindowDimensions();
 
     const navigate = useNavigate();
 
