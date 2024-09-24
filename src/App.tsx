@@ -27,7 +27,6 @@ import UYAHome from './features/uya/UYAHome';
 import UYAStats from './features/uya-stats/UYAStats';
 import UYALeaderboard from './features/uya-stats/UYALeaderboard';
 import UYADetails from './features/uya-stats/UYADetails';
-import DeadlockedCustomModes from './features/deadlocked-custom-modes/DeadlockedCustomModes';
 import {SurvivalOrxon} from './features/deadlocked-custom-modes/SurvivalOrxon';
 import DeadlockedSurvival from './features/deadlocked-custom-modes/DeadlockedSurvival';
 import {SurvivalMountainPass} from "./features/deadlocked-custom-modes/SurvivalMountainPass";
