@@ -26,43 +26,56 @@ const UYAOnline: React.FC = () => {
 
 
     useEffect(() => {
-        const fetchUpdates = () => {
-            getHandler<UYAOnlinePlayerResponse>(
-                `/api/uya/online/players`,
-                dispatch,
-                (response: AxiosResponse<UYAOnlinePlayerResponse, any>) => {
-                    console.log(response.data.results);
-                    setPlayers(response.data.results);
-                    setLastUpdated(new Date().toLocaleString());
-                },
-                () => {
-                    setLastUpdated("Couldn't connect to server!");
-                },
-                setLoading
-            );
-            getHandler<UYAOnlineGameResponse>(
-                `/api/uya/online/games`,
-                dispatch,
-                (response: AxiosResponse<UYAOnlineGameResponse, any>) => {
-                    console.log(response.data.results);
-                    setGames(response.data.results);
-                    setLastUpdated(new Date().toLocaleString());
-                },
-                () => {
-                    setLastUpdated("Couldn't connect to server!");
-                },
-                setLoading
-            );
-        };
-    
-        fetchUpdates(); // Fetch the data on the first render
-    
-        const interval = setInterval(() => {
-            fetchUpdates(); // Fetch the data every minute (60000 milliseconds)
-        }, 60000);
-    
-        return () => clearInterval(interval); // Clean up the interval on component unmount
-    }, [dispatch]);
+      const fetchPlayers = () => {
+          getHandler<UYAOnlinePlayerResponse>(
+              `/api/uya/online/players`,
+              dispatch,
+              (response: AxiosResponse<UYAOnlinePlayerResponse, any>) => {
+                  console.log(response.data.results);
+                  setPlayers(response.data.results);
+                  setLastUpdated(new Date().toLocaleString());
+              },
+              () => {
+                  setLastUpdated("Couldn't connect to server!");
+              },
+              setLoading
+          );
+      };
+  
+      fetchPlayers(); // Fetch the data on the first render
+  
+      const playerInterval = setInterval(() => {
+          fetchPlayers(); // Fetch the data every minute (60000 milliseconds)
+      }, 60000);
+  
+      return () => clearInterval(playerInterval); // Clean up the interval on component unmount
+  }, [dispatch]);
+  
+  useEffect(() => {
+      const fetchGames = () => {
+          getHandler<UYAOnlineGameResponse>(
+              `/api/uya/online/games`,
+              dispatch,
+              (response: AxiosResponse<UYAOnlineGameResponse, any>) => {
+                  console.log(response.data.results);
+                  setGames(response.data.results);
+                  setLastUpdated(new Date().toLocaleString());
+              },
+              () => {
+                  setLastUpdated("Couldn't connect to server!");
+              },
+              setLoading
+          );
+      };
+  
+      fetchGames(); // Fetch the data on the first render
+  
+      const gameInterval = setInterval(() => {
+          fetchGames(); // Fetch the data every minute (60000 milliseconds)
+      }, 60000);
+  
+      return () => clearInterval(gameInterval); // Clean up the interval on component unmount
+  }, [dispatch]);
     
       if (loading) {
         return <CircularProgress />;

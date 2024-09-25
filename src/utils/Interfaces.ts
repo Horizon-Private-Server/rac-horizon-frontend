@@ -423,7 +423,7 @@ export interface UYAOnlinePlayerResponse {
 
 export interface UYAOnlineGame {
     name: string;
-    game_status: string;
+    game_status: "WorldInactive" | "WorldStaging" | "WorldActive" | "WorldClosed" | "WorldPendingCreation" | "WorldPendingConnectToGame"; 
     time_started: string;
     map: string;
     time_limit: string;
@@ -436,4 +436,4 @@ export interface UYAOnlineGame {
 export interface UYAOnlineGameResponse {
     count: number;
     results: UYAOnlineGame[];
-}
+} 
