@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 
 import { makeStyles, createStyles } from "@mui/styles";
+import GamepadIcon from "@mui/icons-material/Gamepad";
 
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { SectionCard, SectionCardProps } from "../../components/base/SectionCard";
@@ -51,6 +52,12 @@ const UYAHome = () => {
             description: "Track your progress and view Horizon Leaderboards.",
             url: "/uya/stats",
             icon: <EmojiEventsIcon />
+        },
+        {
+            label: "Players & Games Currently Online",
+            description: "See who is currently online and in game!",
+            url: "/uya/online",
+            icon: <GamepadIcon />
         },
     ]
 

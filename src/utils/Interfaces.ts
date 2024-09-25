@@ -409,3 +409,31 @@ export interface UYAPlayerDetails {
     siege_stats: UyaSiegeStatsSchema;
     ctf_stats: UyaCTFStatsSchema;
 }
+
+
+// Type definitions for players and games data
+export interface UYAOnlinePlayer {
+    username: string;
+};
+
+export interface UYAOnlinePlayerResponse {
+    count: number;
+    results: UYAOnlinePlayer[];
+}
+
+export interface UYAOnlineGame {
+    name: string;
+    game_status: "WorldInactive" | "WorldStaging" | "WorldActive" | "WorldClosed" | "WorldPendingCreation" | "WorldPendingConnectToGame"; 
+    time_started: string;
+    map: string;
+    time_limit: string;
+    game_mode: string;
+    game_type: string;
+    players: UYAOnlinePlayer[];
+    last_updated: string; // This should exist in the API
+};
+
+export interface UYAOnlineGameResponse {
+    count: number;
+    results: UYAOnlineGame[];
+} 
