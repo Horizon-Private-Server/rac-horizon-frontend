@@ -282,7 +282,7 @@ const DeadlockedLeaderboard = () => {
                                                     textDecoration: "underline #A0A0A0",
                                                     textDecorationThickness: 2
                                                 }}
-                                                onClick={() => navigate(`/deadlocked/stats/details/${player.horizon_id}`)}
+                                                onClick={() => navigate(`/deadlocked/stats/details/${player.id}`)}
                                             >
                                                 {processUserNames(player.username)}
                                             </Link>

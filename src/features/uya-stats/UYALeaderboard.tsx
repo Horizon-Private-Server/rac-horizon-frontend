@@ -279,7 +279,7 @@ const UYALeaderboard = () => {
                                                     textDecoration: "underline #A0A0A0",
                                                     textDecorationThickness: 2
                                                 }}
-                                                onClick={() => navigate(`/uya/stats/details/${player.horizon_id}`)}
+                                                onClick={() => navigate(`/uya/stats/details/${player.id}`)}
                                             >
                                                 {processUserNames(player.username)}
                                             </Link>

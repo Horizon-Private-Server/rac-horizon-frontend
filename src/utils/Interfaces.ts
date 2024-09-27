@@ -27,7 +27,7 @@ export interface StatOffering {
 }
 
 export interface LeaderboardEntry {
-    horizon_id: number;
+    id: number;
     score: number;
     rank: number;
     username: string;
