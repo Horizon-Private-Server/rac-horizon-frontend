@@ -437,3 +437,24 @@ export interface UYAOnlineGameResponse {
     count: number;
     results: UYAOnlineGame[];
 } 
+
+export interface UYAGameHistoryEntry {
+    status: string;
+    game_map: string;
+    game_name: string;
+    game_mode: string;
+    game_submode: string;
+    time_limit: number;
+    n60_enabled: boolean;
+    lava_gun_enabled: boolean;
+    gravity_bomb_enabled: boolean;
+    flux_rifle_enabled: boolean;
+    mine_glove_enabled: boolean;
+    morph_enabled: boolean;
+    blitz_enabled: boolean;
+    rocket_enabled: boolean;
+    game_create_time: string;
+    game_start_time: string;
+    game_end_time: string;
+    game_duration: number;
+}

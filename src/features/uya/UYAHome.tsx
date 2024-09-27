@@ -59,6 +59,12 @@ const UYAHome = () => {
             url: "/uya/online",
             icon: <GamepadIcon />
         },
+        {
+            label: "Game History",
+            description: "See past game stats and who played in past games!",
+            url: "/uya/gamehistory",
+            icon: <GamepadIcon />
+        },
     ]
 
     return <Page className={classes.dlBackground}>
