@@ -439,6 +439,7 @@ export interface UYAOnlineGameResponse {
 } 
 
 export interface UYAGameHistoryEntry {
+    id: number;
     status: string;
     game_map: string;
     game_name: string;
@@ -453,8 +454,47 @@ export interface UYAGameHistoryEntry {
     morph_enabled: boolean;
     blitz_enabled: boolean;
     rocket_enabled: boolean;
+    player_count: number;
     game_create_time: string;
     game_start_time: string;
     game_end_time: string;
     game_duration: number;
+}
+
+export interface UYAGameHistoryPlayer {
+    game_id: number;
+    player_id: number;
+    username: string;
+
+    win: boolean;
+    kills: number;
+    deaths: number;
+    base_dmg: number;
+    flag_captures: number;
+    flag_saves: number;
+    suicides: number;
+    nodes: number;
+    n60_deaths: number;
+    n60_kills: number;
+    lava_gun_deaths: number;
+    lava_gun_kills: number;
+    gravity_bomb_deaths: number;
+    gravity_bomb_kills: number;
+    flux_rifle_deaths: number;
+    flux_rifle_kills: number;
+    mine_glove_deaths: number;
+    mine_glove_kills: number;
+    morph_deaths: number;
+    morph_kills: number;
+    blitz_deaths: number;
+    blitz_kills: number;
+    rocket_deaths: number;
+    rocket_kills: number;
+    wrench_deaths: number;
+    wrench_kills: number;
+}
+
+export interface UYAGameHistoryDetails {
+    game: UYAGameHistoryEntry
+    players: UYAGameHistoryPlayer[];
 }

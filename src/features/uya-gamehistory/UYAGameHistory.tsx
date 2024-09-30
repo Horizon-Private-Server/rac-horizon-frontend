@@ -128,16 +128,22 @@ const UYAGameHistory = () => {
                     <TableHead>
                         <TableRow sx={{ backgroundColor: "rgba(81, 10, 10, 0.75)", borderBottom: "none", padding: 0 }}>
                             <StyledTableCell>
-                                <Typography fontWeight="bold">Game Map</Typography>
+                                <Typography fontWeight="bold">Game ID</Typography>
+                            </StyledTableCell>
+                            <StyledTableCell>
+                                <Typography fontWeight="bold">Time Started</Typography>
                             </StyledTableCell>
                             <StyledTableCell>
                                 <Typography fontWeight="bold">Game Name</Typography>
                             </StyledTableCell>
                             <StyledTableCell>
+                                <Typography fontWeight="bold">Game Map</Typography>
+                            </StyledTableCell>
+                            <StyledTableCell>
                                 <Typography fontWeight="bold">Game Mode</Typography>
                             </StyledTableCell>
                             <StyledTableCell>
-                                <Typography fontWeight="bold">Game Submode</Typography>
+                                <Typography fontWeight="bold">Player Count</Typography>
                             </StyledTableCell>
                             {/* Add more headers as needed */}
                         </TableRow>
@@ -158,7 +164,10 @@ const UYAGameHistory = () => {
                                     <Skeleton variant="text" width={80} height={24} />
                                 </StyledTableCell>
                                 <StyledTableCell>
-                                    <Skeleton variant="text" width={100} height={24} />
+                                    <Skeleton variant="text" width={80} height={24} />
+                                </StyledTableCell>
+                                <StyledTableCell>
+                                    <Skeleton variant="text" width={80} height={24} />
                                 </StyledTableCell>
                                 {/* Add more skeletons as needed */}
                             </StyledTableRow>
@@ -179,25 +188,22 @@ const UYAGameHistory = () => {
                     <TableHead>
                         <TableRow sx={{ backgroundColor: "rgba(81, 10, 10, 0.75)", borderBottom: "none", padding: 0 }}>
                             <StyledTableCell>
-                                <Typography fontWeight="bold">Game Map</Typography>
+                                <Typography fontWeight="bold">Game ID</Typography>
+                            </StyledTableCell>
+                            <StyledTableCell>
+                                <Typography fontWeight="bold">Time Started</Typography>
                             </StyledTableCell>
                             <StyledTableCell>
                                 <Typography fontWeight="bold">Game Name</Typography>
                             </StyledTableCell>
                             <StyledTableCell>
+                                <Typography fontWeight="bold">Game Map</Typography>
+                            </StyledTableCell>
+                            <StyledTableCell>
                                 <Typography fontWeight="bold">Game Mode</Typography>
                             </StyledTableCell>
                             <StyledTableCell>
-                                <Typography fontWeight="bold">Game Submode</Typography>
-                            </StyledTableCell>
-                            <StyledTableCell>
-                                <Typography fontWeight="bold">Time Limit</Typography>
-                            </StyledTableCell>
-                            <StyledTableCell>
-                                <Typography fontWeight="bold">Weapons Enabled</Typography>
-                            </StyledTableCell>
-                            <StyledTableCell>
-                                <Typography fontWeight="bold">Game Duration</Typography>
+                                <Typography fontWeight="bold">Player Count</Typography>
                             </StyledTableCell>
                             {/* Add more headers as needed */}
                         </TableRow>
@@ -205,9 +211,6 @@ const UYAGameHistory = () => {
                     <TableBody>
                         {gameHistory.map((game: UYAGameHistoryEntry, index) => (
                             <StyledTableRow key={game.game_name + index}>
-                                <StyledTableCell>
-                                    <Typography>{game.game_map}</Typography>
-                                </StyledTableCell>
                                 <StyledTableCell>
                                     <Typography
                                         overflow="hidden"
@@ -224,35 +227,26 @@ const UYAGameHistory = () => {
                                                 textDecoration: "underline #A0A0A0",
                                                 textDecorationThickness: 2
                                             }}
-                                            onClick={() => navigate(`/uya/stats/details/${game.game_name}`)}
+                                            onClick={() => navigate(`/uya/gamehistory/details/${game.id}`)}
                                         >
-                                            {processUserNames(game.game_name)}
+                                            {game.id}
                                         </Link>
                                     </Typography>
+                                </StyledTableCell>
+                                <StyledTableCell>
+                                    <Typography>{formatDateToLocal(game.game_start_time)}</Typography>
+                                </StyledTableCell>
+                                <StyledTableCell>
+                                    <Typography>{game.game_name}</Typography>
+                                </StyledTableCell>
+                                <StyledTableCell>
+                                    <Typography>{game.game_map}</Typography>
                                 </StyledTableCell>
                                 <StyledTableCell>
                                     <Typography>{game.game_mode}</Typography>
                                 </StyledTableCell>
                                 <StyledTableCell>
-                                    <Typography>{game.game_submode}</Typography>
-                                </StyledTableCell>
-                                <StyledTableCell>
-                                    <Typography>{formatTimeLimit(game.time_limit)}</Typography>
-                                </StyledTableCell>
-                                <StyledTableCell>
-                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                                        {game.n60_enabled && <Typography>N60</Typography>}
-                                        {game.lava_gun_enabled && <Typography>Lava Gun</Typography>}
-                                        {game.gravity_bomb_enabled && <Typography>Gravity Bomb</Typography>}
-                                        {game.flux_rifle_enabled && <Typography>Flux Rifle</Typography>}
-                                        {game.mine_glove_enabled && <Typography>Mine Glove</Typography>}
-                                        {game.morph_enabled && <Typography>Morph</Typography>}
-                                        {game.blitz_enabled && <Typography>Blitz</Typography>}
-                                        {game.rocket_enabled && <Typography>Rocket</Typography>}
-                                    </Box>
-                                </StyledTableCell>
-                                <StyledTableCell>
-                                    <Typography>{formatDuration(game.game_duration)}</Typography>
+                                    <Typography>{game.player_count}</Typography>
                                 </StyledTableCell>
                                 {/* Add more cells as needed */}
                             </StyledTableRow>
@@ -266,7 +260,7 @@ const UYAGameHistory = () => {
                     totalResults={totalGames}
                     rowsPerPage={100}
                     page={page}
-                    baseUrl={`/uya/gamehistory/history`}
+                    baseUrl={`/uya/gamehistory`}
                 />
             </Box>
         </Box>
@@ -291,5 +285,25 @@ const formatTimeLimit = (timeLimit: number): string => {
     const minutes = Math.floor(timeLimit);
     return `${minutes}m`;
 };
+
+function formatDateToLocal(dateString: string): string {
+    // Convert the UTC string to a Date object
+    const date = new Date(dateString);
+
+    // Define options for formatting the date
+    const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true, // Use 12-hour format with AM/PM
+        timeZoneName: 'short' // Show the time zone abbreviation
+    };
+
+    // Format the date to local time using toLocaleDateString
+    return date.toLocaleDateString('en-US', options);
+}
 
 export default UYAGameHistory;
