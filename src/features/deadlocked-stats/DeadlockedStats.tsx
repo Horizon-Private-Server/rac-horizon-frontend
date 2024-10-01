@@ -23,9 +23,9 @@ import {getHandler} from "../../utils/Requests";
 import {Pagination, StatOffering} from "../../utils/Interfaces";
 import {useAppDispatch} from "../../app/hooks";
 import {AnyAction} from "@reduxjs/toolkit";
-import DeadlockedBacking from "../deadlocked/DeadlockedBacking";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import {domainFormatting} from "../../components/base/Functions";
+import ImageBacking from "../../components/base/ImageBacking";
 
 
 export interface StatCardProps {
@@ -133,7 +133,7 @@ const DeadlockedStats = () => {
         return cards
     }
 
-    return <DeadlockedBacking>
+    return <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
 
         <Box>
             <HorizonBreadcrumbs
@@ -171,7 +171,7 @@ const DeadlockedStats = () => {
             </Box>
         </Box>
 
-    </DeadlockedBacking>;
+    </ImageBacking>;
 }
 
 export default DeadlockedStats;

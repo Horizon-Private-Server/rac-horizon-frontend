@@ -20,26 +20,26 @@ export interface PaginationProps {
     totalResults: number;
     rowsPerPage: number;
     baseUrl: string;
+    color?: string;
 }
 
 const Paginator = (props: PaginationProps) => {
 
-    const {page, totalResults, rowsPerPage, baseUrl} = props;
+    const {page, totalResults, rowsPerPage, baseUrl, color} = props;
 
     const navigate: NavigateFunction = useNavigate();
 
     console.log(`${baseUrl}?page=${page + 1}`)
 
-    return <Card component={Paper} sx={{backgroundColor: "rgba(20, 20, 20, 0.80)"}}>
+    return <Card component={Paper} sx={{backgroundColor: color ?? "rgba(20, 20, 20, 0.80)"}}>
         <CardContent>
-
             <Stack direction="row" justifyContent="space-between">
                 <Typography sx={{ml: 2, mt: 1}}>{`Page ${page} of ${computePageNumber(totalResults, rowsPerPage)}`}</Typography>
-                <Stack direction="row" justifyContent="space-between">
+                <Stack direction="row" justifyContent="space-between" sx={{ml: 10}}>
                     <Button
                         onClick={() => navigate(`${baseUrl}?page=${page - 1}`)}
                         disabled={page <= 1}
-                        sx={{color: "white"}}
+                        sx={{color: "white", filter: "drop-shadow(0px 0px 12px #000000)"}}
                     >
                         <ArrowLeft fontSize="small" />&nbsp;Prev
                     </Button>
@@ -49,7 +49,7 @@ const Paginator = (props: PaginationProps) => {
                     <Button
                         onClick={() => navigate(`${baseUrl}?page=${page + 1}`)}
                         disabled={page >= computePageNumber(totalResults, rowsPerPage)}
-                        sx={{color: "white"}}
+                        sx={{color: "white", filter: "drop-shadow(0px 0px 12px #000000)"}}
                     >
                         Next&nbsp;<ArrowRight fontSize="small" />
                     </Button>

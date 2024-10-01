@@ -16,9 +16,6 @@ export const SectionCard = (props: SectionCardProps) => {
 
     const navigate = useNavigate();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
-
     const {label, description, url, icon} = props;
 
     return <Card component={Paper} sx={{maxWidth: "90vw"}}>

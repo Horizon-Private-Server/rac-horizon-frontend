@@ -8,8 +8,6 @@ import { useParams } from "react-router-dom";
 
 import { makeStyles, createStyles } from "@mui/styles"
 
-import dlBackground from "../../assets/img/dl-background.jpg";
-
 import { Stack } from "@mui/system";
 
 
@@ -19,8 +17,6 @@ import { LoadableRow } from "../../components/base/LoadableRow";
 import {
     UYAPlayerDetails,
     Optional,
-    Pagination,
-    StatOffering
 } from "../../utils/Interfaces";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import UYAStatsChart from "./UYAStatsChart";
@@ -29,39 +25,7 @@ import {AxiosResponse} from "axios";
 import {AnyAction} from "@reduxjs/toolkit";
 import {useAppDispatch} from "../../app/hooks";
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        dlBackground: {
-            "&": {
-                position: "relative", 
-                height: "100%",
-                width: "100%",
-                display: "flex",
-                opacity: 1.0,
-                zIndex: 0
-            },
-            "&:after": {
-                backgroundImage: `url(${dlBackground})`,
-                backgroundSize: "cover",
-                position: "absolute",
-                top: "0px",
-                left: "0px",
-                right: "0px",
-                zIndex: -1,
-                opacity: 0.32,
-                height: "100%",
-                width: "100%",
-                content: '""',
-                backgroundAttachment: "fixed",
-                backgroundRepeat: "no-repeat"
-            }
-        }
-    })
-);
-
 const UYADetails = () => {
-
-    const classes = useStyles();
 
     const [player, setPlayer] = useState<Optional<UYAPlayerDetails>>();
     const [loading, setLoading] = useState<boolean>(false);
@@ -96,7 +60,7 @@ const UYADetails = () => {
         kdr = 0.00;
     }
 
-    return <Page className={classes.dlBackground}>
+    return <Page>
 
         <HorizonBreadcrumbs
             paths={[

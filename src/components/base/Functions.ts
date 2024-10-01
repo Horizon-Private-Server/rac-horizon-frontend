@@ -155,3 +155,6 @@ export function statFormatting(stat: string, mobile: boolean): string {
     }
 }
 
+export function randomChoice<T>(arr: T[]): T {
+    return arr[Math.floor(arr.length * Math.random())];
+}

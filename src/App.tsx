@@ -111,9 +111,9 @@ function App() {
                                 <Route path="/uya/stats" element={<UYAStats />}/>
                                 <Route path="/uya/stats/details/:horizonId" element={<UYADetails />}/>
                                 <Route path="/uya/stats/leaderboard/:domain/:stat" element={<UYALeaderboard />}/>
-                                <Route path="/uya/online" element={<UYAOnline />}/>
-                                <Route path="/uya/gamehistory" element={<UYAGameHistory />}/>
-                                <Route path="/uya/gamehistory/details/:gameId" element={<UYAGameDetails />}/>
+                                <Route path="/uya/live" element={<UYAOnline />}/>
+                                <Route path="/uya/game-history" element={<UYAGameHistory />}/>
+                                <Route path="/uya/game-history/:gameId" element={<UYAGameDetails />}/>
 
                                 <Route path="/deadlocked/stats/details/:horizonId" element={<DeadlockedDetails />}/>
                                 <Route path="/deadlocked/stats" element={<DeadlockedStats />}/>

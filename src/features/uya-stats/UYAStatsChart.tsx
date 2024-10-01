@@ -23,7 +23,7 @@ const UYAStatsChart = (props: UYAStatsChartProps) => {
     return <Box className="chart-container" sx={{maxWidth: "40vw", maxHeight: "40vh"}}>
         <Radar
             data={{
-                labels: ["Deathmatch", "Conquest", "KOTH", "CTF", "Juggernaut"],
+                labels: ["Deathmatch", "Siege", "CTF"],
                 datasets: [
                     {
                         label: "Player",
@@ -33,8 +33,6 @@ const UYAStatsChart = (props: UYAStatsChartProps) => {
                             "rgba(255, 0, 0, 1)",
                             "rgba(0, 0, 255, 1)",
                             "rgba(255, 0, 255, 1)",
-                            "rgba(255, 255, 0, 1)",
-                            "rgba(0, 255, 255, 1)"
                         ],
                         borderColor: "rgba(255, 255, 255, 1)"
                     }
