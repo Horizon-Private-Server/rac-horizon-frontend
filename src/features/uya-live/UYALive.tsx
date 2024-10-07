@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Card, CardContent, Typography, Box } from '@mui/material';
 import { UYALiveGameSession } from "../../utils/Interfaces"; // Import your UYAGameSession interface
 
-const WebSocketURL = "ws://172.16.1.7:8888"; // The WebSocket server address
+const WebSocketURL = "ws://172.16.1.7:8000/uya-live-ws"; // The WebSocket server address
 
 const UYAOnlineWebSocket: React.FC = () => {
     const [gameSessions, setGameSessions] = useState<UYALiveGameSession[]>([]);
@@ -94,6 +94,8 @@ const UYAOnlineWebSocket: React.FC = () => {
                                         <Typography>Coordinates: {player.coord.join(", ")}</Typography>
                                         <Typography>Health: {player.health}</Typography>
                                         <Typography>Total Kills: {player.total_kills}</Typography>
+                                        <Typography>Total Deaths: {player.total_deaths}</Typography>
+                                        <Typography>Total Suicides: {player.total_suicides}</Typography>
                                         <Typography>Upgrades: {JSON.stringify(player.upgrades)}</Typography>
                                     </Box>
                                 ))}
