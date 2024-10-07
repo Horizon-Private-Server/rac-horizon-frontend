@@ -458,3 +458,82 @@ export interface UYAGameHistoryEntry {
     game_end_time: string;
     game_duration: number;
 }
+
+export interface UYAGameHistoryPlayer {
+    game_id: number;
+    player_id: number;
+    username: string;
+
+    win: boolean;
+    kills: number;
+    deaths: number;
+    base_dmg: number;
+    flag_captures: number;
+    flag_saves: number;
+    suicides: number;
+    nodes: number;
+    n60_deaths: number;
+    n60_kills: number;
+    lava_gun_deaths: number;
+    lava_gun_kills: number;
+    gravity_bomb_deaths: number;
+    gravity_bomb_kills: number;
+    flux_rifle_deaths: number;
+    flux_rifle_kills: number;
+    mine_glove_deaths: number;
+    mine_glove_kills: number;
+    morph_deaths: number;
+    morph_kills: number;
+    blitz_deaths: number;
+    blitz_kills: number;
+    rocket_deaths: number;
+    rocket_kills: number;
+    wrench_deaths: number;
+    wrench_kills: number;
+}
+
+export interface UYAGameHistoryDetails {
+    game: UYAGameHistoryEntry
+    players: UYAGameHistoryPlayer[];
+}
+
+
+export interface UYALivePlayerUpgrade {
+    upgrade: string;
+    kills: number;
+}
+
+export interface UYALivePlayerUpgrades {
+    flux: UYALivePlayerUpgrade;
+    blitz: UYALivePlayerUpgrade;
+    grav: UYALivePlayerUpgrade;
+}
+
+export interface UYALivePlayer {
+    player_id: number;
+    account_id: number;
+    team: string;
+    username: string;
+    coord: [number, number, number];
+    cam_x: number;
+    weapon: string | null;
+    upgrades: UYALivePlayerUpgrades;
+    flag: string | null;
+    health: number;
+    total_kills: number;
+}
+
+export interface UYALiveGameEvent {
+    // Define the structure of any events that might appear in the game
+    // Placeholder for now as the events array in the provided JSON is empty
+}
+
+export interface UYALiveGameSession {
+    world_id: number;
+    world_latest_update: string;
+    players: UYALivePlayer[];
+    events: UYALiveGameEvent[];
+    map: string;
+    name: string;
+    game_mode: string;
+}
