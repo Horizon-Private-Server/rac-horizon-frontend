@@ -4,38 +4,66 @@ import { Stage, FastLayer, Layer, Image as KonvaImage } from 'react-konva';
 import { UYALiveGameSession } from "../../utils/Interfaces"; // Assuming this exists
 import Konva from 'konva'; // Import Konva types
 import bakisiImg from '../../assets/uyalive/bakisi.png';
-import playerIconImg from '../../assets/uyalive/player_icon.svg';
+import playerIconBlue from '../../assets/uyalive/player_icon_blue.png';
+import playerIconRed from '../../assets/uyalive/player_icon_red.png';
+import playerIconGreen from '../../assets/uyalive/player_icon_green.png';
+import playerIconYellow from '../../assets/uyalive/player_icon_yellow.png';
+import playerIconPurple from '../../assets/uyalive/player_icon_purple.png';
+import playerIconPink from '../../assets/uyalive/player_icon_pink.png';
+import playerIconTeal from '../../assets/uyalive/player_icon_teal.png';
+import playerIconOrange from '../../assets/uyalive/player_icon_orange.png'; 
+
 
 const UYAOnlineWebSocket: React.FC = () => {
   const [gameSessions, setGameSessions] = useState<UYALiveGameSession[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [backgroundImage, setBackgroundImage] = useState<HTMLImageElement | null>(null);
   const [playerIcon, setPlayerIcon] = useState<HTMLImageElement | null>(null);
-  const layerRef = useRef<Konva.Layer>(null); // Explicitly type the ref to Konva.Layer
-  
   const reconnectDelay = useRef<number>(1000);
 
+  const [playerIcons, setPlayerIcons] = useState<Record<string, HTMLImageElement | null>>({
+    blue: null,
+    red: null,
+    green: null,
+    yellow: null,
+    purple: null,
+    pink: null,
+    teal: null,
+    orange: null,
+  });
+
   const scaleFactor = 5;
-    // Inside the useEffect or update logic
-    useEffect(() => {
-        if (layerRef.current) {
-        layerRef.current.batchDraw();  // This will batch draw all elements on the layer at once
-        }
-    }, [gameSessions]);  // Only call batchDraw when gameSessions change
-    
+
   // Load the background and player icon images
   useEffect(() => {
     const bgImage = new Image();
-    bgImage.src = bakisiImg;  // Webpack will resolve this correctly
+    bgImage.src = bakisiImg; // Webpack will resolve this correctly
     bgImage.onload = () => {
       setBackgroundImage(bgImage);
     };
 
-    const pIcon = new Image();
-    pIcon.src = playerIconImg;  // Webpack will resolve this correctly
-    pIcon.onload = () => {
-      setPlayerIcon(pIcon);
+    // Load all player icons
+    const icons: Record<string, HTMLImageElement> = {};
+    
+    const loadIcon = (color: string, src: string) => {
+      const icon = new Image();
+      icon.src = src;
+      icon.onload = () => {
+        icons[color] = icon;
+        if (Object.keys(icons).length === 4) {  // Adjust the number based on how many icons you have
+          setPlayerIcons(icons); // Only set once all icons are loaded
+        }
+      };
     };
+
+    loadIcon('blue', playerIconBlue);
+    loadIcon('red', playerIconRed);
+    loadIcon('green', playerIconGreen);
+    loadIcon('yellow', playerIconYellow);
+    loadIcon('purple', playerIconPurple);
+    loadIcon('pink', playerIconPink);
+    loadIcon('teal', playerIconTeal);
+    loadIcon('orange', playerIconOrange);
 
     let socket: WebSocket;
     let reconnectTimeout: NodeJS.Timeout;
@@ -91,41 +119,9 @@ const UYAOnlineWebSocket: React.FC = () => {
             </Typography>
           ) : gameSessions.length > 0 ? (
             <>
-              {/* Stage for the map and player icons */}
-              <Stage width={window.innerWidth} height={window.innerHeight}>
-                <FastLayer ref={layerRef}>
-                  {/* Background image */}
-                  {backgroundImage && (
-                    <KonvaImage
-                      image={backgroundImage}
-                      x={0}  // Set the position for the background image
-                      y={0}
-                      width={100 * scaleFactor}  // Adjust width as needed
-                      height={100 * scaleFactor}  // Adjust height as needed
-                    />
-                  )}
-                </FastLayer>
-                <Layer>
-                  {/* Players' icons based on coordinates */}
-                  {playerIcon &&
-                    gameSessions.map((gameSession) =>
-                      gameSession.players.map((player) => (
-                        <KonvaImage
-                          key={player.player_id}
-                          image={playerIcon}
-                          x={player.coord[0] * scaleFactor}  // Use player's X coordinate
-                          y={player.coord[1] * scaleFactor}  // Use player's Y coordinate
-                          width={30}  // Adjust size of player icon as needed
-                          height={30}
-                        />
-                      ))
-                    )}
-                </Layer>
-              </Stage>
-
-              {/* Game session data */}
+              {/* Render a separate Stage for each game session */}
               {gameSessions.map((gameSession) => (
-                <Box key={gameSession.world_id} sx={{ mb: 2 }}>
+                <Box key={gameSession.world_id} sx={{ mb: 4 }}>
                   <Typography variant="h6">Game Name: {gameSession.name}</Typography>
                   <Typography>Map: {gameSession.map}</Typography>
                   <Typography>Game Mode: {gameSession.game_mode}</Typography>
@@ -133,6 +129,50 @@ const UYAOnlineWebSocket: React.FC = () => {
                   <Typography>
                     Last Updated: {new Date(gameSession.world_latest_update).toLocaleString()}
                   </Typography>
+
+              {/* Separate Stage for each game session */}
+              <Stage
+                width={window.innerWidth / 2}
+                height={window.innerHeight / 2}
+                style={{ border: '1px solid black', marginTop: '10px' }}
+              >
+                    {/* Layer for background */}
+                    <Layer>
+                      {backgroundImage && (
+                        <KonvaImage
+                          image={backgroundImage}
+                          x={0}
+                          y={0}
+                          width={100 * scaleFactor}
+                          height={100 * scaleFactor}
+                        />
+                      )}
+                    </Layer>
+
+                    {/* Layer for player icons */}
+                    <Layer>
+                      {gameSession.players.map((player) => {
+                        const teamIcon = playerIcons[player.team];
+                        return (
+                          teamIcon && (
+                            <KonvaImage
+                              key={player.player_id}
+                              image={teamIcon}
+                              x={player.coord[0] * scaleFactor}
+                              y={player.coord[1] * scaleFactor}
+                              rotation={cameraRotationTranslation(player.cam_x)}
+                              offsetX={15}
+                              offsetY={15}
+                              width={30}
+                              height={30}
+                            />
+                          )
+                        );
+                      })}
+                    </Layer>
+            </Stage>
+
+
 
                   <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                     Players:
@@ -143,6 +183,7 @@ const UYAOnlineWebSocket: React.FC = () => {
                       <Typography>Team: {player.team}</Typography>
                       <Typography>Coordinates: {player.coord.join(", ")}</Typography>
                       <Typography>Health: {player.health}</Typography>
+                      <Typography>cam_x: {player.cam_x}</Typography>
                       <Typography>Total Kills: {player.total_kills}</Typography>
                       <Typography>Total Deaths: {player.total_deaths}</Typography>
                       <Typography>Total Suicides: {player.total_suicides}</Typography>
@@ -171,5 +212,17 @@ const UYAOnlineWebSocket: React.FC = () => {
     </Box>
   );
 };
+
+function cameraRotationTranslation(value: number): number {
+  value = 255 - value;
+  // Ensure the value is within the 0-255 range
+  if (value < 0) value = 0;
+  if (value > 255) value = 255;
+  
+  // Map the value from 0-255 to 0-360
+  return (value / 255) * 360 - 90;
+}
+
+
 
 export default UYAOnlineWebSocket;
