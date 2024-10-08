@@ -6,7 +6,8 @@ import Konva from 'konva'; // Import Konva types
 
 
 // Maps
-import bakisiImg from '../../assets/uyalive/bakisi.png';
+import bakisiImg from '../../assets/uyalive/bakisi_isles.png';
+import hovenImg from '../../assets/uyalive/hoven_gorge.png';
 
 // Player Icons
 import playerIconBlue from '../../assets/uyalive/player_icon_blue.png';
@@ -28,12 +29,16 @@ import playerIconDeadPink from '../../assets/uyalive/player_icon_dead_pink.png';
 import playerIconDeadTeal from '../../assets/uyalive/player_icon_dead_teal.png';
 import playerIconDeadOrange from '../../assets/uyalive/player_icon_dead_orange.png';
 
-
+// Create a map of the gameSession.map strings to their corresponding images
+const mapImages: Record<string, string> = {
+  'Bakisi Isles': bakisiImg,
+  'Hoven Gorge': hovenImg,
+};
 
 
 const UYAOnlineWebSocket: React.FC = () => {
   // Make this higher to make live stage bigger. Lower = smaller
-  const scaleFactor = 5;
+  const scaleFactor = 4;
 
 
   const [gameSessions, setGameSessions] = useState<UYALiveGameSession[]>([]);
@@ -41,6 +46,7 @@ const UYAOnlineWebSocket: React.FC = () => {
   const [backgroundImage, setBackgroundImage] = useState<HTMLImageElement | null>(null);
   const [playerIcon, setPlayerIcon] = useState<HTMLImageElement | null>(null);
   const reconnectDelay = useRef<number>(1000);
+  const [backgroundImages, setBackgroundImages] = useState<Record<number, HTMLImageElement | null>>({});
 
   const [playerIcons, setPlayerIcons] = useState<Record<string, HTMLImageElement | null>>({
     blue: null,
@@ -65,17 +71,25 @@ const UYAOnlineWebSocket: React.FC = () => {
     orange: null,
   });
 
-  
+  useEffect(() => {
+    // Iterate over each game session and set the correct background image
+    gameSessions.forEach((session) => {
+      if (session.map && mapImages[session.map]) {
+        const bgImage = new Image();
+        bgImage.src = mapImages[session.map];  // Dynamically set the image source based on the map
+        bgImage.onload = () => {
+          setBackgroundImages((prevState) => ({
+            ...prevState,
+            [session.world_id]: bgImage,  // Store the background image for each session based on world_id
+          }));
+        };
+      }
+    });
+  }, [gameSessions]);
 
 
   // Load the background and player icon images
   useEffect(() => {
-    const bgImage = new Image();
-    bgImage.src = bakisiImg; // Webpack will resolve this correctly
-    bgImage.onload = () => {
-      setBackgroundImage(bgImage);
-    };
-
     // Load all player icons
     const icons: Record<string, HTMLImageElement> = {};
     const iconsDead: Record<string, HTMLImageElement> = {};
@@ -196,9 +210,9 @@ const UYAOnlineWebSocket: React.FC = () => {
           >
             {/* Layer for background */}
             <Layer>
-              {backgroundImage && (
+              {backgroundImages && (
                 <KonvaImage
-                  image={backgroundImage}
+                  image={backgroundImages[gameSession.world_id] || undefined} // Ensure it's either HTMLImageElement or undefined
                   x={0}
                   y={0}
                   width={100 * scaleFactor}
