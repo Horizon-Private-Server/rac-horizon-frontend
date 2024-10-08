@@ -1,9 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Box, Card, CardContent, Typography } from '@mui/material';
-import { Stage, FastLayer, Layer, Image as KonvaImage } from 'react-konva';
+import { Stage, FastLayer, Layer, Image as KonvaImage, Text } from 'react-konva';
 import { UYALiveGameSession } from "../../utils/Interfaces"; // Assuming this exists
 import Konva from 'konva'; // Import Konva types
+
+
+// Maps
 import bakisiImg from '../../assets/uyalive/bakisi.png';
+
+// Player Icons
 import playerIconBlue from '../../assets/uyalive/player_icon_blue.png';
 import playerIconRed from '../../assets/uyalive/player_icon_red.png';
 import playerIconGreen from '../../assets/uyalive/player_icon_green.png';
@@ -13,8 +18,24 @@ import playerIconPink from '../../assets/uyalive/player_icon_pink.png';
 import playerIconTeal from '../../assets/uyalive/player_icon_teal.png';
 import playerIconOrange from '../../assets/uyalive/player_icon_orange.png'; 
 
+// Player Dead Icons
+import playerIconDeadBlue from '../../assets/uyalive/player_icon_dead_blue.png';
+import playerIconDeadRed from '../../assets/uyalive/player_icon_dead_red.png';
+import playerIconDeadGreen from '../../assets/uyalive/player_icon_dead_green.png';
+import playerIconDeadYellow from '../../assets/uyalive/player_icon_dead_yellow.png';
+import playerIconDeadPurple from '../../assets/uyalive/player_icon_dead_purple.png';
+import playerIconDeadPink from '../../assets/uyalive/player_icon_dead_pink.png';
+import playerIconDeadTeal from '../../assets/uyalive/player_icon_dead_teal.png';
+import playerIconDeadOrange from '../../assets/uyalive/player_icon_dead_orange.png';
+
+
+
 
 const UYAOnlineWebSocket: React.FC = () => {
+  // Make this higher to make live stage bigger. Lower = smaller
+  const scaleFactor = 5;
+
+
   const [gameSessions, setGameSessions] = useState<UYALiveGameSession[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [backgroundImage, setBackgroundImage] = useState<HTMLImageElement | null>(null);
@@ -32,7 +53,20 @@ const UYAOnlineWebSocket: React.FC = () => {
     orange: null,
   });
 
-  const scaleFactor = 5;
+
+  const [playerIconsDead, setPlayerIconsDead] = useState<Record<string, HTMLImageElement | null>>({
+    blue: null,
+    red: null,
+    green: null,
+    yellow: null,
+    purple: null,
+    pink: null,
+    teal: null,
+    orange: null,
+  });
+
+  
+
 
   // Load the background and player icon images
   useEffect(() => {
@@ -44,6 +78,7 @@ const UYAOnlineWebSocket: React.FC = () => {
 
     // Load all player icons
     const icons: Record<string, HTMLImageElement> = {};
+    const iconsDead: Record<string, HTMLImageElement> = {};
     
     const loadIcon = (color: string, src: string) => {
       const icon = new Image();
@@ -52,6 +87,17 @@ const UYAOnlineWebSocket: React.FC = () => {
         icons[color] = icon;
         if (Object.keys(icons).length === 4) {  // Adjust the number based on how many icons you have
           setPlayerIcons(icons); // Only set once all icons are loaded
+        }
+      };
+    };
+
+    const loadIconDead = (color: string, src: string) => {
+      const icon = new Image();
+      icon.src = src;
+      icon.onload = () => {
+        iconsDead[color] = icon;
+        if (Object.keys(iconsDead).length === 4) {  // Adjust the number based on how many icons you have
+          setPlayerIconsDead(iconsDead); // Only set once all icons are loaded
         }
       };
     };
@@ -65,11 +111,21 @@ const UYAOnlineWebSocket: React.FC = () => {
     loadIcon('teal', playerIconTeal);
     loadIcon('orange', playerIconOrange);
 
+    loadIconDead('blue', playerIconDeadBlue);
+    loadIconDead('red', playerIconDeadRed);
+    loadIconDead('green', playerIconDeadGreen);
+    loadIconDead('yellow', playerIconDeadYellow);
+    loadIconDead('purple', playerIconDeadPurple);
+    loadIconDead('pink', playerIconDeadPink);
+    loadIconDead('teal', playerIconDeadTeal);
+    loadIconDead('orange', playerIconDeadOrange);
+
     let socket: WebSocket;
     let reconnectTimeout: NodeJS.Timeout;
 
     const connectWebSocket = () => {
       socket = new WebSocket('ws://172.16.1.7:8000/uya-live-ws');
+      socket = new WebSocket(process.env.TRACKER_BACKEND_UYA_LIVE_TRACKER_WEBSOCKET_IP || 'ws://localhost:8000/uya-live-ws');
       socket.onmessage = (event) => {
         const start = performance.now();
         try {
@@ -130,47 +186,75 @@ const UYAOnlineWebSocket: React.FC = () => {
                     Last Updated: {new Date(gameSession.world_latest_update).toLocaleString()}
                   </Typography>
 
-              {/* Separate Stage for each game session */}
-              <Stage
-                width={window.innerWidth / 2}
-                height={window.innerHeight / 2}
-                style={{ border: '1px solid black', marginTop: '10px' }}
-              >
-                    {/* Layer for background */}
-                    <Layer>
-                      {backgroundImage && (
-                        <KonvaImage
-                          image={backgroundImage}
-                          x={0}
-                          y={0}
-                          width={100 * scaleFactor}
-                          height={100 * scaleFactor}
-                        />
-                      )}
-                    </Layer>
 
-                    {/* Layer for player icons */}
-                    <Layer>
-                      {gameSession.players.map((player) => {
-                        const teamIcon = playerIcons[player.team];
-                        return (
-                          teamIcon && (
-                            <KonvaImage
-                              key={player.player_id}
-                              image={teamIcon}
-                              x={player.coord[0] * scaleFactor}
-                              y={player.coord[1] * scaleFactor}
-                              rotation={cameraRotationTranslation(player.cam_x)}
-                              offsetX={15}
-                              offsetY={15}
-                              width={30}
-                              height={30}
-                            />
-                          )
-                        );
-                      })}
-                    </Layer>
-            </Stage>
+
+          {/* Separate Stage for each game session */}
+          <Stage
+            width={window.innerWidth / 2}
+            height={window.innerHeight / 2}
+            style={{ border: '1px solid black', marginTop: '10px' }}
+          >
+            {/* Layer for background */}
+            <Layer>
+              {backgroundImage && (
+                <KonvaImage
+                  image={backgroundImage}
+                  x={0}
+                  y={0}
+                  width={100 * scaleFactor}
+                  height={100 * scaleFactor}
+                />
+              )}
+            </Layer>
+
+            {/* Layer for player icons and usernames */}
+            <Layer>
+              {gameSession.players.map((player) => {
+                const teamIcon = player.health <= 0 ? playerIconsDead[player.team] : playerIcons[player.team];
+                const iconX = player.coord[0] * scaleFactor;
+                const iconY = player.coord[1] * scaleFactor;
+
+                return (
+                  teamIcon && (
+                    <React.Fragment key={player.player_id}>
+                      {/* Player Username */}
+                      <Text
+                        text={player.username}
+                        x={iconX}
+                        y={iconY - 25}  // Position the username above the icon
+                        fontSize={15}    // Adjust font size as needed
+                        fontStyle="bold" // You can style it as needed
+                        fill={player.team}     // Text color (can be customized)
+                        align="center"   // Align text center
+                        offsetX={0} // Set offsetX dynamically using a ref
+                        ref={(node) => {
+                          if (node) {
+                            // Dynamically calculate and set offsetX based on text width
+                            const textWidth = node.getTextWidth();
+                            node.offsetX(textWidth / 2); // Center the text based on its width
+                          }
+                        }}
+                      />
+                      
+                      {/* Player Icon */}
+                      <KonvaImage
+                        image={teamIcon}
+                        x={iconX}
+                        y={iconY}
+                        rotation={player.health <= 0 ? 0 : cameraRotationTranslation(player.cam_x)}
+                        offsetX={15}
+                        offsetY={15}
+                        width={30}
+                        height={30}
+                      />
+                    </React.Fragment>
+                  )
+                );
+              })}
+            </Layer>
+          </Stage>
+
+
 
 
 
