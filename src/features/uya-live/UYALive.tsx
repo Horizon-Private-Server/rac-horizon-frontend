@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Box, Card, CardContent, Typography } from '@mui/material';
-import { Stage, FastLayer, Layer, Image as KonvaImage, Text } from 'react-konva';
+import { Stage, FastLayer, Layer, Image as KonvaImage, Text, Rect } from 'react-konva';
 import { UYALiveGameSession } from "../../utils/Interfaces"; // Assuming this exists
 import Konva from 'konva'; // Import Konva types
 
@@ -200,73 +200,93 @@ const UYAOnlineWebSocket: React.FC = () => {
                     Last Updated: {new Date(gameSession.world_latest_update).toLocaleString()}
                   </Typography>
 
+{/* Separate Stage for each game session */}
+<Stage
+  width={window.innerWidth / 2}
+  height={window.innerHeight / 2}
+  style={{ border: '1px solid black', marginTop: '10px' }}
+>
+  {/* Layer for background */}
+  <Layer>
+    {backgroundImages && (
+      <KonvaImage
+        image={backgroundImages[gameSession.world_id] || undefined} // Ensure it's either HTMLImageElement or undefined
+        x={0}
+        y={0}
+        width={100 * scaleFactor}
+        height={100 * scaleFactor}
+      />
+    )}
+  </Layer>
 
+  {/* Layer for player icons and usernames */}
+  <Layer>
+    {gameSession.players.map((player) => {
+      const teamIcon = player.health <= 0 ? playerIconsDead[player.team] : playerIcons[player.team];
+      const iconX = player.coord[0] * scaleFactor;
+      const iconY = player.coord[1] * scaleFactor;
+      const healthBarWidth = 25; // Total width of the health bar
+      const healthBarHeight = 3; // Height of the health bar
 
-          {/* Separate Stage for each game session */}
-          <Stage
-            width={window.innerWidth / 2}
-            height={window.innerHeight / 2}
-            style={{ border: '1px solid black', marginTop: '10px' }}
-          >
-            {/* Layer for background */}
-            <Layer>
-              {backgroundImages && (
-                <KonvaImage
-                  image={backgroundImages[gameSession.world_id] || undefined} // Ensure it's either HTMLImageElement or undefined
-                  x={0}
-                  y={0}
-                  width={100 * scaleFactor}
-                  height={100 * scaleFactor}
-                />
-              )}
-            </Layer>
+      return (
+        teamIcon && (
+          <React.Fragment key={player.player_id}>
+            {/* Player Username */}
+            <Text
+              text={player.username}
+              x={iconX}
+              y={iconY - 35}  // Position the username higher to make space for the health bar
+              fontSize={15}    // Adjust font size as needed
+              fontStyle="bold" // You can style it as needed
+              fill={player.team}     // Text color (can be customized)
+              align="center"   // Align text center
+              offsetX={0} // Set offsetX dynamically using a ref
+              ref={(node) => {
+                if (node) {
+                  // Dynamically calculate and set offsetX based on text width
+                  const textWidth = node.getTextWidth();
+                  node.offsetX(textWidth / 2); // Center the text based on its width
+                }
+              }}
+            />
 
-            {/* Layer for player icons and usernames */}
-            <Layer>
-              {gameSession.players.map((player) => {
-                const teamIcon = player.health <= 0 ? playerIconsDead[player.team] : playerIcons[player.team];
-                const iconX = player.coord[0] * scaleFactor;
-                const iconY = player.coord[1] * scaleFactor;
+            {/* Outer Black Rectangle for Health Bar */}
+            <Rect
+              x={iconX - healthBarWidth / 2}  // Center the health bar above the icon
+              y={iconY - 15}      // Position between username and icon
+              width={healthBarWidth}  // Full health bar width (100%)
+              height={healthBarHeight}  // Height of the health bar
+              stroke="black"      // Black border around the entire health bar area
+              strokeWidth={1}
+              fill="transparent"         // Background color of the health bar (empty area)
+            />
 
-                return (
-                  teamIcon && (
-                    <React.Fragment key={player.player_id}>
-                      {/* Player Username */}
-                      <Text
-                        text={player.username}
-                        x={iconX}
-                        y={iconY - 25}  // Position the username above the icon
-                        fontSize={15}    // Adjust font size as needed
-                        fontStyle="bold" // You can style it as needed
-                        fill={player.team}     // Text color (can be customized)
-                        align="center"   // Align text center
-                        offsetX={0} // Set offsetX dynamically using a ref
-                        ref={(node) => {
-                          if (node) {
-                            // Dynamically calculate and set offsetX based on text width
-                            const textWidth = node.getTextWidth();
-                            node.offsetX(textWidth / 2); // Center the text based on its width
-                          }
-                        }}
-                      />
-                      
-                      {/* Player Icon */}
-                      <KonvaImage
-                        image={teamIcon}
-                        x={iconX}
-                        y={iconY}
-                        rotation={player.health <= 0 ? 0 : cameraRotationTranslation(player.cam_x)}
-                        offsetX={15}
-                        offsetY={15}
-                        width={30}
-                        height={30}
-                      />
-                    </React.Fragment>
-                  )
-                );
-              })}
-            </Layer>
-          </Stage>
+            {/* Actual Health Bar */}
+            <Rect
+              x={iconX - healthBarWidth / 2}  // Center the health bar above the icon
+              y={iconY - 15}      // Position between username and icon
+              width={(player.health / 100) * healthBarWidth} // Health bar width proportional to health
+              height={healthBarHeight}          // Height of the health bar
+              fill={player.team}  // Green if health > 50, otherwise red
+            />
+
+            {/* Player Icon */}
+            <KonvaImage
+              image={teamIcon}
+              x={iconX}
+              y={iconY}
+              rotation={player.health <= 0 ? 0 : cameraRotationTranslation(player.cam_x)}
+              offsetX={15}
+              offsetY={15}
+              width={30}
+              height={30}
+            />
+          </React.Fragment>
+        )
+      );
+    })}
+  </Layer>
+</Stage>
 
 
 
