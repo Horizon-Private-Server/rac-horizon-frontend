@@ -24,27 +24,27 @@ import bakisiImg from '../../assets/uyalive/bakisi_isles.png';
 import hovenImg from '../../assets/uyalive/hoven_gorge.png';
 
 // Player Icons
-import playerIconBlue from '../../assets/uyalive/player_icon_blue.png';
-import playerIconRed from '../../assets/uyalive/player_icon_red.png';
-import playerIconGreen from '../../assets/uyalive/player_icon_green.png';
-import playerIconYellow from '../../assets/uyalive/player_icon_yellow.png';
-import playerIconPurple from '../../assets/uyalive/player_icon_purple.png';
-import playerIconPink from '../../assets/uyalive/player_icon_pink.png';
-import playerIconAqua from '../../assets/uyalive/player_icon_pink.png';
-import playerIconOrange from '../../assets/uyalive/player_icon_orange.png'; 
+// import playerIconBlue from '../../assets/uyalive/player_icon_blue.png';
+// import playerIconRed from '../../assets/uyalive/player_icon_red.png';
+// import playerIconGreen from '../../assets/uyalive/player_icon_green.png';
+// import playerIconYellow from '../../assets/uyalive/player_icon_yellow.png';
+// import playerIconPurple from '../../assets/uyalive/player_icon_purple.png';
+// import playerIconPink from '../../assets/uyalive/player_icon_pink.png';
+// import playerIconAqua from '../../assets/uyalive/player_icon_pink.png';
+// import playerIconOrange from '../../assets/uyalive/player_icon_orange.png'; 
 
-// Player Dead Icons
-import playerIconDeadBlue from '../../assets/uyalive/player_icon_dead_blue.png';
-import playerIconDeadRed from '../../assets/uyalive/player_icon_dead_red.png';
-import playerIconDeadGreen from '../../assets/uyalive/player_icon_dead_green.png';
-import playerIconDeadYellow from '../../assets/uyalive/player_icon_dead_yellow.png';
-import playerIconDeadPurple from '../../assets/uyalive/player_icon_dead_purple.png';
-import playerIconDeadPink from '../../assets/uyalive/player_icon_dead_pink.png';
-import playerIconDeadAqua from '../../assets/uyalive/player_icon_dead_pink.png';
-import playerIconDeadOrange from '../../assets/uyalive/player_icon_dead_orange.png';
+// // Player Dead Icons
+// import playerIconDeadBlue from '../../assets/uyalive/player_icon_dead_blue.png';
+// import playerIconDeadRed from '../../assets/uyalive/player_icon_dead_red.png';
+// import playerIconDeadGreen from '../../assets/uyalive/player_icon_dead_green.png';
+// import playerIconDeadYellow from '../../assets/uyalive/player_icon_dead_yellow.png';
+// import playerIconDeadPurple from '../../assets/uyalive/player_icon_dead_purple.png';
+// import playerIconDeadPink from '../../assets/uyalive/player_icon_dead_pink.png';
+// import playerIconDeadAqua from '../../assets/uyalive/player_icon_dead_pink.png';
+// import playerIconDeadOrange from '../../assets/uyalive/player_icon_dead_orange.png';
 
+import playerIconBase from '../../assets/uyalive/player_icon_base.png'; // Base icon without any color
 
-type TeamColor = 'blue' | 'red' | 'green' | 'orange' | 'yellow' | 'purple' | 'aqua' | 'pink';
 const teamColors : Record<string, string> = {
   'blue': '#2625c3',
   'red': '#c52523',
@@ -63,6 +63,34 @@ const mapImages: Record<string, string> = {
   'Hoven Gorge': hovenImg,
 };
 
+
+
+// Helper function to create a colored version of the base icon using the team color
+const createColoredIcon = (baseImage: HTMLImageElement, color: string): HTMLImageElement | null => {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  if (!ctx) {
+    console.error('Failed to get 2D context for the canvas');
+    return null; // Handle this case gracefully
+  }
+
+  canvas.width = baseImage.width;
+  canvas.height = baseImage.height;
+
+  // Draw the base icon on the canvas
+  ctx.drawImage(baseImage, 0, 0);
+
+  // Apply color fill using the 'source-in' composite operation
+  ctx.globalCompositeOperation = 'source-in';
+  ctx.fillStyle = color;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Create a new image from the canvas
+  const coloredIcon = new Image();
+  coloredIcon.src = canvas.toDataURL(); // Convert the canvas to a data URL
+  return coloredIcon;
+};
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -137,6 +165,28 @@ const UYAOnlineWebSocket: React.FC = () => {
     orange: null,
   });
 
+   // Function to darken team colors for dead icons (optional)
+   const darkenColors = (colors: Record<string, string>) => {
+    const darkenedColors: Record<string, string> = {};
+    Object.keys(colors).forEach((team) => {
+      darkenedColors[team] = shadeColor(colors[team], -30); // Darken by 30%
+    });
+    return darkenedColors;
+  };
+
+  // Helper function to shade a hex color
+  const shadeColor = (color: string, percent: number) => {
+    let R = parseInt(color.substring(1, 3), 16);
+    let G = parseInt(color.substring(3, 5), 16);
+    let B = parseInt(color.substring(5, 7), 16);
+
+    R = Math.min(255, Math.max(0, R + Math.floor((R * percent) / 100)));
+    G = Math.min(255, Math.max(0, G + Math.floor((G * percent) / 100)));
+    B = Math.min(255, Math.max(0, B + Math.floor((B * percent) / 100)));
+
+    return `#${(R < 16 ? '0' : '') + R.toString(16)}${(G < 16 ? '0' : '') + G.toString(16)}${(B < 16 ? '0' : '') + B.toString(16)}`;
+  };
+
   useEffect(() => {
     // Iterate over each game session and set the correct background image
     gameSessions.forEach((session) => {
@@ -154,52 +204,43 @@ const UYAOnlineWebSocket: React.FC = () => {
   }, [gameSessions]);
 
 
-  // Load the background and player icon images
   useEffect(() => {
-    // Load all player icons
-    const icons: Record<string, HTMLImageElement> = {};
-    const iconsDead: Record<string, HTMLImageElement> = {};
-    
-    const loadIcon = (color: string, src: string) => {
-      const icon = new Image();
-      icon.src = src;
-      icon.onload = () => {
-        icons[color] = icon;
-        if (Object.keys(icons).length === 4) {  // Adjust the number based on how many icons you have
-          setPlayerIcons(icons); // Only set once all icons are loaded
+    const loadIcons = (isDead: boolean) => {
+      const baseImage = new Image();
+      baseImage.src = playerIconBase; // Base image without any color
+
+      baseImage.onload = () => {
+        const coloredIcons: Record<string, HTMLImageElement> = {};
+        const colorMap = isDead ? darkenColors(teamColors) : teamColors; // Darken for dead icons if needed
+
+        Object.keys(colorMap).forEach((team) => {
+          const icon = createColoredIcon(baseImage, colorMap[team]);
+          if (icon) {
+            coloredIcons[team] = icon; // Only assign if icon is not null
+          }
+        });
+      
+
+        if (isDead) {
+          setPlayerIconsDead(coloredIcons);
+        } else {
+          setPlayerIcons(coloredIcons);
         }
       };
     };
 
-    const loadIconDead = (color: string, src: string) => {
-      const icon = new Image();
-      icon.src = src;
-      icon.onload = () => {
-        iconsDead[color] = icon;
-        if (Object.keys(iconsDead).length === 4) {  // Adjust the number based on how many icons you have
-          setPlayerIconsDead(iconsDead); // Only set once all icons are loaded
-        }
-      };
+    loadIcons(false); // Load live player icons
+    loadIcons(true);  // Load dead player icons (if you want to darken the color or modify somehow)
+
+    // Cleanup
+    return () => {
+      setPlayerIcons({});
+      setPlayerIconsDead({});
     };
+  }, []);
 
-    loadIcon('blue', playerIconBlue);
-    loadIcon('red', playerIconRed);
-    loadIcon('green', playerIconGreen);
-    loadIcon('yellow', playerIconYellow);
-    loadIcon('purple', playerIconPurple);
-    loadIcon('pink', playerIconPink);
-    loadIcon('aqua', playerIconAqua);
-    loadIcon('orange', playerIconOrange);
-
-    loadIconDead('blue', playerIconDeadBlue);
-    loadIconDead('red', playerIconDeadRed);
-    loadIconDead('green', playerIconDeadGreen);
-    loadIconDead('yellow', playerIconDeadYellow);
-    loadIconDead('purple', playerIconDeadPurple);
-    loadIconDead('pink', playerIconDeadPink);
-    loadIconDead('aqua', playerIconDeadAqua);
-    loadIconDead('orange', playerIconDeadOrange);
-
+  // Setup socket
+  useEffect(() => {
     let socket: WebSocket;
     let reconnectTimeout: NodeJS.Timeout;
 
