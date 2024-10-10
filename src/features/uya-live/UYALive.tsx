@@ -20,31 +20,23 @@ import {
 } from "@mui/material";
 
 // Maps
-import bakisiImg from '../../assets/uyalive/bakisi_isles.png';
-import hovenImg from '../../assets/uyalive/hoven_gorge.png';
+import bakisiImg from '../../assets/uyalive/maps/bakisi_isles.png';
+import hovenImg from '../../assets/uyalive/maps/hoven_gorge.png';
+import korgonImg from '../../assets/uyalive/maps/korgon_outpost.png';
+import metroImg from '../../assets/uyalive/maps/metro.png';
+import bwcImg from '../../assets/uyalive/maps/bwc.png';
+import x12Img from '../../assets/uyalive/maps/x12.png';
 
 // Player Icons
-// import playerIconBlue from '../../assets/uyalive/player_icon_blue.png';
-// import playerIconRed from '../../assets/uyalive/player_icon_red.png';
-// import playerIconGreen from '../../assets/uyalive/player_icon_green.png';
-// import playerIconYellow from '../../assets/uyalive/player_icon_yellow.png';
-// import playerIconPurple from '../../assets/uyalive/player_icon_purple.png';
-// import playerIconPink from '../../assets/uyalive/player_icon_pink.png';
-// import playerIconAqua from '../../assets/uyalive/player_icon_pink.png';
-// import playerIconOrange from '../../assets/uyalive/player_icon_orange.png'; 
-
-// // Player Dead Icons
-// import playerIconDeadBlue from '../../assets/uyalive/player_icon_dead_blue.png';
-// import playerIconDeadRed from '../../assets/uyalive/player_icon_dead_red.png';
-// import playerIconDeadGreen from '../../assets/uyalive/player_icon_dead_green.png';
-// import playerIconDeadYellow from '../../assets/uyalive/player_icon_dead_yellow.png';
-// import playerIconDeadPurple from '../../assets/uyalive/player_icon_dead_purple.png';
-// import playerIconDeadPink from '../../assets/uyalive/player_icon_dead_pink.png';
-// import playerIconDeadAqua from '../../assets/uyalive/player_icon_dead_pink.png';
-// import playerIconDeadOrange from '../../assets/uyalive/player_icon_dead_orange.png';
-
 import playerIconBase from '../../assets/uyalive/player_icon_base.png'; // Base icon without any color
+import playerIconDead from '../../assets/uyalive/player_icon_dead.png'; // Base icon without any color
 
+// Weapons
+import blitzBase from '../../assets/uyalive/weapons/blitz.png'; // Base icon without any color
+import fluxBase from '../../assets/uyalive/weapons/flux.png'; // Base icon without any color
+import gravBase from '../../assets/uyalive/weapons/grav.png'; // Base icon without any color
+
+// TODO: REMOVE THIS BECAUSE ITS REDUDNANT TO THE live.css FILE
 const teamColors : Record<string, string> = {
   'blue': '#2625c3',
   'red': '#c52523',
@@ -56,11 +48,20 @@ const teamColors : Record<string, string> = {
   'pink': '#c53878',
 };
 
+// TODO: REMOVE THIS BECAUSE ITS REDUDNANT TO THE live.css FILE
+const weaponColors : Record<string, string> = {
+  'v1': '#FFFFFF', // Blue
+  'v2': '#2625c3', // White 2625c3
+};
 
 // Create a map of the gameSession.map strings to their corresponding images
 const mapImages: Record<string, string> = {
   'Bakisi Isles': bakisiImg,
   'Hoven Gorge': hovenImg,
+  'Korgon Outpost': korgonImg,
+  'Metropolis': metroImg,
+  'Blackwater City': bwcImg,
+  'Outpost x12': x12Img,
 };
 
 
@@ -137,8 +138,6 @@ const UYAOnlineWebSocket: React.FC = () => {
 
   const [gameSessions, setGameSessions] = useState<UYALiveGameSession[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [backgroundImage, setBackgroundImage] = useState<HTMLImageElement | null>(null);
-  const [playerIcon, setPlayerIcon] = useState<HTMLImageElement | null>(null);
   const reconnectDelay = useRef<number>(1000);
   const [backgroundImages, setBackgroundImages] = useState<Record<number, HTMLImageElement | null>>({});
 
@@ -165,27 +164,18 @@ const UYAOnlineWebSocket: React.FC = () => {
     orange: null,
   });
 
-   // Function to darken team colors for dead icons (optional)
-   const darkenColors = (colors: Record<string, string>) => {
-    const darkenedColors: Record<string, string> = {};
-    Object.keys(colors).forEach((team) => {
-      darkenedColors[team] = shadeColor(colors[team], -30); // Darken by 30%
-    });
-    return darkenedColors;
-  };
 
-  // Helper function to shade a hex color
-  const shadeColor = (color: string, percent: number) => {
-    let R = parseInt(color.substring(1, 3), 16);
-    let G = parseInt(color.substring(3, 5), 16);
-    let B = parseInt(color.substring(5, 7), 16);
+  const [weaponIcons, setWeaponIcons] = useState<Record<string, HTMLImageElement | null>>({
+    blitz: null,
+    flux: null,
+    grav: null,
+  });
 
-    R = Math.min(255, Math.max(0, R + Math.floor((R * percent) / 100)));
-    G = Math.min(255, Math.max(0, G + Math.floor((G * percent) / 100)));
-    B = Math.min(255, Math.max(0, B + Math.floor((B * percent) / 100)));
-
-    return `#${(R < 16 ? '0' : '') + R.toString(16)}${(G < 16 ? '0' : '') + G.toString(16)}${(B < 16 ? '0' : '') + B.toString(16)}`;
-  };
+  const [weaponIconsV2, setWeaponIconsV2] = useState<Record<string, HTMLImageElement | null>>({
+    blitz: null,
+    flux: null,
+    grav: null,
+  });
 
   useEffect(() => {
     // Iterate over each game session and set the correct background image
@@ -204,22 +194,21 @@ const UYAOnlineWebSocket: React.FC = () => {
   }, [gameSessions]);
 
 
+  // Set player icons
   useEffect(() => {
     const loadIcons = (isDead: boolean) => {
       const baseImage = new Image();
-      baseImage.src = playerIconBase; // Base image without any color
+      baseImage.src = isDead ? playerIconDead : playerIconBase; // Base image without any color
 
       baseImage.onload = () => {
         const coloredIcons: Record<string, HTMLImageElement> = {};
-        const colorMap = isDead ? darkenColors(teamColors) : teamColors; // Darken for dead icons if needed
 
-        Object.keys(colorMap).forEach((team) => {
-          const icon = createColoredIcon(baseImage, colorMap[team]);
+        Object.keys(teamColors).forEach((team) => {
+          const icon = createColoredIcon(baseImage, teamColors[team]);
           if (icon) {
             coloredIcons[team] = icon; // Only assign if icon is not null
           }
-        });
-      
+        });      
 
         if (isDead) {
           setPlayerIconsDead(coloredIcons);
@@ -230,7 +219,36 @@ const UYAOnlineWebSocket: React.FC = () => {
     };
 
     loadIcons(false); // Load live player icons
-    loadIcons(true);  // Load dead player icons (if you want to darken the color or modify somehow)
+    loadIcons(true);  // Load dead player icons
+
+    // Cleanup
+    return () => {
+      setPlayerIcons({});
+      setPlayerIconsDead({});
+    };
+  }, []);
+
+  // Set Weapon icons
+  useEffect(() => {
+    const loadWeaponIcons = (weapon:string, imgBase: string) => {
+        const baseImage = new Image();
+        baseImage.src = imgBase; // Base image without any color
+
+        baseImage.onload = () => {
+          const icon = createColoredIcon(baseImage, weaponColors['v1']);
+          if (icon) {
+            weaponIcons[weapon] = icon;
+          }
+          const iconv2 = createColoredIcon(baseImage, weaponColors['v2']);
+          if (iconv2) {
+            weaponIconsV2[weapon] = iconv2;
+          }
+        };
+    };
+
+    loadWeaponIcons('blitz', blitzBase);
+    loadWeaponIcons('flux', fluxBase);
+    loadWeaponIcons('grav', gravBase);
 
     // Cleanup
     return () => {
@@ -386,10 +404,10 @@ const UYAOnlineWebSocket: React.FC = () => {
               x={iconX}
               y={iconY}
               rotation={player.health <= 0 ? 0 : cameraRotationTranslation(player.cam_x)}
-              offsetX={15}
-              offsetY={15}
-              width={30}
-              height={30}
+              offsetX={10}
+              offsetY={10}
+              width={20}
+              height={20}
             />
           </React.Fragment>
         )
@@ -411,6 +429,9 @@ const UYAOnlineWebSocket: React.FC = () => {
                                         <Typography>Player</Typography>
                                     </TableCell>
                                     <TableCell>
+                                        <Typography>{mobile ? "W" : "Weapons"}</Typography>
+                                    </TableCell>
+                                    <TableCell>
                                         <Typography>{mobile ? "K" : "Kills"}</Typography>
                                     </TableCell>
                                     <TableCell>
@@ -426,6 +447,64 @@ const UYAOnlineWebSocket: React.FC = () => {
                                             <TableCell>
                                                 <Typography className={`${player.team.toLowerCase()}-team`} variant="subtitle2">{player.username}</Typography>
                                             </TableCell>
+                                            <TableCell>
+                                              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}>
+                                                <Typography variant="subtitle2">
+                                                  {player.upgrades.blitz.upgrade === 'v1' ? (
+                                                    <img
+                                                      src={weaponIcons['blitz']?.src}  // Ensure .src is correctly accessed
+                                                      alt="Blitz V1"
+                                                      style={{ width: '24px', height: '24px' }}  // Adjust the size as needed
+                                                    />
+                                                  ) : player.upgrades.blitz.upgrade === 'v2' ? (
+                                                    <img
+                                                      src={weaponIconsV2['blitz']?.src}  // Ensure .src is correctly accessed
+                                                      alt="Blitz V2"
+                                                      style={{ width: '24px', height: '24px' }}  // Adjust the size as needed
+                                                    />
+                                                  ) : (
+                                                    'No upgrade'
+                                                  )}
+                                                </Typography>
+
+                                                <Typography variant="subtitle2">
+                                                  {player.upgrades.flux.upgrade === 'v1' ? (
+                                                    <img
+                                                      src={weaponIcons['flux']?.src}  // Ensure .src is correctly accessed
+                                                      alt="Flux V1"
+                                                      style={{ width: '24px', height: '24px' }}  // Adjust the size as needed
+                                                    />
+                                                  ) : player.upgrades.flux.upgrade === 'v2' ? (
+                                                    <img
+                                                      src={weaponIconsV2['flux']?.src}  // Ensure .src is correctly accessed
+                                                      alt="Flux V2"
+                                                      style={{ width: '24px', height: '24px' }}  // Adjust the size as needed
+                                                    />
+                                                  ) : (
+                                                    'No upgrade'
+                                                  )}
+                                                </Typography>
+
+                                                <Typography variant="subtitle2">
+                                                  {player.upgrades.grav.upgrade === 'v1' ? (
+                                                    <img
+                                                      src={weaponIcons['grav']?.src}  // Ensure .src is correctly accessed
+                                                      alt="Grav V1"
+                                                      style={{ width: '24px', height: '24px' }}  // Adjust the size as needed
+                                                    />
+                                                  ) : player.upgrades.grav.upgrade === 'v2' ? (
+                                                    <img
+                                                      src={weaponIconsV2['grav']?.src}  // Ensure .src is correctly accessed
+                                                      alt="Grav V2"
+                                                      style={{ width: '24px', height: '24px' }}  // Adjust the size as needed
+                                                    />
+                                                  ) : (
+                                                    'No upgrade'
+                                                  )}
+                                                </Typography>
+                                              </div>
+                                            </TableCell>
+
                                             <TableCell>
                                                 <Typography variant="subtitle2">{player.total_kills}</Typography>
                                             </TableCell>
