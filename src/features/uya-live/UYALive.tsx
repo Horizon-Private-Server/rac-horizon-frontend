@@ -2,11 +2,22 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Box, Card, CardContent, Link, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography,} from "@mui/material";
 
 import { Stage, FastLayer, Layer, Image as KonvaImage, Text, Rect } from 'react-konva';
-import { UYALiveGameSession } from "../../utils/Interfaces"; // Assuming this exists
+import { UYALiveGameSession, UYALivePlayer } from "../../utils/Interfaces"; // Assuming this exists
 import Konva from 'konva'; // Import Konva types
 import {styled} from "@mui/material/styles";
+import {Stack} from "@mui/system";
+import {AccessTime, CheckCircleOutlined, DateRange, OpenInFull} from "@mui/icons-material";
+import IconButton from "@mui/material/IconButton";
+import './live.css'; 
 
 import {tableCellClasses} from '@mui/material/TableCell';
+
+import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
+
+import {
+  Table,
+  Tooltip,
+} from "@mui/material";
 
 // Maps
 import bakisiImg from '../../assets/uyalive/bakisi_isles.png';
@@ -19,7 +30,7 @@ import playerIconGreen from '../../assets/uyalive/player_icon_green.png';
 import playerIconYellow from '../../assets/uyalive/player_icon_yellow.png';
 import playerIconPurple from '../../assets/uyalive/player_icon_purple.png';
 import playerIconPink from '../../assets/uyalive/player_icon_pink.png';
-import playerIconTeal from '../../assets/uyalive/player_icon_teal.png';
+import playerIconAqua from '../../assets/uyalive/player_icon_pink.png';
 import playerIconOrange from '../../assets/uyalive/player_icon_orange.png'; 
 
 // Player Dead Icons
@@ -29,8 +40,22 @@ import playerIconDeadGreen from '../../assets/uyalive/player_icon_dead_green.png
 import playerIconDeadYellow from '../../assets/uyalive/player_icon_dead_yellow.png';
 import playerIconDeadPurple from '../../assets/uyalive/player_icon_dead_purple.png';
 import playerIconDeadPink from '../../assets/uyalive/player_icon_dead_pink.png';
-import playerIconDeadTeal from '../../assets/uyalive/player_icon_dead_teal.png';
+import playerIconDeadAqua from '../../assets/uyalive/player_icon_dead_pink.png';
 import playerIconDeadOrange from '../../assets/uyalive/player_icon_dead_orange.png';
+
+
+type TeamColor = 'blue' | 'red' | 'green' | 'orange' | 'yellow' | 'purple' | 'aqua' | 'pink';
+const teamColors : Record<string, string> = {
+  'blue': '#2625c3',
+  'red': '#c52523',
+  'green': '#26c623',
+  'orange': '#c58b23',
+  'yellow': '#b7c523',
+  'purple': '#8923c3',
+  'aqua': '#4a7bb4',
+  'pink': '#c53878',
+};
+
 
 // Create a map of the gameSession.map strings to their corresponding images
 const mapImages: Record<string, string> = {
@@ -78,6 +103,9 @@ const UYAOnlineWebSocket: React.FC = () => {
   // Make this higher to make live stage bigger. Lower = smaller
   const scaleFactor = 4;
 
+  const {width} = useWindowDimensions();
+  const screenSize = computeDeviceScale(width);
+  const mobile = screenSize === ScreenSize.Mobile;
 
   const [gameSessions, setGameSessions] = useState<UYALiveGameSession[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -93,7 +121,7 @@ const UYAOnlineWebSocket: React.FC = () => {
     yellow: null,
     purple: null,
     pink: null,
-    teal: null,
+    aqua: null,
     orange: null,
   });
 
@@ -105,7 +133,7 @@ const UYAOnlineWebSocket: React.FC = () => {
     yellow: null,
     purple: null,
     pink: null,
-    teal: null,
+    aqua: null,
     orange: null,
   });
 
@@ -160,7 +188,7 @@ const UYAOnlineWebSocket: React.FC = () => {
     loadIcon('yellow', playerIconYellow);
     loadIcon('purple', playerIconPurple);
     loadIcon('pink', playerIconPink);
-    loadIcon('teal', playerIconTeal);
+    loadIcon('aqua', playerIconAqua);
     loadIcon('orange', playerIconOrange);
 
     loadIconDead('blue', playerIconDeadBlue);
@@ -169,14 +197,13 @@ const UYAOnlineWebSocket: React.FC = () => {
     loadIconDead('yellow', playerIconDeadYellow);
     loadIconDead('purple', playerIconDeadPurple);
     loadIconDead('pink', playerIconDeadPink);
-    loadIconDead('teal', playerIconDeadTeal);
+    loadIconDead('aqua', playerIconDeadAqua);
     loadIconDead('orange', playerIconDeadOrange);
 
     let socket: WebSocket;
     let reconnectTimeout: NodeJS.Timeout;
 
     const connectWebSocket = () => {
-      socket = new WebSocket('ws://172.16.1.7:8000/uya-live-ws');
       socket = new WebSocket(process.env.TRACKER_BACKEND_UYA_LIVE_TRACKER_WEBSOCKET_IP || 'ws://localhost:8000/uya-live-ws');
       socket.onmessage = (event) => {
         const start = performance.now();
@@ -229,14 +256,18 @@ const UYAOnlineWebSocket: React.FC = () => {
             <>
               {/* Render a separate Stage for each game session */}
               {gameSessions.map((gameSession) => (
+
                 <Box key={gameSession.world_id} sx={{ mb: 4 }}>
-                  <Typography variant="h6">Game Name: {gameSession.name}</Typography>
-                  <Typography>Map: {gameSession.map}</Typography>
-                  <Typography>Game Mode: {gameSession.game_mode}</Typography>
-                  <Typography>World ID: {gameSession.world_id}</Typography>
-                  <Typography>
-                    Last Updated: {new Date(gameSession.world_latest_update).toLocaleString()}
-                  </Typography>
+                <Card component={Paper} sx={{mb: 2}}>
+                <CardContent>
+                    <Stack direction="row" justifyContent="space-between">
+                    <Typography variant="h5">{gameSession?.name.replaceAll("[IG] ", "")}</Typography>
+                    </Stack>
+                    <Typography variant="h5">{gameSession?.map}</Typography>
+                    <Typography>{gameSession?.game_mode}</Typography>
+
+                </CardContent>
+                </Card>
 
 {/* Separate Stage for each game session */}
 <Stage
@@ -276,7 +307,7 @@ const UYAOnlineWebSocket: React.FC = () => {
               y={iconY - 35}  // Position the username higher to make space for the health bar
               fontSize={15}    // Adjust font size as needed
               fontStyle="bold" // You can style it as needed
-              fill={player.team}     // Text color (can be customized)
+              fill={teamColors[player.team] || '#000000'}     // Text color (can be customized)
               align="center"   // Align text center
               offsetX={0} // Set offsetX dynamically using a ref
               ref={(node) => {
@@ -305,7 +336,7 @@ const UYAOnlineWebSocket: React.FC = () => {
               y={iconY - 15}      // Position between username and icon
               width={(player.health / 100) * healthBarWidth} // Health bar width proportional to health
               height={healthBarHeight}          // Height of the health bar
-              fill={player.team}  // Green if health > 50, otherwise red
+              fill={teamColors[player.team] || '#000000'}  // Green if health > 50, otherwise red
             />
 
             {/* Player Icon */}
@@ -328,7 +359,48 @@ const UYAOnlineWebSocket: React.FC = () => {
 
 
 
+<Card component={Paper} sx={{mb: 2}}>
+                    <CardContent>
+                        <Typography variant="h5" sx={{mb: 3}}>Results</Typography>
 
+                        <TableContainer>
+                            <Table size="small">
+                                <TableHead>
+                                    <TableCell>
+                                        <Typography>Player</Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography>{mobile ? "K" : "Kills"}</Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography>{mobile ? "D" : "Deaths"}</Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography>{mobile ? "S" : "Suicides"}</Typography>
+                                    </TableCell>
+                                </TableHead>
+                                <TableBody>
+                                {gameSession.players.map((player: UYALivePlayer) => (
+                                        <TableRow>
+                                            <TableCell>
+                                                <Typography className={`${player.team.toLowerCase()}-team`} variant="subtitle2">{player.username}</Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography variant="subtitle2">{player.total_kills}</Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography variant="subtitle2">{player.total_deaths}</Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography variant="subtitle2">{player.total_suicides}</Typography>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        </CardContent>
+                        </Card>
 
                   <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                     Players:
