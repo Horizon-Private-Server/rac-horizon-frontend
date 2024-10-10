@@ -439,6 +439,7 @@ export interface UYAOnlineGameResponse {
 } 
 
 export interface UYAGameHistoryEntry {
+    id: number;
     status: string;
     game_map: string;
     game_name: string;
@@ -453,6 +454,7 @@ export interface UYAGameHistoryEntry {
     morph_enabled: boolean;
     blitz_enabled: boolean;
     rocket_enabled: boolean;
+    player_count: number;
     game_create_time: string;
     game_start_time: string;
     game_end_time: string;

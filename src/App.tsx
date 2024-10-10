@@ -30,6 +30,7 @@ import UYADetails from './features/uya-stats/UYADetails';
 import UYAOnline from './features/uya-online/UYAOnline';
 import UYALive from './features/uya-live/UYALive';
 import UYAGameHistory from './features/uya-gamehistory/UYAGameHistory';
+import UYAGameDetails from './features/uya-gamehistory/UYAGameDetails';
 import {SurvivalOrxon} from './features/deadlocked-custom-modes/SurvivalOrxon';
 import DeadlockedSurvival from './features/deadlocked-custom-modes/DeadlockedSurvival';
 import {SurvivalMountainPass} from "./features/deadlocked-custom-modes/SurvivalMountainPass";
@@ -112,8 +113,9 @@ function App() {
                                 <Route path="/uya/stats/details/:horizonId" element={<UYADetails />}/>
                                 <Route path="/uya/stats/leaderboard/:domain/:stat" element={<UYALeaderboard />}/>
                                 <Route path="/uya/online" element={<UYAOnline />}/>
-                                <Route path="/uya/gamehistory" element={<UYAGameHistory />}/>
                                 <Route path="/uya/live" element={<UYALive />}/>
+                                <Route path="/uya/game-history" element={<UYAGameHistory />}/>
+                                <Route path="/uya/game-history/:gameId" element={<UYAGameDetails />}/>
 
                                 <Route path="/deadlocked/stats/details/:horizonId" element={<DeadlockedDetails />}/>
                                 <Route path="/deadlocked/stats" element={<DeadlockedStats />}/>

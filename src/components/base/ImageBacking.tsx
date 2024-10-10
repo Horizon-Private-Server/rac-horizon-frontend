@@ -1,20 +1,29 @@
 import React from "react";
 import {Box} from "@mui/material";
 
-import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
+import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../utils/WindowDimensions";
+import {randomChoice} from "./Functions";
 
-import dlBackground from "../../assets/img/dl-background.jpg";
-
-export interface DeadlockedBackingProps {
+export interface ImageBackingProps {
+    backgroundUrl: string | string[];
     children: JSX.Element | JSX.Element[];
 }
 
-const DeadlockedBacking = (props: DeadlockedBackingProps) => {
+const ImageBacking = (props: ImageBackingProps) => {
 
-    const {children} = props;
+    const {children, backgroundUrl} = props;
 
     const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
+
+    let compBackgroundUrl: string = "";
+
+    if (typeof backgroundUrl !== "string") {
+        compBackgroundUrl = randomChoice<string>(backgroundUrl);
+    }
+    else {
+        compBackgroundUrl = backgroundUrl;
+    }
 
     return <Box
         sx={{
@@ -29,7 +38,7 @@ const DeadlockedBacking = (props: DeadlockedBackingProps) => {
                 zIndex: 0
             },
             "&:after": {
-                backgroundImage: `url(${dlBackground})`,
+                backgroundImage: `url(${compBackgroundUrl})`,
                 backgroundSize: "cover",
                 backgroundPositionX: screenSize === ScreenSize.Mobile ? 0 : 241,
                 position: "absolute",
@@ -48,4 +57,4 @@ const DeadlockedBacking = (props: DeadlockedBackingProps) => {
     </Box>;
 }
 
-export default DeadlockedBacking;
+export default ImageBacking;

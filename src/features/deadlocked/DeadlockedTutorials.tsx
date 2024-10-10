@@ -13,8 +13,6 @@ import AutoList from "../../components/base/AutoList";
 
 const DeadlockedTutorials = () => {
 
-    const {width} = useWindowDimensions();
-
     return <Page>
         <Typography paragraph>
             Ratchet: Deadlocked online can be a competitive experience, this section is designed to help you navigate and improve while playing online.

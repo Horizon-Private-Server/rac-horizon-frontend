@@ -6,8 +6,6 @@ import { useParams } from "react-router-dom";
 
 import { makeStyles, createStyles } from "@mui/styles"
 
-import dlBackground from "../../assets/img/dl-background.jpg";
-
 import { Stack } from "@mui/system";
 
 
@@ -37,7 +35,7 @@ const useStyles = makeStyles(() =>
                 zIndex: 0
             },
             "&:after": {
-                backgroundImage: `url(${dlBackground})`,
+                backgroundImage: `url(https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg)`,
                 backgroundSize: "cover",
                 position: "absolute",
                 top: "0px",

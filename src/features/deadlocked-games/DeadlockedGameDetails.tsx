@@ -10,8 +10,6 @@ import {useParams} from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { makeStyles, createStyles } from "@mui/styles"
 
-import dlBackground from "../../assets/img/dl-background.jpg";
-
 import { Stack } from "@mui/system";
 
 import axios from "axios";
@@ -39,7 +37,7 @@ const useStyles = makeStyles(() =>
                 zIndex: 0
             },
             "&:after": {
-                backgroundImage: `url(${dlBackground})`,
+                backgroundImage: `url(https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg)`,
                 backgroundSize: "cover",
                 position: "absolute",
                 top: "0px",
