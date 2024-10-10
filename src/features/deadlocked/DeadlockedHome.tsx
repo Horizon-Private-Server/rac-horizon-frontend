@@ -8,8 +8,8 @@ import GamepadIcon from "@mui/icons-material/Gamepad";
 import {SectionCard, SectionCardProps} from "../../components/base/SectionCard";
 import {Handyman} from "@mui/icons-material";
 import {generateRandomString} from "../../components/utils/functions";
-import DeadlockedBacking from "./DeadlockedBacking";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import ImageBacking from "../../components/base/ImageBacking";
 
 const DeadlockedHome = () => {
 
@@ -31,7 +31,7 @@ const DeadlockedHome = () => {
         },
         {
             label: "Stats & Leaderboards",
-            description: "Track your progress and view Horizon Leaderboards.",
+            description: "Track your progress and view the Horizon Leaderboards.",
             url: "/deadlocked/stats",
             icon: <EmojiEventsIcon />
         },
@@ -85,13 +85,13 @@ const DeadlockedHome = () => {
         numCols = 3;
     }
 
-    return <DeadlockedBacking>
+    return <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
         <Box
+            sx={{width: "100%", p: 4, height: "calc(100vh - 280px)"}}
             display="flex"
             flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
             justifyContent="flex-start"
             flexWrap="wrap"
-            p={4}
         >
             <Grid sx={{p: 0}} container>
                 { sections.map((section) => {
@@ -107,7 +107,7 @@ const DeadlockedHome = () => {
             </Grid>
 
         </Box>
-    </DeadlockedBacking>;
+    </ImageBacking>
 }
 
 export default DeadlockedHome;

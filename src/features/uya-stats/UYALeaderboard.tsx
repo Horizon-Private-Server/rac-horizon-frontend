@@ -1,6 +1,17 @@
 import React, {Dispatch, useEffect, useState} from "react";
 
-import {Box, Link, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography,} from "@mui/material";
+import {
+    Box,
+    Link,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
+} from "@mui/material";
 
 import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
 
@@ -25,6 +36,8 @@ import {useAppDispatch} from "../../app/hooks";
 import {AxiosResponse} from "axios";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import Skeleton from "@mui/material/Skeleton";
+import ImageBacking from "../../components/base/ImageBacking";
+import {UYA_BACKGROUND_IMAGES} from "../../utils/Constants";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -50,7 +63,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         backgroundColor: "rgba(20, 20, 20, 0.75)",
         borderBottom: "none",
         padding: 0
-      },
+    },
     // hide last border
     '&:last-child td, &:last-child th': {
         border: 0,
@@ -118,7 +131,8 @@ const UYALeaderboard = () => {
         )
     }, [domain, stat, page])
 
-    return <Box>
+    return <ImageBacking backgroundUrl={UYA_BACKGROUND_IMAGES}>
+        <Box sx={{width: screenSize === ScreenSize.Mobile ? "100%" : "calc(100% - 50px)"}}>
             <HorizonBreadcrumbs
                 paths={[
                     {text: "UYA", route: "/uya"},
@@ -135,75 +149,45 @@ const UYALeaderboard = () => {
                     component={Paper}
                     sx={{
                         ml: screenSize === ScreenSize.Mobile ? 0 : 3,
+                        mr: screenSize === ScreenSize.Mobile ? 0 : 10,
                         backgroundColor: "rgba(0, 0, 0, 0.0)",
-                        mr: screenSize === ScreenSize.Mobile ? 0 : -3
                     }}
                 >
-                    <TableHead>
-                        <TableRow sx={{backgroundColor: "rgba(81, 10, 10, 0.75)", borderBottom: "none", padding: 0}}>
-                            <StyledTableCell>
-                                <Typography fontWeight="bold">Rank</Typography>
-                            </StyledTableCell>
-                            <StyledTableCell>
-                                <Typography fontWeight="bold">Player</Typography>
-                            </StyledTableCell>
-                            <StyledTableCell>
-                                <Typography fontWeight="bold">Score</Typography>
-                            </StyledTableCell>
-                            { stat?.includes("rank") && (
+                    <Table size="small">
+                        <TableHead>
+                            <TableRow sx={{backgroundColor: "rgba(0, 0, 0, 0.75)", borderBottom: "none", padding: 0}}>
                                 <StyledTableCell>
-                                    <Typography fontWeight="bold">Skill Level</Typography>
+                                    <Typography fontWeight="bold">Rank</Typography>
                                 </StyledTableCell>
-                            )}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        { Array.from(Array(100).keys()).map((_: any, index: number) => {
-
-                            return <StyledTableRow key={index}>
-
-                                <StyledTableCell sx={{width: "10vw"}}>
-                                    <Skeleton variant="text" width={40} height={24} />
+                                <StyledTableCell>
+                                    <Typography fontWeight="bold">Player</Typography>
                                 </StyledTableCell>
-
-                                <StyledTableCell
-                                    sx={{
-                                        width: stat?.includes("rank")
-                                            ? screenSize === ScreenSize.Mobile
-                                                ? "40vw"
-                                                : "30vw"
-                                            : screenSize === ScreenSize.Mobile
-                                                ? "50vw"
-                                                : "40vw"
-                                    }}
-                                >
-                                    <Box sx={{
-                                        width: stat?.includes("rank")
-                                            ? screenSize === ScreenSize.Mobile
-                                                ? "40vw"
-                                                : "30vw"
-                                            : screenSize === ScreenSize.Mobile
-                                                ? "50vw"
-                                                : "40vw"
-                                    }}>
-                                        <Skeleton variant="text" width={150} height={24} />
-                                    </Box>
-
+                                <StyledTableCell>
+                                    <Typography fontWeight="bold">Score</Typography>
                                 </StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            { Array.from(Array(100).keys()).map((_: any, index: number) => {
 
-                                <StyledTableCell sx={{width: stat?.includes("rank") ? "20vw" : "30vw"}}>
-                                    <Skeleton variant="text" width={60} height={24} />
-                                </StyledTableCell>
+                                return <StyledTableRow key={index}>
 
-                                { stat?.includes("rank") && (
-                                    <StyledTableCell sx={{width: stat?.includes("rank") ? "10vw" : "20vw"}}>
-                                        <Skeleton variant="text" width={40} height={24} />
+                                    <StyledTableCell sx={{pt: 0, pb: 0}}>
+                                        <Skeleton variant="text" width={50} height={24} />
                                     </StyledTableCell>
-                                )}
 
-                            </StyledTableRow>
-                        })}
-                    </TableBody>
+                                    <StyledTableCell sx={{pt: 0, pb: 0}}>
+                                        <Skeleton variant="text" width={140} height={24} sx={{ml: -5}} />
+                                    </StyledTableCell>
+
+                                    <StyledTableCell sx={{pt: 0, pb: 0}}>
+                                        <Skeleton variant="text" width={60} height={24} />
+                                    </StyledTableCell>
+
+                                </StyledTableRow>
+                            })}
+                        </TableBody>
+                    </Table>
                 </TableContainer>
             )}
 
@@ -213,99 +197,71 @@ const UYALeaderboard = () => {
                     component={Paper}
                     sx={{
                         ml: screenSize === ScreenSize.Mobile ? 0 : 3,
+                        mr: screenSize === ScreenSize.Mobile ? 0 : 10,
                         backgroundColor: "rgba(0, 0, 0, 0.0)",
-                        mr: screenSize === ScreenSize.Mobile ? 0 : -3
                     }}
                 >
-                    <TableHead>
-                        <TableRow sx={{backgroundColor: "rgba(81, 10, 10, 0.75)", borderBottom: "none", padding: 0}}>
+                    <Table size="small">
+                        <TableHead sx={{backgroundColor: "rgba(0, 10, 0, 0.75)", borderBottom: "none", padding: 0}}>
                             <StyledTableCell>
                                 <Typography fontWeight="bold">Rank</Typography>
                             </StyledTableCell>
-                            <StyledTableCell>
+                            <StyledTableCell sx={{maxWidth: "40%"}}>
                                 <Typography fontWeight="bold">Player</Typography>
                             </StyledTableCell>
                             <StyledTableCell>
                                 <Typography fontWeight="bold">Score</Typography>
                             </StyledTableCell>
-                            { stat?.includes("rank") && (
-                                <StyledTableCell>
-                                    <Typography fontWeight="bold">Skill Level</Typography>
-                                </StyledTableCell>
-                            )}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        { players.map((player: LeaderboardEntry, index) => {
+                        </TableHead>
+                        <TableBody>
+                            { players.map((player: LeaderboardEntry) => {
 
-                            return <StyledTableRow key={player.username}>
+                                return <StyledTableRow key={player.username}>
 
-                                <StyledTableCell sx={{width: "10vw"}}>
-                                    <Typography>{player.rank}</Typography>
-                                </StyledTableCell>
-
-                                <StyledTableCell
-                                    sx={{
-                                        width: stat?.includes("rank")
-                                            ? screenSize === ScreenSize.Mobile
-                                                ? "40vw"
-                                                : "30vw"
-                                            : screenSize === ScreenSize.Mobile
-                                                ? "50vw"
-                                                : "40vw"
-                                    }}
-                                >
-
-                                    <Typography
-                                        overflow="hidden"
-                                        sx={{
-                                            width: stat?.includes("rank")
-                                                ? screenSize === ScreenSize.Mobile
-                                                    ? "40vw"
-                                                    : "30vw"
-                                                : screenSize === ScreenSize.Mobile
-                                                    ? "50vw"
-                                                    : "40vw",
-                                            whiteSpace: "no-wrap",
-                                            cursor: "pointer"
-                                        }}
-                                        textOverflow="ellipsis"
-                                        noWrap
-                                    >
-                                        {
-                                            <Link
-                                                sx={{
-                                                    color: "white",
-                                                    textDecoration: "underline #A0A0A0",
-                                                    textDecorationThickness: 2
-                                                }}
-                                                onClick={() => navigate(`/uya/stats/details/${player.id}`)}
-                                            >
-                                                {processUserNames(player.username)}
-                                            </Link>
-                                        }
-                                    </Typography>
-
-                                </StyledTableCell>
-
-                                <StyledTableCell sx={{width: stat?.includes("rank") ? "20vw" : "30vw"}}>
-                                    <Typography>{processValue(stat, player.score)}</Typography>
-                                </StyledTableCell>
-
-                                { stat?.includes("rank") && (
-                                    <StyledTableCell sx={{width: stat?.includes("rank") ? "10vw" : "20vw"}}>
-                                        <Typography>{computeSkillLevel(player.score)}</Typography>
+                                    <StyledTableCell>
+                                        <Typography>{player.rank}</Typography>
                                     </StyledTableCell>
-                                )}
 
-                            </StyledTableRow>
-                        })}
-                    </TableBody>
+                                    <StyledTableCell sx={{maxWidth: "40vw%"}}>
+                                        <Typography
+                                            overflow="hidden"
+                                            sx={{
+                                                whiteSpace: "no-wrap",
+                                                cursor: "pointer",
+                                                maxWidth: "40vw",
+                                            }}
+                                            textOverflow="ellipsis"
+                                            noWrap
+                                        >
+                                            {
+                                                <Link
+                                                    sx={{
+                                                        maxWidth: "40vw",
+                                                        color: "white",
+                                                        textDecoration: "underline #A0A0A0",
+                                                        textDecorationThickness: 2
+                                                    }}
+                                                    onClick={() => navigate(`/uya/stats/details/${player.id}`)}
+                                                >
+                                                    {processUserNames(player.username)}
+                                                </Link>
+                                            }
+                                        </Typography>
+
+                                    </StyledTableCell>
+
+                                    <StyledTableCell>
+                                        <Typography>{processValue(stat, player.score)}</Typography>
+                                    </StyledTableCell>
+
+                                </StyledTableRow>
+                            })}
+                        </TableBody>
+                    </Table>
                 </TableContainer>
-
             )}
 
-            <Box sx={{ml: screenSize === ScreenSize.Mobile ? 0 : 3, mr: screenSize === ScreenSize.Mobile ? 0 : -3}}>
+            <Box sx={{m: screenSize === ScreenSize.Mobile ? 0 : 3, mt: 0, width: "100%"}}>
                 <Paginator
                     totalResults={totalPlayers}
                     rowsPerPage={100}
@@ -315,6 +271,7 @@ const UYALeaderboard = () => {
             </Box>
 
         </Box>
+    </ImageBacking>
 }
 
 export default UYALeaderboard;

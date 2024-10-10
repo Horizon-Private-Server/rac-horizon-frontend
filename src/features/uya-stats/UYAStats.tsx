@@ -7,8 +7,6 @@ import {
     Card,
     Divider,
     Button,
-    Link,
-    Breadcrumbs,
     CircularProgress
 } from "@mui/material";
 
@@ -27,6 +25,8 @@ import {useAppDispatch} from "../../app/hooks";
 import {AnyAction} from "@reduxjs/toolkit";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import {domainFormatting} from "../../components/base/Functions";
+import ImageBacking from "../../components/base/ImageBacking";
+import {UYA_BACKGROUND_IMAGES} from "../../utils/Constants";
 
 
 export interface StatCardProps {
@@ -134,41 +134,43 @@ const UYAStats = () => {
         return cards
     }
 
-    return <Box>
-        <HorizonBreadcrumbs
-            paths={[
-                {text: "UYA", route: "/uya"},
-                {text: "Stats", route: "/uya/stats"}
-            ]}
-        />
-
+    return <ImageBacking backgroundUrl={UYA_BACKGROUND_IMAGES}>
         <Box>
-            {loading && (
-                <Stack direction="row" justifyContent="center">
-                    <CircularProgress sx={{mt: 10}} />
-                </Stack>
-            )}
+            <HorizonBreadcrumbs
+                paths={[
+                    {text: "UYA", route: "/uya"},
+                    {text: "Stats", route: "/uya/stats"}
+                ]}
+            />
 
-            {!loading && (
-                <Box
-                    display="flex"
-                    flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
-                    justifyContent="flex-start"
-                    flexWrap="wrap"
-                    sx={{pl: 5, pb: 5, pr: 5}}
-                >
-                    { convertOfferingsToCards().map((card) => {
-                        return <StatCard
-                            label={card.label}
-                            offerings={card.offerings}
-                            domain={card.domain}
-                            key={card.label}
-                        />;
-                    })}
-                </Box>
-            )}
+            <Box>
+                {loading && (
+                    <Stack direction="row" justifyContent="center">
+                        <CircularProgress sx={{mt: 10}} />
+                    </Stack>
+                )}
+
+                {!loading && (
+                    <Box
+                        display="flex"
+                        flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
+                        justifyContent="flex-start"
+                        flexWrap="wrap"
+                        sx={{pl: 5, pb: 5, pr: 5}}
+                    >
+                        { convertOfferingsToCards().map((card) => {
+                            return <StatCard
+                                label={card.label}
+                                offerings={card.offerings}
+                                domain={card.domain}
+                                key={card.label}
+                            />;
+                        })}
+                    </Box>
+                )}
+            </Box>
         </Box>
-    </Box>;
+    </ImageBacking>
 
 }
 

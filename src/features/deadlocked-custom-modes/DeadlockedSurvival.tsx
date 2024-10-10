@@ -6,41 +6,8 @@ import useWindowDimensions from "../../components/utils/WindowDimensions";
 
 import { useNavigate } from "react-router-dom";
 
-import { makeStyles, createStyles } from "@mui/styles"
-
-import dlBackground from "../../assets/img/dl-background.jpg";
-
 import SurvivalPrestigeCalculator from "../survival-prestige-calculator/SurvivalPrestigeCalculator";
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        dlBackground: {
-            "&": {
-                position: "relative", 
-                height: "100%",
-                width: "100%",
-                display: "flex",
-                opacity: 1.0,
-                zIndex: 0
-            },
-            "&:after": {
-                backgroundImage: `url(${dlBackground})`,
-                backgroundSize: "cover",
-                position: "absolute",
-                top: "0px",
-                left: "0px",
-                right: "0px",
-                zIndex: -1,
-                opacity: 0.32,
-                height: "100%",
-                width: "100%",
-                content: '""',
-                backgroundAttachment: "fixed",
-                backgroundRepeat: "no-repeat"
-            }
-        }
-    })
-);
 
 interface GameModeCardProps {
     modeName: string;
