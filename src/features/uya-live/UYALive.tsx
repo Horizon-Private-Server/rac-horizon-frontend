@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Box, Card, CardContent, Typography } from '@mui/material';
+import { Box, Card, CardContent, Link, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography,} from "@mui/material";
+
 import { Stage, FastLayer, Layer, Image as KonvaImage, Text, Rect } from 'react-konva';
 import { UYALiveGameSession } from "../../utils/Interfaces"; // Assuming this exists
 import Konva from 'konva'; // Import Konva types
+import {styled} from "@mui/material/styles";
 
+import {tableCellClasses} from '@mui/material/TableCell';
 
 // Maps
 import bakisiImg from '../../assets/uyalive/bakisi_isles.png';
@@ -34,6 +37,41 @@ const mapImages: Record<string, string> = {
   'Bakisi Isles': bakisiImg,
   'Hoven Gorge': hovenImg,
 };
+
+
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    color: theme.palette.common.white,
+    borderBottom: "none",
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+    borderBottom: "none",
+    paddingTop: 5,
+    paddingBottom: 5
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+      backgroundColor: "rgba(40, 40, 40, 0.75)",
+      borderBottom: "none",
+      padding: 0
+  },
+  '&:nth-of-type(even)': {
+      backgroundColor: "rgba(20, 20, 20, 0.75)",
+      borderBottom: "none",
+      padding: 0
+    },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+      border: 0,
+  },
+}));
+
+
 
 
 const UYAOnlineWebSocket: React.FC = () => {
