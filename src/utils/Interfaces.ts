@@ -525,6 +525,7 @@ export interface UYALivePlayer {
     total_kills: number;
     total_deaths: number;
     total_suicides: number;
+    total_flags: number;
 }
 
 export interface UYALiveGameEvent {

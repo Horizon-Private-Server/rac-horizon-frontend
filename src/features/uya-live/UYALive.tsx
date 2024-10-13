@@ -20,12 +20,18 @@ import {
 } from "@mui/material";
 
 // Maps
+import unkMapImg from '../../assets/uyalive/maps/unknown.png';
+import gameNotStartedImg from '../../assets/uyalive/maps/not_started.png'; 
 import bakisiImg from '../../assets/uyalive/maps/bakisi_isles.png';
 import hovenImg from '../../assets/uyalive/maps/hoven_gorge.png';
 import korgonImg from '../../assets/uyalive/maps/korgon_outpost.png';
 import metroImg from '../../assets/uyalive/maps/metro.png';
 import bwcImg from '../../assets/uyalive/maps/bwc.png';
 import x12Img from '../../assets/uyalive/maps/x12.png';
+import sewersImg from '../../assets/uyalive/maps/aquatos_sewers.png';
+import commandCenterImg from '../../assets/uyalive/maps/command_center.png';
+import marcadiaPalaceImg from '../../assets/uyalive/maps/marcadia_palace.png';
+import blackwaterDocksImg from '../../assets/uyalive/maps/blackwater_docks.png';
 
 // Player Icons
 import playerIconBase from '../../assets/uyalive/player_icon_base.png'; // Base icon without any color
@@ -62,6 +68,10 @@ const mapImages: Record<string, string> = {
   'Metropolis': metroImg,
   'Blackwater City': bwcImg,
   'Outpost x12': x12Img,
+  'Aquatos Sewers': sewersImg,
+  'Marcadia Palace': marcadiaPalaceImg,
+  'Command Center': commandCenterImg,
+  'Blackwater Dox': blackwaterDocksImg,
 };
 
 
@@ -140,6 +150,7 @@ const UYAOnlineWebSocket: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const reconnectDelay = useRef<number>(1000);
   const [backgroundImages, setBackgroundImages] = useState<Record<number, HTMLImageElement | null>>({});
+  const [notStartedImg, setNotStartedImg] = useState<HTMLImageElement | null>(null);
 
   const [playerIcons, setPlayerIcons] = useState<Record<string, HTMLImageElement | null>>({
     blue: null,
@@ -177,12 +188,24 @@ const UYAOnlineWebSocket: React.FC = () => {
     grav: null,
   });
 
+  // Load map not yet started img
+  useEffect(() => {
+    // Iterate over each game session and set the correct background image
+    const bgImage = new Image();
+    bgImage.src = gameNotStartedImg;  // Dynamically set the image source based on the map
+    bgImage.onload = () => {
+      setNotStartedImg(bgImage);
+    }
+  }, []);
+
   useEffect(() => {
     // Iterate over each game session and set the correct background image
     gameSessions.forEach((session) => {
-      if (session.map && mapImages[session.map]) {
+      if (session.map) {
         const bgImage = new Image();
-        bgImage.src = mapImages[session.map];  // Dynamically set the image source based on the map
+        const imageSrc = (session.map && mapImages[session.map]) ? mapImages[session.map] : unkMapImg;
+        console.log("Using bgImage" + imageSrc)
+        bgImage.src = imageSrc;  // Dynamically set the image source based on the map
         bgImage.onload = () => {
           setBackgroundImages((prevState) => ({
             ...prevState,
@@ -272,7 +295,7 @@ const UYAOnlineWebSocket: React.FC = () => {
           reconnectDelay.current = 1000;
           setError(null);
           const end = performance.now();
-          console.log(`Update took ${end - start} ms`);
+          //console.log(`Update took ${end - start} ms`);
         } catch (error) {
           setError("Failed to parse WebSocket message.");
         }
@@ -322,9 +345,7 @@ const UYAOnlineWebSocket: React.FC = () => {
                     <Stack direction="row" justifyContent="space-between">
                     <Typography variant="h5">{gameSession?.name.replaceAll("[IG] ", "")}</Typography>
                     </Stack>
-                    <Typography variant="h5">{gameSession?.map}</Typography>
-                    <Typography>{gameSession?.game_mode}</Typography>
-
+                    <Typography variant="h5">{gameSession?.map} // {gameSession?.game_mode}</Typography>
                 </CardContent>
                 </Card>
 
@@ -416,12 +437,8 @@ const UYAOnlineWebSocket: React.FC = () => {
   </Layer>
 </Stage>
 
-
-
 <Card component={Paper} sx={{mb: 2}}>
                     <CardContent>
-                        <Typography variant="h5" sx={{mb: 3}}>Results</Typography>
-
                         <TableContainer>
                             <Table size="small">
                                 <TableHead>
@@ -429,7 +446,10 @@ const UYAOnlineWebSocket: React.FC = () => {
                                         <Typography>Player</Typography>
                                     </TableCell>
                                     <TableCell>
-                                        <Typography>{mobile ? "W" : "Weapons"}</Typography>
+                                        <Typography>{mobile ? "W" : "Upgrades"}</Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography>{mobile ? "F" : "Flag Captures"}</Typography>
                                     </TableCell>
                                     <TableCell>
                                         <Typography>{mobile ? "K" : "Kills"}</Typography>
@@ -506,6 +526,9 @@ const UYAOnlineWebSocket: React.FC = () => {
                                             </TableCell>
 
                                             <TableCell>
+                                                <Typography variant="subtitle2">{player.total_flags}</Typography>
+                                            </TableCell>
+                                            <TableCell>
                                                 <Typography variant="subtitle2">{player.total_kills}</Typography>
                                             </TableCell>
                                             <TableCell>
@@ -522,22 +545,6 @@ const UYAOnlineWebSocket: React.FC = () => {
                         </CardContent>
                         </Card>
 
-                  <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-                    Players:
-                  </Typography>
-                  {gameSession.players.map((player) => (
-                    <Box key={player.player_id} sx={{ ml: 2 }}>
-                      <Typography variant="subtitle1">{player.username}</Typography>
-                      <Typography>Team: {player.team}</Typography>
-                      <Typography>Coordinates: {player.coord.join(", ")}</Typography>
-                      <Typography>Health: {player.health}</Typography>
-                      <Typography>cam_x: {player.cam_x}</Typography>
-                      <Typography>Total Kills: {player.total_kills}</Typography>
-                      <Typography>Total Deaths: {player.total_deaths}</Typography>
-                      <Typography>Total Suicides: {player.total_suicides}</Typography>
-                      <Typography>Upgrades: {JSON.stringify(player.upgrades)}</Typography>
-                    </Box>
-                  ))}
 
                   <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                     Events:
