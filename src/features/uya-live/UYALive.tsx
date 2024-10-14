@@ -306,7 +306,7 @@ const UYAOnlineWebSocket: React.FC = () => {
       };
 
       socket.onclose = () => {
-        setError("WebSocket connection closed. Reconnecting...");
+        setError("WebSocket connection closed. Contact an admin if this page stays here! Attempting to reconnect to the backend...");
         reconnectTimeout = setTimeout(connectWebSocket, reconnectDelay.current);
         reconnectDelay.current = Math.min(reconnectDelay.current * 2, 30000);
       };
