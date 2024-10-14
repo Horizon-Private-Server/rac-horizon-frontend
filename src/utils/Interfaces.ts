@@ -498,3 +498,47 @@ export interface UYAGameHistoryDetails {
     game: UYAGameHistoryEntry
     players: UYAGameHistoryPlayer[];
 }
+
+
+export interface UYALivePlayerUpgrade {
+    upgrade: string;
+    kills: number;
+}
+
+export interface UYALivePlayerUpgrades {
+    flux: UYALivePlayerUpgrade;
+    blitz: UYALivePlayerUpgrade;
+    grav: UYALivePlayerUpgrade;
+}
+
+export interface UYALivePlayer {
+    player_id: number;
+    account_id: number;
+    team: string;
+    username: string;
+    coord: [number, number, number];
+    cam_x: number;
+    weapon: string | null;
+    upgrades: UYALivePlayerUpgrades;
+    flag: string | null;
+    health: number;
+    total_kills: number;
+    total_deaths: number;
+    total_suicides: number;
+    total_flags: number;
+}
+
+export interface UYALiveGameEvent {
+    // Define the structure of any events that might appear in the game
+    // Placeholder for now as the events array in the provided JSON is empty
+}
+
+export interface UYALiveGameSession {
+    world_id: number;
+    world_latest_update: string;
+    players: UYALivePlayer[];
+    events: UYALiveGameEvent[];
+    map: string;
+    name: string;
+    game_mode: string;
+}

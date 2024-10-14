@@ -9,5 +9,6 @@ services:
       - /usr/src/app/node_modules  # Prevent local node_modules from overwriting
     environment:
       NODE_ENV: development
+      TRACKER_BACKEND_UYA_LIVE_TRACKER_WEBSOCKET_IP: ${TRACKER_BACKEND_UYA_LIVE_TRACKER_WEBSOCKET_IP}
 
 
