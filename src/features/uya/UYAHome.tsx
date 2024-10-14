@@ -16,8 +16,14 @@ const UYAHome = () => {
 
     const sections: SectionCardProps[] = [
         {
-            label: "Live",
+            label: "Players Online",
             description: "See who is currently online and in game!",
+            url: "/uya/online",
+            icon: <Podcasts />
+        },
+        {
+            label: "UYA Live",
+            description: "Watch live games as they unfold!",
             url: "/uya/live",
             icon: <Podcasts />
         },

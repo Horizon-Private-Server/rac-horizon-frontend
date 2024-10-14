@@ -56,8 +56,8 @@ const teamColors : Record<string, string> = {
 
 // TODO: REMOVE THIS BECAUSE ITS REDUDNANT TO THE live.css FILE
 const weaponColors : Record<string, string> = {
-  'v1': '#FFFFFF', // Blue
-  'v2': '#2625c3', // White 2625c3
+  'v1': '#FFFFFF', // White
+  'v2': '#2625c3', // Blue 
 };
 
 // Create a map of the gameSession.map strings to their corresponding images
