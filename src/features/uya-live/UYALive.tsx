@@ -35,6 +35,22 @@ import sewersImg from '../../assets/uyalive/maps/aquatos_sewers.png';
 import commandCenterImg from '../../assets/uyalive/maps/command_center.png';
 import marcadiaPalaceImg from '../../assets/uyalive/maps/marcadia_palace.png';
 import blackwaterDocksImg from '../../assets/uyalive/maps/blackwater_docks.png';
+import todanoImg from '../../assets/uyalive/maps/todano.png';
+import alpineImg from '../../assets/uyalive/maps/alpine_junction.png';
+import aquadomeImg from '../../assets/uyalive/maps/aquatos_aquadome.png';
+import shaarImg from '../../assets/uyalive/maps/temple_of_shaar.png';
+import floodedImg from '../../assets/uyalive/maps/flooded_hoven.png';
+import sarathosImg from '../../assets/uyalive/maps/sarathos_swamp.png';
+import rustImg from '../../assets/uyalive/maps/rust.png';
+import mountainPassImg from '../../assets/uyalive/maps/mountain_pass.png';
+import maraxusImg from '../../assets/uyalive/maps/maraxus_prison.png';
+import floranaImg from '../../assets/uyalive/maps/florana.png';
+import floranaBasinImg from '../../assets/uyalive/maps/florana_basin.png';
+import daxxImg from '../../assets/uyalive/maps/daxx.png';
+import catacromImg from '../../assets/uyalive/maps/catacrom_graveyard.png';
+import hallwayImg from '../../assets/uyalive/maps/hallway_nodes.png';
+import hauntedImg from '../../assets/uyalive/maps/haunted_hallows.png';
+import x6Img from '../../assets/uyalive/maps/x6.png';
 
 // Player Icons
 import playerIconBase from '../../assets/uyalive/player_icon_base.png'; // Base icon without any color
@@ -45,6 +61,54 @@ import blitzBase from '../../assets/uyalive/weapons/blitz.png'; // Base icon wit
 import fluxBase from '../../assets/uyalive/weapons/flux.png'; // Base icon without any color
 import gravBase from '../../assets/uyalive/weapons/grav.png';
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs"; // Base icon without any color
+
+
+// Create a map of the gameSession.map strings to their corresponding images
+const mapImages: Record<string, string> = {
+    'Bakisi Isles': bakisiImg,
+    'Hoven Gorge': hovenImg,
+    'Korgon Outpost': korgonImg,
+    'Metropolis': metroImg,
+    'Blackwater City': bwcImg,
+    'Outpost x12': x12Img,
+    'Aquatos Sewers': sewersImg,
+    'Marcadia Palace': marcadiaPalaceImg,
+    'Command Center': commandCenterImg,
+    'Blackwater Dox': blackwaterDocksImg,
+    'Alpine Junction': alpineImg,
+    'Aquatos Aquadome': aquadomeImg,
+    'Bakisi Isles - Midflag': bakisiImg,
+    'Bakisi Isles V2': bakisiImg,
+    'Blackwater City V2': bwcImg,
+    'Blackwater Dox V2': blackwaterDocksImg,
+    'Catacrom Graveyard': catacromImg,
+    'Crisis at Korgon Outpost!': korgonImg,
+    'Daxx': daxxImg,
+    "Diglett's Outpost": korgonImg,
+    'Flooded Hoven v1': floodedImg,
+    'Florana': floranaImg,
+    'Flat Marcadia': marcadiaPalaceImg,
+    'Florana Basin': floranaBasinImg,
+    'Hallway Nodes': hallwayImg,
+    'Haunted Hallows': hauntedImg,
+    'Hoven Gorge - Midflag': hovenImg,
+    'Hoven Gorge V2': hovenImg,
+    'Kerwan Skatepark': metroImg,
+    'Korgon Outpost - Midflag': korgonImg,
+    'Maraxus Prison': maraxusImg,
+    'Marcadia Palace - Midflag': marcadiaPalaceImg,
+    'Metropolis - Midflag': metroImg,
+    'Metropolis V2': metroImg,
+    'Mountain Pass': mountainPassImg,
+    'Outpost X6': x6Img,
+    'Outpost X6 - Midflag': x6Img,
+    'Outpost x12 - Midflag': x12Img,
+    'Rust': rustImg,
+    'Sarathos Swamp': sarathosImg,
+    'Temple of Shaar': shaarImg,
+    'Todano': todanoImg,
+};
+
 
 // TODO: REMOVE THIS BECAUSE IT'S REDUNDANT TO THE live.css FILE
 const teamColors: Record<string, string> = {
@@ -64,19 +128,6 @@ const weaponColors: Record<string, string> = {
     'v2': '#2625c3', // Blue
 };
 
-// Create a map of the gameSession.map strings to their corresponding images
-const mapImages: Record<string, string> = {
-    'Bakisi Isles': bakisiImg,
-    'Hoven Gorge': hovenImg,
-    'Korgon Outpost': korgonImg,
-    'Metropolis': metroImg,
-    'Blackwater City': bwcImg,
-    'Outpost x12': x12Img,
-    'Aquatos Sewers': sewersImg,
-    'Marcadia Palace': marcadiaPalaceImg,
-    'Command Center': commandCenterImg,
-    'Blackwater Dox': blackwaterDocksImg,
-};
 
 
 // Helper function to create a colored version of the base icon using the team color
