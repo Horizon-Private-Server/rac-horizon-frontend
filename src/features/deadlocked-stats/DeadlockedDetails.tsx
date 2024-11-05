@@ -4,8 +4,6 @@ import { Typography, CardContent, Card, Divider} from "@mui/material";
 
 import { useParams } from "react-router-dom";
 
-import { makeStyles, createStyles } from "@mui/styles"
-
 import { Stack } from "@mui/system";
 
 
@@ -23,39 +21,7 @@ import {AxiosResponse} from "axios";
 import {AnyAction} from "@reduxjs/toolkit";
 import {useAppDispatch} from "../../app/hooks";
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        dlBackground: {
-            "&": {
-                position: "relative", 
-                height: "100%",
-                width: "100%",
-                display: "flex",
-                opacity: 1.0,
-                zIndex: 0
-            },
-            "&:after": {
-                backgroundImage: `url(https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg)`,
-                backgroundSize: "cover",
-                position: "absolute",
-                top: "0px",
-                left: "0px",
-                right: "0px",
-                zIndex: -1,
-                opacity: 0.32,
-                height: "100%",
-                width: "100%",
-                content: '""',
-                backgroundAttachment: "fixed",
-                backgroundRepeat: "no-repeat"
-            }
-        }
-    })
-);
-
 const DeadlockedDetails = () => {
-
-    const classes = useStyles();
 
     const [player, setPlayer] = useState<Optional<DeadlockedPlayerDetails>>();
     const [loading, setLoading] = useState<boolean>(false);
@@ -86,7 +52,7 @@ const DeadlockedDetails = () => {
         kdr = 0.00;
     }
 
-    return <Page className={classes.dlBackground}>
+    return <Page>
 
         <HorizonBreadcrumbs
             paths={[
