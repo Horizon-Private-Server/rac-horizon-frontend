@@ -3,9 +3,7 @@ import React from 'react';
 
 import {ThemeProvider, StyledEngineProvider} from "@mui/material/styles";
 
-import {
-    horizonThemeDark,
-} from "./components/utils/HorizonTheme";
+import {horizonThemeDark} from "./components/utils/HorizonTheme";
 
 import './App.css';
 import Nav from "./features/nav/Nav";
@@ -67,7 +65,7 @@ const navMenu = [
         tooltip: "Up Your Arsenal",
         icon: <SportsEsportsIcon />,
         path: "/uya",
-        hidden: process.env.NODE_ENV === 'production'
+        hidden: false
     },
     {
         label: "Deadlocked",
@@ -113,7 +111,7 @@ function App() {
                                 <Route path="/uya/stats/details/:horizonId" element={<UYADetails />}/>
                                 <Route path="/uya/stats/leaderboard/:domain/:stat" element={<UYALeaderboard />}/>
                                 <Route path="/uya/online" element={<UYAOnline />}/>
-                                <Route path="/uya/live" element={<UYALive />}/>
+                                {/*<Route path="/uya/live" element={<UYALive />}/>*/}
                                 <Route path="/uya/game-history" element={<UYAGameHistory />}/>
                                 <Route path="/uya/game-history/:gameId" element={<UYAGameDetails />}/>
 

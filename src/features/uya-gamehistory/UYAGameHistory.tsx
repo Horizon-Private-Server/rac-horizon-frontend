@@ -1,6 +1,7 @@
 import React, {Dispatch, useEffect, useState} from "react";
 
 import {
+    Alert,
     Box,
     Link,
     Paper,
@@ -112,6 +113,19 @@ const UYAGameHistory = () => {
                     {text: "Game History", route: "/uya/game-history"},
                 ]}
             />
+
+            <Box
+                sx={{
+                    ml: screenSize === ScreenSize.Mobile ? 0 : 3,
+                    mr: screenSize === ScreenSize.Mobile ? 0 : 10,
+                    backgroundColor: "rgba(0, 0, 0, 0.0)",
+                }}
+            >
+                <Alert severity="info" sx={{mb: 2}}>
+                    UYA Game History is currently in BETA.
+                    If you experience any issues, please report them to @WrenchDL or @FourBolt in the Horizon Discord Server.
+                </Alert>
+            </Box>
 
             {loading && (
                 <TableContainer

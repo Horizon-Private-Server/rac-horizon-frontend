@@ -25,7 +25,8 @@ const UYAHome = () => {
             label: "UYA Live",
             description: "Watch live games as they unfold!",
             url: "/uya/live",
-            icon: <Podcasts />
+            icon: <Podcasts />,
+            enabled: false
         },
         {
             label: "Stats & Leaderboards",
@@ -69,6 +70,7 @@ const UYAHome = () => {
                             description={section.description}
                             url={section.url}
                             icon={section.icon}
+                            enabled={section.enabled}
                         />
                     </Grid>
                 })}

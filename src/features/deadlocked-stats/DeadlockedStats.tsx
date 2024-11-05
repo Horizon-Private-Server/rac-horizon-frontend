@@ -7,7 +7,7 @@ import {
     Card,
     Divider,
     Button,
-    CircularProgress
+    CircularProgress, Alert
 } from "@mui/material";
 
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
@@ -142,6 +142,19 @@ const DeadlockedStats = () => {
                     {text: "Stats", route: "/deadlocked/stats"}
                 ]}
             />
+
+            <Box
+                sx={{
+                    ml: screenSize === ScreenSize.Mobile ? 0 : 3,
+                    mr: screenSize === ScreenSize.Mobile ? 0 : 10,
+                    backgroundColor: "rgba(0, 0, 0, 0.0)",
+                }}
+            >
+                <Alert severity="info" sx={{mb: 2}}>
+                    Deadlocked Stats and Leaderboards are currently in BETA.
+                    If you experience any issues, please report them to @WrenchDL or @FourBolt in the Horizon Discord Server.
+                </Alert>
+            </Box>
 
             <Box>
                 {loading && (

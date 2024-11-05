@@ -14,6 +14,8 @@ import {
     Typography,
 } from "@mui/material";
 
+import useWebSocket, { ReadyState } from 'react-use-websocket';
+
 import {Stage, Layer, Image as KonvaImage, Text, Rect} from 'react-konva';
 import {Optional, UYALiveGameSession, UYALivePlayer} from "../../utils/Interfaces"; // Assuming this exists
 
@@ -129,7 +131,6 @@ const weaponColors: Record<string, string> = {
 };
 
 
-
 // Helper function to create a colored version of the base icon using the team color
 const createColoredIcon = (baseImage: HTMLImageElement, color: string): HTMLImageElement | null => {
     const canvas = document.createElement('canvas');
@@ -172,6 +173,8 @@ const UYAOnlineWebSocket: React.FC = () => {
     const [backgroundImages, setBackgroundImages] = useState<Record<number, Optional<HTMLImageElement>>>({});
     const [notStartedImg, setNotStartedImg] = useState<Optional<HTMLImageElement>>(null);
 
+    // const { sendMessage, lastMessage, readyState } = useWebSocket(`${process.env.REACT_APP_WS_ENDPOINT}/ws/uya-live`);
+
     const [playerIcons, setPlayerIcons] = useState<Record<string, Optional<HTMLImageElement>>>({
         blue: null,
         red: null,
@@ -213,9 +216,7 @@ const UYAOnlineWebSocket: React.FC = () => {
         // Iterate over each game session and set the correct background image
         const bgImage = new Image();
         bgImage.src = gameNotStartedImg;  // Dynamically set the image source based on the map
-        bgImage.onload = () => {
-            setNotStartedImg(bgImage);
-        }
+        bgImage.onload = () => setNotStartedImg(bgImage)
     }, []);
 
     useEffect(() => {
@@ -312,7 +313,7 @@ const UYAOnlineWebSocket: React.FC = () => {
         let reconnectTimeout: NodeJS.Timeout;
 
         const connectWebSocket = () => {
-            socket = new WebSocket(process.env.TRACKER_BACKEND_UYA_LIVE_TRACKER_WEBSOCKET_IP || 'ws://localhost:8000/uya-live-ws');
+            socket = new WebSocket(`${process.env.REACT_APP_WS_ENDPOINT}/ws/uya-live`);
             socket.onmessage = (event) => {
                 const start = performance.now();
                 try {
@@ -404,7 +405,7 @@ const UYAOnlineWebSocket: React.FC = () => {
 
                                             {/* Layer for player icons and usernames */}
                                             <Layer>
-                                                {gameSession.players.map((player) => {
+                                                {gameSession.players.map((player: UYALivePlayer, index: number) => {
                                                     const teamIcon = player.health <= 0 ? playerIconsDead[player.team] : playerIcons[player.team];
                                                     const iconX = player.coord[0] * scaleFactor;
                                                     const iconY = player.coord[1] * scaleFactor;
@@ -413,7 +414,7 @@ const UYAOnlineWebSocket: React.FC = () => {
 
                                                     return (
                                                         teamIcon && (
-                                                            <React.Fragment key={player.player_id}>
+                                                            <React.Fragment key={index}>
                                                                 {/* Player Username */}
                                                                 <Text
                                                                     text={player.username}
@@ -511,8 +512,8 @@ const UYAOnlineWebSocket: React.FC = () => {
                                                     </TableCell>
                                                 </TableHead>
                                                 <TableBody>
-                                                    {gameSession.players.map((player: UYALivePlayer) => (
-                                                        <TableRow>
+                                                    {gameSession.players.map((player: UYALivePlayer, index: number) => (
+                                                        <TableRow key={index}>
                                                             <TableCell>
                                                                 <Typography
                                                                     className={`${player.team.toLowerCase()}-team`}
@@ -627,7 +628,7 @@ const UYAOnlineWebSocket: React.FC = () => {
                                             Events:
                                         </Typography>
                                         {gameSession.events.length > 0 ? (
-                                            gameSession.events.map((event, index) => (
+                                            gameSession.events.map((event, index: number) => (
                                                 <Typography key={index}>{JSON.stringify(event)}</Typography>
                                             ))
                                         ) : (
