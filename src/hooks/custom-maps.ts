@@ -14,6 +14,7 @@ export const useCustomMapsIndex = (game: GameType) => {
     return useQuery({
         queryKey: ["CUSTOM_MAPS_INDEX", game],
         queryFn: () => getCustomMapsIndex(game),
+        refetchOnWindowFocus: false,
         // Since the index is returned as raw text, we have to parse it manually.
         select: ({ data }) => {
             let entries: CustomMapIndexEntry[] = data.split("\n").map((entry) => {
@@ -24,7 +25,7 @@ export const useCustomMapsIndex = (game: GameType) => {
                     version: Number(entryData[2]),
                 };
             });
-            return entries;
+            return entries.filter((entry) => entry.slug?.trim().length > 0);
         },
     });
 };
@@ -33,14 +34,14 @@ export const useCustomMapBackgroundImage = (game: GameType, slug: string) => {
     return useQuery({
         queryKey: ["CUSTOM_MAP_BACKGROUND_IMAGES", game, slug],
         queryFn: () => getCustomMapBackgroundImage(game, slug),
-        // Since the index is returned as raw text, we have to parse it manually.
+        refetchOnWindowFocus: false,
+        retry: false,
         select: ({ data }) => {
             const sink = Sink(data);
             const height = read_u32(sink);
             const width = read_u32(sink);
             const colors = new Uint8ClampedArray(data, 0x10, data.byteLength - 0x10);
-
-            const img = generatePNG(width, height, colors);
+            const img = generatePNG(width, height, colors, false);
 
             return img;
         },

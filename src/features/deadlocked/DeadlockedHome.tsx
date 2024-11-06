@@ -1,39 +1,45 @@
 import React from "react";
-import {Box, Grid} from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
-import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
+import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 
 import GamepadIcon from "@mui/icons-material/Gamepad";
 
-import {SectionCard, SectionCardProps} from "../../components/base/SectionCard";
-import {Handyman} from "@mui/icons-material";
-import {generateRandomString} from "../../components/utils/functions";
+import { SectionCard, SectionCardProps } from "../../components/base/SectionCard";
+import { AddLocationAlt, Handyman } from "@mui/icons-material";
+import { generateRandomString } from "../../components/utils/functions";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import ImageBacking from "../../components/base/ImageBacking";
 
 const DeadlockedHome = () => {
-
-    const {width} = useWindowDimensions();
+    const { width } = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
     const sections: SectionCardProps[] = [
         {
             label: "Survival Guides",
-            description: "Track your progress and see how you compare to other players. This leaderboard is more comprehensive than the leaderboard found in-game!",
+            description:
+                "Track your progress and see how you compare to other players. This leaderboard is more comprehensive than the leaderboard found in-game!",
             url: "/survival",
-            icon: <GamepadIcon />
+            icon: <GamepadIcon />,
         },
         {
             label: "Game Generator",
             description: "Generate a random casual Deadlocked Game with reasonable, fun presets.",
             url: `/deadlocked/ccgg/${generateRandomString(20)}`,
-            icon: <Handyman />
+            icon: <Handyman />,
         },
         {
             label: "Stats & Leaderboards",
             description: "Track your progress and view the Horizon Leaderboards.",
             url: "/deadlocked/stats",
-            icon: <EmojiEventsIcon />
+            icon: <EmojiEventsIcon />,
+        },
+        {
+            label: "Custom Maps",
+            description: "Browse a list of individual custom maps available for download.",
+            url: "/deadlocked/custom-maps",
+            icon: <AddLocationAlt />,
         },
         // {
         //     label: "Game History",
@@ -71,7 +77,7 @@ const DeadlockedHome = () => {
         //     url: "/dl/survival",
         //     icon: <LocalFireDepartmentIcon />
         // },
-    ]
+    ];
 
     let numCols: number = 12;
 
@@ -85,29 +91,27 @@ const DeadlockedHome = () => {
         numCols = 3;
     }
 
-    return <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
-        <Box
-            sx={{width: "100%", p: 4, height: "calc(100vh - 280px)"}}
-            display="flex"
-            flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
-            justifyContent="flex-start"
-            flexWrap="wrap"
-        >
-            <Grid sx={{p: 0}} container>
-                { sections.map((section) => {
-                    return <Grid key={section.label} xs={numCols} sx={{p: 1}} item>
-                        <SectionCard
-                            label={section.label}
-                            description={section.description}
-                            url={section.url}
-                            icon={section.icon}
-                        />
-                    </Grid>
-                })}
-            </Grid>
-
-        </Box>
-    </ImageBacking>
-}
+    return (
+        <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
+            <Box
+                sx={{ width: "100%", p: 4, height: "calc(100vh - 280px)" }}
+                display="flex"
+                flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
+                justifyContent="flex-start"
+                flexWrap="wrap"
+            >
+                <Grid sx={{ p: 0 }} container>
+                    {sections.map((section) => {
+                        return (
+                            <Grid key={section.label} xs={numCols} sx={{ p: 1 }} item>
+                                <SectionCard label={section.label} description={section.description} url={section.url} icon={section.icon} />
+                            </Grid>
+                        );
+                    })}
+                </Grid>
+            </Box>
+        </ImageBacking>
+    );
+};
 
 export default DeadlockedHome;
