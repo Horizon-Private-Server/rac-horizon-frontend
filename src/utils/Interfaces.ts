@@ -334,6 +334,114 @@ export interface DeadlockedWeaponStats {
     holoshield_launcher_deaths: number;
 }
 
+export interface DeadlockedHorizonStats {
+    total_bolts: number;
+    current_bolts: number;
+}
+
+export interface DeadlockedCustomGamemode {
+    rank: number;
+    wins: number;
+    losses: number;
+    games_played: number;
+    time_played: number;
+}
+
+export interface DeadlockedSNDStats extends DeadlockedCustomGamemode {
+    kills: number;
+    deaths: number;
+    plants: number;
+    defuses: number;
+    ninja_defuses: number;
+    wins_attacking: number;
+    wins_defending: number;
+}
+
+export interface DeadlockedPayloadStats extends DeadlockedCustomGamemode {
+    kills: number;
+    deaths: number;
+    points: number;
+    kills_while_hot: number;
+    kills_on_hot: number;
+}
+
+export interface DeadlockedSpleefStats extends DeadlockedCustomGamemode {
+    rounds_played: number;
+    points: number;
+    boxes_broken: number;
+}
+
+export interface DeadlockedInfectedStats extends DeadlockedCustomGamemode {
+    kills: number;
+    deaths: number;
+    infections: number;
+    times_infected: number;
+    wins_as_survivor: number;
+    wins_as_first_infected: number;
+}
+
+export interface DeadlockedGungameStats extends DeadlockedCustomGamemode {
+    kills: number;
+    deaths: number;
+    promotions: number;
+    demotions: number;
+    times_demoted: number;
+}
+
+export interface DeadlockedInfiniteClimberStats extends DeadlockedCustomGamemode {
+    high_score: number;
+}
+
+export interface DeadlockedSurvivalStats {
+    rank: number;
+    games_played: number;
+    time_played: number;
+    kills: number;
+    deaths: number;
+    revives: number;
+    times_revived: number;
+    mystery_box_rolls: number;
+    demon_bells_activated: number;
+    times_activated_power: number;
+    tokens_used_on_gates: number;
+    wrench_kills: number;
+    dual_viper_kills: number;
+    magma_cannon_kills: number;
+    arbiter_kills: number;
+    fusion_rifle_kills: number;
+    hunter_mine_launcher_kills: number;
+    b6_obliterator_kills: number;
+    scorpion_flail_kills: number;
+}
+
+export interface DeadlockedSurvivalMapStats {
+    solo_high_score: number;
+    coop_high_score: number;
+    xp: number;
+    prestige: number;
+}
+
+export interface DeadlockedTrainingStats {
+    rank: number;
+    games_played: number;
+    time_played: number;
+    total_kills: number;
+    fusion_best_points: number;
+    fusion_best_time: number;
+    fusion_kills: number;
+    fusion_hits: number;
+    fusion_misses: number;
+    fusion_accuracy: number;
+    fusion_best_combo: number;
+    cycle_best_points: number;
+    cycle_best_combo: number;
+    cycle_kills: number;
+    cycle_deaths: number;
+    cycle_fusion_hits: number;
+    cycle_fusion_misses: number;
+    cycle_fusion_accuracy: number;
+}
+
 export interface DeadlockedPlayerDetails {
     horizon_id: number;
     username: string;
@@ -346,9 +454,23 @@ export interface DeadlockedPlayerDetails {
     juggernaut_stats: DeadlockedGameModeWithTime;
     weapon_stats: DeadlockedWeaponStats;
     vehicle_stats: DeadlockedVehicleStats;
+
+    horizon_stats: DeadlockedHorizonStats;
+
+    snd_stats: DeadlockedSNDStats;
+    payload_stats: DeadlockedPayloadStats;
+    spleef_stats: DeadlockedSpleefStats;
+    infected_stats: DeadlockedInfectedStats;
+    gungame_stats: DeadlockedGungameStats;
+    infinite_climber_stats: DeadlockedInfiniteClimberStats;
+    survival_stats: DeadlockedSurvivalStats;
+    survival_orxon_stats: DeadlockedSurvivalMapStats;
+    survival_mountain_pass_stats: DeadlockedSurvivalMapStats;
+    survival_veldin_stats: DeadlockedSurvivalMapStats;
+
+    training_stats: DeadlockedTrainingStats;
+
 }
-
-
 
 export interface UyaStatsBase {
     rank: number;
