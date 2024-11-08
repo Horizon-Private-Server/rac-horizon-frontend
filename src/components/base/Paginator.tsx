@@ -29,8 +29,6 @@ const Paginator = (props: PaginationProps) => {
 
     const navigate: NavigateFunction = useNavigate();
 
-    console.log(`${baseUrl}?page=${page + 1}`)
-
     return <Card component={Paper} sx={{backgroundColor: color ?? "rgba(20, 20, 20, 0.80)"}}>
         <CardContent>
             <Stack direction="row" justifyContent="space-between">

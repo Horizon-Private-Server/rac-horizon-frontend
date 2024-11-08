@@ -37,6 +37,7 @@ import {AxiosResponse} from "axios";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import Skeleton from "@mui/material/Skeleton";
 import ImageBacking from "../../components/base/ImageBacking";
+import {useDeadlockedLeaderboard} from "../../hooks/deadlocked-stats";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -83,15 +84,7 @@ const DeadlockedLeaderboard = () => {
     // TODO Probably a much better way to do this.
     const page = pageRaw === null ? 1 : isNumeric(parseInt(pageRaw)) ? parseInt(pageRaw) : 1;
 
-    const [players, setPlayers] = useState<LeaderboardEntry[]>([]);
-    const [totalPlayers, setTotalPlayers] = useState<number>(0);
-
-    const [loading, setLoading] = useState<boolean>(false);
-
-    const dispatch: Dispatch<AnyAction> = useAppDispatch();
-
-    const { domain } = useParams();
-    const { stat } = useParams();
+    const {domain, stat} = useParams();
 
     const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
@@ -115,20 +108,7 @@ const DeadlockedLeaderboard = () => {
         return `${amount}`;
     }
 
-
-    useEffect(() => {
-        // TODO Re-implement this using React Query/Tanstack.
-        getHandler<Pagination<LeaderboardEntry>>(
-            `/api/dl/stats/leaderboard/${domain}/${stat}?page=${page}`,
-            dispatch,
-            (response: AxiosResponse<Pagination<LeaderboardEntry>, any>) => {
-                setPlayers(response.data.results);
-                setTotalPlayers(response.data.count);
-            },
-            () => {},
-            setLoading
-        )
-    }, [domain, stat, page])
+    const {data, status} = useDeadlockedLeaderboard(domain ?? "overall", stat ?? "rank", page ?? 1);
 
     return <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
 
@@ -144,7 +124,16 @@ const DeadlockedLeaderboard = () => {
                 ]}
             />
 
-            {loading && (
+            <Box sx={{m: screenSize === ScreenSize.Mobile ? 0 : 3, mt: 0, width: "100%"}}>
+                <Paginator
+                    totalResults={data?.count ?? 0}
+                    rowsPerPage={100}
+                    page={page}
+                    baseUrl={`/deadlocked/stats/leaderboard/${domain}/${stat}`}
+                />
+            </Box>
+
+            {status === "pending" && (
                 <TableContainer
                     component={Paper}
                     sx={{
@@ -202,7 +191,7 @@ const DeadlockedLeaderboard = () => {
                 </TableContainer>
             )}
 
-            {(!loading && players.length > 0) && (
+            {(status === "success" && (data?.results.length ?? 0) > 0) && (
 
                 <TableContainer
                     component={Paper}
@@ -230,7 +219,7 @@ const DeadlockedLeaderboard = () => {
                             )}
                         </TableHead>
                         <TableBody>
-                            { players.map((player: LeaderboardEntry) => {
+                            { data?.results.map((player: LeaderboardEntry) => {
 
                                 return <StyledTableRow key={player.username}>
 
@@ -285,7 +274,7 @@ const DeadlockedLeaderboard = () => {
 
             <Box sx={{m: screenSize === ScreenSize.Mobile ? 0 : 3, mt: 0, width: "100%"}}>
                 <Paginator
-                    totalResults={totalPlayers}
+                    totalResults={data?.count ?? 0}
                     rowsPerPage={100}
                     page={page}
                     baseUrl={`/deadlocked/stats/leaderboard/${domain}/${stat}`}

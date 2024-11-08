@@ -26,6 +26,7 @@ import {AnyAction} from "@reduxjs/toolkit";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import {domainFormatting} from "../../components/base/Functions";
 import ImageBacking from "../../components/base/ImageBacking";
+import {useDeadlockedStatOfferings} from "../../hooks/deadlocked-stats";
 
 
 export interface StatCardProps {
@@ -83,35 +84,18 @@ const StatCard = (props: StatCardProps) => {
 
 const DeadlockedStats = () => {
 
-    const [statOfferings, setStatOfferings] = useState<StatOffering[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-
     const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
     const dispatch: Dispatch<AnyAction> = useAppDispatch();
 
-
-    useEffect(() => {
-
-        getHandler<Pagination<StatOffering>>(
-            "/api/dl/stats/offerings",
-            dispatch,
-            (response: AxiosResponse<Pagination<StatOffering>, any>) => {
-                setStatOfferings(response.data.results);
-            },
-            () => {},
-            setLoading
-        );
-
-    }, [dispatch])
-
+    const {data, status} = useDeadlockedStatOfferings();
 
     function convertOfferingsToCards() {
 
         let cards: {label: string, domain: string, offerings: string[]}[] = [];
 
-        statOfferings.map((statOffering: StatOffering) => {
+        data?.results.map((statOffering: StatOffering) => {
 
             const processedDomain = domainFormatting(statOffering.domain?.replaceAll("_", " ") ?? "", false);
 
@@ -157,13 +141,17 @@ const DeadlockedStats = () => {
             </Box>
 
             <Box>
-                {loading && (
+                {status === "pending" && (
                     <Stack direction="row" justifyContent="center">
                         <CircularProgress sx={{mt: 10}} />
                     </Stack>
                 )}
 
-                {!loading && (
+                {status === "error" && (
+                    <Alert severity="error">Unable to retrieve stat data.</Alert>
+                )}
+
+                {status === "success" && (
                     <Box
                         display="flex"
                         flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
