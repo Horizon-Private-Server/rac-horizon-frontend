@@ -49,3 +49,11 @@ export const getCustomMapVersionFile = (game: GameType, slug: string) => {
         responseType: "arraybuffer",
     });
 };
+
+export const getCustomMapMinimapImage = (game: GameType, slug: string) => {
+    const { mapsPath } = getCustomMapResourceInfo(game);
+
+    return axios.get<ArrayBuffer>(`${process.env.REACT_APP_HORIZON_CUSTOM_MAPS_DOMAIN}/${mapsPath}/${slug}.map`, {
+        responseType: "arraybuffer",
+    });
+};

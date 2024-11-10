@@ -40,6 +40,7 @@ import Setup from "./features/setup/Setup";
 import { DeadlockedCustomMaps } from "./features/deadlocked-custom-maps/DeadlockedCustomMaps";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import DeadlockedPlayerSearch from "./components/deadlocked-player-search/DeadlockedPlayerSearch";
+import { UYACustomMaps } from "./features/uya-custom-maps/UYACustomMaps";
 
 const queryClient = new QueryClient();
 
@@ -93,15 +94,7 @@ function App() {
                                 header="Horizon Private Server"
                                 headerAbbreviated="Horizon"
                                 navItems={navMenu}
-                                logo={
-                                    <img
-                                        src={horizonLogo}
-                                        alt="Horizon Logo"
-                                        width={240}
-                                        height={124}
-                                        style={{ margin: 0, padding: 0 }}
-                                    />
-                                }
+                                logo={<img src={horizonLogo} alt="Horizon Logo" width={240} height={124} style={{ margin: 0, padding: 0 }} />}
                             >
                                 <Routes>
                                     <Route path="/" element={<Home />} />
@@ -112,30 +105,22 @@ function App() {
                                     <Route path="/uya/stats" element={<UYAStats />} />
                                     <Route path="/uya/stats/details/:horizonId" element={<UYADetails />} />
                                     <Route path="/uya/stats/leaderboard/:domain/:stat" element={<UYALeaderboard />} />
+                                    <Route path="/uya/custom-maps" element={<UYACustomMaps />} />
                                     <Route path="/uya/online" element={<UYAOnline />} />
-                                    {/*<Route path="/uya/live" element={<UYALive />}/>*/}
+                                    <Route path="/uya/live" element={<UYALive />} />
                                     <Route path="/uya/game-history" element={<UYAGameHistory />} />
                                     <Route path="/uya/game-history/:gameId" element={<UYAGameDetails />} />
 
-                                    <Route
-                                        path="/deadlocked/stats/details/:horizonId"
-                                        element={<DeadlockedDetails />}
-                                    />
+                                    <Route path="/deadlocked/stats/details/:horizonId" element={<DeadlockedDetails />} />
                                     <Route path="/deadlocked/stats" element={<DeadlockedStats />} />
-                                    <Route
-                                        path="/deadlocked/stats/leaderboard/:domain/:stat"
-                                        element={<DeadlockedLeaderboard />}
-                                    />
+                                    <Route path="/deadlocked/stats/leaderboard/:domain/:stat" element={<DeadlockedLeaderboard />} />
                                     <Route path="/deadlocked/custom-maps" element={<DeadlockedCustomMaps />} />
                                     <Route path="/deadlocked/player-search" element={<DeadlockedPlayerSearch />} />
                                     {/*<Route path="/dl/games" element={<DeadlockedGames />}/>*/}
                                     {/*<Route path="/dl/game/:gameId" element={<DeadlockedGameDetails />}/>*/}
                                     {/*<Route path="/dl/custom/modes" element={<DeadlockedCustomModes />}/>*/}
                                     {/*<Route path="/dl/custom/modes/infected" element={<DeadlockedInfected />}/>*/}
-                                    <Route
-                                        path="/deadlocked/ccgg/:gameSeed"
-                                        element={<ControlledChaosGameGenertator />}
-                                    />
+                                    <Route path="/deadlocked/ccgg/:gameSeed" element={<ControlledChaosGameGenertator />} />
                                     <Route path="/survival" element={<DeadlockedSurvival />} />
                                     <Route path="/survival/orxon" element={<SurvivalOrxon />} />
                                     <Route path="/survival/mountain-pass" element={<SurvivalMountainPass />} />
@@ -161,11 +146,10 @@ function App() {
                                             maxWidth: screenSize === ScreenSize.Desktop ? "60%" : "90%",
                                         }}
                                     >
-                                        Horizon Private Server nor any of its staff, developers or members are
-                                        affiliated with Sony Interactive Entertainment (SIE), Insomniac Games, Idol
-                                        Minds or Mass Media Inc. Ratchet and Clank™ and PlayStation™ are registered
-                                        trademarks that belong to SIE. Horizon does not condone or support piracy of any
-                                        kind. Please support the official game releases.
+                                        Horizon Private Server nor any of its staff, developers or members are affiliated with Sony Interactive
+                                        Entertainment (SIE), Insomniac Games, Idol Minds or Mass Media Inc. Ratchet and Clank™ and PlayStation™ are
+                                        registered trademarks that belong to SIE. Horizon does not condone or support piracy of any kind. Please
+                                        support the official game releases.
                                     </Typography>
                                 </Stack>
                             </Nav>

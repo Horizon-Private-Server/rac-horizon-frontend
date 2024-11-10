@@ -1,13 +1,12 @@
 import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
-import { CustomMapIndexEntry, useCustomMapBackgroundImage, useGetCustomMapVersion } from "../../hooks/custom-maps";
+import { CustomMapIndexEntry, useCustomMapBackgroundImage } from "../../hooks/custom-maps";
 import { Download } from "@mui/icons-material";
 import { GameType } from "../../constants/game";
 import { WaitFor } from "./WaitFor";
 import DeadlockedLogo from "../../assets/img/dl-logo.webp";
-import UYALogo from "../../assets/img/uya-boxart.jpg";
-import RAC3Logo from "../../assets/img/rc3-boxart.jpg";
+import UYALogo from "../../assets/img/uya-logo.webp";
+import RAC3Logo from "../../assets/img/rc3-logo.webp";
 import { useMemo } from "react";
-import { CustomGameModeNames } from "../../constants/game-mode";
 
 type Props = {
     game: GameType;
@@ -16,9 +15,7 @@ type Props = {
 
 export const CustomMapCard = ({ game, entry: { slug, name, version } }: Props) => {
     const customMapBackground = useCustomMapBackgroundImage(game, slug);
-    const customMapVersionFile = useGetCustomMapVersion(game, slug);
     const { data: background, status, error } = customMapBackground;
-    const { data: versionFile } = customMapVersionFile;
 
     const imageData = useMemo(() => {
         if (status === "success" && background) return background;
@@ -44,9 +41,6 @@ export const CustomMapCard = ({ game, entry: { slug, name, version } }: Props) =
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary" }}>
                     Version: {version}
-                </Typography>
-                <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                    Custom Mode: {(versionFile && CustomGameModeNames[versionFile?.forcedCustomMode]) ?? "None"}
                 </Typography>
             </CardContent>
             <CardActions>

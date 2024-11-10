@@ -1,13 +1,13 @@
 import React from "react";
-import {Box, Grid2, Stack} from "@mui/material";
+import { Box, Grid2, Stack } from "@mui/material";
 
-import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
+import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 
 import GamepadIcon from "@mui/icons-material/Gamepad";
 
-import {SectionCard, SectionCardProps} from "../../components/base/SectionCard";
-import {AddLocationAlt, Handyman, Search} from "@mui/icons-material";
-import {generateRandomString} from "../../components/utils/functions";
+import { SectionCard, SectionCardProps } from "../../components/base/SectionCard";
+import { AddLocationAlt, Handyman, Search } from "@mui/icons-material";
+import { generateRandomString } from "../../components/utils/functions";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import ImageBacking from "../../components/base/ImageBacking";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
@@ -31,7 +31,8 @@ const DeadlockedHome = () => {
         },
         {
             label: "Stats & Leaderboards",
-            description: "Track your progress and see how you compare to other players. This leaderboard is more comprehensive than the leaderboard found in-game!",
+            description:
+                "Track your progress and see how you compare to other players. This leaderboard is more comprehensive than the leaderboard found in-game!",
             url: "/deadlocked/stats",
             icon: <EmojiEventsIcon />,
         },
@@ -52,7 +53,7 @@ const DeadlockedHome = () => {
             description: "View a list of all games played on Horizon!",
             url: "/deadlocked/game-history",
             icon: <SportsEsportsIcon />,
-            enabled: false
+            enabled: false,
         },
 
         // {
@@ -82,24 +83,28 @@ const DeadlockedHome = () => {
     }
 
     return (
-        <>
-            <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
-                {/* FIXME This is CSS hackery that "works" for the time being. */}
-                <Box sx={{height: `calc(${screenSize === ScreenSize.Mobile ? 180 : 100}vh - 280px)`}}>
+        <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
+            {/* FIXME This is CSS hackery that "works" for the time being. */}
+            <Box sx={{ height: `calc(${screenSize === ScreenSize.Mobile ? 180 : 100}vh - 280px)` }}>
                 <Stack direction="column">
-                    <Grid2 sx={{p: 3}} spacing={3} container>
+                    <Grid2 sx={{ p: 3 }} spacing={3} container>
                         {sections.map((section: SectionCardProps, index: number) => {
                             return (
-                                <Grid2 key={index} size={{xs: numCols}}>
-                                    <SectionCard label={section.label} description={section.description} url={section.url} icon={section.icon} enabled={section.enabled} />
+                                <Grid2 key={index} size={{ xs: numCols }}>
+                                    <SectionCard
+                                        label={section.label}
+                                        description={section.description}
+                                        url={section.url}
+                                        icon={section.icon}
+                                        enabled={section.enabled}
+                                    />
                                 </Grid2>
                             );
                         })}
                     </Grid2>
                 </Stack>
-                </Box>
-            </ImageBacking>
-        </>
+            </Box>
+        </ImageBacking>
     );
 };
 
