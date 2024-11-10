@@ -1,4 +1,4 @@
-import {useQuery, keepPreviousData} from "@tanstack/react-query";
+import {useQuery, keepPreviousData, useQueries} from "@tanstack/react-query";
 import {getDeadlockedLeaderboard, getDeadlockedPlayerDetails, getDeadlockedStatOfferings, listDeadlockedPlayersByNameSearch} from "../api/dao/deadlocked-stats";
 
 
@@ -43,5 +43,24 @@ export const useDeadlockedPlayerSearch = (query: string, page: number) => {
         staleTime: Infinity,
         placeholderData: keepPreviousData,
         select: ({ data }) => data
+    });
+};
+
+export const useAggregatedDeadlockedPlayerDetails = (playerIds: number[]) => {
+
+    return useQueries({
+        queries: playerIds.map((playerId: number) => {
+            return {
+                queryKey: ["DEADLOCKED_PLAYER_DETAILS", playerId],
+                queryFn: () => getDeadlockedPlayerDetails(playerId),
+                staleTime: 12000000
+            }
+        }),
+        combine: (results) => {
+            return {
+                data: results.map((result) => result.data?.data),
+                pending: results.some((result) => result.isPending)
+            }
+        }
     });
 };

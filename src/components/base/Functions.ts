@@ -1,3 +1,5 @@
+import {Optional} from "../../utils/Interfaces";
+
 export function formatTime(time: number, shorten: boolean = false) {
     let days = Math.floor(time / 86400);
     time -= days * 86400;
@@ -158,3 +160,61 @@ export function statFormatting(stat: string, mobile: boolean): string {
 export function randomChoice<T>(arr: T[]): T {
     return arr[Math.floor(arr.length * Math.random())];
 }
+
+export function addNumericObjects<T extends {[key: string]: any}>(a: Optional<T>, b: Optional<T>, ignore: string[] = []): Optional<T> {
+
+    if (a === null && b === null) {
+        return null;
+    }
+
+    if (a === null && b !== null) {
+        return {...b} as T;
+    }
+
+    if (a !== null && b === null) {
+        return {...a} as T;
+    }
+
+    if (a !== null && b !== null)
+    {
+
+        let c = {};
+
+        for (let prop in a) {
+            if (a.hasOwnProperty(prop) && b.hasOwnProperty(prop)) {
+
+                if (ignore.includes(prop)) {
+
+                    // TODO figure out the correct way to type these.
+                    // @ts-ignore
+                    c[prop] = a[prop];
+                    continue;
+                }
+
+                if (typeof b[prop] === "number" && typeof b[prop] === "number") {
+                    // @ts-ignore
+                    c[prop] = a[prop] + b[prop];
+                }
+                else if (typeof b[prop] === "object" && typeof b[prop] === "object") {
+                    // @ts-ignore
+                    c[prop] = addNumericObjects(a[prop], b[prop], ignore);
+                }
+            }
+        }
+        return c as T;
+    }
+
+    return null;
+}
+
+// TODO Implement aggregated data
+
+//     const data = useAggregatedDeadlockedPlayerDetails([12049, 14279])
+//
+//     let aggregate: Optional<DeadlockedPlayerDetails> = null;
+//
+//     if (data != null) {
+//         data.data.forEach((item) => {
+//             aggregate = addNumericObjects<DeadlockedPlayerDetails>(aggregate, item ?? null, ["id", "username", "rank"])
+//         })
+//     }
