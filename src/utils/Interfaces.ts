@@ -442,9 +442,12 @@ export interface DeadlockedTrainingStats {
     cycle_fusion_accuracy: number;
 }
 
-export interface DeadlockedPlayerDetails {
-    horizon_id: number;
+export interface PlayerBase {
+    id: number;
     username: string;
+}
+
+export interface DeadlockedPlayerDetails extends PlayerBase{
 
     overall_stats: DeadlockedOverallStats;
     deathmatch_stats: DeadlockedDeathmatchStats;
@@ -522,9 +525,7 @@ export interface UyaCTFStatsSchema extends UyaStatsBase {
     avg_flag_saves: number;
 }
 
-export interface UYAPlayerDetails {
-    horizon_id: number;
-    username: string;
+export interface UYAPlayerDetails extends PlayerBase {
 
     overall_stats: UyaOverallStatsSchema;
     deathmatch_stats: UyaDeathmatchStatsSchema;
