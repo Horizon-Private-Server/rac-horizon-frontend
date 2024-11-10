@@ -7,6 +7,8 @@ import DeadlockedLogo from "../../assets/img/dl-logo.webp";
 import UYALogo from "../../assets/img/uya-logo.webp";
 import RAC3Logo from "../../assets/img/rc3-logo.webp";
 import { useMemo } from "react";
+import { getCustomMapResourceInfo } from "../../api/dao/custom-maps";
+import { downloadFile } from "../../utils/file";
 
 type Props = {
     game: GameType;
@@ -16,6 +18,16 @@ type Props = {
 export const CustomMapCard = ({ game, entry: { slug, name, version } }: Props) => {
     const customMapBackground = useCustomMapBackgroundImage(game, slug);
     const { data: background, status, error } = customMapBackground;
+
+    const onDownload = () => {
+        const { mapsPath, mapsRegion } = getCustomMapResourceInfo(game);
+
+        // UYA custom maps use .ntsc or .pal in the zip file name, DL does not.
+        const gameType = game === GameType.DL_NTSC ? "" : `.${mapsRegion}`;
+
+        const url = `${process.env.REACT_APP_HORIZON_CUSTOM_MAPS_DOMAIN}/${mapsPath}/${slug}${gameType}.zip?v=${version}`;
+        downloadFile(url, `${slug}.zip`);
+    };
 
     const imageData = useMemo(() => {
         if (status === "success" && background) return background;
@@ -44,7 +56,7 @@ export const CustomMapCard = ({ game, entry: { slug, name, version } }: Props) =
                 </Typography>
             </CardContent>
             <CardActions>
-                <IconButton>
+                <IconButton onClick={onDownload}>
                     <Download />
                 </IconButton>
             </CardActions>

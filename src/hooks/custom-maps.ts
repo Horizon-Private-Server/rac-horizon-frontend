@@ -5,7 +5,6 @@ import { read_u16, read_u32, read_u8, Sink } from "ts-binary";
 import { generatePNG } from "../utils/png";
 import { CustomGameModeDL, CustomGameModeUYA } from "../constants/game-mode";
 import { readBlockAsString } from "../utils/binary";
-import { version } from "os";
 import { PIF2 } from "../utils/pif2";
 
 export type CustomMapIndexEntry = {

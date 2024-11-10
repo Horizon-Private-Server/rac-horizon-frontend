@@ -1,10 +1,10 @@
 import axios from "axios";
 import { GameType } from "../../constants/game";
-import { Sink } from "ts-binary";
 
 type CustomMapResourceInfo = {
     indexFile: string;
     mapsPath: string;
+    mapsRegion: string;
 };
 
 export const getCustomMapResourceInfo = (game: GameType): CustomMapResourceInfo => {
@@ -13,17 +13,20 @@ export const getCustomMapResourceInfo = (game: GameType): CustomMapResourceInfo 
             return {
                 indexFile: "index_uya_ntsc.txt",
                 mapsPath: "uya",
+                mapsRegion: "ntsc",
             };
         case GameType.UYA_PAL:
             return {
                 indexFile: "index_uya_pal.txt",
                 mapsPath: "uya",
+                mapsRegion: "pal",
             };
         default:
         case GameType.DL_NTSC:
             return {
                 indexFile: "index_dl_ntsc.txt",
                 mapsPath: "dl",
+                mapsRegion: "ntsc",
             };
     }
 };
