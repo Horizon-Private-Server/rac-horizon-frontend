@@ -447,7 +447,7 @@ export interface PlayerBase {
     username: string;
 }
 
-export interface DeadlockedPlayerDetails extends PlayerBase{
+export interface DeadlockedPlayerDetails extends PlayerBase {
 
     overall_stats: DeadlockedOverallStats;
     deathmatch_stats: DeadlockedDeathmatchStats;

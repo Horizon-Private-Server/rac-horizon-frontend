@@ -1,15 +1,16 @@
 import React from "react";
-import { Box, Grid } from "@mui/material";
+import {Box, Grid2, Stack} from "@mui/material";
 
-import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
+import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
 
 import GamepadIcon from "@mui/icons-material/Gamepad";
 
-import { SectionCard, SectionCardProps } from "../../components/base/SectionCard";
-import { AddLocationAlt, Handyman } from "@mui/icons-material";
-import { generateRandomString } from "../../components/utils/functions";
+import {SectionCard, SectionCardProps} from "../../components/base/SectionCard";
+import {AddLocationAlt, Handyman, Search} from "@mui/icons-material";
+import {generateRandomString} from "../../components/utils/functions";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import ImageBacking from "../../components/base/ImageBacking";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 
 const DeadlockedHome = () => {
     const { width } = useWindowDimensions();
@@ -18,8 +19,7 @@ const DeadlockedHome = () => {
     const sections: SectionCardProps[] = [
         {
             label: "Survival Guides",
-            description:
-                "Track your progress and see how you compare to other players. This leaderboard is more comprehensive than the leaderboard found in-game!",
+            description: "Learn the basics for survival and explore advanced strategies developed by the community.",
             url: "/survival",
             icon: <GamepadIcon />,
         },
@@ -31,7 +31,7 @@ const DeadlockedHome = () => {
         },
         {
             label: "Stats & Leaderboards",
-            description: "Track your progress and view the Horizon Leaderboards.",
+            description: "Track your progress and see how you compare to other players. This leaderboard is more comprehensive than the leaderboard found in-game!",
             url: "/deadlocked/stats",
             icon: <EmojiEventsIcon />,
         },
@@ -41,18 +41,20 @@ const DeadlockedHome = () => {
             url: "/deadlocked/custom-maps",
             icon: <AddLocationAlt />,
         },
-        // {
-        //     label: "Game History",
-        //     description: "View a list of all games played on Horizon!",
-        //     url: "/dl/games",
-        //     icon: <SportsEsportsIcon />
-        // },
-        // {
-        //     label: "Setup Guide",
-        //     description: "View the Horizon setup guides to get you started with PS2, PCSX2 and installing custom maps.",
-        //     url: "/setup",
-        //     icon: <StartIcon />
-        // },
+        {
+            label: "Player Search",
+            description: "Search for a Deadlocked player by name.",
+            url: "/deadlocked/player-search",
+            icon: <Search />,
+        },
+        {
+            label: "Game History",
+            description: "View a list of all games played on Horizon!",
+            url: "/deadlocked/game-history",
+            icon: <SportsEsportsIcon />,
+            enabled: false
+        },
+
         // {
         //     label: "FAQ",
         //     description: "The Deadlocked/Gladiator team get a lot of the same questions, so much so that we started writing them down. If you're just joining the Deadlocked community and have a question, there's a good chance it's in the Deadlocked FAQ!",
@@ -64,18 +66,6 @@ const DeadlockedHome = () => {
         //     description: "Explore the casual and competitive custom game modes only available on Horizon. Special thanks to Dnawrkshp for leading development.",
         //     url: "/dl/custom/modes",
         //     icon: <GamepadIcon />
-        // },
-        // {
-        //     label: "Custom Maps",
-        //     description: "Explore the collection of custom maps only available on Horizon. Special thanks to Badger41 for leading custom map development.",
-        //     url: "/dl/custom/maps",
-        //     icon: <SatelliteIcon />
-        // },
-        // {
-        //     label: "Survival",
-        //     description: "A guide for Horizon's most ambitions custom game mode.",
-        //     url: "/dl/survival",
-        //     icon: <LocalFireDepartmentIcon />
         // },
     ];
 
@@ -92,25 +82,24 @@ const DeadlockedHome = () => {
     }
 
     return (
-        <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
-            <Box
-                sx={{ width: "100%", p: 4, height: "calc(100vh - 280px)" }}
-                display="flex"
-                flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}
-                justifyContent="flex-start"
-                flexWrap="wrap"
-            >
-                <Grid sx={{ p: 0 }} container>
-                    {sections.map((section) => {
-                        return (
-                            <Grid key={section.label} xs={numCols} sx={{ p: 1 }} item>
-                                <SectionCard label={section.label} description={section.description} url={section.url} icon={section.icon} />
-                            </Grid>
-                        );
-                    })}
-                </Grid>
-            </Box>
-        </ImageBacking>
+        <>
+            <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
+                {/* FIXME This is CSS hackery that "works" for the time being. */}
+                <Box sx={{height: `calc(${screenSize === ScreenSize.Mobile ? 180 : 100}vh - 280px)`}}>
+                <Stack direction="column">
+                    <Grid2 sx={{p: 3}} spacing={3} container>
+                        {sections.map((section: SectionCardProps, index: number) => {
+                            return (
+                                <Grid2 key={index} size={{xs: numCols}}>
+                                    <SectionCard label={section.label} description={section.description} url={section.url} icon={section.icon} enabled={section.enabled} />
+                                </Grid2>
+                            );
+                        })}
+                    </Grid2>
+                </Stack>
+                </Box>
+            </ImageBacking>
+        </>
     );
 };
 

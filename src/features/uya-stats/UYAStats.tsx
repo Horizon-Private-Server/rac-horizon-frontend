@@ -136,25 +136,17 @@ const UYAStats = () => {
 
     return <ImageBacking backgroundUrl={UYA_BACKGROUND_IMAGES}>
         <Box>
+            <Alert severity="info" sx={{mb: 2}}>
+                UYA Stats and Leaderboards are currently in BETA.
+                If you experience any issues, please report them to @WrenchDL or @FourBolt in the Horizon Discord Server.
+            </Alert>
+
             <HorizonBreadcrumbs
                 paths={[
                     {text: "UYA", route: "/uya"},
                     {text: "Stats", route: "/uya/stats"}
                 ]}
             />
-
-            <Box
-                sx={{
-                    ml: screenSize === ScreenSize.Mobile ? 0 : 3,
-                    mr: screenSize === ScreenSize.Mobile ? 0 : 10,
-                    backgroundColor: "rgba(0, 0, 0, 0.0)",
-                }}
-            >
-                <Alert severity="info" sx={{mb: 2}}>
-                    UYA Stats and Leaderboards are currently in BETA.
-                    If you experience any issues, please report them to @WrenchDL or @FourBolt in the Horizon Discord Server.
-                </Alert>
-            </Box>
 
             <Box>
                 {loading && (

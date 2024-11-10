@@ -120,25 +120,18 @@ const DeadlockedStats = () => {
     return <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
 
         <Box>
+
+            <Alert severity="info" sx={{mb: 2}}>
+                Deadlocked Stats and Leaderboards are currently in BETA.
+                If you experience any issues, please report them to @WrenchDL or @FourBolt in the Horizon Discord Server.
+            </Alert>
+
             <HorizonBreadcrumbs
                 paths={[
                     {text: "Deadlocked", route: "/deadlocked"},
                     {text: "Stats", route: "/deadlocked/stats"}
                 ]}
             />
-
-            <Box
-                sx={{
-                    ml: screenSize === ScreenSize.Mobile ? 0 : 3,
-                    mr: screenSize === ScreenSize.Mobile ? 0 : 10,
-                    backgroundColor: "rgba(0, 0, 0, 0.0)",
-                }}
-            >
-                <Alert severity="info" sx={{mb: 2}}>
-                    Deadlocked Stats and Leaderboards are currently in BETA.
-                    If you experience any issues, please report them to @WrenchDL or @FourBolt in the Horizon Discord Server.
-                </Alert>
-            </Box>
 
             <Box>
                 {status === "pending" && (

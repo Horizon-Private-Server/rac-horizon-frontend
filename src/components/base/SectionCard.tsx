@@ -36,12 +36,12 @@ export const SectionCard = ({label, description, url, icon, enabled = true}: Sec
                         <Stack direction="column" justifyContent="center" marginRight={4}>
                             {icon}
                         </Stack>
-                        <Typography fontWeight="bold" fontSize={20}>{label}</Typography>
+                        <Typography variant="h6" noWrap>{label}</Typography>
                     </Stack>
                     <Box sx={{mb: 1}}/>
                     <Divider variant="inset"/>
                     <Box sx={{mb: 2}}/>
-                    <Typography height="12vh" flexWrap="wrap">{description}</Typography>
+                    <Typography height="150px" flexWrap="wrap">{description}</Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
@@ -56,13 +56,13 @@ export const SectionCard = ({label, description, url, icon, enabled = true}: Sec
                 <Stack direction="column" justifyContent="center" marginRight={4}>
                     {icon}
                 </Stack>
-                <Typography fontWeight="bold" fontSize={20}>{label}</Typography>
+                <Typography variant="h6" noWrap>{label}</Typography>
             </Stack>
             <Box sx={{mb: 1}}/>
             <Divider variant="inset"/>
             <Box sx={{mb: 2}}/>
-            <Typography height="9vh" flexWrap="wrap">{description}</Typography>
-            <Typography variant="overline" sx={{mt: -10}}>COMING SOON</Typography>
+            <Typography height="150px" flexWrap="wrap">{description}</Typography>
+            <Typography sx={{mt: -4}}>COMING SOON</Typography>
 
 
         </CardContent>

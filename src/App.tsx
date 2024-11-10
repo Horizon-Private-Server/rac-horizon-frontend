@@ -39,6 +39,7 @@ import ControlledChaosGameGenertator from "./features/game-generators/Controlled
 import Setup from "./features/setup/Setup";
 import { DeadlockedCustomMaps } from "./features/deadlocked-custom-maps/DeadlockedCustomMaps";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import DeadlockedPlayerSearch from "./components/deadlocked-player-search/DeadlockedPlayerSearch";
 
 const queryClient = new QueryClient();
 
@@ -126,6 +127,7 @@ function App() {
                                         element={<DeadlockedLeaderboard />}
                                     />
                                     <Route path="/deadlocked/custom-maps" element={<DeadlockedCustomMaps />} />
+                                    <Route path="/deadlocked/player-search" element={<DeadlockedPlayerSearch />} />
                                     {/*<Route path="/dl/games" element={<DeadlockedGames />}/>*/}
                                     {/*<Route path="/dl/game/:gameId" element={<DeadlockedGameDetails />}/>*/}
                                     {/*<Route path="/dl/custom/modes" element={<DeadlockedCustomModes />}/>*/}
