@@ -66,6 +66,10 @@ export const RatioRow = ({label, n, d}: {label: string | JSX.Element, n: number,
         ratio = 0.00;
     }
 
+    if (!isFinite(ratio)) {
+        ratio = parseFloat(n.toString());
+    }
+
     return <StatRows
         label={label}
         value={
