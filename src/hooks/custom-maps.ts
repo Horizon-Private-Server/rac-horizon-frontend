@@ -72,7 +72,6 @@ export const useCustomMapsIndex = (game: GameType) => {
     return useQuery({
         queryKey: ["CUSTOM_MAPS_INDEX", game],
         queryFn: () => getCustomMapsIndex(game),
-        refetchOnWindowFocus: false,
         // Since the index is returned as raw text, we have to parse it manually.
         select: ({ data }) => {
             let entries: CustomMapIndexEntry[] = data.split("\n").map((entry) => {
@@ -88,21 +87,11 @@ export const useCustomMapsIndex = (game: GameType) => {
     });
 };
 
-export const useCustomMapBackgroundImage = (game: GameType, slug: string) => {
+export const useCustomMapBackgroundData = (game: GameType, slug: string) => {
     return useQuery({
         queryKey: ["CUSTOM_MAP_BACKGROUND_IMAGES", game, slug],
         queryFn: () => getCustomMapBackgroundImage(game, slug),
-        refetchOnWindowFocus: false,
-        retry: false,
-        select: ({ data }) => {
-            const sink = Sink(data);
-            const height = read_u32(sink);
-            const width = read_u32(sink);
-            const colors = new Uint8ClampedArray(data, 0x10, data.byteLength - 0x10);
-            const img = generatePNG(width, height, colors, false);
-
-            return img;
-        },
+        select: ({ data }) => data,
     });
 };
 
@@ -110,8 +99,6 @@ export const useGetCustomMapVersion = (game: GameType, slug: string) => {
     return useQuery({
         queryKey: ["CUSTOM_MAP_VERSION_FILES", game, slug],
         queryFn: () => getCustomMapVersionFile(game, slug),
-        refetchOnWindowFocus: false,
-        retry: false,
         select: ({ data }) => {
             return readVersionFile(game, data);
         },
@@ -122,8 +109,6 @@ export const useGetCustomMapMinimap = (game: GameType, slug: string) => {
     return useQuery({
         queryKey: ["CUSTOM_MAP_MINIMAP_IMAGES", game, slug],
         queryFn: () => getCustomMapMinimapImage(game, slug),
-        refetchOnWindowFocus: false,
-        retry: false,
         select: ({ data }) => {
             const img = new PIF2(Sink(data));
             return img;
@@ -136,8 +121,6 @@ export const useGetAllCustomMapVersions = (game: GameType, slugs: string[]) => {
         queries: slugs.map((slug) => ({
             queryKey: ["CUSTOM_MAP_VERSION_FILES", game, slug],
             queryFn: () => getCustomMapVersionFile(game, slug),
-            refetchOnWindowFocus: false,
-            retry: false,
             select: ({ data }: { data: ArrayBuffer }) => {
                 const versionInfo = readVersionFile(game, data);
 

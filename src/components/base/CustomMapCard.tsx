@@ -1,5 +1,5 @@
 import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
-import { CustomMapIndexEntry, useCustomMapBackgroundImage } from "../../hooks/custom-maps";
+import { CustomMapIndexEntry, useCustomMapBackgroundData } from "../../hooks/custom-maps";
 import { Download } from "@mui/icons-material";
 import { GameType } from "../../constants/game";
 import { WaitFor } from "./WaitFor";
@@ -9,6 +9,8 @@ import RAC3Logo from "../../assets/img/rc3-logo.webp";
 import { useMemo } from "react";
 import { getCustomMapResourceInfo } from "../../api/dao/custom-maps";
 import { downloadFile } from "../../utils/file";
+import { read_u32, Sink } from "ts-binary";
+import { generatePNG } from "../../utils/png";
 
 type Props = {
     game: GameType;
@@ -16,7 +18,7 @@ type Props = {
 };
 
 export const CustomMapCard = ({ game, entry: { slug, name, version } }: Props) => {
-    const customMapBackground = useCustomMapBackgroundImage(game, slug);
+    const customMapBackground = useCustomMapBackgroundData(game, slug);
     const { data: background, status, error } = customMapBackground;
 
     const onDownload = () => {
@@ -30,15 +32,23 @@ export const CustomMapCard = ({ game, entry: { slug, name, version } }: Props) =
     };
 
     const imageData = useMemo(() => {
-        if (status === "success" && background) return background;
+        if (status === "success" && background) {
+            const sink = Sink(background);
+            const height = read_u32(sink);
+            const width = read_u32(sink);
+            const colors = new Uint8ClampedArray(background, 0x10, background.byteLength - 0x10);
+            const img = generatePNG(width, height, colors, false);
+
+            return img;
+        }
 
         switch (game) {
             case GameType.DL_NTSC:
                 return DeadlockedLogo;
             case GameType.UYA_NTSC:
-                return UYALogo; // placeholder until I get a better logo
+                return UYALogo;
             case GameType.UYA_PAL:
-                return RAC3Logo; // placeholder until I get a better logo
+                return RAC3Logo;
         }
     }, [background, status, error]);
 

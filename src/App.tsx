@@ -42,7 +42,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import DeadlockedPlayerSearch from "./components/deadlocked-player-search/DeadlockedPlayerSearch";
 import { UYACustomMaps } from "./features/uya-custom-maps/UYACustomMaps";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 1000 * 60 * 20, // 20 minutes
+            retry: false,
+            refetchOnWindowFocus: false,
+        },
+    },
+});
 
 export const ThemeContext = React.createContext({
     theme: "",
