@@ -1,8 +1,13 @@
 import {Dispatch} from "react";
 import {AnyAction} from "@reduxjs/toolkit";
 
-import axios, {AxiosResponse} from "axios";
+import axios, {AxiosError, AxiosResponse} from "axios";
 import {ResponseErrorHandler, ResponseSuccessHandler, Setter} from "./Interfaces";
+
+
+export function buildGetRequest<ResponseType>(route: string, timeout: number = 5000): Promise<AxiosResponse<ResponseType, any>> {
+    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}${route}`, {timeout: timeout})
+}
 
 
 export function getHandler<ResponseType>(

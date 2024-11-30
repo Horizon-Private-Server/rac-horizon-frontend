@@ -1,7 +1,6 @@
 import React from "react";
 
 import {Typography, Box, Stack, CardContent, Card, CardActionArea, Divider, Paper} from "@mui/material";
-import useWindowDimensions from "../utils/WindowDimensions";
 
 import { useNavigate } from "react-router-dom";
 
@@ -10,42 +9,64 @@ export interface SectionCardProps {
     description: string;
     url: string;
     icon: JSX.Element;
+    enabled?: boolean;
 }
 
-export const SectionCard = (props: SectionCardProps) => {
+export const SectionCard = ({label, description, url, icon, enabled = true}: SectionCardProps) => {
 
     const navigate = useNavigate();
 
-    const {label, description, url, icon} = props;
-
-    return <Card component={Paper} sx={{maxWidth: "90vw"}}>
-        <CardActionArea
-            onClick={() => {
-                if (url.includes("http://") || url.includes("https://")) {
-                    window.open(url, "_blank", "noreferrer");
-                }
-                else {
-                    navigate(url);
-                }
-            }}
-        >
-            <CardContent>
-                <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                >
-                    <Stack direction="column" justifyContent="center" marginRight={4}>
-                        {icon}
+    if (enabled) {
+        return <Card component={Paper} sx={{maxWidth: "90vw"}}>
+            <CardActionArea
+                onClick={() => {
+                    if (url.includes("http://") || url.includes("https://")) {
+                        window.open(url, "_blank", "noreferrer");
+                    }
+                    else {
+                        navigate(url);
+                    }
+                }}
+            >
+                <CardContent>
+                    <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                    >
+                        <Stack direction="column" justifyContent="center" marginRight={4}>
+                            {icon}
+                        </Stack>
+                        <Typography variant="h6" noWrap>{label}</Typography>
                     </Stack>
-                    <Typography fontWeight="bold" fontSize={20}>{label}</Typography>
+                    <Box sx={{mb: 1}}/>
+                    <Divider variant="inset"/>
+                    <Box sx={{mb: 2}}/>
+                    <Typography height="150px" flexWrap="wrap">{description}</Typography>
+                </CardContent>
+            </CardActionArea>
+        </Card>
+    }
+
+    return <Card component={Paper} sx={{maxWidth: "90vw", opacity: 0.65}}>
+        <CardContent>
+            <Stack
+                direction="row"
+                justifyContent="space-between"
+            >
+                <Stack direction="column" justifyContent="center" marginRight={4}>
+                    {icon}
                 </Stack>
-                <Box sx={{mb: 1}}/>
-                <Divider variant="inset"/>
-                <Box sx={{mb: 2}}/>
-                <Typography height="12vh" flexWrap="wrap">{description}</Typography>
-            </CardContent>
-        </CardActionArea>
-    </Card>;
+                <Typography variant="h6" noWrap>{label}</Typography>
+            </Stack>
+            <Box sx={{mb: 1}}/>
+            <Divider variant="inset"/>
+            <Box sx={{mb: 2}}/>
+            <Typography height="150px" flexWrap="wrap">{description}</Typography>
+            <Typography sx={{mt: -4}}>COMING SOON</Typography>
+
+
+        </CardContent>
+    </Card>
 }
 
 

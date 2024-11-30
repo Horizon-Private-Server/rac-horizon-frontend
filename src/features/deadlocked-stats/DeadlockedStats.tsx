@@ -7,7 +7,7 @@ import {
     Card,
     Divider,
     Button,
-    CircularProgress
+    CircularProgress, Alert
 } from "@mui/material";
 
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
@@ -26,6 +26,7 @@ import {AnyAction} from "@reduxjs/toolkit";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import {domainFormatting} from "../../components/base/Functions";
 import ImageBacking from "../../components/base/ImageBacking";
+import {useDeadlockedStatOfferings} from "../../hooks/deadlocked-stats";
 
 
 export interface StatCardProps {
@@ -83,35 +84,18 @@ const StatCard = (props: StatCardProps) => {
 
 const DeadlockedStats = () => {
 
-    const [statOfferings, setStatOfferings] = useState<StatOffering[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-
     const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
     const dispatch: Dispatch<AnyAction> = useAppDispatch();
 
-
-    useEffect(() => {
-
-        getHandler<Pagination<StatOffering>>(
-            "/api/dl/stats/offerings",
-            dispatch,
-            (response: AxiosResponse<Pagination<StatOffering>, any>) => {
-                setStatOfferings(response.data.results);
-            },
-            () => {},
-            setLoading
-        );
-
-    }, [dispatch])
-
+    const {data, status} = useDeadlockedStatOfferings();
 
     function convertOfferingsToCards() {
 
         let cards: {label: string, domain: string, offerings: string[]}[] = [];
 
-        statOfferings.map((statOffering: StatOffering) => {
+        data?.results.map((statOffering: StatOffering) => {
 
             const processedDomain = domainFormatting(statOffering.domain?.replaceAll("_", " ") ?? "", false);
 
@@ -136,6 +120,12 @@ const DeadlockedStats = () => {
     return <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
 
         <Box>
+
+            <Alert severity="info" sx={{mb: 2}}>
+                Deadlocked Stats and Leaderboards are currently in BETA.
+                If you experience any issues, please report them to @WrenchDL or @FourBolt in the Horizon Discord Server.
+            </Alert>
+
             <HorizonBreadcrumbs
                 paths={[
                     {text: "Deadlocked", route: "/deadlocked"},
@@ -144,13 +134,17 @@ const DeadlockedStats = () => {
             />
 
             <Box>
-                {loading && (
+                {status === "pending" && (
                     <Stack direction="row" justifyContent="center">
                         <CircularProgress sx={{mt: 10}} />
                     </Stack>
                 )}
 
-                {!loading && (
+                {status === "error" && (
+                    <Alert severity="error">Unable to retrieve stat data.</Alert>
+                )}
+
+                {status === "success" && (
                     <Box
                         display="flex"
                         flexDirection={screenSize === ScreenSize.Desktop ? "row" : "column"}

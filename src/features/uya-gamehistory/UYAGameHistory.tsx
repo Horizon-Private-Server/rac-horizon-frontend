@@ -1,9 +1,10 @@
 import React, {Dispatch, useEffect, useState} from "react";
 
 import {
+    Alert,
     Box,
     Link,
-    Paper,
+    Paper, Stack,
     Table,
     TableBody,
     TableCell,
@@ -104,7 +105,13 @@ const UYAGameHistory = () => {
     }, [domain, stat, page])
 
     return <ImageBacking backgroundUrl={UYA_BACKGROUND_IMAGES}>
+
         <Box sx={{width: screenSize === ScreenSize.Mobile ? "100%" : "calc(100% - 50px)"}}>
+
+            <Alert severity="info" sx={{mb: 2, mr: "-50px"}}>
+                UYA Game History is currently in BETA.
+                If you experience any issues, please report them to @WrenchDL or @FourBolt in the Horizon Discord Server.
+            </Alert>
 
             <HorizonBreadcrumbs
                 paths={[

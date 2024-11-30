@@ -6,9 +6,7 @@ import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../compo
 
 import {useParams} from "react-router-dom";
 
-
 import { styled } from "@mui/material/styles";
-import { makeStyles, createStyles } from "@mui/styles"
 
 import { Stack } from "@mui/system";
 
@@ -24,36 +22,6 @@ import { LoadableRow, LoadableValue } from "../../components/base/LoadableRow";
 import { tableCellClasses } from '@mui/material/TableCell';
 import NotFoundCard from "../../components/base/NotFoundCard";
 import {GameDetailProps, GameRulesProps, PostGamePlayerDataProps} from "../../utils/Interfaces";
-
-const useStyles = makeStyles(() =>
-    createStyles({
-        dlBackground: {
-            "&": {
-                position: "relative", 
-                height: "100%",
-                width: "100%",
-                display: "flex",
-                opacity: 1.0,
-                zIndex: 0
-            },
-            "&:after": {
-                backgroundImage: `url(https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg)`,
-                backgroundSize: "cover",
-                position: "absolute",
-                top: "0px",
-                left: "0px",
-                right: "0px",
-                zIndex: -1,
-                opacity: 0.32,
-                height: "100%",
-                width: "100%",
-                content: '""',
-                backgroundAttachment: "fixed",
-                backgroundRepeat: "no-repeat"
-            }
-        }
-    })
-);
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -146,7 +114,7 @@ const TeamCard = (props: TeamCardProps) => {
         if (gameMode === null || gameMode === undefined || gameMode === "") {
             return [gs.deathmatch.kills, gs.deathmatch.deaths];
         }
-        
+
         let modeTemplate = {
             // @ts-ignore
             "Deathmatch": [gs.score, gs.kills, gs.deaths, gs.suicides],
@@ -184,16 +152,16 @@ const TeamCard = (props: TeamCardProps) => {
                             </StyledTableCell>
                             { getModeHeaders(gameMode).map((header: string) => {
                                 return <StyledTableCell sx={{pl: 0}}>
-                                    <Typography 
-                                        fontWeight="bold" 
-                                        align="center" 
+                                    <Typography
+                                        fontWeight="bold"
+                                        align="center"
                                         fontSize={screenSize === ScreenSize.Mobile ? 12 : 16}
                                         overflow="hidden"
                                         sx={{
                                             width: screenSize === ScreenSize.Mobile ? "16vw" : "8vw",
                                             whiteSpace: "no-wrap"
-                                        }} 
-                                        textOverflow="ellipsis" 
+                                        }}
+                                        textOverflow="ellipsis"
                                         noWrap
                                     >
                                         {header}
@@ -203,19 +171,19 @@ const TeamCard = (props: TeamCardProps) => {
                         </TableRow>
                     </TableHead>
                     <TableBody sx={{p: 0}}>
-                        { 
+                        {
                             // @ts-ignore
                             team.players.map((player: PostGamePlayerDataProps) => {
 
                             return <StyledTableRow key={player.name} sx={{pt: 0, pb: 0}}>
 
                                 <StyledTableCell sx={{pl: 3, pb: 0.5, pt: 0.5}}>
-                                    <Typography 
-                                        overflow="hidden" 
+                                    <Typography
+                                        overflow="hidden"
                                         sx={{
                                             width: screenSize === ScreenSize.Mobile ? "10vw" : "20vw",
                                             whiteSpace: "no-wrap"
-                                        }} 
+                                        }}
                                         textOverflow="ellipsis"
                                         fontSize={screenSize === ScreenSize.Mobile ? 12 : 16}
                                         noWrap
@@ -227,15 +195,15 @@ const TeamCard = (props: TeamCardProps) => {
 
                                 {getModeTemplate(player, gameMode).map((value: number | string) => {
                                     return <StyledTableCell sx={{pl: 0, ml: 2, pt: 0.5, pb: 0.5}}>
-                                        <Typography 
+                                        <Typography
                                             overflow="hidden"
                                             align="center"
                                             sx={{
                                                 width: screenSize === ScreenSize.Mobile ? "16vw" : "8vw",
                                                 whiteSpace: "no-wrap"
-                                            }} 
+                                            }}
                                             fontSize={screenSize === ScreenSize.Mobile ? 12 : 16}
-                                            textOverflow="ellipsis" 
+                                            textOverflow="ellipsis"
                                             noWrap
                                         >
                                             {value}
@@ -252,7 +220,7 @@ const TeamCard = (props: TeamCardProps) => {
                     // @ts-ignore
                     <Typography variant="overline" sx={{filter: "drop-shadow(0rem 0rem 1rem black)", width: 100, textAlign: "right"}}>{`${name}:\t${team.score}`}</Typography>
                 )}
-                
+
             </Stack>
         </CardContent>
     </Card>
@@ -284,9 +252,7 @@ const DeadlockedGameDetails = () => {
         teams: {
             Blue: []
         }
-    } 
-
-    const classes = useStyles();
+    }
 
     const [gameData, setGameData] = useState(DEFAULT_GAME_PROPS);
     const [loading, setLoading] = useState(false);
@@ -335,7 +301,7 @@ const DeadlockedGameDetails = () => {
 
 
     if (notFound) {
-        return <Page className={classes.dlBackground}>
+        return <Page>
             <Backbar />
             <NotFoundCard message="Sorry, looks like this game doesn't exist!" />
         </Page>
@@ -361,8 +327,8 @@ const DeadlockedGameDetails = () => {
     console.log(orderedTeams);
 
 
-    return <Page className={classes.dlBackground}>
-        
+    return <Page>
+
         <Box sx={{marginLeft: screenSize === ScreenSize.Mobile ? 2 : 0}}>
             <Backbar />
         </Box>

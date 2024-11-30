@@ -1,5 +1,5 @@
 import React, {useEffect, useState, Dispatch} from 'react';
-import {Card, CardContent, Typography, CircularProgress, Box, Tooltip} from '@mui/material';
+import {Card, CardContent, Typography, CircularProgress, Box, Tooltip, Alert} from '@mui/material';
 
 import {useAppDispatch} from "../../app/hooks";
 
@@ -91,18 +91,20 @@ const UYAOnline: React.FC = () => {
     return (
         <ImageBacking backgroundUrl={UYA_BACKGROUND_IMAGES}>
 
-            <Box sx={{width: "100%", m: 4, height: "calc(100vh - 345px)"}}>
+            <Box sx={{width: "100%", height: "calc(100vh - 345px)"}}>
+                <Alert severity="info" sx={{mb: 2, mr: "-50px"}}>
+                    UYA Game History is currently in BETA.
+                    If you experience any issues, please report them to @WrenchDL or @FourBolt in the Horizon Discord Server.
+                </Alert>
 
-                <Box sx={{maxWidth: "50vw", mt: -4, ml: -2}}>
-                    <HorizonBreadcrumbs
-                        paths={[
-                            {text: "UYA", route: "/uya"},
-                            {text: "Live", route: "/uya/live"},
-                        ]}
-                    />
-                </Box>
+                <HorizonBreadcrumbs
+                    paths={[
+                        {text: "UYA", route: "/uya"},
+                        {text: "Live", route: "/uya/live"},
+                    ]}
+                />
 
-                <Card sx={{mb: 2}}>
+                <Card sx={{mb: 2, ml: 3, mr: 3}}>
                     <CardContent>
                         <Typography variant="h5" gutterBottom>Online Players</Typography>
                         {players.length > 0 ? (
@@ -125,7 +127,7 @@ const UYAOnline: React.FC = () => {
                     </CardContent>
                 </Card>
 
-                <Card sx={{mb: 2}}>
+                <Card sx={{mb: 2, ml: 3, mr: 3}}>
                     <CardContent>
                         <Typography variant="h5" gutterBottom>Active Games</Typography>
                         {games.length > 0 ? (

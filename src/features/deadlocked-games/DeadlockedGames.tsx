@@ -6,9 +6,6 @@ import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../compo
 
 import {useNavigate} from "react-router-dom";
 
-
-import { makeStyles, createStyles } from "@mui/styles"
-
 import { Stack } from "@mui/system";
 
 import axios from "axios";
@@ -16,36 +13,6 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { selectGameFilters, selectPage, setFilters, setPage } from "./deadlockedGamesSlice";
 import {FilterProps, GameRemoteListProps, GameRulesProps} from "../../utils/Interfaces";
-
-const useStyles = makeStyles(() =>
-    createStyles({
-        dlBackground: {
-            "&": {
-                position: "relative", 
-                height: "100%",
-                width: "100%",
-                display: "flex",
-                opacity: 1.0,
-                zIndex: 0
-            },
-            "&:after": {
-                backgroundImage: `url(https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg)`,
-                backgroundSize: "cover",
-                position: "absolute",
-                top: "0px",
-                left: "0px",
-                right: "0px",
-                zIndex: -1,
-                opacity: 0.32,
-                height: "100%",
-                width: "100%",
-                content: '""',
-                backgroundAttachment: "fixed",
-                backgroundRepeat: "no-repeat"
-            }
-        }
-    })
-);
 
 export interface GameCardProps {
     id: number;
@@ -243,8 +210,6 @@ const GameCard = (props: GameCardProps) => {
 
 const DeadlockedGames = () => {
 
-    const classes = useStyles();
-
     const [games, setGames] = useState([]);
     const [totalGames, setTotalGames] = useState(0);
     const [filterURL, setFilterURL] = useState("");
@@ -341,7 +306,7 @@ const DeadlockedGames = () => {
         { title: "Sarathos SP", serialized: "sarathossp", filterType: "map", isDivider: false},
     ]
 
-    return <Page className={classes.dlBackground}>
+    return <Page>
 
         <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingBottom: 2, paddingLeft: 4}}>
             <Link underline="hover" color="inherit" href="/dl">

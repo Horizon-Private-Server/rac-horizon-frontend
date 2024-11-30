@@ -10,6 +10,8 @@ RUN npm install --force
 
 RUN npm install chart.js react-chartjs-2 --force
 
+RUN npm install konva react-konva --force
+RUN npm install use-image --force
 COPY . .
 
 # Expose port 3000 to the outside world

@@ -6,8 +6,6 @@ import useWindowDimensions, { computeDeviceScale } from "../../components/utils/
 
 import { useParams } from "react-router-dom";
 
-import { makeStyles, createStyles } from "@mui/styles"
-
 import { Stack } from "@mui/system";
 
 

@@ -7,7 +7,7 @@ import {
     Card,
     Divider,
     Button,
-    CircularProgress
+    CircularProgress, Alert
 } from "@mui/material";
 
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
@@ -136,6 +136,11 @@ const UYAStats = () => {
 
     return <ImageBacking backgroundUrl={UYA_BACKGROUND_IMAGES}>
         <Box>
+            <Alert severity="info" sx={{mb: 2}}>
+                UYA Stats and Leaderboards are currently in BETA.
+                If you experience any issues, please report them to @WrenchDL or @FourBolt in the Horizon Discord Server.
+            </Alert>
+
             <HorizonBreadcrumbs
                 paths={[
                     {text: "UYA", route: "/uya"},

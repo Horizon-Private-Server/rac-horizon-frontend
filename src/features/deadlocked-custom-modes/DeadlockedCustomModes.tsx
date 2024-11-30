@@ -2,42 +2,10 @@ import React from "react";
 import Page from "../../components/base/Page";
 import {Typography, Box, CardContent, Card, CardActionArea, Link, Breadcrumbs} from "@mui/material";
 
-import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
+import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
 
-import { useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
-import { makeStyles, createStyles } from "@mui/styles"
-
-
-const useStyles = makeStyles(() =>
-    createStyles({
-        dlBackground: {
-            "&": {
-                position: "relative", 
-                height: "100%",
-                width: "100%",
-                display: "flex",
-                opacity: 1.0,
-                zIndex: 0
-            },
-            "&:after": {
-                backgroundImage: `url(https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg)`,
-                backgroundSize: "cover",
-                position: "absolute",
-                top: "0px",
-                left: "0px",
-                right: "0px",
-                zIndex: -1,
-                opacity: 0.32,
-                height: "100%",
-                width: "100%",
-                content: '""',
-                backgroundAttachment: "fixed",
-                backgroundRepeat: "no-repeat"
-            }
-        }
-    })
-);
 
 interface GameModeCardProps {
     modeName: string;
@@ -48,7 +16,7 @@ interface GameModeCardProps {
 
 const GameModeCard = (props: GameModeCardProps) => {
 
-    const { modeName, modeDetailsRoute, modeImage, modeDescription } = props;
+    const {modeName, modeDetailsRoute, modeImage, modeDescription} = props;
 
     const navigate = useNavigate();
 
@@ -56,51 +24,51 @@ const GameModeCard = (props: GameModeCardProps) => {
     const screenSize = computeDeviceScale(width);
 
 
-    return <Card  sx={{p: 0, zIndex: 1}}>
-        
-            <CardActionArea
-                onClick={() => navigate(modeDetailsRoute)}
-            >
-                <CardContent sx={{ p: 0}}>
-                    <Box
-                        sx={{
-                            WebkitMaskImage: "linear-gradient(65deg, transparent 20%, white)",
-                            width: 500,
-                            height: "100%",
-                            position: "absolute",
-                            top: 0,
-                            right: 0
-                        }}
-                    >
-                        
-                        <Box sx={{
-                            backgroundImage: `url(${modeImage})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center center",
-                            backgroundRepeat: "no-repeat",
-                            width: "100%",
-                            height: "100%",
-                        }} />
-                    </Box>
-                    <Box
-                        sx={{
-                            p: 3,
-                            width: "70vw",
-                            height: screenSize === ScreenSize.Mobile ? "auto" : 200
-                        }}
-                    >
-                        <Typography variant="overline" fontSize={20} fontWeight="bold" sx={{filter: "drop-shadow(0rem 0rem 1rem black)"}}>{modeName}</Typography>
-                        <Typography sx={{filter: "drop-shadow(0rem 0rem 1rem black)"}} width="70%">{modeDescription}</Typography>
-                    </Box>
-                </CardContent>
-            </CardActionArea>
+    return <Card sx={{p: 0, zIndex: 1}}>
+
+        <CardActionArea
+            onClick={() => navigate(modeDetailsRoute)}
+        >
+            <CardContent sx={{p: 0}}>
+                <Box
+                    sx={{
+                        WebkitMaskImage: "linear-gradient(65deg, transparent 20%, white)",
+                        width: 500,
+                        height: "100%",
+                        position: "absolute",
+                        top: 0,
+                        right: 0
+                    }}
+                >
+
+                    <Box sx={{
+                        backgroundImage: `url(${modeImage})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center center",
+                        backgroundRepeat: "no-repeat",
+                        width: "100%",
+                        height: "100%",
+                    }}/>
+                </Box>
+                <Box
+                    sx={{
+                        p: 3,
+                        width: "70vw",
+                        height: screenSize === ScreenSize.Mobile ? "auto" : 200
+                    }}
+                >
+                    <Typography variant="overline" fontSize={20} fontWeight="bold"
+                                sx={{filter: "drop-shadow(0rem 0rem 1rem black)"}}>{modeName}</Typography>
+                    <Typography sx={{filter: "drop-shadow(0rem 0rem 1rem black)"}}
+                                width="70%">{modeDescription}</Typography>
+                </Box>
+            </CardContent>
+        </CardActionArea>
 
     </Card>
 }
 
 const DeadlockedCustomModes = () => {
-
-    const classes = useStyles();
 
     const gameModes: GameModeCardProps[] = [
         {
@@ -147,7 +115,7 @@ const DeadlockedCustomModes = () => {
         },
     ]
 
-    return <Page className={classes.dlBackground}>
+    return <Page>
 
         <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, paddingBottom: 2, paddingLeft: 4}}>
             <Link underline="hover" color="inherit" href="/dl">
@@ -159,15 +127,15 @@ const DeadlockedCustomModes = () => {
         <Box
             sx={{p: 4}}
         >
-            { gameModes.map((gameMode: GameModeCardProps) => {
+            {gameModes.map((gameMode: GameModeCardProps) => {
                 return <>
-                    <GameModeCard 
+                    <GameModeCard
                         modeName={gameMode.modeName}
                         modeDescription={gameMode.modeDescription}
                         modeDetailsRoute={gameMode.modeDetailsRoute}
                         modeImage={gameMode.modeImage}
                     />
-                    <Box sx={{mb: 2 }}/>
+                    <Box sx={{mb: 2}}/>
                 </>
             })}
         </Box>

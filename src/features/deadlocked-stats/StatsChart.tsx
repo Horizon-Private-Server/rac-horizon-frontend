@@ -4,6 +4,7 @@ import Chart from "chart.js/auto";
 import {Radar} from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import {Box} from "@mui/material";
+import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
 
 export interface StatsChartProps {
     deathmatchRank: number;
@@ -21,8 +22,11 @@ const StatsChart = (props: StatsChartProps) => {
 
     const {deathmatchRank, conquestRank, kothRank, ctfRank, juggernautRank} = props;
 
+    const {width} = useWindowDimensions();
+    const screenSize = computeDeviceScale(width);
+
     // @ts-ignore
-    return <Box className="chart-container" sx={{maxWidth: "40vw", maxHeight: "40vh"}}>
+    return <Box className="chart-container" sx={{width: screenSize === ScreenSize.Mobile ? 400 : 600, height: screenSize === ScreenSize.Mobile ? 400 : 600}}>
         <Radar
             data={{
                 labels: ["Deathmatch", "Conquest", "KOTH", "CTF", "Juggernaut"],
@@ -45,7 +49,7 @@ const StatsChart = (props: StatsChartProps) => {
             options={{
                 plugins: {
                     title: {
-                        display: true,
+                        display: false,
                         text: "Rank Distribution"
                     },
                     legend: {

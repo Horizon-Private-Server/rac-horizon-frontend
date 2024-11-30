@@ -22,21 +22,10 @@ import DownloadIcon from '@mui/icons-material/Download';
 import HomeCardContent from "./HomeCardContent";
 import useWindowDimensions, {computeDeviceScale, ScreenSize} from "../../components/utils/WindowDimensions";
 
-import {createStyles, makeStyles} from "@mui/styles";
 import HomeCardMulticontent from "./HomeCardMulticontent";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        pagePadding: {
-            padding: "24px"
-        }
-    })
-);
-
 const Home = () => {
-
-    const classes = useStyles();
 
     const dispatch = useAppDispatch();
 
