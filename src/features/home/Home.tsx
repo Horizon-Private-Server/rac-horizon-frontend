@@ -16,6 +16,7 @@ import uyaBoxArt from "../../assets/img/uya-boxart.jpg";
 import rc3BoxArt from "../../assets/img/rc3-boxart.jpg";
 import downloadWindows from "../../assets/img/download-windows.png";
 import downloadLinux from "../../assets/img/download-linux.png";
+import downloadMacOSX from "../../assets/img/download-apple.png";
 
 import DownloadIcon from '@mui/icons-material/Download';
 
@@ -141,7 +142,12 @@ const Home = () => {
                                 {
                                     icon: downloadLinux,
                                     action: () => {navigate("/dzo/linux")},
-                                    altText: "View Linux Setup Guite for DZO"
+                                    altText: "View Linux Setup Guide for DZO"
+                                },
+                                {
+                                    icon: downloadMacOSX,
+                                    action: () => {navigate("/dzo/macosx")},
+                                    altText: "View Mac OSX Setup Guide for DZO"
                                 }
                             ]}
                             iconAltText="DZO Logo"
