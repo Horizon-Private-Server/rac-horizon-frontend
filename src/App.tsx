@@ -33,6 +33,7 @@ import DeadlockedSurvival from "./features/deadlocked-custom-modes/DeadlockedSur
 import { SurvivalMountainPass } from "./features/deadlocked-custom-modes/SurvivalMountainPass";
 import { SurvivalVeldin } from "./features/deadlocked-custom-modes/SurvivalVeldin";
 import { DZOLinux } from "./features/deadlocked/DZOLinux";
+import { DZOMacOSX } from "./features/deadlocked/DZOMacOSX";
 import { Stack, Typography } from "@mui/material";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "./components/utils/WindowDimensions";
 import ControlledChaosGameGenertator from "./features/game-generators/ControlledChaosGameGenerator";
@@ -134,6 +135,7 @@ function App() {
                                     <Route path="/survival/mountain-pass" element={<SurvivalMountainPass />} />
                                     <Route path="/survival/veldin" element={<SurvivalVeldin />} />
                                     <Route path="/dzo/linux" element={<DZOLinux />} />
+                                    <Route path="/dzo/macosx" element={<DZOMacOSX />} />
                                 </Routes>
                                 <Stack
                                     direction="row"
