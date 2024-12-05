@@ -307,48 +307,40 @@ const UYAOnlineWebSocket: React.FC = () => {
         };
     }, []);
 
-    // Setup socket
+    const { sendMessage, lastMessage, readyState } = useWebSocket(`${process.env.REACT_APP_WS_ENDPOINT}/ws/uya-live`, {
+        onOpen: () => {
+            console.log("WebSocket connection established");
+            setError("");
+        },
+        onClose: () => {
+            console.log("WebSocket connection closed, attempting to reconnect...");
+            reconnectDelay.current = Math.min(reconnectDelay.current * 2, 30000); // Backoff logic
+        },
+        onError: () => {
+            console.error("WebSocket encountered an error");
+            setError("WebSocket connection error.");
+        },
+        shouldReconnect: () => true, // Enables auto-reconnection
+        reconnectInterval: reconnectDelay.current,
+    });
+
     useEffect(() => {
-        let socket: WebSocket;
-        let reconnectTimeout: NodeJS.Timeout;
-
-        const connectWebSocket = () => {
-            socket = new WebSocket(`${process.env.REACT_APP_WS_ENDPOINT}/ws/uya-live`);
-            socket.onmessage = (event) => {
-                const start = performance.now();
-                try {
-                    const data: UYALiveGameSession[] = JSON.parse(event.data);
-                    setGameSessions(data);
-                    reconnectDelay.current = 1000;
-                    setError("");
-                    const end = performance.now();
-                    // console.log(`Update took ${end - start} ms`);
-                }
-                catch (error) {
-                    setError("Failed to parse WebSocket message.");
-                }
-            };
-
-            socket.onerror = () => {
-                // setError("WebSocket connection error.");
-            };
-
-            socket.onclose = () => {
-                // setError("WebSocket connection closed. Contact an admin if this page stays here! Attempting to reconnect to the backend...");
-                reconnectTimeout = setTimeout(connectWebSocket, reconnectDelay.current);
-                reconnectDelay.current = Math.min(reconnectDelay.current * 2, 30000);
-            };
-        };
-
-        connectWebSocket();
-
-        return () => {
-            clearTimeout(reconnectTimeout);
-            if (socket) {
-                socket.close();
+        if (lastMessage) {
+            try {
+                const data: UYALiveGameSession[] = JSON.parse(lastMessage.data);
+                setGameSessions(data);
+                reconnectDelay.current = 1000; // Reset reconnect delay on successful message
+            } catch (err) {
+                setError("Failed to parse WebSocket message.");
             }
-        };
-    }, []);
+        }
+    }, [lastMessage]);
+
+    useEffect(() => {
+        if (readyState === 1) {
+            reconnectDelay.current = 1000; // Reset reconnect delay on successful connection
+        }
+    }, [readyState]);
 
     return (
         <Box sx={{ml: 2, mr: 2, minHeight: "calc(100vh - 168px)"}}>
