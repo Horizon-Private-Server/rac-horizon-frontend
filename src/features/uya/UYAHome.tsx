@@ -25,7 +25,6 @@ const UYAHome = () => {
             description: "Watch live games as they unfold!",
             url: "/uya/live",
             icon: <Podcasts />,
-            enabled: false,
         },
         {
             label: "Stats & Leaderboards",
