@@ -174,6 +174,9 @@ const UYAOnlineWebSocket: React.FC = () => {
     const [notStartedImg, setNotStartedImg] = useState<Optional<HTMLImageElement>>(null);
 
     // const { sendMessage, lastMessage, readyState } = useWebSocket(`${process.env.REACT_APP_WS_ENDPOINT}/ws/uya-live`);
+    useEffect(() => {
+        console.log('WebSocket Endpoint:', `${process.env.REACT_APP_WS_ENDPOINT}/ws/uya-live`);
+    }, []); // Empty dependency array ensures this runs only once
 
     const [playerIcons, setPlayerIcons] = useState<Record<string, Optional<HTMLImageElement>>>({
         blue: null,
@@ -307,7 +310,7 @@ const UYAOnlineWebSocket: React.FC = () => {
         };
     }, []);
 
-    const { sendMessage, lastMessage, readyState } = useWebSocket(`${process.env.REACT_APP_WS_ENDPOINT}/ws/uya-live`, {
+    const { sendMessage, lastMessage, readyState } = useWebSocket(`${process.env.REACT_APP_WS_ENDPOINT}`, {
         onOpen: () => {
             console.log("WebSocket connection established");
             setError("");
@@ -376,11 +379,11 @@ const UYAOnlineWebSocket: React.FC = () => {
                                         </Stack>
 
                                         {/* Separate Stage for each game session */}
-                                        <Stage
-                                            width={window.innerWidth / 2}
-                                            height={window.innerHeight / 2}
-                                            style={{border: '1px solid black', marginTop: '10px'}}
-                                        >
+                                            <Stage
+                                                width={window.innerWidth}
+                                                height={window.innerHeight / 2}
+                                                style={{border: '1px solid black', marginTop: '10px'}}
+                                            >
                                             {/* Layer for background */}
                                             <Layer>
                                                 {backgroundImages && (
