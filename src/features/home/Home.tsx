@@ -84,7 +84,7 @@ const Home = () => {
                 <Grid xs={4} item sx={{p: 1}}>
                     <PageCard animated>
                         <HomeCardContent
-                            link="https://discord.com/invite/horizonps"
+                            link="/discord"
                             icon="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg"
                             iconAltText="Discord Logo"
                             title="Horizon Discord"

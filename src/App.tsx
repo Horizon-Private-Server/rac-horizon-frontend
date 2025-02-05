@@ -42,6 +42,7 @@ import { DeadlockedCustomMaps } from "./features/deadlocked-custom-maps/Deadlock
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import DeadlockedPlayerSearch from "./components/deadlocked-player-search/DeadlockedPlayerSearch";
 import { UYACustomMaps } from "./features/uya-custom-maps/UYACustomMaps";
+import Redirect from "./components/base/Redirect";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -107,6 +108,7 @@ function App() {
                             >
                                 <Routes>
                                     <Route path="/" element={<Home />} />
+                                    <Route path="/discord" element={<Redirect url="https://discord.gg/nJAXBK35Rm" />} />
                                     <Route path="/getting-started" element={<Setup />} />
                                     <Route path="/deadlocked" element={<DeadlockedHome />} />
                                     <Route path="/uya" element={<UYAHome />} />
