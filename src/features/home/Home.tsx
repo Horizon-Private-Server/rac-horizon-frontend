@@ -220,38 +220,65 @@ const Home = () => {
 
             <LineBreak amount={20} />
 
-            <CenterObject wrap={true}>
-                {
-                    tutorialVideos.map((videoId, index) => {
 
-                        return <Box sx={{mr: 2, mb: 2, minWidth: "30%"}}>
-                            <iframe
-                                key={index}
-                                src={`https://www.youtube.com/embed/${videoId}`}
-                                frameBorder="0"
-                                allow="autoplay; encrypted-media"
-                                allowFullScreen
-                                title="video"
-                                width={screenSize === ScreenSize.Mobile ? "400vw" : "100%"}
-                                height="300px"
-                            />
-                        </Box>;
-                    })
-                }
-            </CenterObject>
+            {tutorialVideos.map((videoId, index) => {
 
-            <LineBreak amount={40} />
+                let video: JSX.Element = <iframe
+                    key={index}
+                    src={`https://www.youtube.com/embed/${videoId}`}
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="video"
+                    width={screenSize === ScreenSize.Mobile ? "400vw" : "100%"}
+                    height="300px"
+                />
+
+                let sidebarContents: { title: string, description: string }[] = [
+                    {
+                        title: "Setup PS2",
+                        description: "Connect to Horizon with PS2"
+                    },
+                    {
+                        title: "Setup DZO",
+                        description: "Install and Configure the DZO Client"
+                    },
+                    {
+                        title: "Custom Maps",
+                        description: "Install and Play Custom Maps"
+                    }
+                ];
+
+                let sidebar: JSX.Element = <Box>
+                    <Typography variant="h6">{sidebarContents[index].title}</Typography>
+                    <Typography variant="body2">{sidebarContents[index].description}</Typography>
+                </Box>
+
+                return <Box>
+                    <Grid container>
+                        <Grid item xs={4}>
+                            {index % 2 === 0 ? sidebar : video}
+                        </Grid>
+                        <Grid xs={4} />
+                        <Grid item xs={4}>
+                            {index % 2 === 0 ? video : sidebar}
+                        </Grid>
+                    </Grid>
+                </Box>;
+            })}
+
+            <LineBreak amount={40}/>
 
             <CenterObject>
                 <Typography variant="h4">Community Highlights</Typography>
             </CenterObject>
 
-            <LineBreak amount={20} />
+            <LineBreak amount={20}/>
 
             <CenterObject wrap={true}>
                 {
                     latestVideos.map((videoId, index) => {
-                        
+
                         return <Box sx={{mr: 2, mb: 2, minWidth: "30%"}}>
                             <iframe
                                 key={index}
