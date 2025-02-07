@@ -5,11 +5,15 @@ import { RootState } from '../../app/store';
 export interface HomeState {
     latestVideos: string[];
     loadingLatestVideos: boolean;
+    tutorialVideos: string[];
+    loadingTutorialVideos: boolean;
 }
 
 const initialState: HomeState = {
     latestVideos: [],
-    loadingLatestVideos: false
+    loadingLatestVideos: false,
+    tutorialVideos: [],
+    loadingTutorialVideos: false,
 };
 
 type VideoKey = {
@@ -26,20 +30,22 @@ export const homeSlice = createSlice({
             const latestVideos: string[] = [];
             action.payload.map(elem => latestVideos.push(elem.id.videoId))
             state.latestVideos = latestVideos;
+            state.loadingLatestVideos = false
         },
-        setHomeLoadingLatestVideos: (state) => {
-            state.loadingLatestVideos = true;
+        setHomeTutorialVideos: (state, action: PayloadAction<VideoKey[]>) => {
+            const tutorialVideos: string[] = [];
+            action.payload.map(elem => tutorialVideos.push(elem.id.videoId))
+            state.tutorialVideos = tutorialVideos;
+            state.loadingTutorialVideos = false
         },
-        setHomeLoadingLatestVideosComplete: (state) => {
-            state.loadingLatestVideos = false;
-        }
     },
 });
 
 // ACTIONS
-export const { setHomeLatestVideos } = homeSlice.actions;
+export const { setHomeLatestVideos, setHomeTutorialVideos } = homeSlice.actions;
 
 // SELECTORS
 export const selectLatestVideos = (state: RootState) => state.home.latestVideos;
+export const selectTutorialVideos = (state: RootState) => state.home.tutorialVideos;
 
 export default homeSlice.reducer;

@@ -97,7 +97,7 @@ export const DZOMacOSX = () => {
                 >
                     <iframe
                         key={0}
-                        src="https://www.youtube.com/embed/KKeOXb0R4mM?start=80"
+                        src="https://www.youtube.com/embed/1yVIdE1hE4o?start=80"
                         frameBorder="0"
                         allow="autoplay; encrypted-media"
                         allowFullScreen

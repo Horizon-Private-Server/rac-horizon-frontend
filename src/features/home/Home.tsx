@@ -7,7 +7,7 @@ import CenterObject from "../../components/base/CenterObject";
 import LineBreak from "../../components/base/LineBreak";
 
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {selectLatestVideos, setHomeLatestVideos} from "./homeSlice";
+import {selectLatestVideos, selectTutorialVideos, setHomeLatestVideos, setHomeTutorialVideos} from "./homeSlice";
 
 import githubIcon from "../../assets/img/GitHub-Icon.png";
 import dzoLogo from "../../assets/img/dzo-logo.png";
@@ -37,14 +37,22 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(setHomeLatestVideos([
-            {id: {videoId: "OUns2ZzXsao"}},
-            {id: {videoId: "Bx0VeJu7O_U"}},
-            {id: {videoId: "k2RAvQtLo1A"}},
+            {id: {videoId: "gXx23ZE3pH0"}},
+            {id: {videoId: "nIIk39wytSY"}},
+            {id: {videoId: "BCU0YZ23ajw"}},
         ]));
+
+        dispatch(setHomeTutorialVideos([
+            {id: {videoId: "hC7s5P9KKLE"}},
+            {id: {videoId: "1yVIdE1hE4o"}},
+            {id: {videoId: "ND61nvDr0bM"}},
+        ]));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const latestVideos: string[] = useAppSelector(selectLatestVideos);
+    const tutorialVideos = useAppSelector(selectTutorialVideos);
 
     let header: JSX.Element = <Box />;
     
@@ -212,52 +220,25 @@ const Home = () => {
 
             <LineBreak amount={20} />
 
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    flexWrap: "wrap",
-                    width: "100%",
-                }}
-            >
-                <Box
-                    sx={{
-                        marginRight: "10px",
-                        marginBottom: "10px",
-                        minWidth: "30%"
-                    }}
-                >
-                    <iframe
-                        key={0}
-                        src={`https://www.youtube.com/embed/KKeOXb0R4mM`}
-                        frameBorder="0"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                        title="video"
-                        width={screenSize === ScreenSize.Mobile ? "400vw" : "100%"}
-                        height="300px"
-                    />
-                </Box>
-                  
-                <Box sx={{marginRight: "0.8%"}} />
+            <CenterObject wrap={true}>
+                {
+                    tutorialVideos.map((videoId, index) => {
 
-                <Box
-                    sx={{mr: 2, mb: 2, minWidth: "30%"}}
-                >
-                    <iframe
-                        key={0}
-                        src={`https://www.youtube.com/embed/ND61nvDr0bM`}
-                        frameBorder="0"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                        title="video"
-                        width={screenSize === ScreenSize.Mobile ? "400vw" : "100%"}
-                        height="300px"
-                    />
-                </Box>
-                  
-            </Box>
+                        return <Box sx={{mr: 2, mb: 2, minWidth: "30%"}}>
+                            <iframe
+                                key={index}
+                                src={`https://www.youtube.com/embed/${videoId}`}
+                                frameBorder="0"
+                                allow="autoplay; encrypted-media"
+                                allowFullScreen
+                                title="video"
+                                width={screenSize === ScreenSize.Mobile ? "400vw" : "100%"}
+                                height="300px"
+                            />
+                        </Box>;
+                    })
+                }
+            </CenterObject>
 
             <LineBreak amount={40} />
 
