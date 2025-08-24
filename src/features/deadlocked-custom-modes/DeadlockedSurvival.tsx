@@ -87,7 +87,7 @@ const DeadlockedSurvival = () => {
                 `The second fully featured Survival map.
                 These majestic peaks and scattered monoliths hide many secrets.
                 Fight through unending waves of enemies to earn the blessings of the gods.`,
-            modeImage: "https://rac-horizon-resources.s3.amazonaws.com/level-frames/survival_mpass.png",
+            modeImage: "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/survival_mpass.png",
             modeDetailsRoute: "/survival/mountain-pass"
         },
         {
@@ -96,7 +96,7 @@ const DeadlockedSurvival = () => {
                 `A stripped-down, pure iteration of Survival.
                 Ratchet's homeworld now plays host to the most intense iteration of survival.
                 No easter eggs or drawn-out mechanics, this is pure survival on a tiny map with a 50% harder difficulty.`,
-            modeImage: "https://rac-horizon-resources.s3.amazonaws.com/level-frames/veldin.png",
+            modeImage: "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/veldin.png",
             modeDetailsRoute: "/survival/veldin"
         }
     ]

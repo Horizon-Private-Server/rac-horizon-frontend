@@ -117,7 +117,7 @@ const DeadlockedStats = () => {
         return cards
     }
 
-    return <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
+    return <ImageBacking backgroundUrl="https://rac-horizon-cdn.s3.amazonaws.com/backgrounds/dl-background.jpg">
 
         <Box>
 

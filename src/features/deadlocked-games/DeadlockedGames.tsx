@@ -45,82 +45,82 @@ const GameCard = (props: GameCardProps) => {
     const screenSize = computeDeviceScale(width);
 
     const skillIcons = {
-        1: "https://rac-horizon-resources.s3.amazonaws.com/icons/skill_levels/tex_67.png",
-        2: "https://rac-horizon-resources.s3.amazonaws.com/icons/skill_levels/tex_68.png",
-        3: "https://rac-horizon-resources.s3.amazonaws.com/icons/skill_levels/tex_69.png",
-        4: "https://rac-horizon-resources.s3.amazonaws.com/icons/skill_levels/tex_70.png",
-        5: "https://rac-horizon-resources.s3.amazonaws.com/icons/skill_levels/tex_71.png",
-        6: "https://rac-horizon-resources.s3.amazonaws.com/icons/skill_levels/tex_72.png",
-        7: "https://rac-horizon-resources.s3.amazonaws.com/icons/skill_levels/tex_73.png",
-        8: "https://rac-horizon-resources.s3.amazonaws.com/icons/skill_levels/tex_74.png",
-        9: "https://rac-horizon-resources.s3.amazonaws.com/icons/skill_levels/tex_75.png",
-        10: "https://rac-horizon-resources.s3.amazonaws.com/icons/skill_levels/tex_76.png",
+        1: "https://rac-horizon-cdn.s3.amazonaws.com/icons/skill_levels/tex_67.png",
+        2: "https://rac-horizon-cdn.s3.amazonaws.com/icons/skill_levels/tex_68.png",
+        3: "https://rac-horizon-cdn.s3.amazonaws.com/icons/skill_levels/tex_69.png",
+        4: "https://rac-horizon-cdn.s3.amazonaws.com/icons/skill_levels/tex_70.png",
+        5: "https://rac-horizon-cdn.s3.amazonaws.com/icons/skill_levels/tex_71.png",
+        6: "https://rac-horizon-cdn.s3.amazonaws.com/icons/skill_levels/tex_72.png",
+        7: "https://rac-horizon-cdn.s3.amazonaws.com/icons/skill_levels/tex_73.png",
+        8: "https://rac-horizon-cdn.s3.amazonaws.com/icons/skill_levels/tex_74.png",
+        9: "https://rac-horizon-cdn.s3.amazonaws.com/icons/skill_levels/tex_75.png",
+        10: "https://rac-horizon-cdn.s3.amazonaws.com/icons/skill_levels/tex_76.png",
     }
 
     const weaponIcons = {
-        dualVipers: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_27.png",
-        magmaCannon: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_31.png",
-        theArbiter: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_30.png",
-        fusionRifle: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_32.png",
-        hunterMineLauncher: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_28.png",
-        b6Obliterator: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_24.png",
-        holoshieldLauncher: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_25.png",
-        scorpionFlail: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_26.png",
+        dualVipers: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_27.png",
+        magmaCannon: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_31.png",
+        theArbiter: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_30.png",
+        fusionRifle: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_32.png",
+        hunterMineLauncher: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_28.png",
+        b6Obliterator: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_24.png",
+        holoshieldLauncher: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_25.png",
+        scorpionFlail: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_26.png",
     }
 
     const vehicleIcons = {
-        hoverbike: "https://rac-horizon-resources.s3.amazonaws.com/icons/vehicles/tex_137.png",
-        puma: "https://rac-horizon-resources.s3.amazonaws.com/icons/vehicles/tex_138.png",
-        hovership: "https://rac-horizon-resources.s3.amazonaws.com/icons/vehicles/tex_139.png",
-        landstalker: "https://rac-horizon-resources.s3.amazonaws.com/icons/vehicles/tex_141.png",
+        hoverbike: "https://rac-horizon-cdn.s3.amazonaws.com/icons/vehicles/tex_137.png",
+        puma: "https://rac-horizon-cdn.s3.amazonaws.com/icons/vehicles/tex_138.png",
+        hovership: "https://rac-horizon-cdn.s3.amazonaws.com/icons/vehicles/tex_139.png",
+        landstalker: "https://rac-horizon-cdn.s3.amazonaws.com/icons/vehicles/tex_141.png",
     }
 
     function getFrameFromLevel(level: string): string {
         const frames = {
             
-            "Battledome SP": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/battledome+sp.png",
-            "Containment Suite": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/containment+suite.png",
+            "Battledome SP": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/battledome+sp.png",
+            "Containment Suite": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/containment+suite.png",
 
-            "Desert Prison": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/desert+prison.png",
-            "Dark Cathedral Interior": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/dc+interior.jpg",
-            "Snivelak": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/snivelak.jpg",
-            "Ghost Ship": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/ghost+ship.png",
-            "Canal City": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/canal+city.png",
-            "Blackwater City": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/blackwater+city.jpg",
-            "Blackwater Docks": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/blackwater+docks.png",
-            "Shaar SP": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/shaar+sp.jpg",
-            "Bakisi Isles": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/bakisi+isles.jpg",
-            "Annihilation Nation": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/annihilation+nation.png",
+            "Desert Prison": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/desert+prison.png",
+            "Dark Cathedral Interior": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/dc+interior.jpg",
+            "Snivelak": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/snivelak.jpg",
+            "Ghost Ship": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/ghost+ship.png",
+            "Canal City": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/canal+city.png",
+            "Blackwater City": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/blackwater+city.jpg",
+            "Blackwater Docks": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/blackwater+docks.png",
+            "Shaar SP": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/shaar+sp.jpg",
+            "Bakisi Isles": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/bakisi+isles.jpg",
+            "Annihilation Nation": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/annihilation+nation.png",
 
-            "Hoven Gorge": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/hoven+gorge.png",
-            "Korgon Outpost": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/korgon+outpost.jpg",
-            "Launch Site": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/launch+site.png",
-            "Marcadia Palace": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/marcadia+palace.bmp",
-            "Metropolis MP": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/metropolis+mp.jpg",
-            "Torval Lost Factory": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/torval+lost+factory.png",
-            "Torval SP": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/torval+sp.png",
-            "Tyhrranosis": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/tyhrranosis.jpg",
+            "Hoven Gorge": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/hoven+gorge.png",
+            "Korgon Outpost": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/korgon+outpost.jpg",
+            "Launch Site": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/launch+site.png",
+            "Marcadia Palace": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/marcadia+palace.bmp",
+            "Metropolis MP": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/metropolis+mp.jpg",
+            "Torval Lost Factory": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/torval+lost+factory.png",
+            "Torval SP": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/torval+sp.png",
+            "Tyhrranosis": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/tyhrranosis.jpg",
 
-            "Battledome Tower": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/battledome-planet.webp",
-            "Catacrom Graveyard": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/catacrom-planet.webp",
-            "Sarathos Swamp": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/sarathos-planet.webp",
-            "Dark Cathedral": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/kronos-planet.webp",
-            "Temple of Shaar": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/shaar-planet.webp",
-            "Mining Facility": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/orxon-planet.webp",
-            "Valix Lighthouse": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/valix-planet.webp",
-            "Torval Ruins": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/torval-planet.webp",
-            "Tempus Station": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/stygia-planet.webp",
-            "Maraxus Prison": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/maraxus-planet.webp",
-            "Ghost Station": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/ghost-station-planet.webp",
+            "Battledome Tower": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/battledome-planet.webp",
+            "Catacrom Graveyard": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/catacrom-planet.webp",
+            "Sarathos Swamp": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/sarathos-planet.webp",
+            "Dark Cathedral": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/kronos-planet.webp",
+            "Temple of Shaar": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/shaar-planet.webp",
+            "Mining Facility": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/orxon-planet.webp",
+            "Valix Lighthouse": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/valix-planet.webp",
+            "Torval Ruins": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/torval-planet.webp",
+            "Tempus Station": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/stygia-planet.webp",
+            "Maraxus Prison": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/maraxus-planet.webp",
+            "Ghost Station": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/ghost-station-planet.webp",
 
-            "Orxon": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/orxon-survival-planet.webp",
-            "Veldin": "https://rac-horizon-resources.s3.amazonaws.com/level-frames/veldin.png"
+            "Orxon": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/orxon-survival-planet.webp",
+            "Veldin": "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/veldin.png"
         }
 
         let image: string = frames[level as keyof typeof frames];
 
         if (image === undefined) {
-            image = "https://rac-horizon-resources.s3.amazonaws.com/level-frames/default.avif";
+            image = "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/default.avif";
         }
 
         return image;

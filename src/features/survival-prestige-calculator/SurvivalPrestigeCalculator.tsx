@@ -92,7 +92,7 @@ const SurvivalPrestigeCalculator = () => {
 
         <Stack direction="row" justifyContent="flex-start" sx={{mt: 5}}>
             <img
-                src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_6.png"
+                src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_6.png"
                 alt="bolt icon"
                 width={28}
                 height={28}

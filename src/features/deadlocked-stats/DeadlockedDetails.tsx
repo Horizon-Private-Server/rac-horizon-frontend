@@ -128,7 +128,7 @@ const DeadlockedDetails = () => {
                     label="CTF Stats"
                     icon={
                         <img
-                            src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_85.png"
+                            src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_85.png"
                             alt="Deadlocked Flag Icon"
                             width={24}
                             height={24}
@@ -146,7 +146,7 @@ const DeadlockedDetails = () => {
                     label="KOTH Stats"
                     icon={
                         <img
-                            src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_84.png"
+                            src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_84.png"
                             alt="Deadlocked Hill Icon"
                             width={24}
                             height={24}
@@ -164,7 +164,7 @@ const DeadlockedDetails = () => {
                     label="Deathmatch Stats"
                     icon={
                         <img
-                            src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_89.png"
+                            src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_89.png"
                             alt="Deadlocked Skull Icon"
                             width={24}
                             height={24}
@@ -181,7 +181,7 @@ const DeadlockedDetails = () => {
                     label="Juggernaut Stats"
                     icon={
                         <img
-                            src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_12.png"
+                            src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_12.png"
                             alt="Deadlocked Fist Icon"
                             width={24}
                             height={24}
@@ -199,7 +199,7 @@ const DeadlockedDetails = () => {
                     label="Conquest Stats"
                     icon={
                         <img
-                            src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_17.png"
+                            src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_17.png"
                             alt="Deadlocked Node Icon"
                             width={24}
                             height={24}
@@ -217,7 +217,7 @@ const DeadlockedDetails = () => {
                     label="Weapon Stats"
                     icon={
                         <img
-                            src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_93.png"
+                            src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_93.png"
                             alt="Deadlocked Ammo Icon"
                             width={24}
                             height={24}
@@ -227,7 +227,7 @@ const DeadlockedDetails = () => {
                     <RatioRow
                         label={
                             <Stack direction="row" spacing={2} sx={{mb: -2}}>
-                                <img src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_102.png" alt="Wrench Icon" width={48} height={48} />
+                                <img src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_102.png" alt="Wrench Icon" width={48} height={48} />
                                 <Divider orientation="vertical" sx={{ ml: 2, mr: 2 }} />
                                 <Typography variant="overline" fontSize={14} sx={{mt: 0, mb: 0}}>Wrench</Typography>
                             </Stack>
@@ -241,7 +241,7 @@ const DeadlockedDetails = () => {
                     <RatioRow
                         label={
                             <Stack direction="row" spacing={2} sx={{mb: -2}}>
-                                <img src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_27.png" alt="Dual Vipers Icon" width={48} height={48} />
+                                <img src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_27.png" alt="Dual Vipers Icon" width={48} height={48} />
                                 <Divider orientation="vertical" sx={{ml: 2, mr: 2}}/>
                                 <Typography variant="overline" fontSize={14} sx={{mt: 0, mb: 0}}>Dual Vipers</Typography>
                             </Stack>
@@ -255,7 +255,7 @@ const DeadlockedDetails = () => {
                     <RatioRow
                         label={
                             <Stack direction="row" spacing={2} sx={{mb: -2}}>
-                                <img src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_31.png" alt="Magma Cannon Icon" width={48} height={48} />
+                                <img src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_31.png" alt="Magma Cannon Icon" width={48} height={48} />
                                 <Divider orientation="vertical" sx={{ml: 2, mr: 2}}/>
                                 <Typography variant="overline" fontSize={14} sx={{mt: 0, mb: 0}}>Magma Cannon</Typography>
                             </Stack>
@@ -269,7 +269,7 @@ const DeadlockedDetails = () => {
                     <RatioRow
                         label={
                             <Stack direction="row" spacing={2} sx={{mb: -2}}>
-                                <img src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_30.png" alt="Arbiter Icon" width={48} height={48} />
+                                <img src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_30.png" alt="Arbiter Icon" width={48} height={48} />
                                 <Divider orientation="vertical" sx={{ml: 2, mr: 2}}/>
                                 <Typography variant="overline" fontSize={14} sx={{mt: 0, mb: 0}}>The Arbiter</Typography>
                             </Stack>
@@ -283,7 +283,7 @@ const DeadlockedDetails = () => {
                     <RatioRow
                         label={
                             <Stack direction="row" spacing={2} sx={{mb: -2}}>
-                                <img src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_32.png" alt="Fusion Rifle Icon" width={48} height={48} />
+                                <img src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_32.png" alt="Fusion Rifle Icon" width={48} height={48} />
                                 <Divider orientation="vertical" sx={{ml: 2, mr: 2}}/>
                                 <Typography variant="overline" fontSize={14} sx={{mt: 0, mb: 0}}>Fusion Rifle</Typography>
                             </Stack>
@@ -297,7 +297,7 @@ const DeadlockedDetails = () => {
                     <RatioRow
                         label={
                             <Stack direction="row" spacing={2} sx={{mb: -2}}>
-                                <img src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_28.png" alt="Hunter Mine Launcher Icon" width={48} height={48} />
+                                <img src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_28.png" alt="Hunter Mine Launcher Icon" width={48} height={48} />
                                 <Divider orientation="vertical" sx={{ml: 2, mr: 2}}/>
                                 <Typography variant="overline" fontSize={14} sx={{mt: 0, mb: 0}}>Hunter Mine Launcher</Typography>
                             </Stack>
@@ -311,7 +311,7 @@ const DeadlockedDetails = () => {
                     <RatioRow
                         label={
                             <Stack direction="row" spacing={2} sx={{mb: -2}}>
-                                <img src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_24.png" alt="B6-Obliterator Icon" width={48} height={48} />
+                                <img src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_24.png" alt="B6-Obliterator Icon" width={48} height={48} />
                                 <Divider orientation="vertical" sx={{ml: 2, mr: 2}}/>
                                 <Typography variant="overline" fontSize={14} sx={{mt: 0, mb: 0}}>B6-Obliterator</Typography>
                             </Stack>
@@ -325,7 +325,7 @@ const DeadlockedDetails = () => {
                     <RatioRow
                         label={
                             <Stack direction="row" spacing={2} sx={{mb: -2}}>
-                                <img src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_26.png" alt="Scorpion Flail Icon" width={48} height={48} />
+                                <img src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_26.png" alt="Scorpion Flail Icon" width={48} height={48} />
                                 <Divider orientation="vertical" sx={{ml: 2, mr: 2}}/>
                                 <Typography variant="overline" fontSize={14} sx={{mt: 0, mb: 0}}>Scorpion Flail</Typography>
                             </Stack>
@@ -339,7 +339,7 @@ const DeadlockedDetails = () => {
                     <RatioRow
                         label={
                             <Stack direction="row" spacing={2} sx={{mb: -2}}>
-                                <img src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_25.png" alt="Holoshield Launcher Icon" width={48} height={48} />
+                                <img src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_25.png" alt="Holoshield Launcher Icon" width={48} height={48} />
                                 <Divider orientation="vertical" sx={{ml: 2, mr: 2}}/>
                                 <Typography variant="overline" fontSize={14} sx={{mt: 0, mb: 0}}>Holoshield Launcher</Typography>
                             </Stack>
@@ -356,7 +356,7 @@ const DeadlockedDetails = () => {
                     label="Vehicle Stats"
                     icon={
                         <img
-                            src="https://rac-horizon-resources.s3.us-east-1.amazonaws.com/icons/all/tex_105.png"
+                            src="https://rac-horizon-cdn.s3.us-east-1.amazonaws.com/icons/all/tex_105.png"
                             alt="Deadlocked Fist Icon"
                             width={24}
                             height={24}
@@ -372,7 +372,7 @@ const DeadlockedDetails = () => {
         )
     }
 
-    return <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
+    return <ImageBacking backgroundUrl="https://rac-horizon-cdn.s3.amazonaws.com/backgrounds/dl-background.jpg">
         <Box>
             <HorizonBreadcrumbs
                 paths={[

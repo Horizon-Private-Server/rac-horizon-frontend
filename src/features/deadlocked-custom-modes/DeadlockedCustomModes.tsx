@@ -74,43 +74,43 @@ const DeadlockedCustomModes = () => {
         {
             modeName: "Search & Destroy",
             modeDescription: "A competitive gamemode where there is an attacking and defending team fighting over 2 bomb sites!",
-            modeImage: "https://rac-horizon-resources.s3.amazonaws.com/level-frames/ghost+ship.png",
+            modeImage: "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/ghost+ship.png",
             modeDetailsRoute: "/dl/custom/modes/snd"
         },
         {
             modeName: "Payload",
             modeDescription: "A competitive gamemode where there is an attacking and defeding team fighting over a mobile payload!",
-            modeImage: "https://rac-horizon-resources.s3.amazonaws.com/level-frames/ghost+ship.png",
+            modeImage: "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/ghost+ship.png",
             modeDetailsRoute: "/dl/custom/modes/payload"
         },
         {
             modeName: "Training",
             modeDescription: `A mode to help improve your accuracy with the fusion rifle and cycling.`,
-            modeImage: "https://rac-horizon-resources.s3.amazonaws.com/level-frames/ghost+ship.png",
+            modeImage: "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/ghost+ship.png",
             modeDetailsRoute: "/dl/custom/modes/training"
         },
         {
             modeName: "Infected",
             modeDescription: "A party gamemode where one person is infected. As the infected player kills other players, they also become infected.",
-            modeImage: "https://rac-horizon-resources.s3.amazonaws.com/level-frames/ghost+ship.png",
+            modeImage: "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/ghost+ship.png",
             modeDetailsRoute: "/dl/custom/modes/infected"
         },
         {
             modeName: "Gun Game",
             modeDescription: `A party gamemode where everyone starts out with the same weapons, once you get a kill with a weapon, you will be promoted to the next weapon. Get a kill with every weapon to win.`,
-            modeImage: "https://rac-horizon-resources.s3.amazonaws.com/level-frames/ghost+ship.png",
+            modeImage: "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/ghost+ship.png",
             modeDetailsRoute: "/dl/custom/modes/gun-game"
         },
         {
             modeName: "Spleef",
             modeDescription: `A party gamemode where the objective is to destroy the blocks out from under other players. The last player standing wins a round. The player with the most points at the end wins.`,
-            modeImage: "https://rac-horizon-resources.s3.amazonaws.com/level-frames/ghost+ship.png",
+            modeImage: "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/ghost+ship.png",
             modeDetailsRoute: "/dl/custom/modes/spleef"
         },
         {
             modeName: "Infinite Climber",
             modeDescription: `An endless torrent of rain is upon you and the water is rising! New platforms procedurally generate to offer you safe passage to the heavens, you must use your parkour skills to survive!`,
-            modeImage: "https://rac-horizon-resources.s3.amazonaws.com/level-frames/ghost+ship.png",
+            modeImage: "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/ghost+ship.png",
             modeDetailsRoute: "/dl/custom/modes/infinite-climber"
         },
     ]

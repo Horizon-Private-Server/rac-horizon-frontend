@@ -81,32 +81,32 @@ const ControlledChaosGameGenertator = () => {
     ]
 
     const weaponIcons = {
-        dualVipers: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_27.png",
-        magmaCannon: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_31.png",
-        theArbiter: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_30.png",
-        fusionRifle: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_32.png",
-        hunterMineLauncher: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_28.png",
-        b6Obliterator: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_24.png",
-        holoshieldLauncher: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_25.png",
-        scorpionFlail: "https://rac-horizon-resources.s3.amazonaws.com/icons/weapons/tex_26.png",
+        dualVipers: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_27.png",
+        magmaCannon: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_31.png",
+        theArbiter: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_30.png",
+        fusionRifle: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_32.png",
+        hunterMineLauncher: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_28.png",
+        b6Obliterator: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_24.png",
+        holoshieldLauncher: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_25.png",
+        scorpionFlail: "https://rac-horizon-cdn.s3.amazonaws.com/icons/weapons/tex_26.png",
     }
 
     const vehicleIcons = {
-        hoverbike: "https://rac-horizon-resources.s3.amazonaws.com/icons/vehicles/tex_137.png",
-        puma: "https://rac-horizon-resources.s3.amazonaws.com/icons/vehicles/tex_138.png",
-        hovership: "https://rac-horizon-resources.s3.amazonaws.com/icons/vehicles/tex_139.png",
-        landstalker: "https://rac-horizon-resources.s3.amazonaws.com/icons/vehicles/tex_141.png",
+        hoverbike: "https://rac-horizon-cdn.s3.amazonaws.com/icons/vehicles/tex_137.png",
+        puma: "https://rac-horizon-cdn.s3.amazonaws.com/icons/vehicles/tex_138.png",
+        hovership: "https://rac-horizon-cdn.s3.amazonaws.com/icons/vehicles/tex_139.png",
+        landstalker: "https://rac-horizon-cdn.s3.amazonaws.com/icons/vehicles/tex_141.png",
     }
 
     var seed: number[] = cyrb128(gameSeed)
     var prng: () => number = sfc32(seed[0], seed[1], seed[2], seed[3]);
 
     let exterminatorIcon: string = choice([
-        "https://rac-horizon-resources.s3.amazonaws.com/icons/misc/tex_128.png",
-        "https://rac-horizon-resources.s3.amazonaws.com/icons/misc/tex_129.png",
-        "https://rac-horizon-resources.s3.amazonaws.com/icons/misc/tex_130.png",
-        "https://rac-horizon-resources.s3.amazonaws.com/icons/misc/tex_131.png",
-        "https://rac-horizon-resources.s3.amazonaws.com/icons/misc/tex_132.png"
+        "https://rac-horizon-cdn.s3.amazonaws.com/icons/misc/tex_128.png",
+        "https://rac-horizon-cdn.s3.amazonaws.com/icons/misc/tex_129.png",
+        "https://rac-horizon-cdn.s3.amazonaws.com/icons/misc/tex_130.png",
+        "https://rac-horizon-cdn.s3.amazonaws.com/icons/misc/tex_131.png",
+        "https://rac-horizon-cdn.s3.amazonaws.com/icons/misc/tex_132.png"
     ], prng)
 
     let gameType: string = choice(["Deathmatch", "King of the Hill", "Capture the Flag"], prng);

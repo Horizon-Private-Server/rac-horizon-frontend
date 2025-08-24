@@ -43,7 +43,7 @@ export const RankRow = ({label, rank}: {label: string, rank: number}) => {
             <Stack direction="row" justifyContent="space-between">
                 <Box sx={{mt: 1}}>
                     <img
-                        src={`https://rac-horizon-resources.s3.amazonaws.com/icons/skill_levels/tex_${66 + skillNumber}.png`}
+                        src={`https://rac-horizon-cdn.s3.amazonaws.com/icons/skill_levels/tex_${66 + skillNumber}.png`}
                         alt={`Deadlocked Number Icon ${skillNumber}`}
                         width={40}
                         height={40}

@@ -83,7 +83,7 @@ const DeadlockedHome = () => {
     }
 
     return (
-        <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
+        <ImageBacking backgroundUrl="https://rac-horizon-cdn.s3.amazonaws.com/backgrounds/dl-background.jpg">
             {/* FIXME This is CSS hackery that "works" for the time being. */}
             <Box sx={{ height: `calc(${screenSize === ScreenSize.Mobile ? 180 : 100}vh - 280px)` }}>
                 <Stack direction="column">

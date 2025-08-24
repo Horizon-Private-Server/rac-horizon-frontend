@@ -45,7 +45,7 @@ export const SurvivalMountainPass = () => {
     };
 
     const WARNING_ICON = <img
-        src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_14.png"
+        src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_14.png"
         alt="Gate Reset Icon"
         width={20}
         height={20}
@@ -53,7 +53,7 @@ export const SurvivalMountainPass = () => {
     />;
 
     const GATE_RESET_ICON = <img
-        src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_14.png"
+        src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_14.png"
         alt="Gate Reset Icon"
         width={cs()}
         height={cs()}
@@ -62,13 +62,13 @@ export const SurvivalMountainPass = () => {
 
     const ALL_ALPHA_MODS_ICON = <ChangingImage
         srcList={[
-            "https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_55.png",
-            "https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_41.png",
-            "https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_40.png",
-            "https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_47.png",
-            "https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_42.png",
-            "https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_49.png",
-            "https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_44.png",
+            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_55.png",
+            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_41.png",
+            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_40.png",
+            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_47.png",
+            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_42.png",
+            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_49.png",
+            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_44.png",
         ]}
         altList={[
             "Speed Mod Icon",
@@ -85,52 +85,52 @@ export const SurvivalMountainPass = () => {
         variant="sequential"
     />;
 
-    const DREAD_TOKEN_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_35.png" alt="Dread Token Icon" width={cs()} height={cs()} />;
-    const UPGRADE_WEAPON_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_37.png" alt="Upgrade Weapon Icon" width={cs()} height={cs()} />;
+    const DREAD_TOKEN_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_35.png" alt="Dread Token Icon" width={cs()} height={cs()} />;
+    const UPGRADE_WEAPON_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_37.png" alt="Upgrade Weapon Icon" width={cs()} height={cs()} />;
 
-    const REACTOR_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/misc/tex_129.png" alt="Dread Token Icon" width={cs()} height={cs()} />;
+    const REACTOR_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/misc/tex_129.png" alt="Dread Token Icon" width={cs()} height={cs()} />;
 
     const INFINITE_AMMO_ICON = <img
-        src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_93.png"
+        src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_93.png"
         alt="Infinite Ammo Icon"
         width={cs()}
         height={cs()}
         style={{filter: "brightness(50%) sepia(100%) saturate(10000%) invert(1) hue-rotate(239deg)"}}
     />;
 
-    const SELF_REVIVE_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_80.png" alt="Self-Revive Icon" width={cs()} height={cs()} />;
-    const INVISIBILITY_CLOAK_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons-custom/sprite-item-invisibility-cloak.png" alt="Invisibility Cloak Icon" width={cs()} height={cs()} />;
-    const HEALTH_GUN_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons-custom/sprite-item-health-gun.png" alt="Invisibility Cloak Icon" width={cs()} height={cs()} />;
-    const VOX_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_132.png" alt="Vox Icon" width={cs()} height={cs()} />;
-    const QUAD_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons-custom/sprite-item-quad.png" alt="Invisibility Cloak Icon" width={cs()} height={cs()} />;
-    const SHIELD_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons-custom/sprite-item-shield.png" alt="Invisibility Cloak Icon" width={cs()} height={cs()} />;
+    const SELF_REVIVE_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_80.png" alt="Self-Revive Icon" width={cs()} height={cs()} />;
+    const INVISIBILITY_CLOAK_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons-custom/sprite-item-invisibility-cloak.png" alt="Invisibility Cloak Icon" width={cs()} height={cs()} />;
+    const HEALTH_GUN_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons-custom/sprite-item-health-gun.png" alt="Invisibility Cloak Icon" width={cs()} height={cs()} />;
+    const VOX_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_132.png" alt="Vox Icon" width={cs()} height={cs()} />;
+    const QUAD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons-custom/sprite-item-quad.png" alt="Invisibility Cloak Icon" width={cs()} height={cs()} />;
+    const SHIELD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons-custom/sprite-item-shield.png" alt="Invisibility Cloak Icon" width={cs()} height={cs()} />;
 
-    const INSTANT_HEALTH_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_18.png" alt="Instant Health Icon" width={cs()} height={cs()} />;
-    const MAX_AMMO_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_93.png" alt="Max Ammo Icon" width={cs()} height={cs()} />;
-    const NUKE_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_22.png" alt="Nuke Icon" width={cs()} height={cs()} />;
-    const FREEZE_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_46.png" alt="Freeze Icon" width={cs()} height={cs()} />;
-    const DOUBLE_POINTS_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_49.png" alt="Double Points Icon" width={cs()} height={cs()} />;
-    const DOUBLE_XP_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_44.png" alt="Double XP Icon" width={cs()} height={cs()} />;
+    const INSTANT_HEALTH_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_18.png" alt="Instant Health Icon" width={cs()} height={cs()} />;
+    const MAX_AMMO_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_93.png" alt="Max Ammo Icon" width={cs()} height={cs()} />;
+    const NUKE_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_22.png" alt="Nuke Icon" width={cs()} height={cs()} />;
+    const FREEZE_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_46.png" alt="Freeze Icon" width={cs()} height={cs()} />;
+    const DOUBLE_POINTS_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_49.png" alt="Double Points Icon" width={cs()} height={cs()} />;
+    const DOUBLE_XP_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_44.png" alt="Double XP Icon" width={cs()} height={cs()} />;
 
-    const INCREASE_HEALTH_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_18.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
-    const INCREASE_DAMAGE_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_12.png" alt="Increase Damage Icon" width={cs()} height={cs()} />;
-    const INCREASE_SPEED_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_55.png" alt="Increase Speed Icon" width={cs()} height={cs()} />;
-    const INCREASE_CRIT_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons-custom/wall-critical-hit-icon.png" alt="Increase Speed Icon" width={cs()} height={cs()} />;
+    const INCREASE_HEALTH_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_18.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
+    const INCREASE_DAMAGE_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_12.png" alt="Increase Damage Icon" width={cs()} height={cs()} />;
+    const INCREASE_SPEED_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_55.png" alt="Increase Speed Icon" width={cs()} height={cs()} />;
+    const INCREASE_CRIT_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons-custom/wall-critical-hit-icon.png" alt="Increase Speed Icon" width={cs()} height={cs()} />;
 
-    const SPEED_MOD_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_55.png" alt="Speed Mod Icon" width={cs()} height={cs()} />
-    const AMMO_MOD_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_41.png" alt="Ammo Mod Icon" width={cs()} height={cs()} />
-    const AIMING_MOD_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_40.png" alt="Aiming Mod Icon" width={cs()} height={cs()} />
-    const IMPACT_MOD_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_47.png" alt="Impact Mod Icon" width={cs()} height={cs()} />
-    const AREA_MOD_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_42.png" alt="Area Mod Icon" width={cs()} height={cs()} />
-    const JACKPOT_MOD_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_49.png" alt="Jackpot Mod Icon" width={cs()} height={cs()} />
-    const XP_MOD_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons/wall-pickups/tex_44.png" alt="XP Mod Icon" width={cs()} height={cs()} />
+    const SPEED_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_55.png" alt="Speed Mod Icon" width={cs()} height={cs()} />
+    const AMMO_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_41.png" alt="Ammo Mod Icon" width={cs()} height={cs()} />
+    const AIMING_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_40.png" alt="Aiming Mod Icon" width={cs()} height={cs()} />
+    const IMPACT_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_47.png" alt="Impact Mod Icon" width={cs()} height={cs()} />
+    const AREA_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_42.png" alt="Area Mod Icon" width={cs()} height={cs()} />
+    const JACKPOT_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_49.png" alt="Jackpot Mod Icon" width={cs()} height={cs()} />
+    const XP_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_44.png" alt="XP Mod Icon" width={cs()} height={cs()} />
 
-    const BLESSING_BULL_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons-custom/sprite-blessing-of-the-bull.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
-    const BLESSING_CLOVER_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons-custom/sprite-blessing-of-the-clover.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
-    const BLESSING_HARE_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons-custom/sprite-blessing-of-the-hare.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
-    const BLESSING_HUNT_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons-custom/sprite-blessing-of-the-hunt.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
-    const BLESSING_ROSE_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons-custom/sprite-blessing-of-the-rose.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
-    const BLESSING_VITALITY_ICON = <img src="https://rac-horizon-resources.s3.amazonaws.com/icons-custom/sprite-blessing-of-vitality.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
+    const BLESSING_BULL_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons-custom/sprite-blessing-of-the-bull.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
+    const BLESSING_CLOVER_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons-custom/sprite-blessing-of-the-clover.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
+    const BLESSING_HARE_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons-custom/sprite-blessing-of-the-hare.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
+    const BLESSING_HUNT_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons-custom/sprite-blessing-of-the-hunt.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
+    const BLESSING_ROSE_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons-custom/sprite-blessing-of-the-rose.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
+    const BLESSING_VITALITY_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons-custom/sprite-blessing-of-vitality.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
 
     const WEAPON_UPGRADES = [
         {level: "V1", price: "Free"},
@@ -967,18 +967,18 @@ export const SurvivalMountainPass = () => {
                 <Box sx={{mb: 4}} />
 
                 <InteractiveMap
-                    backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/minimap-2k.png"
+                    backgroundUrl="https://rac-horizon-cdn.s3.amazonaws.com/interactive-maps/survival/mountain-pass/minimap-2k.png"
                     layers={[
-                        {layerLabel: "Weapons", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/weapons-2k.png"},
-                        {layerLabel: "Nanotech", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/nanotech-2k.png"},
-                        {layerLabel: "Wall Pickups", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/wall-pickups-2k.png"},
-                        {layerLabel: "Mystery Box", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/mystery-box-2k.png"},
-                        {layerLabel: "Vendor", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/vendor-2k.png"},
-                        {layerLabel: "Pack-A-Punch", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/pack-a-punch-2k.png"},
-                        {layerLabel: "Obelisks", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/obelisks-2k.png"},
-                        {layerLabel: "Barriers", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/barriers-2k.png"},
-                        {layerLabel: "Bank", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/bank-2k.png"},
-                        {layerLabel: "Demon Bells", layerUrl: "https://rac-horizon-resources.s3.amazonaws.com/interactive-maps/survival/mountain-pass/demon-bells-2k.png"},
+                        {layerLabel: "Weapons", layerUrl: "https://rac-horizon-cdn.s3.amazonaws.com/interactive-maps/survival/mountain-pass/weapons-2k.png"},
+                        {layerLabel: "Nanotech", layerUrl: "https://rac-horizon-cdn.s3.amazonaws.com/interactive-maps/survival/mountain-pass/nanotech-2k.png"},
+                        {layerLabel: "Wall Pickups", layerUrl: "https://rac-horizon-cdn.s3.amazonaws.com/interactive-maps/survival/mountain-pass/wall-pickups-2k.png"},
+                        {layerLabel: "Mystery Box", layerUrl: "https://rac-horizon-cdn.s3.amazonaws.com/interactive-maps/survival/mountain-pass/mystery-box-2k.png"},
+                        {layerLabel: "Vendor", layerUrl: "https://rac-horizon-cdn.s3.amazonaws.com/interactive-maps/survival/mountain-pass/vendor-2k.png"},
+                        {layerLabel: "Pack-A-Punch", layerUrl: "https://rac-horizon-cdn.s3.amazonaws.com/interactive-maps/survival/mountain-pass/pack-a-punch-2k.png"},
+                        {layerLabel: "Obelisks", layerUrl: "https://rac-horizon-cdn.s3.amazonaws.com/interactive-maps/survival/mountain-pass/obelisks-2k.png"},
+                        {layerLabel: "Barriers", layerUrl: "https://rac-horizon-cdn.s3.amazonaws.com/interactive-maps/survival/mountain-pass/barriers-2k.png"},
+                        {layerLabel: "Bank", layerUrl: "https://rac-horizon-cdn.s3.amazonaws.com/interactive-maps/survival/mountain-pass/bank-2k.png"},
+                        {layerLabel: "Demon Bells", layerUrl: "https://rac-horizon-cdn.s3.amazonaws.com/interactive-maps/survival/mountain-pass/demon-bells-2k.png"},
                     ]}
                 />
 

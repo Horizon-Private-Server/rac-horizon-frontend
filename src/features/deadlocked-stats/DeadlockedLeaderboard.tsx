@@ -110,7 +110,7 @@ const DeadlockedLeaderboard = () => {
 
     const {data, status} = useDeadlockedLeaderboard(domain ?? "overall", stat ?? "rank", page ?? 1);
 
-    return <ImageBacking backgroundUrl="https://rac-horizon-resources.s3.amazonaws.com/backgrounds/dl-background.jpg">
+    return <ImageBacking backgroundUrl="https://rac-horizon-cdn.s3.amazonaws.com/backgrounds/dl-background.jpg">
 
         <Box sx={{width: screenSize === ScreenSize.Mobile ? "100%" : "calc(100% - 50px)"}}>
             <HorizonBreadcrumbs
