@@ -1,5 +1,5 @@
 import { Card, CardActions, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
-import { CustomMapIndexEntry, useCustomMapBackgroundData } from "../../hooks/custom-maps";
+import { CustomMapIndexEntry, CustomMapRepoEntry, useCustomMapRepoBackgroundData } from "../../hooks/custom-maps";
 import { Download } from "@mui/icons-material";
 import { GameType } from "../../constants/game";
 import { WaitFor } from "./WaitFor";
@@ -14,11 +14,12 @@ import { generatePNG } from "../../utils/png";
 
 type Props = {
     game: GameType;
+    repo: CustomMapRepoEntry;
     entry: CustomMapIndexEntry;
 };
 
-export const CustomMapCard = ({ game, entry: { slug, name, version } }: Props) => {
-    const customMapBackground = useCustomMapBackgroundData(game, slug);
+export const CustomMapCard = ({ game, repo, entry: { slug, name, version } }: Props) => {
+    const customMapBackground = useCustomMapRepoBackgroundData(game, repo, slug);
     const { data: background, status, error } = customMapBackground;
 
     const onDownload = () => {

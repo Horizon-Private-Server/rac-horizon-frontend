@@ -1,18 +1,48 @@
 import { Box, Container, Divider, Grid, Stack, Tab, Tabs, Typography } from "@mui/material";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import { GameType } from "../../constants/game";
-import { useCustomMapsIndex, useGetAllCustomMapVersions } from "../../hooks/custom-maps";
+import { CustomMapRepoEntry, useCustomMapRepos, useCustomMapRepoIndex, useGetAllCustomMapRepoVersions } from "../../hooks/custom-maps";
 import { CustomMapCard } from "../../components/base/CustomMapCard";
 import { CustomGameModeUYA, CustomGameModeNamesUYA } from "../../constants/game-mode";
 import { useState } from "react";
 
+function UYACustomMapRepo({repo, game} : {
+  repo: CustomMapRepoEntry
+  game: GameType
+}) {
+
+  const customMapsIndex = useCustomMapRepoIndex(game, repo);
+  const { data: customMapsMetadata } = useGetAllCustomMapRepoVersions(game, repo, customMapsIndex?.data?.map((entry) => entry.slug) ?? []);
+
+  return (
+      <Box key={repo.name}>
+          <Typography variant="h3">{repo.name}</Typography>
+          <Stack direction="row" spacing={2} useFlexGap sx={{ flexWrap: "wrap" }}>
+              {customMapsMetadata.length ? (
+                  customMapsMetadata.map(({ data }) => (
+                      <CustomMapCard
+                          key={data?.slug}
+                          game={game}
+                          repo={repo}
+                          entry={{
+                              name: data?.versionInfo.mapName ?? "",
+                              version: data?.versionInfo.version ?? 0,
+                              slug: data?.slug ?? "",
+                          }}
+                      />
+                  ))
+              ) : (
+                  <Box>There are currently no maps for this repo.</Box>
+              )}
+          </Stack>
+          <Divider sx={{ marginTop: "16px", marginBottom: "16px" }} />
+      </Box>
+  );
+}
+
 export const UYACustomMaps = () => {
     const [game, setGame] = useState(GameType.UYA_NTSC);
-    const customMapsIndex = useCustomMapsIndex(game);
-    const { data: customMapsMetadata } = useGetAllCustomMapVersions(game, customMapsIndex?.data?.map((entry) => entry.slug) ?? []);
-
-    // Separate different categories of maps to select from
-    const categories = [CustomGameModeUYA.CUSTOM_MODE_NONE];
+    const { data: customMapRepos } = useCustomMapRepos(game);
 
     return (
         <Box>
@@ -27,33 +57,11 @@ export const UYACustomMaps = () => {
                     <Tab label="NTSC" value={GameType.UYA_NTSC} />
                     <Tab label="PAL" value={GameType.UYA_PAL} />
                 </Tabs>
-                {customMapsMetadata && (
+                {customMapRepos && (
                     <Box>
-                        {categories.map((cat) => {
-                            const categoryEntries = customMapsMetadata?.filter(({ data }) => data?.versionInfo.forcedCustomMode === cat);
-
+                        {customMapRepos.map((repo) => {
                             return (
-                                <Box key={cat}>
-                                    <Typography variant="h3">{CustomGameModeNamesUYA[cat]}</Typography>
-                                    <Stack direction="row" spacing={2} useFlexGap sx={{ flexWrap: "wrap" }}>
-                                        {categoryEntries.length ? (
-                                            categoryEntries.map(({ data }) => (
-                                                <CustomMapCard
-                                                    key={data?.slug}
-                                                    game={game}
-                                                    entry={{
-                                                        name: data?.versionInfo.mapName ?? "",
-                                                        version: data?.versionInfo.version ?? 0,
-                                                        slug: data?.slug ?? "",
-                                                    }}
-                                                />
-                                            ))
-                                        ) : (
-                                            <Box>There are currently no maps for this game mode.</Box>
-                                        )}
-                                    </Stack>
-                                    <Divider sx={{ marginTop: "16px", marginBottom: "16px" }} />
-                                </Box>
+                                <UYACustomMapRepo repo={repo} game={game} />
                             );
                         })}
                     </Box>
