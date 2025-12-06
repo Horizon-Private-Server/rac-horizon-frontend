@@ -27,8 +27,9 @@ export const CustomMapCard = ({ game, repo, entry: { slug, name, version } }: Pr
 
         // UYA custom maps use .ntsc or .pal in the zip file name, DL does not.
         const gameType = game === GameType.DL_NTSC ? "" : `.${mapsRegion}`;
+        const gameFolder = game === GameType.DL_NTSC ? "dl" : "uya";
 
-        const url = `${process.env.REACT_APP_HORIZON_CUSTOM_MAPS_DOMAIN}/${mapsPath}/${slug}${gameType}.zip?v=${version}`;
+        const url = `https://${repo.slug}/${gameFolder}/${slug}${gameType}.zip?v=${version}`;
         downloadFile(url, `${slug}.zip`);
     };
 
