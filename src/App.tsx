@@ -109,6 +109,7 @@ function App() {
                                 <Routes>
                                     <Route path="/" element={<Home />} />
                                     <Route path="/discord" element={<Redirect url="https://discord.gg/nJAXBK35Rm" />} />
+                                    <Route path="/wiki" element={<Redirect url="https://github.com/Horizon-Private-Server/horizon-wiki/blob/main/README.md" />} />
                                     <Route path="/getting-started" element={<Setup />} />
                                     <Route path="/deadlocked" element={<DeadlockedHome />} />
                                     <Route path="/uya" element={<UYAHome />} />
