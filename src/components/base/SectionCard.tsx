@@ -10,9 +10,10 @@ export interface SectionCardProps {
     url: string;
     icon: JSX.Element;
     enabled?: boolean;
+    disabledText?: string;
 }
 
-export const SectionCard = ({label, description, url, icon, enabled = true}: SectionCardProps) => {
+export const SectionCard = ({label, description, url, icon, enabled = true, disabledText = "COMING SOON"}: SectionCardProps) => {
 
     const navigate = useNavigate();
 
@@ -62,7 +63,7 @@ export const SectionCard = ({label, description, url, icon, enabled = true}: Sec
             <Divider variant="inset"/>
             <Box sx={{mb: 2}}/>
             <Typography height="150px" flexWrap="wrap">{description}</Typography>
-            <Typography sx={{mt: -4}}>COMING SOON</Typography>
+            <Typography sx={{mt: -4}}>{disabledText}</Typography>
 
 
         </CardContent>

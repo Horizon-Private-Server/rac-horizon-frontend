@@ -98,6 +98,38 @@ const DeadlockedSurvival = () => {
                 No easter eggs or drawn-out mechanics, this is pure survival on a tiny map with a 50% harder difficulty.`,
             modeImage: "https://rac-horizon-cdn.s3.amazonaws.com/level-frames/veldin.png",
             modeDetailsRoute: "/survival/veldin"
+        },
+        {
+            modeName: "Valix Lighthouse",
+            modeDescription:
+                `Valix Lighthouse scatters the fight across a chain of islands linked by jump pads.
+                Power the Soul Collectors to cross the void, but do not expect the lighthouse to offer safe harbor.`,
+            modeImage: "https://rac-horizon-cdn.s3.us-east-2.amazonaws.com/level-frames/survival_valix.png",
+            modeDetailsRoute: "/survival/valix"
+        },
+        {
+            modeName: "Torval Ruins",
+            modeDescription:
+                `Torval Ruins has double the difficulty of Mountain Pass, and enemies spawn closer to you.
+                There are no boss rounds, but minibosses can appear during normal rounds.`,
+            modeImage: "https://rac-horizon-cdn.s3.us-east-2.amazonaws.com/level-frames/survival_torval.png",
+            modeDetailsRoute: "/survival/torval"
+        },
+        {
+            modeName: "Kavu Island",
+            modeDescription:
+                `Survival on Kavu Island is built around the store.
+                Almost everything in Survival can be bought here if you have the bolts for it.`,
+            modeImage: "https://rac-horizon-cdn.s3.us-east-2.amazonaws.com/level-frames/survival_kavu.png",
+            modeDetailsRoute: "/survival/kavu-island"
+        },
+        {
+            modeName: "Oozla",
+            modeDescription:
+                `Oozla's rain-soaked swamp turns every narrow path into a trap.
+                Control the chokepoints and venture off the beaten path for secrets buried in the muck.`,
+            modeImage: "https://rac-horizon-cdn.s3.us-east-2.amazonaws.com/level-frames/survival_oozla.png",
+            modeDetailsRoute: "/survival/oozla"
         }
     ]
 
@@ -110,10 +142,37 @@ const DeadlockedSurvival = () => {
             <Link underline="hover" color="inherit" onClick={() => navigate("/deadlocked")} sx={{cursor: "pointer"}}>
                 Deadlocked
             </Link>
-            <Typography color="text.primary">Survival</Typography>
+            <Typography color="text.primary">Survival Guides</Typography>
         </Breadcrumbs>
 
         <Box sx={{p: 6}}>
+            <Box
+                sx={{
+                    mb: 4,
+                    p: {xs: 3, sm: 4},
+                    border: "1px solid",
+                    borderColor: "divider",
+                    borderRadius: 2,
+                    background: (theme) => `linear-gradient(120deg, ${theme.palette.background.paper}, ${theme.palette.background.default})`,
+                    boxShadow: "0 1rem 2rem rgba(0, 0, 0, 0.25)",
+                }}
+            >
+                <Typography
+                    component="h1"
+                    variant="h3"
+                    sx={{fontSize: {xs: "2rem", sm: "2.75rem"}, fontWeight: 800, lineHeight: 1.1}}
+                >
+                    What is Survival?
+                </Typography>
+                <Box sx={{width: 72, height: 4, my: 2, borderRadius: 2, bgcolor: "secondary.main"}} />
+                <Typography
+                    sx={{fontSize: {xs: "1rem", sm: "1.1rem"}, lineHeight: 1.7}}
+                >
+                    Survival pits you against wave after wave of lethal enemies with the goal of surviving as long as possible.
+                    Your high score is the number of rounds you complete before every player is down.
+                </Typography>
+            </Box>
+
             { survivalMaps.map((gameMode: GameModeCardProps) => {
                 return <>
                     <GameModeCard 

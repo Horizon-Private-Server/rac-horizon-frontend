@@ -32,6 +32,10 @@ import { SurvivalOrxon } from "./features/deadlocked-custom-modes/SurvivalOrxon"
 import DeadlockedSurvival from "./features/deadlocked-custom-modes/DeadlockedSurvival";
 import { SurvivalMountainPass } from "./features/deadlocked-custom-modes/SurvivalMountainPass";
 import { SurvivalVeldin } from "./features/deadlocked-custom-modes/SurvivalVeldin";
+import { SurvivalValix } from "./features/deadlocked-custom-modes/SurvivalValix";
+import { SurvivalTorval } from "./features/deadlocked-custom-modes/SurvivalTorval";
+import { SurvivalKavuIsland } from "./features/deadlocked-custom-modes/SurvivalKavuIsland";
+import { SurvivalOozla } from "./features/deadlocked-custom-modes/SurvivalOozla";
 import { DZOLinux } from "./features/deadlocked/DZOLinux";
 import { DZOMacOSX } from "./features/deadlocked/DZOMacOSX";
 import { Stack, Typography } from "@mui/material";
@@ -137,6 +141,10 @@ function App() {
                                     <Route path="/survival/orxon" element={<SurvivalOrxon />} />
                                     <Route path="/survival/mountain-pass" element={<SurvivalMountainPass />} />
                                     <Route path="/survival/veldin" element={<SurvivalVeldin />} />
+                                    <Route path="/survival/valix" element={<SurvivalValix />} />
+                                    <Route path="/survival/torval" element={<SurvivalTorval />} />
+                                    <Route path="/survival/kavu-island" element={<SurvivalKavuIsland />} />
+                                    <Route path="/survival/oozla" element={<SurvivalOozla />} />
                                     <Route path="/dzo/linux" element={<DZOLinux />} />
                                     <Route path="/dzo/macosx" element={<DZOMacOSX />} />
                                 </Routes>

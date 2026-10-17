@@ -5,7 +5,7 @@ import { Box, Grid2, Stack } from "@mui/material";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
 
 import { SectionCard, SectionCardProps } from "../../components/base/SectionCard";
-import ImageBacking from "../../components/base/ImageBacking";
+import SlideshowImageBacking from "../../components/base/SlideshowImageBacking";
 import { Podcasts, EmojiEvents, Gamepad, AddLocationAlt } from "@mui/icons-material";
 import { UYA_BACKGROUND_IMAGES } from "../../utils/Constants";
 
@@ -59,7 +59,7 @@ const UYAHome = () => {
     }
 
     return (
-        <ImageBacking backgroundUrl={UYA_BACKGROUND_IMAGES}>
+        <SlideshowImageBacking backgroundUrls={UYA_BACKGROUND_IMAGES} interval={10000}>
             {/* FIXME This is CSS hackery that "works" for the time being. */}
             <Box sx={{ height: `calc(${screenSize === ScreenSize.Mobile ? 180 : 100}vh - 280px)` }}>
                 <Stack direction="column">
@@ -80,7 +80,7 @@ const UYAHome = () => {
                     </Grid2>
                 </Stack>
             </Box>
-        </ImageBacking>
+        </SlideshowImageBacking>
     );
 };
 

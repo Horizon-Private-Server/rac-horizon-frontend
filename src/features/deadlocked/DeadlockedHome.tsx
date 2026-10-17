@@ -18,6 +18,12 @@ const DeadlockedHome = () => {
 
     const sections: SectionCardProps[] = [
         {
+            label: "Custom Maps",
+            description: "Browse a list of individual custom maps available for download.",
+            url: "/deadlocked/custom-maps",
+            icon: <AddLocationAlt />,
+        },
+        {
             label: "Survival Guides",
             description: "Learn the basics for survival and explore advanced strategies developed by the community.",
             url: "/survival",
@@ -35,18 +41,16 @@ const DeadlockedHome = () => {
                 "Track your progress and see how you compare to other players. This leaderboard is more comprehensive than the leaderboard found in-game!",
             url: "/deadlocked/stats",
             icon: <EmojiEventsIcon />,
-        },
-        {
-            label: "Custom Maps",
-            description: "Browse a list of individual custom maps available for download.",
-            url: "/deadlocked/custom-maps",
-            icon: <AddLocationAlt />,
+            enabled: false,
+            disabledText: "COMING SOON • HORIZON STATS SITE",
         },
         {
             label: "Player Search",
             description: "Search for a Deadlocked player by name.",
             url: "/deadlocked/player-search",
             icon: <Search />,
+            enabled: false,
+            disabledText: "COMING SOON • HORIZON STATS SITE",
         },
         {
             label: "Game History",
@@ -54,6 +58,7 @@ const DeadlockedHome = () => {
             url: "/deadlocked/game-history",
             icon: <SportsEsportsIcon />,
             enabled: false,
+            disabledText: "COMING SOON • HORIZON STATS SITE",
         },
 
         // {
@@ -97,6 +102,7 @@ const DeadlockedHome = () => {
                                         url={section.url}
                                         icon={section.icon}
                                         enabled={section.enabled}
+                                        disabledText={section.disabledText}
                                     />
                                 </Grid2>
                             );

@@ -5,136 +5,49 @@ import {
     Card,
     CardContent,
     Typography,
-    TableCell,
-    TableRow,
-    TableHead,
-    TableContainer,
-    TableBody,
-    Link,
-    Breadcrumbs,
     Alert
 } from "@mui/material";
 import { TextHeading, TextList } from "../../components/base/TextComponents";
 import useWindowDimensions, { computeDeviceScale, ScreenSize } from "../../components/utils/WindowDimensions";
-import { ChangingImage } from "../../components/base/ChangingImage";
-import { MobileFriendlyIconRow, MobileFriendlyTextRow } from "../../components/base/MobileFriendlyRow";
-import {NavigateFunction, useNavigate} from "react-router-dom";
+import SpoilerGuard from "../../components/base/SpoilerGuard";
+import SurvivalBreadcrumbs from "./survival/molecules/SurvivalBreadcrumbs";
+import IconCallout from "./survival/molecules/IconCallout";
+import FormulaSpoiler from "./survival/molecules/FormulaSpoiler";
+import EnemyTable from "./survival/organisms/EnemyTable";
+import GambitTable from "./survival/organisms/GambitTable";
+import IconItemTable from "./survival/organisms/IconItemTable";
+import SpecialRoundTable from "./survival/organisms/SpecialRoundTable";
+import { PrestigeTable, WeaponUpgradeTable } from "./survival/organisms/WeaponCostTables";
+import {
+    ALPHA_MOD_ITEMS,
+    BONUS_DROP_ITEMS,
+    defaultPerkItems,
+    mysteryBoxItem,
+    SELF_REVIVE_STORE_COST,
+    wallPowerupItems
+} from "./survival/constants/data";
+import {
+    ICON_SELF_REVIVE
+} from "./survival/constants/icons";
 
 export const SurvivalOrxon = () => {
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {width, height} = useWindowDimensions();
+    const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
-    const navigate: NavigateFunction = useNavigate();
-
-    const PLAYER_REVIVE_DELTA = "8,000";
-    const MYSTERY_BOX_COST = "10,000";
-
-    const cs = () => {
-    
-        if (screenSize === ScreenSize.Desktop) {
-            return 64;
-        }
-        else if (screenSize === ScreenSize.Tablet) {
-            return 56;
-        }
-        else {
-            return 48;
-        }
-    };
-    
-    const GATE_RESET_ICON = <img 
-        src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_14.png"
-        alt="Gate Reset Icon" 
-        width={cs()} 
-        height={cs()}
-        style={{filter: "brightness(50%) sepia(100%) saturate(10000%) invert(1) hue-rotate(239deg)"}}
-    />;
-    
-    const ALL_ALPHA_MODS_ICON = <ChangingImage 
-        srcList={[
-            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_55.png",
-            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_41.png",
-            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_40.png",
-            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_47.png",
-            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_42.png",
-            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_49.png",
-            "https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_44.png",
-        ]}
-        altList={[
-            "Speed Mod Icon",
-            "Ammo Mod Icon",
-            "Aiming Mod Icon",
-            "Impact Mod Icon",
-            "Area Mod Icon",
-            "Jackpot Mod Icon",
-            "XP Mod Icon"
-        ]}
-        interval={1000}
-        width={cs()}
-        height={cs()}
-        variant="sequential"
-    />;
-    
-    const DREAD_TOKEN_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_35.png" alt="Dread Token Icon" width={cs()} height={cs()} />;
-    const UPGRADE_WEAPON_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_37.png" alt="Upgrade Weapon Icon" width={cs()} height={cs()} />;
-    
-    const SUPERCHARGE_POWER_ICON = <img 
-        src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_54.png"
-        alt="Power Supercharge Icon" 
-        width={cs()} 
-        height={cs()}
-        style={{filter: "brightness(50%) sepia(100%) saturate(10000%) invert(1) hue-rotate(45deg)"}} 
-    />;
-    
-    const INFINITE_AMMO_ICON = <img 
-        src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_93.png"
-        alt="Infinite Ammo Icon" 
-        width={cs()} 
-        height={cs()}
-        style={{filter: "brightness(50%) sepia(100%) saturate(10000%) invert(1) hue-rotate(239deg)"}}
-    />;
-    
-    const SELF_REVIVE_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_80.png" alt="Self-Revive Icon" width={cs()} height={cs()} />;
-    const INVISIBILITY_CLOAK_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_19.png" alt="Invisibility Cloak Icon" width={cs()} height={cs()} />;
-    const VOX_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_132.png" alt="Vox Icon" width={cs()} height={cs()} />;
-    
-    const INSTANT_HEALTH_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_18.png" alt="Instant Health Icon" width={cs()} height={cs()} />;
-    const MAX_AMMO_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_93.png" alt="Max Ammo Icon" width={cs()} height={cs()} />;
-    const NUKE_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_22.png" alt="Nuke Icon" width={cs()} height={cs()} />;
-    const FREEZE_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_46.png" alt="Freeze Icon" width={cs()} height={cs()} />;
-    const DOUBLE_POINTS_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_49.png" alt="Double Points Icon" width={cs()} height={cs()} />;
-    const DOUBLE_XP_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_44.png" alt="Double XP Icon" width={cs()} height={cs()} />;
-    
-    const INCREASE_HEALTH_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_18.png" alt="Increase Health Icon" width={cs()} height={cs()} />;
-    const INCREASE_DAMAGE_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_12.png" alt="Increase Damage Icon" width={cs()} height={cs()} />;
-    const INCREASE_SPEED_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_55.png" alt="Increase Speed Icon" width={cs()} height={cs()} />;
-    const VENDOR_DISCOUNT_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_49.png" alt="Vendor Discount Icon" width={cs()} height={cs()} />;
-    const REVIVE_DISCOUNT_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_42.png" alt="Revive Discount Icon" width={cs()} height={cs()} />;
-    const POWERPUP_EXTENSION_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_5.png" alt="Powerup Extension Icon" width={cs()} height={cs()} />;
-    
-    const SPEED_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_55.png" alt="Speed Mod Icon" width={cs()} height={cs()} />
-    const AMMO_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_41.png" alt="Ammo Mod Icon" width={cs()} height={cs()} />
-    const AIMING_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_40.png" alt="Aiming Mod Icon" width={cs()} height={cs()} />
-    const IMPACT_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_47.png" alt="Impact Mod Icon" width={cs()} height={cs()} />
-    const AREA_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_42.png" alt="Area Mod Icon" width={cs()} height={cs()} />
-    const JACKPOT_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_49.png" alt="Jackpot Mod Icon" width={cs()} height={cs()} />
-    const XP_MOD_ICON = <img src="https://rac-horizon-cdn.s3.amazonaws.com/icons/wall-pickups/tex_44.png" alt="XP Mod Icon" width={cs()} height={cs()} />
-
-    const WEAPON_UPGRADES = [
-        {level: "V1", price: "Free"},
-        {level: "V2", price: "8,000 Bolts"},
-        {level: "V3", price: "12,000 Bolts"},
-        {level: "V4", price: "20,000 Bolts"},
-        {level: "V5", price: "40,000 Bolts"},
-        {level: "V6", price: "60,000 Bolts"},
-        {level: "V7", price: "90,000 Bolts"},
-        {level: "V8", price: "150,000 Bolts"},
-        {level: "V9", price: "220,000 Bolts"},
-        {level: "V10", price: "350,000 Bolts"},
-
-    ]
+    const mysteryBoxItems = [
+        mysteryBoxItem("Alpha Mod", ["40.8%"]),
+        mysteryBoxItem("Dread Token", ["20.4%"]),
+        mysteryBoxItem("Vox", ["10.2%"]),
+        mysteryBoxItem("Upgrade Weapon", ["6.1%"]),
+        mysteryBoxItem("Quad", ["3.4%"]),
+        mysteryBoxItem("Shield", ["3.4%"]),
+        mysteryBoxItem("Infinite Ammo", ["3.4%"]),
+        mysteryBoxItem("Health Tornado", ["3.4%"]),
+        mysteryBoxItem("Invisibility Cloak", ["3.4%"]),
+        mysteryBoxItem("Randomize Weapon Pickups", ["3.4%"]),
+        mysteryBoxItem("Gate Reset", ["2.0%"]),
+    ];
 
     return <Box
         marginLeft={screenSize === ScreenSize.Desktop ? 10 : 0}
@@ -142,67 +55,86 @@ export const SurvivalOrxon = () => {
         marginBottom={4}
     >
 
-        <Breadcrumbs aria-label="breadcrumb" sx={{paddingTop: 2, ml: 2}}>
-            <Link underline="hover" color="inherit" onClick={() => navigate("/")} sx={{cursor: "pointer"}}>
-                Horizon
-            </Link>
-            <Link underline="hover" color="inherit" onClick={() => navigate("/deadlocked")} sx={{cursor: "pointer"}}>
-                Deadlocked
-            </Link>
-            <Link underline="hover" color="inherit" onClick={() => navigate("/survival")} sx={{cursor: "pointer"}}>
-                Survival
-            </Link>
-            <Typography color="text.primary">Orxon</Typography>
-        </Breadcrumbs>
+        <SurvivalBreadcrumbs mapName="Orxon" />
 
         <Alert
-            severity="warning"
+            severity="info"
             sx={{mb: 2, mt: 2}}
         >
-            The following page was written for Survival 2.0 and does not include features backported to Orxon as part of the Survival 3.0 update.
-            We're working on updating this guide.
-            For a more up-to-date reference please refer to the Survival Guide for Mountain Pass.
+            SPOILER WARNING: The following guide contains spoilers to Survival and Orxon.
         </Alert>
 
         <Card>
             <CardContent>
 
-                <TextHeading heading="Survival (Orxon)" variant="h4" />
+                <TextHeading heading="Orxon" variant="h4" />
 
                 <Typography marginBottom={3}>
-                    Survival is the most ambitious custom game mode developed for Deadlocked on Horizon.
-                    Survival takes inspiration from classic wave survival games, such as COD zombies, as well as elements from more modern rogue-like games, such as Risk of Rain.
-                    Survival pits you against wave after wave of lethal enemies with the goal of surviving as long as possible.
-                    The maximum round you've completed is what counts as your high score (e.g., if you die on round 10, you will have a score of 9 rounds).
+                    Orxon is the first Survival map developed and has a difficulty of <code>1.5</code>.
+                    Enemies spawn closer than on Mountain Pass, making the facility harder to control.
                 </Typography>
+
+                <TextHeading heading="How Survival Works" variant="h4" />
+
+                <Typography marginBottom={3}>
+                    As you defeat enemies in each wave, you will earn both bolts and XP (visible as a bar above your health).
+                    Bolts and XP are shared between all players that are still alive.
+                    Every time your XP bar fills up, you will receive a Dread Token (visible below your bolt count).
+                    Bolts are used to upgrade weapons, roll the mystery box, buy from the store and prestige your weapons.
+                    Dread Tokens are used to open doors and purchase wall power-ups.
+                    Spend your bolts and Dread Tokens wisely to make yourself more powerful so you can fight off the horde!
+                </Typography>
+                <Typography marginBottom={1}>
+                    The more enemies that spawn, the more they evolve.
+                    Enemy evolution is not tied to the round number, it's based on how many enemies have spawned!
+                    Additionally, after every 25 waves, all enemies are mutated, greatly furthering their evolution!
+                    Enemy mutations can be categorized into the following stats:
+                </Typography>
+                <Typography>
+                    <b>Health</b> - The total amount of damage required to kill the enemy. This stat scales without bound.
+                </Typography>
+
+                <Typography>
+                    <b>Damage Output</b> - The total amount of damage an enemy deals to the player. This stat also scales without bound.
+                </Typography>
+
+                <Typography>
+                    <b>Movement Speed</b> - The speed at which enemies will charge the player. This stat is capped near the player's maximum speed.
+                </Typography>
+
+                <Typography marginBottom={3}>
+                    <b>Reaction Time</b> - The amount of time it takes an enemy to swing at the player when it gets in range. Between rounds 50 and 100 this drops to a quarter of its starting value.
+                </Typography>
+
+                <Typography marginBottom={3}>
+                    Each wave has <code>10 + (10 x round number)</code> enemies and up to 50 can be alive at once.
+                    After the end of each wave there is a 45-second intermission period.
+                    Use this time to buy weapon upgrades, configure alpha mods, perform map-specific actions, roll the Mystery Box and pick up ammo.
+                    Players can vote to skip the intermission by pressing Up on the D-Pad.
+                    Once everyone has voted, the next round starts.
+                    If the host has already voted, they can press Up again to start the round without waiting for everyone else.
+                    Every 25 rounds, there is no timer and every player must vote to start the next round (or the host can skip the vote).
+                    When playing solo, opening the start menu pauses the game.
+                </Typography>
+                <Typography marginBottom={3}>
+                    Completing a wave awards a round bonus to every player that is still alive.
+                    The bonus grows with the round number and the number of players, up to <code>10,000 Bolts</code>.
+                    Special rounds award 5 times the bonus.
+                </Typography>
+
+                <Typography marginBottom={3}>
+                    Survival also features damage numbers.
+                    Damage numbers pop up briefly for each hit on an enemy.
+                    Normal damage numbers appear yellow and critical hits appear as red.
+                </Typography>
+                <TextHeading heading="Shared Mechanics" variant="h4" />
+
+                <TextHeading heading="Ranks and Leaderboards" variant="h5" />
 
                 <Typography marginBottom={3}>
                     Survival introduces many new custom stats that are tracked (e.g., the amount of XP you earn and individual weapon kills).
-                    Survival is a ranked gamemode, however, it is different from all other ranked modes on Deadlocked.
+                    Survival is a ranked game mode, however, it is different from all other ranked modes on Deadlocked.
                     Survival rank is earned cumulatively and rank will never be removed as a consequence of poor performance in-game.
-                </Typography>
-
-                <TextHeading heading="Gameplay" variant="h5" />
-
-                <Typography marginBottom={3}>
-                    As you defeat zombies in each wave, you will earn both bolts and XP (visible as a bar above your health).
-                    Bolts are shared between all players, but XP is earned individually.
-                    Every time your XP bar fills up, you will receive a Dread Token (visible below your bolt count).
-                    Bolts are used to upgrade weapons and roll the mystery box.
-                    Dread Tokens are used to open doors and purchase wall powerups.
-                    Spend your bolts and Dread Tokens wisely to make yourself more powerful so you can fight off the horde!
-                </Typography>
-
-                <Typography marginBottom={3}>
-                    The more zombies you defeat, the stronger they become (Note: The level of a zombie is not tied to the wave you're on, even as a wave progresses, zombies become stronger).
-                    A zombie's health pool, movement speed and damage output all become greater as the zombie gets stronger.
-                    Zombies are not all the same, some zombies will receive a greater buff in a certain stat than others (e.g., One zombie might deal more damage, but have lower health and speed than another zombie that receives a larger health pool or another zombie that is really fast).
-                </Typography>
-
-                <Typography marginBottom={3}>
-                    After the end of each wave there is a 45-second intermission period.
-                    Use this time to buy weapon upgrades, configure alpha mods, perform map-specific actions (e.g., Turning on power), roll the Mystery Box and pickup ammo.
-                    This intermission period can be optionally skipped by the host of the game.
                 </Typography>
 
                 <TextHeading heading="Weapons and Alpha Mods" variant="h5" />
@@ -215,62 +147,18 @@ export const SurvivalOrxon = () => {
                     Bolts are used to upgrade weapons at the weapon vendor.
                     Weapons can be upgraded all the way to V10.
                     Every time you upgrade your weapon, you will also receive a <b>random</b> Alpha Mod.
-                    These mods improve the performance of your weapon (e.g., ammo mod gives you more ammo, area mod increases the explosion radius of your weapon, impact mod stuns zombies more effectively, etc.).
+                    These mods improve the performance of your weapon (e.g., ammo mod gives you more ammo, area mod increases the explosion radius of your weapon, impact mod stuns enemies more effectively, etc.).
                 </Typography>
+                <IconCallout>IMPORTANT: ALPHA MODS ARE NOT AUTOMATICALLY APPLIED TO YOUR WEAPON WHEN YOU UPGRADE IT!!!</IconCallout>
 
                 <Typography marginBottom={3}>
-                    <b>IMPORTANT: Alpha Mods are not automatically applied to your weapon when you upgrade it! </b>
-                    In order to apply an Alpha Mod, you need to visit Big Al's station elsewhere on the map.
+                    In order to apply an Alpha Mod, you need to visit Big Al.
                     Unlike in single player, alpha mod slots aren't locked based on weapon level (i.e., you can equip 10 alpha mods on a V1 weapon if you have enough alpha mods).
                     You can also put any alpha mod on any weapon.
                 </Typography>
-
                 <TextHeading heading="Alpha Mod List" variant="h6" />
 
-                <TableContainer>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell><Typography fontWeight="bold">Alpha Mod</Typography></TableCell>
-                            { screenSize !== ScreenSize.Mobile && ( <TableCell><Typography fontWeight="bold">Icon</Typography></TableCell> )}
-                            <TableCell><Typography fontWeight="bold">Effect</Typography></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <MobileFriendlyIconRow firstCellText="Speed Mod" icon={SPEED_MOD_ICON} 
-                            remainingCells={["Increases the rate of fire of a given weapon (Does not apply to the Scorpion Flail)."]}
-                        />
-                        <MobileFriendlyIconRow firstCellText="Ammo Mod" icon={AMMO_MOD_ICON}
-                            remainingCells={["Increases the maximum ammo count of a given weapon by 5 shots (except for the Dual Vipers, which receive 50 extra shots)."]}
-                        />
-                        <MobileFriendlyIconRow firstCellText="Aiming Mod" icon={AIMING_MOD_ICON}
-                            remainingCells={["Increases the auto targeting ability of a given weapon (This mod only applies to the Dual Vipers, The Arbiter and the B-6 Obliterator)."]}
-                        />
-                        <MobileFriendlyIconRow firstCellText="Impact Mod" icon={IMPACT_MOD_ICON}
-                            remainingCells={[
-                                `When equipped, it makes it easier to stun (flinch) zombies (i.e., it takes less damage to stun a zombie).
-                                Impact also knocks enemies back, this effect is amplicfied with more knockback mods.`
-                            ]}
-                        />
-                        <MobileFriendlyIconRow firstCellText="Area Mod" icon={AREA_MOD_ICON}
-                            remainingCells={[
-                                `Increases the explosion radius on weapons that have an Area of Effect (AoE). 
-                                This mod only applies to the Dual Vipers, The Arbiter, the B-6 Obliterator, the Hunter Mine Launcher and the Scorpion Flail.`
-                            ]}
-                        />
-                        <MobileFriendlyIconRow firstCellText="Jackpot Mod" icon={JACKPOT_MOD_ICON}
-                            remainingCells={[
-                                `Increases the amount of bolts earned from defeating zombies with the weapon it is equipped on. 
-                                The increased number of bolts is NOT shared with teammates.`
-                            ]}
-                        />
-                        <MobileFriendlyIconRow firstCellText="XP Mod" icon={XP_MOD_ICON}
-                            remainingCells={[
-                                `Increases the amount of XP earned from defeating zombies with the weapon it is equipped on.
-                                Since XP is not shared, this mod does not affect teammates.`
-                            ]}
-                        />
-                    </TableBody>
-                </TableContainer>
+                <IconItemTable nameLabel="Alpha Mod" columns={["Effect", "Applicable Weapons"]} items={ALPHA_MOD_ITEMS} />
 
                 <TextHeading heading="Upgrading Weapons" variant="h6" />
 
@@ -278,11 +166,10 @@ export const SurvivalOrxon = () => {
                     Weapons can be upgraded at the weapon vendor.
                     When you upgrade a weapon, its current level will be displayed as part of the weapon name in the top left of the screen.
                     Additionally, the weapon's progress bar will start to fill up.
-                    V2-V9 weapons offer only damage upgrades (except for the Holoshield Launcher, which allows holoshields to remain for longer periods of time).
+                    V2-V9 weapons offer only damage upgrades.
                     Upon upgrading to V10, your weapon will get a large boost in performance (both in terms of damage and effectiveness).
                 </Typography>
-
-                <TextList 
+                <TextList
                     items={[
                         <Typography>The <b>Dual Vipers</b> become the <b>Dual Raptors</b> and all bullets ricochet off of enemies and walls for extra damage.</Typography>,
                         <Typography>The <b>Magma Cannon</b> becomes the <b>Vulcan Cannon</b> and has a much larger AoE.</Typography>,
@@ -298,298 +185,87 @@ export const SurvivalOrxon = () => {
 
                 <Box sx={{mb: 3}} />
 
+                <Typography marginBottom={3}>
+                    Each player can only have 4 holoshields out at once, placing a 5th removes the oldest one.
+                    Spinning the Scorpion Flail costs 1 ammo per second and stops once you run out.
+                </Typography>
                 <Typography marginBottom={2}>
                     As you purchase weapon upgrades at the vendor, the price will increase greatly from version to version.
-                    The total cost to get to a V10 weapon (without vendor discounts) is <code>950,000 Bolts</code>.
+                    The total cost to get to a V10 weapon is <code>950,000 Bolts</code>.
                     The following table defines the base cost per weapon level.
                 </Typography>
+                <WeaponUpgradeTable />
 
-                <TableContainer>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell><Typography fontWeight="bold">Weapon Level</Typography></TableCell>
-                            <TableCell><Typography fontWeight="bold">Cost</Typography></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {WEAPON_UPGRADES.map((weapon) => {
-                            return <TableRow key={weapon.level}>
-                            <TableCell><Typography>{weapon.level}</Typography></TableCell>
-                            <TableCell><Typography>{weapon.price}</Typography></TableCell>
-                        </TableRow>
-                        })}
-                    </TableBody>
-                </TableContainer>
+                <TextHeading heading="Weapon Prestige" variant="h6" />
+
+                <Typography marginBottom={2}>
+                    Once you upgrade your weapon to a V10, you will gain the ability to prestige your weapon.
+                    Prestiging a weapon reverts it back to a V1, but adds a damage multiplier to the base damage that stacks with weapon upgrades and wall pickups.
+                    Prestiging a weapon requires a large quantity of bolts up-front and can be dangerous if you aren't prepared.
+                    A V1 weapon of a higher prestige typically has lower damage output than the V10 it came from.
+                    Hold the weapon you want to prestige and press Circle at the prestige vendor.
+                </Typography>
+                <PrestigeTable />
 
                 <TextHeading heading="Dread Tokens, Wall Powerups and Map Unlocks" variant="h5" />
 
                 <Typography marginBottom={2}>
-                    Dread Tokens are used to purchase wall powerups as well as unlock the map (e.g., On the Orxon survival map, tokens are used to unlock doors).
-                    Wall powerups increase the overall stats and effectiveness of your character as opposed to the stats of a specific weapon.
-                    Wall powerups do not stay in the same place and will move after 5 purchases.
-                    As a wall powerup is purchased from a single location, it will gradually become more transparent until it disappears altogether.
-                    Wall powerup locations are defined per-map and do not change, but the powerup at a specific location will always be random.
-                    Some powerup locations are locked behind doors and require investing tokens to reach.
-                    The following table includes all wall powerups available.
+                    Dread Tokens are used to purchase wall power-ups as well as unlock the map.
+                    Doors are paid for one token at a time, so any player can chip in.
+                    Wall power-ups increase the overall stats and effectiveness of your character as opposed to the stats of a specific weapon.
+                    Wall power-ups do not stay in the same place and will move after 15 purchases.
+                    The remaining uses of a wall power-up are displayed in the pop-up text near the pickup.
+                    As a wall power-up is purchased from a single location, it will gradually become more transparent until it disappears altogether.
+                    Wall power-up locations are defined per-map and do not change, but the power-up at a specific location will always be random.
+                    The following table includes all wall power-ups available.
+                </Typography>
+                <IconItemTable nameLabel="Wall Powerup" columns={["Effect", "Maximum Use"]} items={wallPowerupItems("1,000")} />
+
+                <Typography marginBottom={2} marginTop={3} >
+                    Dread Tokens are more easily earned in early rounds, but become more scarce in later rounds.
+                    The XP needed for each Dread Token grows by 5% with every token earned, then becomes flat after 50 total tokens have been earned.
                 </Typography>
 
-                <TableContainer>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell><Typography fontWeight="bold">Wall Powerup</Typography></TableCell>
-                            {screenSize !== ScreenSize.Mobile && ( <TableCell><Typography fontWeight="bold">Icon</Typography></TableCell> )}
-                            <TableCell><Typography fontWeight="bold">Effect</Typography></TableCell>
-                            <TableCell><Typography fontWeight="bold">Maximum Use</Typography></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <MobileFriendlyIconRow firstCellText="Increase Health" icon={INCREASE_HEALTH_ICON} remainingCells={[
-                            "Increases your maximum health by 5 units per-token. (Note: This does not restore health, so you will have to break a health crate to restore your health).",
-                            "Unlimited"
-                        ]} />
-                        <MobileFriendlyIconRow firstCellText="Increase Damage" icon={INCREASE_DAMAGE_ICON} remainingCells={[
-                            "Increases your overall damage output (with every weapon) by 8% per-token.",
-                            "Unlimited"
-                        ]} />
-                        <MobileFriendlyIconRow firstCellText="Increase Speed" icon={INCREASE_SPEED_ICON} remainingCells={[
-                            "Increases your base movement speed by 2.5% per-token.",
-                            "28 Tokens (70% Maximum)"
-                        ]} />
-                        <MobileFriendlyIconRow firstCellText="Vendor Discount" icon={VENDOR_DISCOUNT_ICON} remainingCells={[
-                            "Applies a 2.5% discount per-token when buying weapon upgrades from the weapon vendor.",
-                            "16 Tokens (40% Maximum Discount)"
-                        ]} />
-                        <MobileFriendlyIconRow firstCellText="Revive Discount (Medic)" icon={REVIVE_DISCOUNT_ICON} remainingCells={[
-                            "Applies an 8% discount per-token when reviving a teammate. This wall powerup only appears in multiplayer or splitscreen.",
-                            "10 Tokens (80% Maximum Discount)"
-                        ]} />
-                        <MobileFriendlyIconRow firstCellText="Powerup Extension" icon={POWERPUP_EXTENSION_ICON} remainingCells={[
-                            "Increases the duration of quad by 0.75s and shield by 1s per-token.",
-                            "Unlimited"
-                        ]} />
-                    </TableBody>
-                </TableContainer>
-
-                <TextHeading heading="Enemies" variant="h5" />
-
-                <Typography marginBottom={2}>
-                    As you progress, new and more dangerous types of enemies will start to appear.
-                    Every 5 waves is also a special wave with a particular enemy theme.
-                    The special waves are predetermined and always the same.
-                    There are 5 different special waves that cycle every 25 rounds.
-                    They are: <b>The Ghost Tremor Round</b>, <b>The Elemental Round</b>, <b>The Freeze Ghost Round</b>, <b>The Freeze Round</b> and <b>The Executioner Round</b>.
-                </Typography>
-
-                
-                <TableContainer>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell><Typography fontWeight="bold">Enemy</Typography></TableCell>
-                            <TableCell><Typography fontWeight="bold">Description</Typography></TableCell>
-                            { screenSize !== ScreenSize.Mobile && (
-                                <TableCell><Typography fontWeight="bold">First Appears On</Typography></TableCell>
-                            )}
-                            { screenSize !== ScreenSize.Mobile && (
-                                <TableCell><Typography fontWeight="bold">Spawn Chance</Typography></TableCell>
-                            )}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <MobileFriendlyTextRow 
-                            firstCellText="Robot Zombie"
-                            descriptionText={
-                                <Typography>
-                                    A standard robot zombie from Catacrom IV.
-                                    These are balanced zombies which have a moderate movement speed, damage output and health pool.
-                                </Typography>
-                            }
-                            remainingCells={[
-                                "Round 1",
-                                "Very Common"
-                            ]}
-                        />
-                        <MobileFriendlyTextRow 
-                            firstCellText="Tremor"
-                            descriptionText={
-                                <Typography>
-                                    The little cousins of The Eviscerator. 
-                                    Tremors have the highest movement speed out of every enemy but the lowest damage output and lowest health pool. 
-                                    Unlike in single player, the survival tremors do not have long-range ground attack. 
-                                    Tremors can be deadly in large groups as their rapid hits can prevent chargebooting away.
-                                </Typography>
-                            }
-                            remainingCells={[
-                                "Round 1",
-                                "Very Common"
-                            ]}
-                        />
-                        <MobileFriendlyTextRow 
-                            firstCellText="Ghost Zombie"
-                            descriptionText={
-                                <Typography>
-                                    A robot zombie that has the ghost effect applied to it. 
-                                    While cloaked, these zombies are very hard to see and are invisible on the minimap. 
-                                    Weapons that have autotargeting are also ineffective against these zombies when they are cloaked. 
-                                    These zombies' cloak will be disabled when they attack the player or when they are hit.
-                                    Ghost zombies have similar base stats as the normal robot zombies.
-                                </Typography>
-                            }
-                            remainingCells={[
-                                "Round 5",
-                                "Rare"
-                            ]}
-                        />
-                        <MobileFriendlyTextRow 
-                            firstCellText="Exploding Zombie"
-                            descriptionText={
-                                <Typography>
-                                    A variant of the normal robot zombie that acts as a suicide bomber. 
-                                    These zombies are easy to distinguish due to their bright red coloring. 
-                                    When an exploding zombie gets close enough to a player, it will curl up into a ball and begin a self-destruct sequence.
-                                    Exploding zombies have the highest damage potential out of all zombies if a player is directly hit by an explosion.
-                                    Exploding zombies also have a larger health pool than normal robot zombies, but tend to move slower.
-                                    Once an expoding zombie curls up it is too late to stop it from detonating.
-                                    A player's best bet is to avoid it and attack with ranged weapons.
-                                    Exploding zombies do not know friend or foe, only destruction, meaning that if you lure one into a group of normal zombies, it's explosion can thin the ranks for you (although you won't receive bolts or XP).
-                                </Typography>
-                            }
-                            remainingCells={[
-                                "Round 7",
-                                "Uncommon"
-                            ]}
-                        />
-                        <MobileFriendlyTextRow 
-                            firstCellText="Freeze Zombie"
-                            descriptionText={
-                                <Typography>
-                                    Freeze zombies are variants of the normal robot zombie which can apply the freeze effect to the player when they deal damage.
-                                    The freeze effect can be devastating to a player because it halves your movement speed and chanrgeboot speed (and negates speed powerups) for a short period of time.
-                                    Freeze zombies deal more damage and have higher health pools than normal robot zombies, but move slower.
-                                    Freeze zombies can be easily identified by their blue coloring.
-                                    The real danger with freeze zombies isn't their initial hit (which can still hurt), but follow-up hits from the inevitable horde while your movement is slowed.
-                                    The freeze effect also makes it harder to successfully use jump pads (which can quickly become death traps).
-                                    Freeze zombies also have an immunity to the Freeze Bonus Drop.
-                                    So while you have a <code>10 second</code> reprieve from the other zombies, the freeze zombies on the map will still be hunting you down.
-                                    Freeze zombies have a low spawn chance.
-                                </Typography>
-                            }
-                            remainingCells={[
-                                "Round 10",
-                                "Uncommon"
-                            ]}
-                        />
-                        <MobileFriendlyTextRow 
-                            firstCellText="Acid Zombie"
-                            descriptionText={
-                                <Typography>
-                                    Acid zombies are variants of the normal robot zombie which can apply the acid effect to the player when they deal damage.
-                                    The acid effect slowly drains away <code>15 points</code> over a short period of time.
-                                    Acid zombies can be easily identified by their green coloring as well as their different head design.
-                                    Be wary, if an acid zombie is damaged, it may become decapitated and lost its green coloring.
-                                    If this happens it will be indistinguishable from a damaged normal robot zombie, but will, nonetheless, still apply the acid effect if it hits you.
-                                    The acid effect does not stack, additional acid hits only resets the acid debuff cooldown timer.
-                                    Acid zombies have a similar health pool to freeze zombies and tend to move more slowly than normal robot zombies.
-                                    Additionally, the base damage of an acid zombie tends to be lower than freeze zombies and normal robot zombies.
-                                    The real danger is in dealing with an acid zombie is the combined initial damage and acid damage over time.
-                                    Acid zombies have a very low spawn chance.
-                                </Typography>
-                            }
-                            remainingCells={[
-                                "Round 10",
-                                "Uncommon"
-                            ]}
-                        />
-                        <MobileFriendlyTextRow 
-                            firstCellText="Executioner"
-                            descriptionText={
-                                <Typography>
-                                    Executioners are by-far the most dangerous enemy type in survival.
-                                    Executioners have MASSIVE health pools compared to other enemies and deal a guaranteed <code>50 points</code> of damage per-hit.
-                                    Executioners are slower than other enemies and attack slower as well (but their attacks and speed become very fast as waves progress).
-                                    Executioners have an uncanny way of sneaking up on the player, so don't ignore them just because they're big.
-                                    Their size can also be a challenge, especially if the player leads them into a confined space with no other means of escape.
-                                    Executioners can be identified very easily by both their appearance as GIANT robot zombies wielding a wrench and as a large dot on the minimap.
-                                    Executioners have the lowest spawn rate of all enemies in survival.
-                                </Typography>
-                            }
-                            remainingCells={[
-                                "Round 11",
-                                "Very Rare"
-                            ]}
-                        />
-                    </TableBody>
-                </TableContainer>
 
                 <TextHeading heading="Enemy Bonus Drops" variant="h5" />
 
                 <Typography marginBottom={3}>
-                    Whenever a zombies is defeated, there is a very small chance that it will drop one of 6 possible bonus drops.
+                    Whenever an enemy is defeated, there is a small chance that it will drop one of 6 possible bonus drops.
+                    After a drop spawns, no other drops can spawn for 10 to 60 seconds.
+                    Bonus drops disappear after 30 seconds, so grab them quickly.
                     Bonus drops can be a game changer and can even save a run if used properly.
                     The following table describes each bonus drop.
                 </Typography>
-
-                <TableContainer>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell><Typography fontWeight="bold">Bonus Drop</Typography></TableCell>
-                            {screenSize !== ScreenSize.Mobile && ( <TableCell><Typography fontWeight="bold">Icon</Typography></TableCell> )}
-                            <TableCell><Typography fontWeight="bold">Effect</Typography></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <MobileFriendlyIconRow firstCellText="Instant Health" icon={INSTANT_HEALTH_ICON} 
-                            remainingCells={[
-                                "Fully heals all players when picked up. If a player is downed (i.e., dead but still has a timer), this pickup will revive them at no cost (but their death tally will increase and they will be more expensive if downed again)."
-                            ]} 
-                        />
-                        <MobileFriendlyIconRow firstCellText="Max Ammo" icon={MAX_AMMO_ICON} remainingCells={["Fills the ammo reserves for all weapons for all players when picked up."]} />
-                        <MobileFriendlyIconRow firstCellText="Nuke" icon={NUKE_ICON} remainingCells={[
-                            `Kills all enemies currently on the map.
-                            All players will receive bolts for each enemy killed.
-                            The player who picks up the nuke pickup will receive all of the XP and kill count for all enemies killed.
-                            No bolt modifications (Jackpot Mod) or XP modifications (XP Mod) will be applied for enemies killed by a nuke.
-                            If Double Points or Double XP is active, the bolts and XP will be doubled as if the enemies were killed normally (with no Jackpot or XP Mods).`
-                        ]} />
-                        <MobileFriendlyIconRow firstCellText="Freeze" icon={FREEZE_ICON} remainingCells={[
-                            `Freezes all enemies on the screen for 10 seconds.
-                            Prevents any new enemies from spawning.
-                            This pickup does not affect freeze zombies, but no new freeze zombies can spawn.`
-                        ]} />
-                        <MobileFriendlyIconRow firstCellText="Double Points" icon={DOUBLE_POINTS_ICON} remainingCells={[
-                            `Double Points acts a global Jackpot Mod which doubles all bolts received.
-                            Double Points stacks with Jackpot Mods on weapons and is applied after Jackpot Mods boost the number of bolts.`
-                        ]} />
-                        <MobileFriendlyIconRow firstCellText="Double XP" icon={DOUBLE_XP_ICON} remainingCells={[
-                            `Double XP acts a global XP Mod which doubles all XP received.
-                            Double XP stacks with XP Mods on weapons and is applied after XP Mods boost the amount of XP earned.`
-                        ]} />
-                    </TableBody>
-                </TableContainer>
+                <IconItemTable nameLabel="Bonus Drop" columns={["Effect"]} items={BONUS_DROP_ITEMS} />
 
                 <TextHeading heading="Death and Totems" variant="h5" />
 
                 <TextHeading heading="Totems" variant="h6" />
 
                 <Typography marginBottom={3}>
-                    There are 2 totems available for use in survival: <b>Self-Revive</b> and <b>Invisibility Cloak</b>.
-                    If a player has a totem, its icon will appear at the bottom-left corner of the screen as well as the button to activate it if it requires manual activiation.   
+                    There are 3 totems available for use in survival: <b>Self-Revive</b>, <b>Health Tornado</b> and <b>Invisibility Cloak</b>.
+                    If a player has a totem, its icon will appear at the bottom of the screen.
+                    Totems that require manual activation appear in the bottom-left corner of the screen.
+                    Press Down on the D-Pad to use the selected totem and Right on the D-Pad to cycle between them.
                 </Typography>
-
                 <Typography marginBottom={3}>
-                    Self-Revive operates just as its name suggests.
+                    <b>Self-Revive</b> operates just as its name suggests.
                     If a player is downed, they are able to revive with all of their weapons, mods and bolts without needing to be revived.
                     Additionally, the self-revive creates a knockback explosion around the player so they aren't immediately trapped when they revive.
-                    If the player dies in water or in an area they aren't supposed to be in, they will respawn at the start of the map.
+                    On Orxon, Self-Revives are bought from the store.
                 </Typography>
-
                 <Typography marginBottom={3}>
-                    The invisibility cloak is a player-activated totem that turns the player completely invisible to ALL enemies for a period of 30 seconds.
-                    All enemies will stop tracking the player and the player is free to damage them for the duration of the 30 seconds.
+                    The <b>Health Tornado</b> replaces the Health Gun.
+                    Once activated, a healing tornado surrounds the player for 10 seconds.
+                    The tornado heals anyone within its radius and revives downed players instead of them needing to be revived.
+                </Typography>
+                <Typography marginBottom={3}>
+                    The <b>Invisibility Cloak</b> is a player-activated totem that turns the player invisible to most enemies for a period of 30 seconds.
+                    Most enemies will stop tracking the player and the player is free to damage them for the duration of the 30 seconds.
                     It is recommended to use this strategically or as a last resort if the player is about to die.
                     The invisibility cloak does not protect against incidental or accidental damage (i.e., if the player has the acid debuff applied, it will still continue to drain their health even with the invisibility cloak active, also, if an enemy is after another player and manages to hit the invisible player, damage will still be taken).
-                    While active, the invisibility cloak will impart the ghost effect to the player using it.     
+                    While active, the invisibility cloak will impart the ghost effect to the player using it.
                 </Typography>
-
                 <TextHeading heading="Death, Revival and Consequences" variant="h6" />
 
                 <Typography marginBottom={3}>
@@ -597,99 +273,91 @@ export const SurvivalOrxon = () => {
                     That being said, with the right preparation, death doesn't have to "stick".
                     There are ways to cheat death and use teamwork to survive.
                 </Typography>
-
                 <Typography marginBottom={3}>
                     When playing solo, death means the end of your run.
                     In order to make the solo experience more fun (since there is no one else to revive you), you will always start out with a single Self-Revive totem.
-                    Once that totem is consumed, you will have to get a new one from the mystery box like normal.
+                    Once that totem is consumed, you will have to buy a new one from the store.
                     Once you fall with no totem in-hand, your run is over.
                 </Typography>
-
                 <Typography marginBottom={3}>
                     Multiplayer is a bit different and allows for more variety.
                     If a player falls in multiplayer, they are not "dead", but instead in a "downed" or "bleeding-out" state.
                     Once downed, there will be a 60 second timer that begins to count over their body.
-                    Any other player can revive the downed player if they can reach them in time, and if they have enough to revive that player.
-                    Players are revived using the L3 button.
-                    The base cost of a player is <code>{PLAYER_REVIVE_DELTA} bolts</code>.
-                    Every time a player dies, they become more expensive to revive (<code>{PLAYER_REVIVE_DELTA} additional bolts per revive</code>).
-                    The Revive Discount wall powerup can be used to greatly reduce the burden of reviving other players.
-                    If a player is downed and an enemy drops an Instant Health Bonus Pickup, when a teammate picks up the Instant Health, it will instantly revive the downed player.
-                    However, the player will still require an additional <code>{PLAYER_REVIVE_DELTA} bolts</code> the next time they are downed.
+                    Any other player can revive the downed player if they can reach them in time.
                 </Typography>
-
+                <Typography marginBottom={3}>
+                    To revive a downed player, stand right next to their body.
+                    There's no button to press and reviving is free.
+                    A 5-second revive timer will start to tick down and the reviving player must stay close to the body for the full revive timer to revive a player.
+                    Once the revive timer reaches 0, the downed player will be revived and a large, green explosion will apply knockback to all nearby enemies (like if a Self-Revive Totem is used).
+                    Revived players are invincible for 3 seconds.
+                    It is strongly recommended to have backup when reviving players and use holoshields to delay enemies.
+                    So long as you start reviving a downed player before their bleed-out timer ends, they can still be revived.
+                    If a player is downed more than once in a single wave, 10 seconds will be shaved off of their bleed-out timer for each additional time they are downed (down to a minimum of 10 seconds).
+                    This bleed-out timer penalty is reset to 60 seconds for all players at the start of each new round.
+                </Typography>
                 <Typography marginBottom={3}>
                     If a player is downed and is not revived within 60 seconds, they are considered dead.
                     That player will only be able to spectate for the remainder of the round and will only be able to respawn at the end of the round.
                     Additionally, the player will no longer receive shared bolts (including the round bonus) once downed or fully dead.
-                    The player will also lose all of their weapons if they fully die.
-                    This includes any alpha mods that were equipped to a weapon (unequipped alpha mods will still be available), all weapon upgrades (i.e., all weapons will revert back to V1).
+                    When a player fully dies, every weapon they own loses 1 level (down to V1).
+                    If a player is still downed when the wave ends, they are revived for free with no penalty.
+                    If every player is down at the same time, the game is over.
                 </Typography>
-
                 <Typography marginBottom={3}>
-                    If a player fully dies, it could spell disaster for your run since they will not have the firepower to help in the next round. 
-                    <b> NOTE</b>: If a player is downed and the wave ends, it will count as if they fully died, and their weapons will be reset.
-                    Be very wary towards the end of a wave if a player is downed, accidentally picking up a Nuke Bonus Pickup could seal their fate.
+                    Falling off the map, sliding down a steep slope or drowning no longer kills you.
+                    Instead, you are sent back to spawn with half of your health.
                 </Typography>
-
                 <TextHeading heading="The Mystery Box" variant="h5" />
 
                 <Typography marginBottom={3}>
                     The Mystery Box is a slot machine that you can gamble at to gain valuable perks.
                     There are perks exclusive to the Mystery Box that can greatly improve your ability to survive.
-                    Each roll of the Mystery Box costs <code>{MYSTERY_BOX_COST} bolts</code>.
-                    The price of the Mystery Box is not affected by the Vendor Discound Wall Pickup.
-                    All positive items need to be claimed by the player, if a player fails to pick up the item, it will be forfeited!
+                    Each roll of the Mystery Box costs <code>10,000 Bolts</code>, plus <code>5,000 Bolts</code> for every Vox you've rolled.
+                    Positive items must be picked up by the player who rolled them. Unclaimed items are forfeited.
                     There are also Zonks that you can roll at the Mystery Box which can hinder your gameplay, so roll with caution!
+                    Zonks are applied as soon as they are rolled.
                 </Typography>
+                <Typography marginBottom={3}>
+                    The following table describes the contents of the Mystery Box.
+                </Typography>
+                <IconItemTable
+                    nameLabel="Mystery Box Item"
+                    columns={["Description"]}
+                    items={mysteryBoxItems.map((item) => ({...item, cells: item.cells.slice(0, 1)}))}
+                />
+
+                <TextHeading heading="The Store" variant="h5" />
 
                 <Typography marginBottom={3}>
-                    The following table describes the contents of the Mystery Box and the likelihood of rolling a certain item.
+                    The store lets players buy perks, power-ups and totems at great expense.
+                    Most of these can also be found in the Mystery Box for a potentially lower cost if you're willing to gamble.
+                    The store is not to be confused with Big Al, who is where you configure your alpha mods.
+                    The store is only open during the intermission period.
+                    Press Triangle at the store to open it, then use Up and Down on the D-Pad to pick an item and X to buy it. Use L1 and R1 to change pages.
                 </Typography>
+                <TextHeading heading="Items" variant="h6" />
 
-                <TableContainer>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell><Typography fontWeight="bold">Mystery Box Item</Typography></TableCell>
-                            {screenSize !== ScreenSize.Mobile && ( <TableCell><Typography fontWeight="bold">Icon</Typography></TableCell> )}
-                            <TableCell><Typography fontWeight="bold">Description</Typography></TableCell>
-                            <TableCell><Typography fontWeight="bold">Roll Chance</Typography></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <MobileFriendlyIconRow firstCellText="Alpha Mod" icon={ALL_ALPHA_MODS_ICON} remainingCells={["Gives the player 1 random Alpha Mod.", "34%"]} />
-                        <MobileFriendlyIconRow firstCellText="Dread Token" icon={DREAD_TOKEN_ICON} remainingCells={["Gives the player 1 Dread Token.", "20%"]} />
-                        <MobileFriendlyIconRow firstCellText="Upgrade Weapon" icon={UPGRADE_WEAPON_ICON} 
-                            remainingCells={["Gives the player 1 weapon upgrade on their currently equipped weapon. This upgrade applies at any level. Upgrading a weapon at V10 has no effect.", "10.5%"]} 
-                        />
-                        <MobileFriendlyIconRow firstCellText="Supercharge Power" icon={SUPERCHARGE_POWER_ICON} 
-                            remainingCells={["Once claimed, instantly turns on the power. The power will stay on for 5 minutes.", "10.5%"]}
-                        />
-                        <MobileFriendlyIconRow firstCellText="Infinite Ammo" icon={INFINITE_AMMO_ICON} 
-                            remainingCells={["Once claimed, grants all players infinite ammo for 60 seconds. Once the infinite ammo effect wears off, it fully replenishes all ammo for each player.", "6%"]}
-                        />
-                        <MobileFriendlyIconRow firstCellText="Self-Revive" icon={SELF_REVIVE_ICON} 
-                            remainingCells={["Once claimed, grants the player a Self-Revive Totem. Only 1 Self-Revive Totem may be held at a time. Once picked up, this will replace an Invisibility Cloak Totem, if held.", "6%"]}
-                        />
-                        <MobileFriendlyIconRow firstCellText="Invisibility Cloak" icon={INVISIBILITY_CLOAK_ICON} 
-                            remainingCells={["Once claimed, grants the player an Invisibility Cloak Totem. Only 1 Invisibility Cloak Totem may be held at a time. Once picked up, this will replace a Self-Revive Totem, if held.", "6%"]}
-                        />
-                        <MobileFriendlyIconRow firstCellText="Vox" icon={VOX_ICON} 
-                            remainingCells={[
-                                `
-                                    Rolling a Vox or "Getting Voxxed" is equivalent to the "Teddy Bear" item in COD Zombies.
-                                    Upon rolling a Vox, the Mystery Box will disappear for the remainder of the round and appear in a new spot at the start of the next round.
-                                    A new round starts when the last enemy of a round is defeated.
-                                    If a player rolls Vox during the intermission period, the mystery box will not appear again until the following round is complete.
-                                `,
-                                "4%"
-                            ]}
-                        />
-                        <MobileFriendlyIconRow firstCellText="Gate Reset" icon={GATE_RESET_ICON} 
-                            remainingCells={["Rolling a Gate Reset forcibly locks an open gate. This gate will need to be re-purchased using Dread Tokens at its original price. Rolling a Gate Reset late-game could be a run-killer.", "3%"]}
-                        />
-                    </TableBody>
-                </TableContainer>
+                <IconItemTable
+                    nameLabel="Item"
+                    columns={["Description", "Cost", "Maximum Held"]}
+                    items={[{name: "Self-Revive", iconSrc: ICON_SELF_REVIVE, cells: ["Revives you automatically when you go down.", SELF_REVIVE_STORE_COST, "1"]}]}
+                />
+
+                <TextHeading heading="Perks" variant="h6" />
+
+                <Typography marginBottom={2}>
+                    Perks are passive upgrades that stay with you for the rest of the run. Most perks can be stacked, and every purchase costs more than the last.
+                </Typography>
+                <IconItemTable
+                    nameLabel="Perk"
+                    columns={["Description", "Cost", "Maximum Held"]}
+                    items={defaultPerkItems(true)}
+                />
+
+                <Typography marginBottom={2}>
+                    The Berserker perk scales off of how much health you are missing.
+                </Typography>
 
                 <TextHeading heading="Demon Bells" variant="h5" />
 
@@ -698,34 +366,138 @@ export const SurvivalOrxon = () => {
                     Based on the synonymously named mechanic appearing in <code>Sekiro: Shadows Die Twice</code>, these bells are designed to optionally increase the challenge of survival.
                     Because there is only 1 difficulty for survival, the earlier waves may be too easy and slow for more experienced players.
                     The Demon Bells forcibly increase the spawn rate of enemies.
+                    To ring a bell, quickly damage it until it activates.
                     There are 3 Demon Bells in total, each proportionally increasing the spawn rate of enemies.
-                    After every 10 waves, one of the Demon Bells is forcibly turned on to ramp up the diffculty.
-                    Starting at wave 30, all Demon Bells are active.
-                    The Demon Bells do NOT make enemies more difficult to defeat, they only increase the spawn rate of enemies.
-                    Completing a wave in which a Demon Bell was activate results in a larger round bonus.
-                    This bonus is increased if multiple Demon Bells are activated.
-                    Demon Bells can be activated during the intermission period between waves.
+                    After every 10 waves, one of the Demon Bells is forcibly turned on to ramp up the difficulty.
+                    Starting at wave 30, all Demon Bells are active without player intervention.
+                    The Demon Bells do <b>NOT</b> make enemies more difficult to defeat, they only increase the spawn rate of enemies and proximity of enemy spawns.
+                    Completing a wave with an activated Demon Bell grants a slightly larger round bonus based on the number of active Demon Bells.
+                    The Demon Bells are a one-time activation and stay on for the duration of the run.
                 </Typography>
-
                 <TextHeading heading="Multiple Teams" variant="h5" />
 
                 <Typography marginBottom={3}>
                     Unlike previous versions, the current version of survival allows players to be on any team.
                     There is no friendly fire between teams, nor do other players activate an auto-target for your character.
-                    When multiple teams are used, team colors are used in parts of the game (e.g., the color of the Power node on Orxon and the hue of Bonus Pickup Drops from enemies).
+                    Additionally, holoshields from players on different teams do not block shots.
+                    When multiple teams are used, team colors are used in parts of the game (e.g., the hue of Bonus Pickup Drops from enemies).
                     There are also other cool easter eggs when using multiple team colors, you can find those out for yourself!
                 </Typography>
-
-                <TextHeading heading="Orxon" variant="h4" />
-
-                <Typography marginBottom={3}>
-                    Orxon is the first survival map developed and has a lot of unique, map-specific features.
-                </Typography>
+                <TextHeading heading="Gambits" variant="h5" />
 
                 <Typography marginBottom={3}>
-                    Orxon can be separated into 2 distinct parts, the front and back.
-                    You will be spending the majority of the time in the front of the facility.
+                    Gambits are challenges played in addition to normal gameplay.
+                    A gambit can be picked from the Survival settings in the lobby before the game starts.
+                    Complete the gambit's goal to earn an achievement.
                 </Typography>
+                <GambitTable
+                    gambits={[
+                        {name: "Easy Mode", completeOn: "Round 100", description: "Complete 100 rounds with reduced difficulty scaling and increased bolt/xp rates."},
+                        {name: "Impossible Mode", completeOn: "Round 50", description: "Complete 50 rounds with increased difficulty scaling and reduced bolt/xp rates. Revives are disabled."},
+                        {name: "Flail Only", completeOn: "Round 50", description: "Complete 50 rounds with only the Scorpion Flail."},
+                        {name: "Magma Cannon Only", completeOn: "Round 50", description: "Complete 50 rounds with only the Magma Cannon."},
+                        {name: "B6 Only", completeOn: "Round 50", description: "Complete 50 rounds with only the B6 Obliterator."},
+                        {name: "Hyperinflation", completeOn: "Round 50", description: "Complete 50 rounds. Bolts reset at the start of each round."},
+                    ]}
+                />
+                <TextHeading heading="Map Mechanics" variant="h4" />
+
+
+                <TextHeading heading="Enemies" variant="h5" />
+
+                <Typography marginBottom={2}>
+                    As you progress, new and more dangerous types of enemies will start to appear.
+                    Every 5 waves is also a special wave with a particular enemy theme.
+                </Typography>
+                <EnemyTable
+                    enemies={[
+                        {name: "Swarmer", description: "An ankle-biter pest! Swarmers are great distractions, but have very little health and do very little damage. Swarmers have the ability to dodge projectile weapons (i.e., Dual Vipers, B6-Obliterator, The Arbiter and Hunter Mine Launcher).", firstAppears: "Round 1", probability: 1},
+                        {name: "Robot Zombie", description: "A standard robot zombie from Catacrom IV. These are balanced enemies which have a moderate movement speed, damage output and health pool.", firstAppears: "Round 1", probability: 0.5},
+                        {name: "Tremor", description: "The little cousins of The Eviscerator. Tremors have the highest initial movement speed out of any enemy but a smaller damage output and lower health pool. Unlike in single player, the survival tremors do not have a long-range ground attack. Tremors can be deadly in large groups as their rapid hits can prevent chargebooting away.", firstAppears: "Round 5", probability: 0.1},
+                        {name: "Ghost Zombie", description: "A robot zombie that has the ghost effect applied to it. While cloaked, these zombies are very hard to see and are invisible on the minimap. Weapons that have autotargeting are also ineffective against these zombies when they are cloaked. These zombies' cloak will be disabled when they attack the player.", firstAppears: "Round 5", probability: 0.05},
+                        {name: "Exploding Zombie", description: "A variant of the normal Robot Zombie that acts as a suicide bomber. Its bright red coloring makes it easy to spot. When an Exploding Zombie gets close enough, it curls into a ball and begins its self-destruct sequence. A direct hit from the explosion gives it the highest damage potential of any non-boss enemy. Once it curls up, it is too late to stop the detonation. Keep your distance and use ranged weapons.", firstAppears: "Round 10", probability: 0.08},
+                        {name: "Freeze Zombie", description: "Freeze zombies are variants of the normal robot zombie which can apply the freeze effect to the player when they deal damage. The freeze effect slows your movement for a short period of time. Freeze zombies can be easily identified by their blue coloring. The real danger with freeze zombies isn't their initial hit (which can still hurt), but follow-up hits from the inevitable horde while your movement is slowed. Freeze zombies also have an immunity to the Freeze Bonus Drop.", firstAppears: "Round 10", probability: 0.1},
+                        {name: "Acid Zombie", description: "Acid zombies are variants of the normal robot zombie which can apply the acid effect to the player when they deal damage. The acid effect slowly drains away your health over a short period of time. Acid zombies can be easily identified by their green coloring as well as their different head design. The acid effect does not stack, additional acid hits only resets the acid debuff cooldown timer. The real danger is in dealing with an acid zombie is the combined initial damage and acid damage over time.", firstAppears: "Round 10", probability: 0.09},
+                        {name: "Executioner", description: "Executioners are giant robot zombies wielding a wrench. Executioners have massive health pools and hit very hard, but they are slower than other enemies. Executioners have an uncanny way of sneaking up on the player, so don't ignore them just because they're big. Executioners show up as a large dot on the minimap.", firstAppears: "Round 15", probability: 0.025},
+                    ]}
+                />
+
+                <TextHeading heading="Special Rounds" variant="h6" />
+
+                <Typography marginBottom={2}>
+                    The special waves are predetermined and always the same.
+                    There are 5 different special waves that cycle every 25 rounds.
+                </Typography>
+                <SpecialRoundTable
+                    rounds={[
+                        {name: "Ghost Tremor Round", firstRound: 5, repeat: "Every 25 Rounds", enemies: "Tremor, Ghost Zombie"},
+                        {name: "Elemental Round", firstRound: 10, repeat: "Every 25 Rounds", enemies: "Exploding Zombie, Acid Zombie, Freeze Zombie"},
+                        {name: "Freeze Tremor Round", firstRound: 15, repeat: "Every 25 Rounds", enemies: "Freeze Zombie, Tremor"},
+                        {name: "Evade Round", firstRound: 20, repeat: "Every 25 Rounds", enemies: "Ghost Zombie, Exploding Zombie, Tremor"},
+                        {name: "Executioner Round", firstRound: 25, repeat: "Every 25 Rounds", enemies: "Executioner", notes: "Fewer enemies than a normal round, but there is no timer after the round."},
+                    ]}
+                />
+
+                <TextHeading heading="Technical Details" variant="h4" />
+
+                <TextHeading heading="Bonus Drop Odds" variant="h5" />
+
+                <SpoilerGuard weight={5}>
+                    <Typography marginBottom={3}>
+                        Each defeated enemy has a <code>1%</code> chance to drop a bonus pickup.
+                    </Typography>
+                </SpoilerGuard>
+
+                <TextHeading heading="Mystery Box Odds" variant="h5" />
+
+                <SpoilerGuard weight={5}>
+                    <IconItemTable
+                        nameLabel="Mystery Box Item"
+                        columns={["Roll Chance"]}
+                        items={mysteryBoxItems.map((item) => ({...item, cells: item.cells.slice(1)}))}
+                    />
+                </SpoilerGuard>
+
+                <TextHeading heading="Enemy Scaling" variant="h5" />
+
+                <FormulaSpoiler
+                    formulas={[
+                        "difficulty = floor(enemiesSpawned / 100) * (0.6 + 0.4 * 1.5^floor((roundNumber - 1) / 25)) * mapDifficulty",
+                        "damage = baseDamage * (1 + 0.03 * damageScale * difficulty)",
+                        "speed = baseSpeed * (1 + 0.05 * speedScale * difficulty)",
+                        "health = baseHealth * (1 + 0.05 * healthScale * difficulty)^2",
+                    ]}
+                    notes="Every enemy type has its own damage, speed and health scale. The 1.5^floor((roundNumber - 1) / 25) term is the mutation that happens every 25 waves. Orxon has a map difficulty of 1.5."
+                />
+
+                <TextHeading heading="Round Bonus" variant="h5" />
+
+                <FormulaSpoiler
+                    formulas={[
+                        "bonus = (roundNumber - 1) * 100 * playerCount",
+                        "if bonus > 10,000 then bonus = 10,000 (Demon Bells do not add to a capped bonus)",
+                        "otherwise bonus = bonus * (1 + demonBellsActive / totalDemonBells)",
+                        "special rounds multiply the bonus by 5",
+                    ]}
+                    notes="Gambits that change the bolt rate also apply to the round bonus."
+                />
+
+                <TextHeading heading="Dread Token XP" variant="h5" />
+
+                <FormulaSpoiler
+                    formulas={[
+                        "xpForNextToken = 250 * 1.05^tokensEarned",
+                        "after 50 tokens, xpForNextToken = 250 * 1.05^50 (about 2,867 XP)",
+                    ]}
+                />
+
+                <TextHeading heading="Berserker Damage" variant="h5" />
+
+                <FormulaSpoiler
+                    formulas={[
+                        "damage = damage * (1 + 0.75 * berserkerPerks * (1 - sqrt(health / maxHealth)))",
+                    ]}
+                />
 
             </CardContent>
         </Card>
