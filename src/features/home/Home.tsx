@@ -1,13 +1,10 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Page from "../../components/base/Page";
 import {Box, Grid, Typography} from "@mui/material";
 
 import PageCard from "../../components/base/PageCard";
 import CenterObject from "../../components/base/CenterObject";
 import LineBreak from "../../components/base/LineBreak";
-
-import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {selectLatestVideos, selectTutorialVideos, setHomeLatestVideos, setHomeTutorialVideos} from "./homeSlice";
 
 import githubIcon from "../../assets/img/GitHub-Icon.png";
 import dzoLogo from "../../assets/img/dzo-logo.png";
@@ -28,31 +25,13 @@ import {NavigateFunction, useNavigate} from "react-router-dom";
 
 const Home = () => {
 
-    const dispatch = useAppDispatch();
-
     const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
 
     const navigate: NavigateFunction = useNavigate();
 
-    useEffect(() => {
-        dispatch(setHomeLatestVideos([
-            {id: {videoId: "gXx23ZE3pH0"}},
-            {id: {videoId: "nIIk39wytSY"}},
-            {id: {videoId: "BCU0YZ23ajw"}},
-        ]));
-
-        dispatch(setHomeTutorialVideos([
-            {id: {videoId: "hC7s5P9KKLE"}},
-            {id: {videoId: "1yVIdE1hE4o"}},
-            {id: {videoId: "ND61nvDr0bM"}},
-        ]));
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const latestVideos: string[] = useAppSelector(selectLatestVideos);
-    const tutorialVideos = useAppSelector(selectTutorialVideos);
+    const latestVideos = ["gXx23ZE3pH0", "nIIk39wytSY", "BCU0YZ23ajw"];
+    const tutorialVideos = ["hC7s5P9KKLE", "1yVIdE1hE4o", "ND61nvDr0bM"];
 
     let header: JSX.Element = <Box />;
     
@@ -227,6 +206,7 @@ const Home = () => {
                         return <Box sx={{mr: 2, mb: 2, minWidth: "30%"}}>
                             <iframe
                                 key={index}
+                                loading="lazy"
                                 src={`https://www.youtube.com/embed/${videoId}`}
                                 frameBorder="0"
                                 allow="autoplay; encrypted-media"
@@ -255,6 +235,7 @@ const Home = () => {
                         return <Box sx={{mr: 2, mb: 2, minWidth: "30%"}}>
                             <iframe
                                 key={index}
+                                loading="lazy"
                                 src={`https://www.youtube.com/embed/${videoId}`}
                                 frameBorder="0"
                                 allow="autoplay; encrypted-media"

@@ -10,8 +10,6 @@ import { Stack } from "@mui/system";
 
 import axios from "axios";
 
-import { useDispatch, useSelector } from "react-redux";
-import { selectGameFilters, selectPage, setFilters, setPage } from "./deadlockedGamesSlice";
 import {FilterProps, GameRemoteListProps, GameRulesProps} from "../../utils/Interfaces";
 
 export interface GameCardProps {
@@ -212,12 +210,8 @@ const DeadlockedGames = () => {
 
     const [games, setGames] = useState([]);
     const [totalGames, setTotalGames] = useState(0);
-    const [filterURL, setFilterURL] = useState("");
-
-    const gameFilters = useSelector(selectGameFilters);
-    const page = useSelector(selectPage);
-
-    const dispatch = useDispatch();
+    const [gameFilters, setGameFilters] = useState<FilterProps[]>([]);
+    const [page, setPage] = useState(0);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {width, height} = useWindowDimensions();
@@ -321,8 +315,8 @@ const DeadlockedGames = () => {
             sx={{paddingTop: 2, paddingBottom: 2, paddingLeft: 4, paddingRight: 4, minWidth: "70vw"}}
             value={gameFilters}
             onChange={(event, filters) => {
-                dispatch(setPage(0));
-                dispatch(setFilters(filters));
+                setPage(0);
+                setGameFilters(filters);
             }}
             id="tags-outlined"
             options={filters}

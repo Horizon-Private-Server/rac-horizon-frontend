@@ -14,7 +14,7 @@ import useWindowDimensions from "../../components/utils/WindowDimensions";
 import { NavState } from "./navSlice";
 import NavItem from "./NavItem";
 
-import horizonCircleLogo from "../../assets/img/logo.png";
+import horizonCircleLogo from "../../assets/img/logo-nav-mobile.webp";
 
 const drawerWidth: number = 241;
 

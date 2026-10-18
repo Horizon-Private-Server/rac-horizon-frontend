@@ -48,7 +48,7 @@ const HomeCardMulticontent = (props: HomeCardMulticontentState) => {
         return <Box sx={{mt: 1.5, pb: 1}}>
             <Stack direction="row" justifyContent="center">
                 <Stack direction="row" justifyContent="flex-start">
-                    <img
+                    <img loading="lazy"
                         src={icon}
                         alt={iconAltText}
                         width="24px"
@@ -66,7 +66,7 @@ const HomeCardMulticontent = (props: HomeCardMulticontentState) => {
                 {actionIcons.map((actionIcon: ActionIcon) => {
                     return <Tooltip title={actionIcon.altText} sx={{ml: 1}}>
                         <Link onClick={() => actionIcon.action()} sx={{cursor: "pointer", ml: 1, mt: 2}}>
-                            <img src={actionIcon.icon as string} width={48} height={48} alt={actionIcon.altText}/>
+                            <img loading="lazy" src={actionIcon.icon as string} width={48} height={48} alt={actionIcon.altText}/>
                         </Link>
                     </Tooltip>
                 })}
@@ -85,7 +85,7 @@ const HomeCardMulticontent = (props: HomeCardMulticontentState) => {
                             justifyContent: "flex-start"
                         }}
                     >
-                        <img
+                        <img loading="lazy"
                             src={icon}
                             alt={iconAltText}
                             width={60}
@@ -107,7 +107,7 @@ const HomeCardMulticontent = (props: HomeCardMulticontentState) => {
                     {actionIcons.map((actionIcon: ActionIcon) => {
                         return <Tooltip title={actionIcon.altText} sx={{ml: 1}}>
                             <Link onClick={() => actionIcon.action()} sx={{cursor: "pointer"}}>
-                                <img src={actionIcon.icon as string} width={48} height={48} alt={actionIcon.altText} />
+                                <img loading="lazy" src={actionIcon.icon as string} width={48} height={48} alt={actionIcon.altText} />
                             </Link>
                         </Tooltip>
                     })}
@@ -121,7 +121,7 @@ const HomeCardMulticontent = (props: HomeCardMulticontentState) => {
     return <Box sx={{height: "100%", p: 2}}>
         <SpaceBetweenObject>
             <CenterObject orientation="vertical">
-                <img
+                <img loading="lazy"
                     src={icon}
                     alt={iconAltText}
                     width="100px"
@@ -156,7 +156,7 @@ const HomeCardMulticontent = (props: HomeCardMulticontentState) => {
                     {actionIcons.map((actionIcon: ActionIcon) => {
                         return <Tooltip title={actionIcon.altText} sx={{ml: 1}}>
                             <Link onClick={() => actionIcon.action()} sx={{cursor: "pointer"}}>
-                                <img src={actionIcon.icon as string} width={60} height={60} alt={actionIcon.altText}/>
+                                <img loading="lazy" src={actionIcon.icon as string} width={60} height={60} alt={actionIcon.altText}/>
                             </Link>
                         </Tooltip>
                     })}

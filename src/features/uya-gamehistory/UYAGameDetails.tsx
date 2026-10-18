@@ -1,4 +1,4 @@
-import React, {Dispatch, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {
     Box,
@@ -17,8 +17,6 @@ import {
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 
 import {getHandler} from "../../utils/Requests";
-import {AnyAction} from "@reduxjs/toolkit";
-import {useAppDispatch} from "../../app/hooks";
 import {AxiosResponse} from "axios";
 
 import {UYAGameHistoryDetails, UYAGameHistoryEntry, UYAGameHistoryPlayer} from "../../utils/Interfaces";
@@ -38,8 +36,6 @@ const UYAGameDetails = () => {
     const {gameId} = useParams();
 
     const navigate: NavigateFunction = useNavigate();
-
-    const dispatch: Dispatch<AnyAction> = useAppDispatch();
 
     const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
@@ -67,7 +63,6 @@ const UYAGameDetails = () => {
         // TODO Re-implement this using React Query/Tanstack.
         getHandler<UYAGameHistoryDetails>(
             `/api/uya/gamehistory/details/${gameId}`,
-            dispatch,
             (response: AxiosResponse<UYAGameHistoryDetails>) => {
                 setGame(response.data.game);
                 setPlayers(response.data.players);

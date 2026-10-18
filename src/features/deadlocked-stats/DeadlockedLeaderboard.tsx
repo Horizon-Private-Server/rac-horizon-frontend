@@ -1,4 +1,4 @@
-import React, {Dispatch, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {
     Box,
@@ -31,8 +31,6 @@ import {
 import Paginator from "../../components/base/Paginator";
 import {getHandler} from "../../utils/Requests";
 import {LeaderboardEntry, Optional, Pagination} from "../../utils/Interfaces";
-import {AnyAction} from "@reduxjs/toolkit";
-import {useAppDispatch} from "../../app/hooks";
 import {AxiosResponse} from "axios";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import Skeleton from "@mui/material/Skeleton";

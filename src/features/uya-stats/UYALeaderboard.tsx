@@ -1,4 +1,4 @@
-import React, {Dispatch, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {
     Box,
@@ -31,8 +31,6 @@ import {
 import Paginator from "../../components/base/Paginator";
 import {getHandler} from "../../utils/Requests";
 import {LeaderboardEntry, Optional, Pagination} from "../../utils/Interfaces";
-import {AnyAction} from "@reduxjs/toolkit";
-import {useAppDispatch} from "../../app/hooks";
 import {AxiosResponse} from "axios";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import Skeleton from "@mui/material/Skeleton";
@@ -89,8 +87,6 @@ const UYALeaderboard = () => {
 
     const [loading, setLoading] = useState<boolean>(false);
 
-    const dispatch: Dispatch<AnyAction> = useAppDispatch();
-
     const { domain } = useParams();
     const { stat } = useParams();
 
@@ -121,7 +117,6 @@ const UYALeaderboard = () => {
         // TODO Re-implement this using React Query/Tanstack.
         getHandler<Pagination<LeaderboardEntry>>(
             `/api/uya/stats/leaderboard/${domain}/${stat}?page=${page}`,
-            dispatch,
             (response: AxiosResponse<Pagination<LeaderboardEntry>, any>) => {
                 setPlayers(response.data.results);
                 setTotalPlayers(response.data.count);

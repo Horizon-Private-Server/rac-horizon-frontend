@@ -49,7 +49,7 @@ const HomeCardContent = (props: HomeCardContentState) => {
                 <Stack direction="row" justifyContent="center" sx={{p: 1, height: "100%", minHeight: 120, width: "100%"}}>
                     <CenterObject>
                         <CenterObject orientation="vertical">
-                            <img
+                            <img loading="lazy"
                                 src={icon}
                                 alt={iconAltText}
                                 width={80}
@@ -85,7 +85,7 @@ const HomeCardContent = (props: HomeCardContentState) => {
                         justifyContent: "flex-start"
                     }}
                 >
-                    <img 
+                    <img loading="lazy"
                         src={icon}
                         alt={iconAltText}
                         width="60px"
@@ -117,7 +117,7 @@ const HomeCardContent = (props: HomeCardContentState) => {
         >
             <SpaceBetweenObject>
                 <CenterObject orientation="vertical">
-                    <img 
+                    <img loading="lazy"
                         src={icon}
                         alt={iconAltText}
                         width="100px"

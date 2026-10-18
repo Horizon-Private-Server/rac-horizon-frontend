@@ -1,18 +1,14 @@
-import {Dispatch} from "react";
-import {AnyAction} from "@reduxjs/toolkit";
-
-import axios, {AxiosError, AxiosResponse} from "axios";
+import axios, {AxiosResponse} from "axios";
 import {ResponseErrorHandler, ResponseSuccessHandler, Setter} from "./Interfaces";
 
 
 export function buildGetRequest<ResponseType>(route: string, timeout: number = 5000): Promise<AxiosResponse<ResponseType, any>> {
-    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}${route}`, {timeout: timeout})
+    return axios.get(`${import.meta.env.VITE_API_ENDPOINT}${route}`, {timeout: timeout})
 }
 
 
 export function getHandler<ResponseType>(
     route: string,
-    dispatch: Dispatch<AnyAction>,
     onSuccess: ResponseSuccessHandler,
     onError?: ResponseErrorHandler,
     setLoading?: Setter<boolean>
@@ -21,7 +17,7 @@ export function getHandler<ResponseType>(
     if (setLoading) { setLoading(true); }
 
     axios.get(
-        `${process.env.REACT_APP_API_ENDPOINT}${route}`,
+        `${import.meta.env.VITE_API_ENDPOINT}${route}`,
         {timeout: 5000}
     ).then((response: AxiosResponse<ResponseType>): void => {
         if (onSuccess) { onSuccess(response); }
@@ -37,7 +33,6 @@ export function getHandler<ResponseType>(
 export function postHandler<RequestType, ResponseType>(
     route: string,
     payload: RequestType,
-    dispatch: Dispatch<AnyAction>,
     onSuccess?: ResponseSuccessHandler,
     onError?: ResponseErrorHandler,
     setLoading?: Setter<boolean>
@@ -45,10 +40,10 @@ export function postHandler<RequestType, ResponseType>(
 
     if (setLoading) { setLoading(true); }
 
-    console.log(`${process.env.REACT_APP_API_ENDPOINT}${route}`);
+    console.log(`${import.meta.env.VITE_API_ENDPOINT}${route}`);
 
     axios.post(
-        `${process.env.REACT_APP_API_ENDPOINT}${route}`,
+        `${import.meta.env.VITE_API_ENDPOINT}${route}`,
         payload as RequestType,
         {timeout: 5000}
     ).then((response: AxiosResponse<ResponseType, any>): void => {

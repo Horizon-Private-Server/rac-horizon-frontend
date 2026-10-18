@@ -40,7 +40,7 @@ export const getCustomMapResourceInfo = (game: GameType): CustomMapResourceInfo 
 };
 
 export const getCustomMapRepos = () => {
-    return axios.get<string>(`${process.env.REACT_APP_HORIZON_CUSTOM_MAP_REPOS_URL}`);
+    return axios.get<string>(`${import.meta.env.VITE_HORIZON_CUSTOM_MAP_REPOS_URL}`);
 };
 
 export const getCustomMapRepoIndex = (game: GameType, slug: string) => {
@@ -68,7 +68,7 @@ export const getCustomMapRepoBackgroundImage = (game: GameType, repoSlug: string
 export const getCustomMapMinimapImage = (game: GameType, slug: string) => {
     const { mapsPath } = getCustomMapResourceInfo(game);
 
-    return axios.get<ArrayBuffer>(`${process.env.REACT_APP_HORIZON_CUSTOM_MAPS_DOMAIN}/${mapsPath}/${slug}.map`, {
+    return axios.get<ArrayBuffer>(`${import.meta.env.VITE_HORIZON_CUSTOM_MAPS_DOMAIN}/${mapsPath}/${slug}.map`, {
         responseType: "arraybuffer",
     });
 };

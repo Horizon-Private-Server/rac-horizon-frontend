@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Dispatch} from "react";
+import React, {useState, useEffect} from "react";
 
 import {
     Typography,
@@ -21,8 +21,6 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import {AxiosResponse} from "axios";
 import {getHandler} from "../../utils/Requests";
 import {Pagination, StatOffering} from "../../utils/Interfaces";
-import {useAppDispatch} from "../../app/hooks";
-import {AnyAction} from "@reduxjs/toolkit";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import {domainFormatting} from "../../components/base/Functions";
 import ImageBacking from "../../components/base/ImageBacking";
@@ -86,8 +84,6 @@ const DeadlockedStats = () => {
 
     const {width} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
-
-    const dispatch: Dispatch<AnyAction> = useAppDispatch();
 
     const {data, status} = useDeadlockedStatOfferings();
 

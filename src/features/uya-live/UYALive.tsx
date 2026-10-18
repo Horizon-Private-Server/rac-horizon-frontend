@@ -173,9 +173,9 @@ const UYAOnlineWebSocket: React.FC = () => {
     const [backgroundImages, setBackgroundImages] = useState<Record<number, Optional<HTMLImageElement>>>({});
     const [notStartedImg, setNotStartedImg] = useState<Optional<HTMLImageElement>>(null);
 
-    // const { sendMessage, lastMessage, readyState } = useWebSocket(`${process.env.REACT_APP_WS_ENDPOINT}/ws/uya-live`);
+    // const { sendMessage, lastMessage, readyState } = useWebSocket(`${import.meta.env.VITE_WS_ENDPOINT}/ws/uya-live`);
     useEffect(() => {
-        console.log('WebSocket Endpoint:', `${process.env.REACT_APP_WS_ENDPOINT}/ws/uya-live`);
+        console.log('WebSocket Endpoint:', `${import.meta.env.VITE_WS_ENDPOINT}/ws/uya-live`);
     }, []); // Empty dependency array ensures this runs only once
 
     const [playerIcons, setPlayerIcons] = useState<Record<string, Optional<HTMLImageElement>>>({
@@ -310,7 +310,7 @@ const UYAOnlineWebSocket: React.FC = () => {
         };
     }, []);
 
-    const { sendMessage, lastMessage, readyState } = useWebSocket(`${process.env.REACT_APP_WS_ENDPOINT}`, {
+    const { sendMessage, lastMessage, readyState } = useWebSocket(`${import.meta.env.VITE_WS_ENDPOINT}`, {
         onOpen: () => {
             console.log("WebSocket connection established");
             setError("");

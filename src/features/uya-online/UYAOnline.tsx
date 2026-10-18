@@ -1,7 +1,6 @@
-import React, {useEffect, useState, Dispatch} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Card, CardContent, Typography, CircularProgress, Box, Tooltip, Alert} from '@mui/material';
 
-import {useAppDispatch} from "../../app/hooks";
 
 import {AxiosResponse} from "axios";
 import {getHandler} from "../../utils/Requests";
@@ -12,7 +11,6 @@ import {
     UYAOnlineGame,
     UYAOnlineGameResponse, Optional,
 } from "../../utils/Interfaces";
-import {AnyAction} from "@reduxjs/toolkit";
 import ImageBacking from "../../components/base/ImageBacking";
 import {Stack} from "@mui/system";
 import {AccessTime} from "@mui/icons-material";
@@ -29,14 +27,11 @@ const UYAOnline: React.FC = () => {
 
     const [errorBanner, setErrorBanner] = useState<string>("");
 
-    const dispatch: Dispatch<AnyAction> = useAppDispatch();
-
 
     useEffect(() => {
         const fetchPlayers = () => {
             getHandler<UYAOnlinePlayerResponse>(
                 `/api/uya/online/players`,
-                dispatch,
                 (response: AxiosResponse<UYAOnlinePlayerResponse, any>) => {
                     console.log(response.data.results);
                     setPlayers(response.data.results);
@@ -56,13 +51,12 @@ const UYAOnline: React.FC = () => {
         }, 60000);
 
         return () => clearInterval(playerInterval); // Clean up the interval on component unmount
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
         const fetchGames = () => {
             getHandler<UYAOnlineGameResponse>(
                 `/api/uya/online/games`,
-                dispatch,
                 (response: AxiosResponse<UYAOnlineGameResponse, any>) => {
                     console.log(response.data.results);
                     setGames(response.data.results);
@@ -82,7 +76,7 @@ const UYAOnline: React.FC = () => {
         }, 60000);
 
         return () => clearInterval(gameInterval); // Clean up the interval on component unmount
-    }, [dispatch]);
+    }, []);
 
     if (loading) {
         return <CircularProgress/>;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Dispatch} from "react";
+import React, {useState, useEffect} from "react";
 import Page from "../../components/base/Page";
 import { Typography, CardContent, Card, Divider} from "@mui/material";
 
@@ -20,8 +20,6 @@ import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import UYAStatsChart from "./UYAStatsChart";
 import {getHandler} from "../../utils/Requests";
 import {AxiosResponse} from "axios";
-import {AnyAction} from "@reduxjs/toolkit";
-import {useAppDispatch} from "../../app/hooks";
 
 const UYADetails = () => {
 
@@ -30,8 +28,6 @@ const UYADetails = () => {
 
     const { horizonId } = useParams();
 
-    const dispatch: Dispatch<AnyAction> = useAppDispatch();
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {width, height} = useWindowDimensions();
     const screenSize = computeDeviceScale(width);
@@ -39,7 +35,6 @@ const UYADetails = () => {
     useEffect(() => {
         getHandler<UYAPlayerDetails>(
             `/api/uya/stats/player/${horizonId}`,
-            dispatch,
             (response: AxiosResponse<UYAPlayerDetails, any>) => {
                 setPlayer(response.data);
             },

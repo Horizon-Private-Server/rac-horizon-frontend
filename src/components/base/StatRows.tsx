@@ -52,7 +52,7 @@ export const RankRow = ({label, rank}: {label: string, rank: number}) => {
                 <Divider orientation="vertical" sx={{ml: 2, mr: 2}} />
                 <StatSubtitle
                     value={computeSkillLevel(rank ?? 0)}
-                    subtitle={`(${rank})` ?? "(0)"}
+                    subtitle={`(${rank ?? 0})`}
                 />
             </Stack>
         }
@@ -75,7 +75,7 @@ export const RatioRow = ({label, n, d}: {label: string | JSX.Element, n: number,
         value={
             <StatSubtitle
                 value={`${addCommasToNumber(n ?? 0)} / ${addCommasToNumber(d ?? 0)}`}
-                subtitle={`(${ratio.toFixed(2)})` ?? "(0.00)"}
+                subtitle={`(${ratio.toFixed(2)})`}
             />
         }
     />

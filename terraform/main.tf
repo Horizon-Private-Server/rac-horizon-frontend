@@ -59,15 +59,13 @@ resource "aws_s3_object" "build_files" {
     "application/octet-stream"
   )
 
-  # HTML files must not be cached by browsers so users always get the latest
-  # index.html (which references hashed JS/CSS bundles).
-  # All other files are content-addressed by CRA (hashed filenames) so they
-  # can be cached indefinitely.
-  cache_control = endswith(each.value, ".html") ? "no-cache, no-store, must-revalidate" : "public, max-age=31536000, immutable"
+  # HTML is never stored. Other assets receive a conservative one-hour
+  # lifetime and must be revalidated after they expire.
+  cache_control = endswith(each.value, ".html") ? "no-cache, no-store, must-revalidate" : "public, max-age=3600, must-revalidate"
 }
 
 # ---------------------------------------------------------------------------
-# CloudFront cache invalidation — runs after every apply
+# CloudFront cache invalidation - runs after every apply
 # ---------------------------------------------------------------------------
 resource "null_resource" "cloudfront_invalidation" {
   # Re-run whenever any file in the build changes

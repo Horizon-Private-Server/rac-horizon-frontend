@@ -1,4 +1,4 @@
-import React, {Dispatch, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {
     Alert,
@@ -26,8 +26,6 @@ import {isNumeric} from "../../components/base/Functions";
 import Paginator from "../../components/base/Paginator";
 import {getHandler} from "../../utils/Requests";
 import {Optional, Pagination, UYAGameHistoryEntry} from "../../utils/Interfaces";
-import {AnyAction} from "@reduxjs/toolkit";
-import {useAppDispatch} from "../../app/hooks";
 import {AxiosResponse} from "axios";
 import HorizonBreadcrumbs from "../../components/base/HorizonBreadcrumbs";
 import Skeleton from "@mui/material/Skeleton";
@@ -78,8 +76,6 @@ const UYAGameHistory = () => {
 
     const [loading, setLoading] = useState<boolean>(false);
 
-    const dispatch: Dispatch<AnyAction> = useAppDispatch();
-
     const { domain } = useParams();
     const { stat } = useParams();
 
@@ -94,7 +90,6 @@ const UYAGameHistory = () => {
         // TODO Re-implement this using React Query/Tanstack.
         getHandler<Pagination<UYAGameHistoryEntry>>(
             `/api/uya/gamehistory/history?page=${page}`,
-            dispatch,
             (response: AxiosResponse<Pagination<UYAGameHistoryEntry>, any>) => {
                 setGameHistory(response.data.results);
                 setTotalGames(response.data.count);
